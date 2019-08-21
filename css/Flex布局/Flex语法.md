@@ -41,3 +41,9 @@ Flex是 **flexible box**  的缩写,意思是***弹性布局***，具体开发�
 
 
 
+主要的参考资料有：
+
+* [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+
+
