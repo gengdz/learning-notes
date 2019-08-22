@@ -7,4 +7,6 @@
 * react
 * TypeScript
 * node
+* git
+* linux
 

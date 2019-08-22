@@ -9,7 +9,17 @@
 
 ## 常用命令：
 
-* get-名词  如(get-childItem、 get-help、 get-date、 get-service)
+* get-名词  如(get-content、get-childItem、 get-help、 get-date、 get-service)
 * clear
 * 进入 c: 回车即可。进入d: 回车即可
-* cd 
+* cd 加地址 即可进入相应地址
+* ls 当前文件目录
+* pwd 当前文件路径
+* cd.. 回到上一级目录
+* mkdir 新建一个文件夹
+* rmdir 删除一个文件夹
+* new-item aa.md 新建一个文件
+* rm : 删除文件/文件夹
+* cp 文件/文件夹 目标路径
+* mv  文件/文件夹 目标路径    还有一个作用 改名字 mv 旧名称 新名称
+
