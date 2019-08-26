@@ -28,6 +28,17 @@
 | git reset head test.md   | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
 | git checkout -- test.md  | 编辑了文件并执行了add操作之后，后悔了，想恢复成git远程仓库的版本放弃自己的修改的场景 |
 
+### Git回退版本
+
+| 命令                       | 说明                |
+| -------------------------- | ------------------- |
+| git reset --hard head^     | 回退到上一版本      |
+| git reset --hard head~1    | 回退到上一或者n版本 |
+| git reset --hard commit_id | 回退到commit_id版本 |
+| git reflog                 | 查看所有版本        |
+
+
+
 ### tag 
 
 版本号一样的东西
@@ -60,6 +71,7 @@
 | git branch --no-merged              | 查看未合并的分支                 |
 | git branch -D ask                   | 删除没有合并的ask分支            |
 | git rebase master/ git merge master | (git replace base)  更新分支代码 |
+|                                     |                                  |
 
 #### 分支冲突
 
@@ -94,7 +106,7 @@
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地                  |
 | git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来      |
 | git push origin home                                         | 1.创建远程home分支 2.将本地home代码推送到远程home |
-| git branch –set-upstream homeorigin/home                     | 把本地home分支和远程home分支相关联                |
+| git branch –set-upstream home origin/home                    | 把本地home分支和远程home分支相关联                |
 
 > 明：
 >
