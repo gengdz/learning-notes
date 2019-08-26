@@ -47,17 +47,19 @@
 
 #### 常用命令
 
-| 命令                   | 说明/场景             |
-| ---------------------- | --------------------- |
-| git  branch            | 查看分支              |
-| git branch home        | 创建 home 分支        |
-| git checkout home      | 切换分支              |
-| git checkout -b home   | 创建并切换到home分支  |
-| git merge home         | 合并home分支到主分支  |
-| git branch - d ask     | 删除ask分支           |
-| git branch --merged    | 查看已合并的分支      |
-| git branch --no-merged | 查看未合并的分支      |
-| git branch -D ask      | 删除没有合并的ask分支 |
+| 命令                                | 说明/场景                        |
+| ----------------------------------- | -------------------------------- |
+| git  branch                         | 查看分支                         |
+| git brahch -a                       | 查看本地和远程分支               |
+| git branch home                     | 创建 home 分支                   |
+| git checkout home                   | 切换分支                         |
+| git checkout -b home                | 创建并切换到home分支             |
+| git merge home                      | 合并home分支到主分支             |
+| git branch - d ask                  | 删除ask分支                      |
+| git branch --merged                 | 查看已合并的分支                 |
+| git branch --no-merged              | 查看未合并的分支                 |
+| git branch -D ask                   | 删除没有合并的ask分支            |
+| git rebase master/ git merge master | (git replace base)  更新分支代码 |
 
 #### 分支冲突
 
@@ -83,15 +85,20 @@
 | git stash drop  stash@{0}     | 删除第一个暂存区 |
 | git stash pop                 | 恢复并删除暂存区 |
 
-#### 远程分支
+#### 本地分支和远程分支关系
 
-| 命令                                | 用法                                     |
-| ----------------------------------- | ---------------------------------------- |
-| git push --set-upstream origin home | 创建远程home分支并和本地home分支联系起来 |
-|                                     |                                          |
-|                                     |                                          |
+| 命令                                                         | 用法                                              |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| git push --set-upstream origin home <br />或者使用<br />git push -u origin home | 创建远程home分支并和本地home分支联系起来          |
+| git push origin --delete home                                | 删除远程的home分支                                |
+| git pull origin home:home                                    | 把远程的home分支的代码拉取到本地                  |
+| git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来      |
+| git push origin home                                         | 1.创建远程home分支 2.将本地home代码推送到远程home |
+| git branch –set-upstream homeorigin/home                     | 把本地home分支和远程home分支相关联                |
 
-
+> 明：
+>
+> * git push 的完整写法为 git push origin home:home 将本地的home分支推送到远程的home分支。第一个home为本地的home，第二个home为远程的home 
 
 ### 常用命令简写
 
