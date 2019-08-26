@@ -108,8 +108,7 @@
 | git push origin home                                         | 1.创建远程home分支 2.将本地home代码推送到远程home |
 | git branch –set-upstream home origin/home                    | 把本地home分支和远程home分支相关联                |
 
-> 明：
->
+> 说明：
 > * git push 的完整写法为 git push origin home:home 将本地的home分支推送到远程的home分支。第一个home为本地的home，第二个home为远程的home 
 
 ### 常用命令简写
