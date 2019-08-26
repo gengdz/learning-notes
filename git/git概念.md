@@ -30,6 +30,18 @@
 
 ### Git回退版本
 
+>说明：
+>
+>**--soft**
+>
+>不删除工作空间改动代码，撤销commit，不撤销git add . 
+>
+>**-- hard**
+>
+>删除工作空间改动代码，撤销commit，撤销git add . 
+>
+>注意完成这个操作后，就恢复到了上一次的commit状态。
+
 | 命令                       | 说明                |
 | -------------------------- | ------------------- |
 | git reset --hard head^     | 回退到上一版本      |
@@ -109,6 +121,7 @@
 | git branch –set-upstream home origin/home                    | 把本地home分支和远程home分支相关联                |
 
 > 说明：
+>
 > * git push 的完整写法为 git push origin home:home 将本地的home分支推送到远程的home分支。第一个home为本地的home，第二个home为远程的home 
 
 ### 常用命令简写
