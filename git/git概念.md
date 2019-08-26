@@ -25,7 +25,7 @@
 | git mv oldname  new name | 给文件修改名称                                               |
 | git log                  | 获取日志，参数有 -p(变动)、 -1 (最近一次)、--name-only(哪个文件变动)、--name-status(文件变动的状态，是增加还是及修改) |
 | git commit --amend       | 修改最新一次的提交信息                                       |
-| git reset head           | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
+| git reset head test.md   | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
 | git checkout -- test.md  | 编辑了文件并执行了add操作之后，后悔了，想恢复成git远程仓库的版本放弃自己的修改的场景 |
 
 ### tag 
@@ -82,6 +82,25 @@
 | git stash apply \<?stash@{0}> | 恢复暂存区       |
 | git stash drop  stash@{0}     | 删除第一个暂存区 |
 | git stash pop                 | 恢复并删除暂存区 |
+
+#### 远程分支
+
+| 命令                                | 用法                                     |
+| ----------------------------------- | ---------------------------------------- |
+| git push --set-upstream origin home | 创建远程home分支并和本地home分支联系起来 |
+|                                     |                                          |
+|                                     |                                          |
+
+
+
+### 常用命令简写
+
+* 一种是使用git 的全局配置，配置文件的位置在C:\Users\dezhougeng\.gitconfig 文件中，设置的方式有两种
+  * 通过 code .gitconfig 打开配置界面，然后设置
+  * 通过命令直接设置 git config --global alias.s   status
+* 一种是使用系统进行配置 配置文件在C:\Users\dezhougeng\.bash_profile 文件中。打开方式为 code .bash_profile
+
+
 
 
 
