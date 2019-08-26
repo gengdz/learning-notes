@@ -83,7 +83,6 @@
 | git branch --no-merged              | 查看未合并的分支                 |
 | git branch -D ask                   | 删除没有合并的ask分支            |
 | git rebase master/ git merge master | (git replace base)  更新分支代码 |
-|                                     |                                  |
 
 #### 分支冲突
 
@@ -122,7 +121,8 @@
 
 > 说明：
 >
-> * git push 的完整写法为 git push origin home:home 将本地的home分支推送到远程的home分支。第一个home为本地的home，第二个home为远程的home 
+> * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
+> * git pull 的完整写法为 `git pull origin remotehome:home` 将远程的home分支拉取到本地的home分支
 
 ### 常用命令简写
 
