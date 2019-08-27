@@ -110,6 +110,12 @@
 
 #### 本地分支和远程分支关系
 
+> 本地分支和远程分支之间的关联关系：
+>
+> git remote -v 
+>
+> git remote show origin
+
 | 命令                                                         | 用法                                              |
 | ------------------------------------------------------------ | ------------------------------------------------- |
 | git push --set-upstream origin home <br />或者使用<br />git push -u origin home | 创建远程home分支并和本地home分支联系起来          |
@@ -128,10 +134,36 @@
 
 * 一种是使用git 的全局配置，配置文件的位置在C:\Users\dezhougeng\.gitconfig 文件中，设置的方式有两种
   * 通过 code .gitconfig 打开配置界面，然后设置
+  
   * 通过命令直接设置 git config --global alias.s   status
+  
+  * 目前的设置如下：
+  
+     ```javascript
+      [alias]
+      	a = add .
+      	c = commit
+      	s = status
+      	l = log
+      	b = branch
+     ```
+  
 * 一种是使用系统进行配置 配置文件在C:\Users\dezhougeng\.bash_profile 文件中。打开方式为 code .bash_profile
 
+  * 目前的设置如下：
 
+     >```javascript
+      >alias gs="git status"
+      >alias gc="git commit -m "
+      >alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit  "
+      >alias gb="git branch"
+      >alias ga="git add ."
+      >alias go="git checkout"
+      >```
+
+
+
+### 你好呀
 
 
 
