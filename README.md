@@ -2,11 +2,11 @@
 
 主要包括以下内容
 
-* css
-* JS 
 * react
+* JS 
 * TypeScript
 * node
+* css
 * git
 * linux
 * webpack
