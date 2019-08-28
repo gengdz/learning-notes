@@ -130,7 +130,14 @@
 > * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
 > * git pull 的完整写法为 `git pull origin remotehome:home` 将远程的home分支拉取到本地的home分支
 
-### 常用命令简写
+### gitconfig配置
+
+#### 查看和配置命令
+
+* git config -- global(local) --list   查看全局或者是本地配置
+* git config --global(local) user(alias).email  1583751445@qq.com
+
+#### 配置方式
 
 * 一种是使用git 的全局配置，配置文件的位置在C:\Users\dezhougeng\.gitconfig 文件中，设置的方式有两种
   * 通过 code .gitconfig 打开配置界面，然后设置
