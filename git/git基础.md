@@ -118,7 +118,7 @@
 
 | 命令                                                         | 用法                                              |
 | ------------------------------------------------------------ | ------------------------------------------------- |
-| git push --set-upstream origin home <br />或者使用<br />git push -u origin home | 创建远程home分支并和本地home分支联系起来          |
+| git branch --set-upstream-to=origin/company company<br />或者使用<br />git push -u origin home | 创建远程home分支并和本地home分支联系起来          |
 | git push origin --delete home                                | 删除远程的home分支                                |
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地                  |
 | git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来      |
