@@ -1,13 +1,19 @@
 {
   "name": "learning-notes",
-  "version": "0.10",
+  "version": "0.1.0",
   "description": "learning-notes of gdz",
   "main": "index.js",
   "repository": "https://github.com/gengdz/learning-notes.git",
   "author": "gengdz",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server"
+  },
   "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   }
 }
