@@ -2,7 +2,7 @@
   "name": "learning-notes",
   "version": "0.1.0",
   "description": "learning-notes of gdz",
-  "main": "index.js",
+  "private": true,
   "repository": "https://github.com/gengdz/learning-notes.git",
   "author": "gengdz",
   "license": "MIT",
@@ -22,5 +22,8 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1"
   }
 }
