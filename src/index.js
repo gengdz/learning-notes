@@ -11,3 +11,4 @@ test()
 
 const showHello = R.join('hello')
 console.log(showHello("webpack"))
+console.log('aaaa'.includes('a'))
