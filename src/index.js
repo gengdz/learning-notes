@@ -24,6 +24,7 @@ if (DEV == 'dev') {
 }
 
 console.log('url:', url)
+console.log('url:', url)
 
 
 render(
