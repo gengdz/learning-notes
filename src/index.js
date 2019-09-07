@@ -1,6 +1,6 @@
 // import * as R from 'ramda'
 import React from 'react'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
 
 // import './index.less';
 console.log('webpack文件从这里开始打包')
@@ -17,18 +17,19 @@ console.log('aaaa'.includes('a'))
 console.log('bbbbbbbbbbb')
 
 let url = ''
-if (DEV == 'dev') {
+if (DEV === 'dev') {
     url = '开发环境'
 } else {
+
     url = '生产环境'
 }
 
 console.log('url:', url)
 console.log('url:', url)
 
-
-render(
-    <h1>JSX</h1>, document.getElementById("root")
+const arrayData = [1, 2, 3, 4]
+arrayData.render(
+    <h1>JSX</h1>, document.getElementById('root'),
 )
 
 
@@ -37,8 +38,8 @@ render(
  */
 
 
-// 这里默认访问的是8080端口
-const xhr = new XMLHttpRequest();
+    // 这里默认访问的是8080端口
+const xhr = new XMLHttpRequest()
 
 xhr.open('GET', '/api/user', true)
 

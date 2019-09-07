@@ -11,16 +11,16 @@ module.exports = smart(base, {
                     test: /node_modules/,
                     chunks: 'initial',
                     minSize: 0,
-                    minChunks: 2
+                    minChunks: 2,
                 },
                 common: { // 公共模块
                     chunks: 'initial',
                     minSize: 0,
-                    minchunks: 2
+                    minchunks: 2,
                     // priotity: 1,
                 },
-            }
-        }
+            },
+        },
     },
 
     devServer: { // 开发服务器的配置，作用是可以通过 localhost的方式打开服务，好处是：可以查看打包后的结果，但不会真的进行打包，只会在内存中打包
@@ -32,11 +32,10 @@ module.exports = smart(base, {
         proxy: {
             '/api': {
                 target: 'http://localhost:3000',
-                pathRewrite: { '/api': '' }
-            }
-        }
+                pathRewrite: { '/api': '' },
+            },
+        },
     },
-
     devtool: 'eval-source-map',
 
 })
