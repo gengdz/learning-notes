@@ -20,7 +20,6 @@ let url = ''
 if (DEV === 'dev') {
     url = '开发环境'
 } else {
-
     url = '生产环境'
 }
 
@@ -28,7 +27,7 @@ console.log('url:', url)
 console.log('url:', url)
 
 const arrayData = [1, 2, 3, 4]
-arrayData.render(
+render(
     <h1>JSX</h1>, document.getElementById('root'),
 )
 
