@@ -15,6 +15,6 @@ const app = express()
 
 
 app.get('/user', (req, res) => {
-    res.json({ name: '耿德洲' })
+  res.json({ name: '耿德洲' })
 })
 app.listen(3000)
