@@ -28,4 +28,10 @@
   >
   > * 用于head部分
 
+* `<blockquote>` 引用
+> 用法示例：
+>```html
+> <blockquote>鲁迅说过：html特别好用</blockquote>
+>```
+>                             
 
