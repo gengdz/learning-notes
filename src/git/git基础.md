@@ -122,7 +122,7 @@
 | git push origin --delete home                                | 删除远程的home分支                                |
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地                  |
 | git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来      |
-| git push origin home                                         | 1.创建远程home分支 2.将本地home代码推送到远程home |
+| git push -u origin home                                         | 1.创建远程home分支 2.将本地home代码推送到远程home |
 | git branch –set-upstream home origin/home                    | 把本地home分支和远程home分支相关联                |
 
 > 说明：
