@@ -19,6 +19,11 @@
 * halt 立即关机
 * reboot 立即重启
 * su root 切换到超级管理员
+* find 路径  -name  文件名  --> find e:/test -name aa
+* 查看进程 ps -ef | grep '要搜索的进程名'  --> ps -ef|grep node
+* 详细查看进程 ps -aux|grep '要搜索的进程名'
+* 杀死进程 1. kill PID  2.kill -s 9 PID
+* 查找端口 netstat -a 或者netstat |grep 80
 
 ## vim编辑器
 
@@ -99,3 +104,4 @@ grep [选项] <字符串> <源文件>
 ##### 显示文件内容
 * cat test.md 正序显示内容
 * tac test.md 倒叙显示内容
+
