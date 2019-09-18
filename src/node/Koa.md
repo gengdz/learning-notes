@@ -4,7 +4,7 @@
 
 Koa是下一代node的web开发框架，他封装了node中自带的http模块。改进了Express
 
-## Koa配合使用的包
+## Koa配合使用的包(应用级中间件)
 
 * koa-router --> 处理路由，增强koa路由分发能力
 * koa-bodyparser 用来解析post请求的body
@@ -12,6 +12,7 @@ Koa是下一代node的web开发框架，他封装了node中自带的http模块�
 ## Koa使用示例
 
 ```javascript
+// app.js
 const Koa  = require('koa')
 const Router = require('koa-router')
 const bodyparser = require('koa-bodyparser')
@@ -47,6 +48,7 @@ app.listen(3000,() => {
 ```
 
 ```javascript
+// shopping.js
 const Router = require('koa-router')
 const Product = require('../models/Product')
 const Cart = require('../models/Cart')
@@ -61,12 +63,32 @@ router.get('/test/:name/:age', async ctx => {
   ctx.body = { statusMessage: 'shopping works' }
 })
 
-
+// post请求方法示例
+router.post('/addToCart', async (ctx, next) => {
+  const postParam = ctx.request.body
+  const isExist = await Cart.findById(postParam.pid)
+  if (isExist) {
+    // 执行修改动作
+    await Cart.findByIdAndUpdate(postParam.pid, postParam)
+  } else {
+    // 执行新增动作
+    await new Cart(postParam)
+      .save()
+      .then(() => {
+        return ctx.body = { statusCode: '0', statusMessage: '操作成功' }
+      })
+      .catch(() => {
+        return ctx.body = { statusCode: '1', statusMessage: '新增失败' }
+      })
+  }
+})
 ```
 
 说明：
 
 * router的第二个异步函数，通常有两个参数组成，(ctx,next)，其中ctx是context，请求上下文的意思。里面是request 和 response 等信息，next是一个函数，作用是调用下游中间件，返回一个带有then 函数的Promise
+  * 通过`ctx.querry` 可以拿到get请求的参数
+  * 通过`ctx.request.body` 可以拿到post请求中body的参数
 * ctx.body 返回数据， 相当于原生中的 res.end('要返回的内容')
 
 
