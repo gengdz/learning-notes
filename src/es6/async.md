@@ -108,7 +108,7 @@ const foo = async function () {};
     const bbContent = await pReadFile('../bb.txt').catch(() => console.log('b文件读取失败'))
     const ccContent = await pReadFile('../c.txt').catch(() => console.log('c文件读取失败'))
     content = `
-    a文件的内容: ${aaContent};
+    a文件的内容: ${aaContent}
     b文件的内容：${bbContent}
     c文件的内容：${ccContent}
     `
@@ -123,7 +123,7 @@ const foo = async function () {};
   a文件读取失败
   b文件读取失败
   
-    a文件的内容: undefined;
+    a文件的内容: undefined
     b文件的内容：undefined
     c文件的内容：ccccc
     
@@ -138,7 +138,7 @@ const foo = async function () {};
 ## await详解
 
 * 正常情况下,await后面如果是一个Promise，则返回该对象的结果。如果不是Promise对象，就直接返回对应的值 (特殊的是，如果await对象是一个 thenable对象<定义了then方法的对象>，则视其为Promise对象)
-* await对象的Promise对象如果变成了 *reject* 状态，那么reject的参数会被catch方法接收到（即便是你的await方法前面没写return），也就是说。如果出错了。那么错误参数一定会被catch到
+* await后面的Promise对象如果变成了 *reject* 状态，那么reject的参数会被catch方法接收到（即便是你的await方法前面没写return），也就是说。如果出错了。那么错误参数一定会被catch到
 * 任意一个await语句后面的Promise对象变成 *reject* 状态，那么async函数将中断执行，(后面的await不再执行)
 * 基于上面的原因，如果有多个await，那么最好要使用 `try{} catch(e) {}` 代码结构  将await包围住
 * 如果多个await 确实不存在继发关系，那么最好让他们同时触发。否则async方法就会执行完一次再执行下一个
