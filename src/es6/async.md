@@ -133,8 +133,6 @@ const foo = async function () {};
 
   
 
-
-
 ## await详解
 
 * 正常情况下,await后面如果是一个Promise，则返回该对象的结果。如果不是Promise对象，就直接返回对应的值 (特殊的是，如果await对象是一个 thenable对象<定义了then方法的对象>，则视其为Promise对象)
