@@ -250,10 +250,11 @@ git remote -v
 git remote show origin
 ```
 
-3、有个文件提交错误了，但是这个时候已经上传到远程分支了
+3、有个文件夹的名字写错了，他想重命名一下，同时重命名一下文件的名字
 
 ```bash
-
+git mv test xiaoming
+git mv xiaoming/a.md xiaoming/b.md
 ```
 
 
