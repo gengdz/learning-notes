@@ -19,4 +19,8 @@ import AddPicture from './AddPicture'
 
    redux中的connect函数，
 
-3. 
+
+
+
+## React如何在父组件中拿到子组件？
+
