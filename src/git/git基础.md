@@ -44,9 +44,9 @@
 
 | 命令                       | 说明                |
 | -------------------------- | ------------------- |
+| git reset --hard commit_id | 回退到commit_id版本 |
 | git reset --hard head^     | 回退到上一版本      |
 | git reset --hard head~1    | 回退到上一或者n版本 |
-| git reset --hard commit_id | 回退到commit_id版本 |
 | git reflog                 | 查看所有版本        |
 
 
@@ -258,4 +258,33 @@ git mv xiaoming/a.md xiaoming/b.md
 ```
 
 
+
+## 场景二
+
+一、小明已经执行了git add,然后他想撤销
+
+```bash
+git reset head aa.md bb.md
+```
+
+二、小明执行了git commit操作，然后想撤销
+
+```bash
+#使用索引值的方式回退【推荐】
+git reset --soft c9a62af
+
+git reset --soft head^
+```
+
+三、小明执行了git push操作，就是说已经推送到远程，然后想撤回
+
+```bash
+#使用索引值的方式回退【推荐】
+git reflog
+git reset --soft c9a62af
+
+git reset --soft head^
+#或者使用
+git reset --soft head~1
+```
 
