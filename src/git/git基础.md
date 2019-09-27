@@ -282,6 +282,7 @@ git reset --soft head^
 #使用索引值的方式回退【推荐】
 git reflog
 git reset --soft c9a62af
+git push origin test --force
 
 git reset --soft head^
 #或者使用
