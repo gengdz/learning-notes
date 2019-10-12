@@ -38,7 +38,7 @@
 
 
 
-### `<blockquote>` 引用
+### `<blockquote>` 区块引用
 
 用法示例：
 
@@ -55,6 +55,21 @@
 ```html
 <img src="图片路径" alt="图片缺失" width="100"/>
 ```
+
+
+
+### `<input>` 输入
+
+用法示例：
+
+input的类型有点多：text、checkbox、password、radio、reset、submit、button、file、hidden、image
+
+```html
+<!-- 复选框 -->
+<input type="checkbox">
+```
+
+
 
 
 
