@@ -227,9 +227,9 @@ git push
 
 ```
 
-#### 场景一遇到的问题
 
-这期间他遇到了以下问题。
+
+**场景一遇到的问题如下**
 
 1、首先他写了4个文件，但是只提交两个，当他使用 git rebase master的时候提示 Cannot rebase: You have unstaged changes. Please commit or stash them. 这个时候他选择使用stash
 
@@ -310,4 +310,19 @@ git cherry-pick commitId
 ```
 
 
+
+### 场景四
+
+小明现在本地有一个项目代码，他想把这个代码上传到已经存在的GitHub仓库里面此时他需要怎么做呢？
+
+```bash
+# 添加远程仓库
+git remote add origin https://github.com/gengdz/antd-course.git
+
+# 更新远程仓库代码到本地
+git pull origin master --allow-unrelated-histories
+
+# 然后再执行push操作
+git push -u origin master
+```
 
