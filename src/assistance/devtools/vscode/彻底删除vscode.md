@@ -1,2 +1,2 @@
-![彻底删除vscode](picture\彻底删除vscode.jpg)
+![彻底删除vscode](../../../images/devtools/彻底删除vscode.jpg)
 

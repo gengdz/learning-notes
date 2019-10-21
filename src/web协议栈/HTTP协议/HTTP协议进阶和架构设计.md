@@ -1,7 +1,7 @@
 # Http基础
 
 ## 浏览器发起HTTP请求的典型场景
-![浏览器发起HTTP请求的典型场景](../picture/浏览器发起HTTP请求的典型场景.png)
+![浏览器发起HTTP请求的典型场景](../../images/http协议/浏览器发起HTTP请求的典型场景.png)
 
 * 当用户在地址栏中输入url的时候，浏览器的自动补全功能是由于浏览器有一个轻量级的数据库，所以可以根据历史记录来猜测用户想要输入的地址
 * 当发起请求的时候，就会调用渲染引擎。
@@ -10,7 +10,7 @@
 
 背后细节
 
-![请求的背后细节](../picture/请求的背后细节.png)
+![请求的背后细节](../../images/http协议/请求的背后细节.png)
 
 ## HTTP协议的定义
 
@@ -18,11 +18,11 @@
 
 ## Http协议格式、语法
 
-![ABNF操作符](../picture/ABNF操作符.png)
+![ABNF操作符](../../images/http协议/ABNF操作符.png)
 
-![ABNF核心规则](../picture/ABNF核心规则.png)
+![ABNF核心规则](../../images/http协议/ABNF核心规则.png)
 
-![ABNF描述的HTTP协议格式](../picture/ABNF描述的HTTP协议格式.png)
+![ABNF描述的HTTP协议格式](../../images/http协议/ABNF描述的HTTP协议格式.png)
 
 ## HTTP解决了什么问题
 
@@ -36,8 +36,8 @@
 
 ## 评估web架构的七个关键属性
 
-![评估web架构的七个关键属性](../picture/评估web架构的七个关键属性.png)
+![评估web架构的七个关键属性](../../images/http协议/评估web架构的七个关键属性.png)
 
-![架构属性,性能](../picture/架构属性,性能.png)
+![架构属性,性能](../../images/http协议/架构属性,性能.png)
 
-![REST架构下Web](../picture/REST架构下Web.png)
+![REST架构下Web](../../images/http协议/REST架构下Web.png)

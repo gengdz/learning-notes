@@ -32,7 +32,7 @@
 
 进入方式是：vim
 
-![vim编辑器模式](.\picture\vim编辑器模式.jpg)
+![vim编辑器模式](../../images/linux/vim编辑器模式.jpg)
 
 一共有三种模式
 
