@@ -24,6 +24,7 @@ async1();
 new Promise(function(resolve) {
     console.log("promise1");
     resolve();
+    console.log("test")
 }).then(function() {
     console.log("promise2");
 });
@@ -34,6 +35,7 @@ script start
 async1 start
 async2
 promise1
+test
 script end
 
 async1 end
@@ -55,6 +57,7 @@ setTimeout
 
    * promise函数是自执行函数，所以不用调用
    * 看到promise函数不用慌张，先执行里面的同步代码再说
+   * promise本身是 **同步的立即执行函数**，then中的方法是异步执行的。
 
 3. 宏任务和微任务
 

@@ -44,5 +44,84 @@ obj.isTestable // true
 
 ```
 
-## 类属性和方法的装饰器
+## 类属性的装饰器
+
+类属性的装饰器有两个参数
+
+* target: 对静态成员来说是类的构造函数，对实例对象来说是类的原型对象
+* name: 所修改的属性名
+
+代码示例
+
+```typescript
+class Person {
+  @value('耿德洲')
+  public name: string | undefined;
+
+  public sayHi() {
+    return `${this.name}`
+  }
+}
+
+function value(params:string){
+  return function (target: any, name:string){
+    target[name] = params
+  }
+}
+
+const p = new Person()
+console.log(p.sayHi())
+
+// 耿德洲
+```
+
+
+
+
+
+## 类方法的装饰器
+
+类方法的装饰器有三个参数
+
+* target: 对静态成员来说是类的构造函数，对实例对象来说是类的原型对象
+* name: 所修饰的属性名
+* descriptor: 属性的描述对象
+
+如果使用原型或者继承的方式修改sayHi会编译不通过。
+
+类方法的装饰器代码如下
+
+```typescript
+class Person {
+  public name: string | undefined;
+
+  @readonly
+  public sayHi() {
+    return `${this.name}`
+  }
+}
+
+// Person.prototype.sayHi = function () {
+//   return `aaaaa`
+// }
+
+function readonly(target: any, name: string, descriptor: any) {
+  descriptor.writable = false;
+  console.log('descriptor', descriptor)
+  return descriptor;
+}
+
+const p = new Person()
+p.name = 'gdz'
+console.log(p.sayHi())
+
+/* 
+  descriptor {
+    value: [Function],
+    writable: false,
+    enumerable: true,
+    configurable: true
+  } 
+ */
+```
 
