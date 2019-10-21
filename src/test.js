@@ -1,1 +1,0 @@
-module.exports = '单独压缩react和react-dom'
