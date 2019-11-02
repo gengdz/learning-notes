@@ -114,12 +114,12 @@ function App() {
 
 ### 使用场景
 
-* state逻辑复杂，并且包含多个子值。
+* state逻辑复杂，并且包含多个子值
 * 下一个state依赖之前的state
 
 ### 使用说明
 
-它是`useState` 的替代方案。
+它是`useState` 的替代方案。就是说如果你的某个state是一个对象，里面还有比较多的属性的时候，这个时候你可以使用类似于redux中 action -> state 的方式，这样的好处是，1）你可以依赖之前的状态去生成新的state，2）你可以对一个state进行多种方式的处理 
 
 使用语法是
 
@@ -171,4 +171,24 @@ function getTableData(data = {}) {
   })
 }
 ```
+
+
+
+## useMemo
+
+### 使用场景
+
+* 这个hook是用来做性能优化的
+
+* 只需要在某些依赖项变化的时候才调用某个方法
+
+### 使用说明
+
+useMemo接受两个参数，第一个是一个函数，第二个是依赖项数组，只有当依赖项目发生改变的时候，才会执行第一个函数
+
+```javascript
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+
 
