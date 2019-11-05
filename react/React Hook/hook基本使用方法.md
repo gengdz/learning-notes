@@ -1,6 +1,14 @@
 # React Hook介绍
 
-React中内置的Hook有以下这些
+## 为什么有Hook？
+
+1. 在组件之间复用状态很难（如把组件连接到store，可以通过**高阶组件**的方式解决，但是会引入**嵌套地狱**）
+2. 复杂组件变得难以理解（你要按照生命周期拆分一些相关的事件到不同的生命周期）
+3. 难以理解的class（this绑定）
+
+
+
+## React中内置的Hook有以下这些
 
 - [基础 Hook](https://react.docschina.org/docs/hooks-reference.html#basic-hooks)
   - [`useState`](https://react.docschina.org/docs/hooks-reference.html#usestate)
@@ -14,6 +22,8 @@ React中内置的Hook有以下这些
   - [`useImperativeHandle`](https://react.docschina.org/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](https://react.docschina.org/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](https://react.docschina.org/docs/hooks-reference.html#usedebugvalue)
+
+
 
 ## useEffect
 
@@ -179,16 +189,41 @@ function getTableData(data = {}) {
 ### 使用场景
 
 * 这个hook是用来做性能优化的
-
 * 只需要在某些依赖项变化的时候才调用某个方法
+* 当进行昂贵的计算的时候，要考虑是不是有相关的依赖项，减少没必要的渲染
 
 ### 使用说明
 
-useMemo接受两个参数，第一个是一个函数，第二个是依赖项数组，只有当依赖项目发生改变的时候，才会执行第一个函数
+useMemo接受两个参数，第一个是一个函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个变量**
 
 ```javascript
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
+
+
+
+
+
+## useCallback
+
+### 使用场景
+
+* 这个hook使用来做性能优化的
+* 外部组件在特定条件下调用该组件方法的时候
+
+### 使用说明
+
+1. useCallback接受两个参数，第一个是函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个函数**。这样只要子组件继承了 PureComponent 或者使用 React.memo 就可以有效避免不必要的 VDOM 渲染。
+
+2. `React.memo` 和 `React.useCallback` 一定记得需要配对使用，缺了一个都可能导致性能不升反“降”
+
+```javascript
+useCallback(fn, deps)  // 相当于 useMemo(() => fn, deps)。
+```
+
+
+
+
 
 
 
