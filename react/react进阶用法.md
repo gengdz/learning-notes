@@ -11,6 +11,23 @@ import AddPicture from './AddPicture'
 
 
 
+## 导出
+
+给导出的module起别名 
+
+```javascript
+function f1(){}
+function f2(){}
+
+export {
+  f1 as getFirstName,
+  f2 as getSecondName,
+}
+
+```
+
+
+
 
 ## React如何在父组件中拿到子组件？
 

@@ -223,7 +223,40 @@ useCallback(fn, deps)  // 相当于 useMemo(() => fn, deps)。
 
 
 
+## useRef
+
+### 使用场景
+
+* 拿到元素的Dom实例
+* 里面有一个`current` 属性值
+
+### 使用说明
+
+语法是
+
+```javascript
+const refContainer = useRef(initialValue)
+```
+
+代码说明：
+
+```javascript
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null)
+  const onButtonClick = () => {
+    inputEl.current.focus()
+  }
+  return(
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  )
+}
+```
 
 
 
 
+
+ 
