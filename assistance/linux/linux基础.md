@@ -8,7 +8,7 @@
 * cd指令跳转到指定的目录 
   * cd .. 跳转到上一级目录
   * cd ~ 跳转到自己的家 
-* clear 清屏
+* clear 清屏 或者使用快捷键 (ctrl+L)
 *  login 登录(说明:linux有两种界面一种是图形界面(shift+alt+F1)，一种是字符界面(shift+alt+(F2~F6) )
 * logout 退出登录
 * shutdown 关机
