@@ -211,8 +211,6 @@ git pull --rebase origin master
 > 5. 任何时候都可以执行 `git rebase —abort`，来终止rebase操作
 
 
-
-
 ### rebase小结
 1. git rebase 操作发生在分支上，目的是移动分支的基点。
 
