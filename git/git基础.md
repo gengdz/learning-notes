@@ -167,8 +167,8 @@
 
 ### 注意事项
 
-1. **绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**
-2. **执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库**
+1. ==**绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**==
+2. ==***执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库(没执行push操作)***==
 
 
 
@@ -208,7 +208,7 @@ git pull --rebase origin master
 如果在rebase的过程中发生了冲突，可以按照一下方式解决冲突
 
 > 1. 解决一个冲突
-> 2. 执行`git add 冲突文件`
+> 2. 执行`git add 冲突文件名`
 > 3. `git rebase —continue`
 > 4. `git push`
 > 5. 任何时候都可以执行 `git rebase —abort`，来终止rebase操作
