@@ -190,7 +190,6 @@ rebase可以理解为replace base，他可以实现的功能就是移动分支�
 4. 然后执行git push 操作，把master分支的代码推送到远程 
 
 ### 使用展示
-
 ```bash
 git pull = git fetch + git merge 
 git pull --rebase = git fetch + git rebase
