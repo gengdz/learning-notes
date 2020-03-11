@@ -165,6 +165,13 @@
 
 ## rebase的用法
 
+### 注意事项
+
+1. **绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**
+2. **执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库**
+
+
+
 ### rebase的使用场景？
 
 1. 创建一个分支dev
@@ -202,14 +209,15 @@ git pull --rebase origin master
 
 > 1. 解决一个冲突
 > 2. 执行`git add 冲突文件`
-> 3. git rebase --continue
-> 4. git push
+> 3. `git rebase —continue`
+> 4. `git push`
+> 5. 任何时候都可以执行 `git rebase —abort`，来终止rebase操作
 
 
 
 
-### rebase小结
-* git rebase 操作发生在分支上，目的是移动移动分支的基点。
+### rebase知识小结
+1. git rebase 操作发生在分支上，目的是移动移动分支的基点。
 
 
 
