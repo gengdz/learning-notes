@@ -201,13 +201,14 @@ git pull --rebase origin master
 如果在rebase的过程中发生了冲突，可以按照一下方式解决冲突
 
 > 1. 解决一个冲突
-> 2. git rebase --continue
-> 3. git push
+> 2. 执行`git add 冲突文件`
+> 3. git rebase --continue
+> 4. git push
 
 
 
 
-### rebase总结
+### 总结
 * git rebase 操作发生在分支上，目的是移动移动分支的基点。
 
 
