@@ -185,7 +185,28 @@ rebase可以理解为replace base，他可以实现的功能就是移动分支�
 3. 切换到master分支，执行合并操作
 4. 然后执行git push 操作，把master分支的代码推送到远程 
 
-总结
+### 使用展示
+
+```bash
+git pull = git fetch + git merge 
+git pull --rebase = git fetch + git rebase
+
+# 在dev分支上拉取master分支的代码
+git pull origin master 
+
+# 在dev分支上拉取master分支的代码,使用rebase的方式
+git pull --rebase origin master
+```
+
+如果在rebase的过程中发生了冲突，可以按照一下方式解决冲突
+
+> 1. 解决一个冲突
+> 2. git rebase --continue
+> 3. git push
+
+
+
+### 总结
 
 * git rebase 操作发生在分支上，目的是移动移动分支的基点。
 
