@@ -92,12 +92,12 @@
 
 | 命令                                                         | 用法                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| git branch --set-upstream-to=origin/company company<br />或者使用<br />git push -u origin home | 创建远程home分支并和本地home分支联系起来                     |
+| 1. git push -u origin home<br> 2. git push --set-upstream origin test<br> 3. git branch --set-upstream-to=origin/company company | 创建远程home分支并和本地home分支联系起来                     |
 | git push origin --delete home                                | 删除远程的home分支                                           |
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地，<br />如果本地没有home分支那么自动创建 |
 | git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来                 |
 | git push -u origin home                                      | 1.创建远程home分支 2.将本地home代码推送到远程home            |
-| git branch –set-upstream home origin/home                    | 把本地home分支和远程home分支相关联                           |
+| git branch –-set-upstream home origin/home                   | 把本地home分支和远程home分支相关联                           |
 
 > 说明：
 >
@@ -165,6 +165,13 @@
 
 ## rebase的用法
 
+### 注意事项
+
+1. **绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**
+2. **执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库**
+
+
+
 ### rebase的使用场景？
 
 1. 创建一个分支dev
@@ -185,9 +192,32 @@ rebase可以理解为replace base，他可以实现的功能就是移动分支�
 3. 切换到master分支，执行合并操作
 4. 然后执行git push 操作，把master分支的代码推送到远程 
 
-总结
+### 使用展示
 
-* git rebase 操作发生在分支上，目的是移动移动分支的基点。
+```bash
+git pull = git fetch + git merge 
+git pull --rebase = git fetch + git rebase
+
+# 在dev分支上拉取master分支的代码
+git pull origin master 
+
+# 在dev分支上拉取master分支的代码,使用rebase的方式
+git pull --rebase origin master
+```
+
+如果在rebase的过程中发生了冲突，可以按照一下方式解决冲突
+
+> 1. 解决一个冲突
+> 2. 执行`git add 冲突文件`
+> 3. `git rebase —continue`
+> 4. `git push`
+> 5. 任何时候都可以执行 `git rebase —abort`，来终止rebase操作
+
+
+
+
+### rebase小结
+1. git rebase 操作发生在分支上，目的是移动移动分支的基点。
 
 
 
