@@ -204,9 +204,7 @@ git pull --rebase origin master
 > 2. git rebase --continue
 > 3. git push
 
-
-### 总结
-
+### rebase总结
 * git rebase 操作发生在分支上，目的是移动移动分支的基点。
 
 
