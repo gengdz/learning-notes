@@ -1,3 +1,4 @@
+# Git基础
 
 ## 常用的命令
 
@@ -10,6 +11,8 @@
 | git commit --amend       | 修改最新一次的提交信息                                       |
 | git reset head test.md   | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
 | git checkout -- test.md  | 编辑了文件并执行了add操作之后，后悔了，想恢复成git远程仓库的版本放弃自己的修改的场景 |
+
+
 
 ## Git回退版本
 
@@ -118,19 +121,21 @@
 | git stash drop  stash@{0}     | 删除第一个暂存区 |
 | git stash pop                 | 恢复并删除暂存区 |
 
+
+
 ## gitconfig配置
 
 ### 查看和配置命令
 
-* git config -- global(local) --list   查看全局或者是本地配置
-* git config --global(local) user(alias).email  1583751445@qq.com
+* `git config -- global(local) —list`   查看全局或者是本地配置
+* `git config --global(local) user(alias).email  1583751445@qq.com`
 
 ### 配置方式
 
 * 一种是使用git 的全局配置，配置文件的位置在C:\Users\dezhougeng\.gitconfig 文件中，设置的方式有两种
-  * 通过 code .gitconfig 打开配置界面，然后设置
+  * 通过 `code .gitconfig` 打开配置界面，然后设置
   
-  * 通过命令直接设置 git config --global alias.s   status
+  * 通过命令直接设置 `git config --global alias.s   status`
   
   * 目前的设置如下：
   
@@ -143,18 +148,20 @@
       	b = branch
      ```
   
-* 一种是使用系统进行配置 配置文件在C:\Users\dezhougeng\.bash_profile 文件中。打开方式为 code .bash_profile
+* 一种是使用系统进行配置。window下 配置文件在`C:\Users\dezhougeng\.bash_profile` 文件中。打开方式为 `code .bash_profile`；mac下配置文件在 `~/.zshrc`，打开方式为 `code .zshrc`
 
   * 目前的设置如下：
 
-     >```javascript
-      >alias gs="git status"
-      >alias gc="git commit -m "
-      >alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit  "
-      >alias gb="git branch"
-      >alias ga="git add ."
-      >alias go="git checkout"
-      >```
+     ```javascript
+     alias gs="git status"
+     alias gc="git commit -m "
+     alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit  "
+     alias gb="git branch"
+     alias ga="git add ."
+     alias go="git checkout"
+     ```
+
+
 
 ## rebase的用法
 
@@ -286,7 +293,7 @@ git reset --soft head~1
 
 ### 场景三
 
-小明需要改一个bug,这时候应该怎么做呢
+小明需要改一个bug，然后还有把这个修复，同步到别的分支这时候应该怎么做呢
 
 ```bash
 git cherry-pick commitId
