@@ -9,41 +9,6 @@
 | git mv oldname  new name | 给文件修改名称                                               |
 | git log                  | 获取日志，参数有 -p(变动)、 -1 (最近一次)、--name-only(哪个文件变动)、--name-status(文件变动的状态，是增加还是及修改) |
 | git commit --amend       | 修改最新一次的提交信息                                       |
-| git reset head test.md   | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
-
-
-
-## Git回退版本
-
->说明：
->
->**-- soft**
->
->不删除工作空间改动代码，撤销commit，不撤销git add . (这个安全常用)
->
->**-- hard**
->
->删除工作空间改动代码，撤销commit，撤销git add . 
->
->注意完成这个操作后，就恢复到了上一次的commit状态。
-
-| 命令                       | 说明                |
-| -------------------------- | ------------------- |
-| git reset --hard commit_id | 回退到commit_id版本 |
-| git reset --hard head^     | 回退到上一版本      |
-| git reset --hard head~1    | 回退到上一或者n版本 |
-| git reflog                 | 查看所有版本        |
-
-
-
-## tag 
-
-版本号一样的东西
-
-命令有两个：
-
-* git tag 获取标签列表
-* git tag v1.0 打标签
 
 
 
@@ -64,9 +29,9 @@
 | git checkout -b home                | 创建并切换到home分支             |
 | git merge home                      | 合并home分支到主分支             |
 | git branch - d ask                  | 删除ask分支                      |
+| git branch -D ask                   | 删除没有合并的ask分支            |
 | git branch --merged                 | 查看已合并的分支                 |
 | git branch --no-merged              | 查看未合并的分支                 |
-| git branch -D ask                   | 删除没有合并的ask分支            |
 | git rebase master/ git merge master | (git replace base)  更新分支代码 |
 
 ### 分支冲突
@@ -162,6 +127,37 @@
 
 
 
+## reset的用法
+
+常用在 执行了add操作，并且执行了commit 操作之后，没执行push操作，想撤销commit的时候
+
+| 参数        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| **-- soft** | 不删除工作空间改动代码，撤销commit，不撤销git add . (这个安全常用) |
+| **-- hard** | 删除工作空间改动代码，撤销commit，撤销git add .              |
+
+注意完成这个操作后，就恢复到了上一次的commit状态。
+
+| 命令                       | 说明                |
+| -------------------------- | ------------------- |
+| git reset --hard commit_id | 回退到commit_id版本 |
+| git reset --hard head^     | 回退到上一版本      |
+| git reset --hard head~1    | 回退到上一或者n版本 |
+| git reflog                 | 查看所有版本        |
+
+
+
+## tag 
+
+版本号
+
+| 命令         | 说明         |
+| ------------ | ------------ |
+| git tag      | 获取标签列表 |
+| git tag v1.0 | 打标签       |
+
+
+
 ## rebase的用法
 
 ### 注意事项
@@ -234,11 +230,11 @@ git checkout -b test
 #写代码，并且提交
 git add .
 git commit -m '第一次提交'
-git push --set-upstream origin test
 git checkout master
 git pull
 git checkout test
 git rebase master
+git push --set-upstream origin test
 git checkout master
 git merge test
 git push
@@ -297,7 +293,7 @@ git checkout --aa.md
 二、小明已经执行了git add,然后他想撤销
 
 ```bash
-# 新推出了git restore命令
+# 新推出了git restore命令(推荐)
 git restore --staged aa.md bb.md;
 
 # 之前的方式
