@@ -1,6 +1,6 @@
 # Git基础
 
-## 常用的命令
+## 一些命令
 
 | 命令                     | 使用场景                                                     |
 | ---------------------------- | ------------------------------------------------------------ |
@@ -10,7 +10,6 @@
 | git log                  | 获取日志，参数有 -p(变动)、 -1 (最近一次)、--name-only(哪个文件变动)、--name-status(文件变动的状态，是增加还是及修改) |
 | git commit --amend       | 修改最新一次的提交信息                                       |
 | git reset head test.md   | 编辑了文件并执行了add操作之后，后悔了，这时候就可以使用这个命令把文件从暂存区撤回 |
-| git checkout -- test.md  | 编辑了文件并执行了add操作之后，后悔了，想恢复成git远程仓库的版本放弃自己的修改的场景 |
 
 
 
@@ -288,12 +287,20 @@ git mv xiaoming/a.md xiaoming/b.md
 一、小明写了一些东西，这个时候还没提交，然后想把改的这些东西都撤销掉
 
 ```bash
+# 新推出了git restore命令(推荐)
+git restore aa.md
+
+# 之前的方式是
 git checkout --aa.md
 ```
 
 二、小明已经执行了git add,然后他想撤销
 
 ```bash
+# 新推出了git restore命令
+git restore --staged aa.md bb.md;
+
+# 之前的方式
 git reset head aa.md bb.md
 ```
 
@@ -301,7 +308,7 @@ git reset head aa.md bb.md
 
 ```bash
 #使用索引值的方式回退【推荐】
-git reset --soft c9a62af
+git reset --soft c9a62af(撤销成上一次就输入上一次的commitId,而不是刚commit的这次Id)
 
 git reset --soft head^
 ```
