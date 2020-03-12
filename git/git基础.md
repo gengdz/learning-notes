@@ -5,6 +5,8 @@
 | 命令                     | 使用场景                                                     |
 | ---------------------------- | ------------------------------------------------------------ |
 | git init                 | git init 把普通文件变成由git托管的文件                       |
+| git show commitId | 查看某一个commit的具体改动 |
+| git diff | 进行比对 |
 | git rm --cached test.md  | 1.已经提交了test.md文件，但是这个文件的性质是git不需要但是本地需要，类似的典型文件还有 node_modules<br/>2.新增了一个文件 并执行了add命令，这时可以使用这个命令 |
 | git mv oldname  new name | 给文件修改名称                                               |
 | git log                  | 获取日志，参数有 -p(变动)、 -1 (最近一次)、--name-only(哪个文件变动)、--name-status(文件变动的状态，是增加还是及修改) |
