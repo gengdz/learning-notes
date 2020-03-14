@@ -351,3 +351,13 @@ git pull origin master --allow-unrelated-histories
 git push -u origin master
 ```
 
+### 场景五
+小明修改了55个文件，这时候他需要提交其中的54个，有个a.js他不想提交，这时候他应该怎么做？
+```bash
+# 提交除了a.js以外的文件
+git update-index --assume-unchanged 'a.js'
+
+# 需要提交的文件处理完成之后，将a.js放出来
+git update-index --no-assume-unchanged 'a.js'
+
+```
