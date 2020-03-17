@@ -61,7 +61,7 @@
 | 1. git push -u origin home<br> 2. git push --set-upstream origin test<br> 3. git branch --set-upstream-to=origin/company company | 创建远程home分支并和本地home分支联系起来                     |
 | git push origin --delete home                                | 删除远程的home分支                                           |
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地，<br />如果本地没有home分支那么自动创建 |
-| 1.git branch --track origin/home<br/> 2.git checkout -b home origin/home | 在本地创建home分支并和远程的home分支联系起来                 |
+| git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来                 |
 | git push -u origin home                                      | 1.创建远程home分支 2.将本地home代码推送到远程home            |
 | git branch –-set-upstream-to=origin/home                     | 把本地home分支和远程home分支相关联                           |
 
