@@ -61,9 +61,9 @@
 | 1. git push -u origin home<br> 2. git push --set-upstream origin test<br> 3. git branch --set-upstream-to=origin/company company | 创建远程home分支并和本地home分支联系起来                     |
 | git push origin --delete home                                | 删除远程的home分支                                           |
 | git pull origin home:home                                    | 把远程的home分支的代码拉取到本地，<br />如果本地没有home分支那么自动创建 |
-| git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来                 |
+| 1.git branch --track origin/home<br/> 2.git checkout -b home origin/home | 在本地创建home分支并和远程的home分支联系起来                 |
 | git push -u origin home                                      | 1.创建远程home分支 2.将本地home代码推送到远程home            |
-| git branch –-set-upstream home origin/home                   | 把本地home分支和远程home分支相关联                           |
+| git branch –-set-upstream-to=origin/home                     | 把本地home分支和远程home分支相关联                           |
 
 > 说明：
 >
@@ -167,8 +167,6 @@
 1. ==**绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**==
 2. ==***执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库(没执行push操作)***==
 
-
-
 ### rebase的使用场景？
 
 1. 创建一个分支dev
@@ -212,7 +210,9 @@ git pull --rebase origin master
 
 
 ### rebase小结
-1. git rebase 操作发生在分支上，目的是移动分支的基点。
+1. `git rebase` 操作发生在分支上，目的是移动分支的基点。
+
+
 
 
 ## 场景化使用教程
