@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>固定定位</title>
+  <style>
+    main {
+      height: 3000px;
+      background: #f3f3f3;
+      border: solid 5px #ddd;
+    }
+
+    div {
+      height: 80px;
+    }
+
+    footer {
+      height: 80px;
+    }
+
+    footer>div {
+      position: fixed;
+      height: 56px;
+      background: wheat;
+      border: solid 2px royalblue;
+      box-shadow: 5px 5px 10px grey;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <main> </main>
+
+  <footer>
+    <div></div>
+  </footer>
+
+
+</body>
+
+</html>

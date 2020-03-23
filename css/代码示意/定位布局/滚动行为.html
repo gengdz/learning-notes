@@ -4,28 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>认识定位</title>
+  <title>滚动行为</title>
   <style>
     article {
       width: 300px;
       height: 200px;
       border: solid 2px royalblue;
-      /* margin: 20px auto; */
       margin: 20px;
+      position: relative;
+      overflow: auto;
     }
 
-    article div {
-      background: #f2a67d;
-      padding: 10px;
+    section {
+      width: 90%;
+      height: 4000px;
+      background: grey;
+    }
+
+    div {
+      background: red;
+      width: 100px;
+      height: 100px;
       position: absolute;
-      top: 0;
     }
   </style>
 </head>
 
 <body>
   <article>
-    <div>这将使用定位布局</div>
+    <section>
+      <div></div>
+    </section>
   </article>
 </body>
 
