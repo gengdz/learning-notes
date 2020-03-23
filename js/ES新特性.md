@@ -1,0 +1,40 @@
+
+
+# ES新特性
+
+## ES2020新特性
+
+### 可选链
+
+使用`?.` 类似于 `R.pathOr`
+
+```javascript
+// 之前的写法
+const name = user && user.info && user.info.name;
+
+// 现在的写法
+const name = user?.info?.name;
+```
+
+```javascript
+// 之前的写法
+const age = user && user.info && user.info.getAge && user.info.getAge();
+
+// 现在的写法
+const age = user?.info?.getAge?.();
+```
+
+
+
+### 空值合并运算符
+
+使用`??` 类似于`R.isNil`。判断是否为`null || undefined`。
+
+```javascript
+const withDefault = user?.info?.name ?? 1
+```
+
+
+
+
+
