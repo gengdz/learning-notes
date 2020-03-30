@@ -97,5 +97,81 @@ equals:: Setoid a => a ~> a -> Boolean
 
 
 
+###  Functor
+
+任何存储一个值，并且实现了 `map` 方法的类（或者构造器函数）或者数据类型都被称为**Functor**。
+
+Functor的定律：
+
+1. `u.map(a=>a)`等价于`u`(同一性)
+2. `u.map(x=>f(g(x)))` 等价于 `u.map(g).map(f)` (组合性)
+
+必须实现`map` 方法。
+
+
+
+### Apply
+
+实现 *Apply* 规范的值还必须实现 *Functor* 规范。
+
+必须实现`ap` 方法。
+
+
+
+### Applicative
+
+实现 *Applicative* 规范的值还必须实现 *Apply* 规范。。
+
+必须实现`of` 方法。
+
+
+
+### Chain
+
+实现 *Chain* 规范的值还必须实现 *Apply* 规范
+
+`m.chain(f).chain(g)` 等价于 `m.chain(x=> f(x).chain(g))` (结合性)。
+
+
+
+#### `chain` 方法
+
+```javascript
+chain :: Chain m => (a -> m b) -> m a -> m b
+```
+
+
+
+### Monad
+
+实现 *Monad* 规范的值还必须实现 *Applicative* 和 *Chain* 规范。
+
+1. `M.of(a).chain(f)` 等价于 `f(a)` (左同一性)
+2. `m.chain(M.of)` 等价于 `m` (右同一性)
+
+一般情况下我们使用更具体的，更有用的Monad,常用的Maybe Monad或者 Either Monad.
+
+
+
+#### Maybe Monad
+
+它的特殊之处是：**它用来处理 *null* 或者 *undefined* 。**
+
+特别是，如果存储的数据是 *null* 或者 *undefined* ，那么它的 *map* 函数完全不会执行，因而避免了 *null* 或者 *undefined* 的问题。
+
+空值类型的 *Maybe* 是`Nothing`
+
+非空值的 *Maybe* 为`Just`
+
+
+
+
+
+
+
+
+
+
+
 
 
