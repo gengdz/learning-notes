@@ -32,6 +32,8 @@ pluck :: Functor f => k → f {k: v} → f v
 
 `a ~> a -> a` 表示是一个方法，它接受 `a` 类型的参数，并返回一个 `a` 类型的值。
 
+**泛型-TypeVariable —— 类型变量**
+
 举例说明：
 
 ```html

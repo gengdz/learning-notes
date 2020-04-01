@@ -348,7 +348,10 @@ git pull origin master --allow-unrelated-histories
 git push -u origin master
 ```
 
+
+
 ### 场景五
+
 小明修改了55个文件，这时候他需要提交其中的50个，有几个如a.js他不想提交，这时候他应该怎么做？
 ```bash
 # 提交除了a.js以外的文件
@@ -358,3 +361,24 @@ git update-index --assume-unchanged 'a.js'
 git update-index --no-assume-unchanged 'a.js'
 
 ```
+
+
+
+### 批量删除本地分支
+
+批量删除本地分支
+
+```shell
+git branch -a | grep -v -E 'master|develop' | xargs git branch -D
+```
+
+命令说明：
+
+`grep -v -E 'master|develop’` 排除 `master | develop`。
+
+-v 排除
+
+-E 使用正则表达式
+
+xargs 将前面的值作为参数传入 `git branch -D` 后面
+
