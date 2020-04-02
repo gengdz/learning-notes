@@ -163,7 +163,21 @@ chain :: Chain m => (a -> m b) -> m a -> m b
 
 空值类型的 *Maybe* 是`Nothing`
 
-非空值的 *Maybe* 为`Just`
+非空值类型的 *Maybe* 是`Just`
+
+虽然 Just 和 Nothing 有相同的方法（map、orElse 等），不过 Just 的实例要做一些事情，而 Nothing 的实例是什么事都不做。
+
+
+
+#### Either Monad
+
+可以用它处理错误。
+
+*Either Monad* 提供两种构造器：`Either.Left` 和`Either.Right` ，**Left 和 Right 都是 Monad！理念是在 Left 中存储错误和异常，而在 Right 中存储有用的值**。
+
+虽然 Left 和 Right 都提供 map、chain 等方法，但是 Left 构造因为存储的是错误，所以不做任何事情。而 Right 构造器会实现所有的函数，因为它包含了实际的结果。
+
+
 
 
 
