@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>first-child</title>
+  <style>
+    article span:first-child {
+      color: brown;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <span>只能选中每个层级下第一个元素为span标签的元素</span>
+    <h1>如果这个h1和上面的span调换位置，那么这个span标签将选不中</h1>
+    <aside>
+      <span>这个是aside层级下第一个元素，并且这个元素是span,所以也能被选中</span>
+      <h1>aside下面的h1</h1>
+      <span>这个span不是aside的第一个元素选不中</span>
+    </aside>
+  </article>
+</body>
+
+</html>
