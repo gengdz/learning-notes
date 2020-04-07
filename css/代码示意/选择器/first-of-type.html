@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>first-of-type</title>
+  <style>
+    article span:first-of-type {
+      color: burlywood;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <span>选中每个层级下第一个span标签</span>
+    <h1>这是h1</h1>
+    <aside>
+      <h1>aside下面的h1</h1>
+      <span>这个是aside层级下的第一个span标签,所以也能被选中</span>
+      <span>这个span不是aside下面的第一个元素选不中</span>
+    </aside>
+  </article>
+</body>
+
+</html>
