@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有序列表</title>
+  <style>
+    article>ol {
+      list-style-type: lower-latin;
+      list-style-position: outside;
+      list-style-image: radial-gradient(10px 10px, red, black);
+    }
+
+    article>ol>li {
+      margin: 10px auto;
+      border-bottom: solid 2px blanchedalmond;
+    }
+
+    /* 去掉列表符号，加上背景符号 */
+    article>ol>li:nth-of-type(2) {
+      list-style: inside linear-gradient(60deg, rgb(76, 0, 255), black);
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <h1>他发表了讲话</h1>
+    <ol>
+      <li>第一步</li>
+      <li>第二步</li>
+      <li>第三步</li>
+    </ol>
+  </article>
+</body>
+
+</html>
