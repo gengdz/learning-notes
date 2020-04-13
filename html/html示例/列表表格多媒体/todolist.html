@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>todolist</title>
+  <style>
+    body {
+      margin: 0;
+      background: #202020;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 80px;
+      background: #323232;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    }
+
+    header>h1 {
+      padding: none;
+      margin: 0 auto;
+      font-size: 1.5em;
+      color: #82fcfd;
+    }
+
+    article {
+      display: flex;
+      justify-content: center;
+      color: white;
+      padding: 5em;
+    }
+
+    article>section>ul {
+      min-height: 200px;
+      margin: 15px 2em 0 0;
+      /* padding非常重要 ul默认有padding-left,这里是做了覆盖 */
+      padding: 1em;
+      font-size: 20px;
+      color: #fff;
+      background: #323232;
+      box-shadow: 0 1px 4px rgba(121, 120, 120, 0.6);
+      border: 3px solid #000;
+      border-radius: 8px;
+      list-style: none;
+    }
+
+    article>section>ul>li {
+      padding: 0.3em 0;
+    }
+
+    article>section:first-of-type>ul li::before {
+      content: "🗹 ";
+      color: aqua;
+    }
+
+    article>section:nth-of-type(2)>ul li::before {
+      content: "✔ ";
+      color: greenyellow;
+      text-decoration: none;
+    }
+
+    article>section:nth-of-type(2)>ul li {
+      text-decoration: line-through;
+      color: #bdbdbd;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>自定义列表符号</h1>
+  </header>
+  <article>
+    <section>
+      <h2>待处理</h2>
+      <ul>
+        <li>待办任务1</li>
+        <li>待办任务2</li>
+        <li>待办任务如果字数不3</li>
+        <li>待办任务子多4</li>
+        <li>待办任务5</li>
+      </ul>
+    </section>
+    <section>
+      <h2>已完成</h2>
+      <ul>
+        <li>完成任务1</li>
+        <li>完成任务2</li>
+        <li>完成任务3</li>
+      </ul>
+    </section>
+
+  </article>
+</body>
+
+</html>
