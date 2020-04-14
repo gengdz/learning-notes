@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>translate平移</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      /* background: gray; */
+    }
+
+    article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+
+    article div:nth-of-type(1) {
+      width: 200px;
+      height: 200px;
+      background: green;
+      border: solid 2px greenyellow;
+    }
+
+    article div:nth-of-type(2) {
+      width: 200px;
+      height: 200px;
+      background: rosybrown;
+      border: solid 2px rebeccapurple;
+      /* 向左边平移100% */
+      transform: translateX(-100%);
+      transition: 1s;
+    }
+
+    article div:nth-of-type(2): {
+      transform: none;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <div></div>
+    <div></div>
+  </article>
+</body>
+
+</html>
