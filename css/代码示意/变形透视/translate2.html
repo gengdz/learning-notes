@@ -12,41 +12,37 @@
       box-sizing: border-box;
     }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100vw;
-      height: 100vh;
-      /* background: gray; */
+    article {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: solid 5px sandybrown;
     }
 
-    article {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
+    article div {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -100px;
+      margin-left: -100px;
     }
 
     article div:nth-of-type(1) {
-      width: 200px;
-      height: 200px;
       background: green;
-      border: solid 2px greenyellow;
     }
 
     article div:nth-of-type(2) {
-      width: 200px;
-      height: 200px;
       background: rosybrown;
-      border: solid 2px rebeccapurple;
-      /* 向左边平移100% */
-      transform: translateX(-100%);
       transition: 1s;
     }
 
-    article div:nth-of-type(2) {
-      transform: none;
+    article:hover div:nth-of-type(2) {
+      transform: translateX(100%);
     }
   </style>
 </head>
