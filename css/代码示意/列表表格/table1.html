@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格1</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table tr {
+      color: #2c3e50;
+    }
+
+    table caption {
+      caption-side: bottom;
+    }
+
+    table>thead>tr>th {
+      height: 30px;
+      padding: 5px;
+      text-align: center;
+      vertical-align: bottom;
+    }
+
+    table>tbody>tr:nth-child(odd) {
+      background: #dfe6e9;
+    }
+
+    table>tbody>tr:nth-child(even) {
+      background: #b2bec3;
+    }
+  </style>
+</head>
+
+<body>
+  <table border="1">
+    <caption>名家作品</caption>
+    <thead>
+      <tr>
+        <th>名称</th>
+        <th>介绍</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>家</td>
+        <td>巴金的作品。为家春秋三部曲的第一本</td>
+      </tr>
+      <tr>
+        <td>白鹿原</td>
+        <td>平遥的作品</td>
+      </tr>
+      <tr>
+        <td>湖光山色</td>
+        <td>描述一个曾在北京打过工的乡村女性暖暖与命运抗争追求美好生活的不屈经历。</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
