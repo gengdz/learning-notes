@@ -1,0 +1,40 @@
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main ul {
+  display: flex;
+  list-style: none;
+}
+main ul li {
+  margin: 10px;
+  position: relative;
+}
+main ul li strong {
+  padding: 20px 30px;
+  background: #fab1a0;
+  color: white;
+  text-transform: uppercase;
+}
+main ul li div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: #636e72;
+  transform: scale(2);
+  transition: 1s;
+  transform-origin: left top;
+  z-index: -1;
+}
+main ul li div a {
+  padding: 5px 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+main ul li:hover div {
+  transform: scale(2);
+}
