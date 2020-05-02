@@ -4,12 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>图片九宫格</title>
+  <title>图片九宫格flex</title>
   <style>
     .jiugongge {
       display: flex;
       flex-wrap: wrap;
-      /* overflow: hidden; */
     }
 
     .jiugongge div {
@@ -17,7 +16,6 @@
       padding: 2px;
       box-sizing: border-box;
       overflow: hidden;
-      display: flex;
       position: relative;
     }
 
@@ -27,7 +25,6 @@
       /* border: solid 1px blue; */
       z-index: 2;
     }
-
 
     .jiugongge div:hover:before {
       content: "✓";
