@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>相册中图片放大</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #3c6382;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    main ul {
+      display: flex;
+    }
+
+    main ul li {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      list-style: none;
+      overflow: hidden;
+      border: solid 1px #82ccdd;
+    }
+
+    img {
+      height: 100%;
+      transition: 1s;
+    }
+
+    main ul li:hover img {
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <ul>
+      <li><img src="../../../../images/css/伪元素.png" alt=""></li>
+      <li><img src="../../../../images/other/头像.jpg" alt=""></li>
+      <li><img src="../../../../images/css/伪类.png" alt=""></li>
+    </ul>
+  </main>
+</body>
+
+</html>
