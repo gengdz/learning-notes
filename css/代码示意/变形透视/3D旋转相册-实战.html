@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D旋转相册</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #3c6382;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 400px;
+      height: 400px;
+      /* border: solid 1px #84817a; */
+    }
+
+    main:hover ul {
+      /* transform: perspective(900px) rotateX(-45deg) rotateY(900deg); */
+      transform: perspective(900px) rotateY(-90deg);
+    }
+
+    /* 想法是如果点击一个li，就让后面一个li放大，结果不理想。主要是看如何选择hover的下一个元素 */
+    /* main ul li:hover+li {
+      transform: scale(1.5);
+    } */
+
+    main ul {
+      display: flex;
+      position: relative;
+      width: 200px;
+      height: 200px;
+      transform-style: preserve-3d;
+      /* transform: perspective(500px) rotateX(-45deg); */
+      transform: perspective(900px);
+      transform-origin: center center -200px;
+      transition: 1s;
+    }
+
+    main ul li {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      list-style: none;
+      overflow: hidden;
+      transition: 1s;
+      border: solid 1px #82ccdd;
+    }
+
+    li:nth-child(1) {
+      transform: rotateY(90deg);
+      transform-origin: center center -200px;
+    }
+
+    li:nth-child(2) {
+      transform: rotateY(180deg);
+      transform-origin: center center -200px;
+    }
+
+    li:nth-child(3) {
+      transform: rotateY(270deg);
+      transform-origin: center center -200px;
+    }
+
+    li:nth-child(4) {
+      transform: rotateY(360deg);
+      transform-origin: center center -200px;
+    }
+
+    img {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <ul>
+      <li><img src="../../../images/css/伪元素.png" alt=""></li>
+      <li><img src="../../../images/other/头像.jpg" alt=""></li>
+      <li><img src="../../../images/css/伪类.png" alt=""></li>
+      <li><img src="../../../images/react/react生命周期.png" alt=""></li>
+    </ul>
+  </main>
+</body>
+
+</html>
