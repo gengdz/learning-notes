@@ -9,39 +9,37 @@ main {
     list-style: none;
 
     li {
-      margin: 10px;
+      margin-right: 10px;
       position: relative;
 
       strong {
-        padding: 20px 30px;
+        padding: 5px 30px;
         background: #fab1a0;
         color: white;
         text-transform: uppercase;
+        cursor: pointer;
       }
 
       div {
-        position: relative;
         display: flex;
         flex-direction: column;
         padding: 10px;
+        position: relative;
         background: #636e72;
-        transform: scale(2);
-        transition: 1s;
+        transform: scale(0);
+        transition: 0.5s;
         transform-origin: left top;
         z-index: -1;
 
         a {
           padding: 5px 0;
-          cursor: pointer;
           text-decoration: none;
           color: white;
         }
       }
 
-      &:hover {
-        div {
-          transform: scale(2);
-        }
+      &:hover strong+div {
+        transform: scale(1);
       }
 
     }
