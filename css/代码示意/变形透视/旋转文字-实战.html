@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选装文字</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    main {
+      margin: 0 auto;
+      width: 400px;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #535c68;
+    }
+
+    main logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+    }
+
+    main logo strong {
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      transition: 1s;
+    }
+
+    main logo strong:first-child {
+      background: paleturquoise;
+    }
+
+    main logo strong:last-child {
+      background: pink;
+    }
+
+    main logo:hover strong:first-child {
+      transform: rotate(220deg);
+      animation: infinite
+    }
+
+    main logo:hover strong:last-child {
+      transform: rotate(-220deg);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <logo><strong>浪</strong>迹<strong>天</strong>涯</logo>
+  </main>
+</body>
+
+</html>

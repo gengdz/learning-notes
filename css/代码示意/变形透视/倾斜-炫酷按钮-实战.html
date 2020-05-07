@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>酷炫按钮</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #34495e;
+
+    }
+
+    main {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      text-decoration: none;
+      border: solid 2px #e74c3c;
+      color: #ecf0f1;
+      font-size: 1.5em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    main a::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 0;
+      background: #e74c3c;
+      transform: skew(45deg);
+      transition: 1s;
+      z-index: -1;
+    }
+
+    main a:hover:after {
+      width: 200%;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <a href="">button</a>
+  </main>
+</body>
+
+</html>
