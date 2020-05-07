@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>立体按钮</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #34495e;
+
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      width: 200px;
+      height: 40px;
+      background: #e74c3c;
+      color: #ecf0f1;
+      font-size: 1.5em;
+      transition: 1s;
+      position: relative;
+      transform: skewX(20deg) rotate(12deg);
+
+    }
+
+    a::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      height: 100%;
+      width: 10px;
+      background: black;
+      transform: skewY(-45deg) translate(0, 5px);
+
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      width: 100%;
+      height: 10px;
+      background: black;
+      transform: skewX(-45deg) translate(-5px, 0);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="">button</a>
+</body>
+
+</html>
