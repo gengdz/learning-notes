@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>录取通知书</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #34495e;
+    }
+
+    offer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 200px;
+      background: #e74c3c;
+      color: #ecf0f1;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: perspective(900px) rotateX(20deg);
+      padding: 1em;
+    }
+
+    offer::before,
+    offer::after {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      background: #c0392b;
+      transition: 1s;
+      box-sizing: border-box;
+    }
+
+    offer::before {
+      content: "录取";
+      left: 0;
+      justify-content: flex-end;
+      transform-origin: left;
+      border-right: solid 2px black;
+      padding-right: 5px;
+    }
+
+    offer:hover::before {
+      transform: rotateY(-180deg);
+    }
+
+    offer::after {
+      content: "通知书";
+      right: 0;
+      justify-content: flex-start;
+      transform-origin: right;
+      border-left: solid 2px black;
+      padding-left: 5px;
+    }
+
+    offer:hover::after {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <offer>
+    耿德洲同学，你通过全国普通高等学校入学考试，你已被武汉科技大学计算机科学与技术专业录取。
+    请于2014年9月11日到2014年9月13日间到校园报道
+  </offer>
+</body>
+
+</html>
