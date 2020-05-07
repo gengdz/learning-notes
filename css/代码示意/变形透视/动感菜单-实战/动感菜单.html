@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动感菜单</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #34495e;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    /* 画出中间的圆形 */
+    nav::before {
+      content: '便捷菜单';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #ff5252;
+      font-size: 2em;
+      z-index: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      width: 300px;
+      height: 300px;
+      transition: 1s;
+      transform: scale(0);
+    }
+
+    nav:hover ul {
+      transform: scale(1);
+    }
+
+    /* 各个菜单项 */
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      background: #FEA47F;
+      border-radius: 50%;
+      position: absolute;
+      transition: 1s;
+      transform-origin: 150px 150px;
+    }
+
+    li span {
+      transition: 1s;
+    }
+
+    nav:hover li:nth-child(1) {
+      transform: rotate(40deg);
+    }
+
+    nav:hover li:nth-child(1) span {
+      transform: rotate(320deg);
+    }
+
+    nav:hover li:nth-child(2) {
+      transform: rotate(80deg);
+    }
+
+    nav:hover li:nth-child(2) span {
+      transform: rotate(640deg);
+    }
+
+    nav:hover li:nth-child(3) {
+      transform: rotate(120deg);
+    }
+
+    nav:hover li:nth-child(4) {
+      transform: rotate(160deg);
+    }
+
+    nav:hover li:nth-child(5) {
+      transform: rotate(200deg);
+    }
+
+    nav:hover li:nth-child(6) {
+      transform: rotate(240deg);
+    }
+
+    nav:hover li:nth-child(7) {
+      transform: rotate(280deg);
+    }
+
+    nav:hover li:nth-child(8) {
+      transform: rotate(320deg);
+    }
+
+    nav:hover li:nth-child(9) {
+      transform: rotate(360deg);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><span>菜单1</span></li>
+      <li><span>菜单2</span></li>
+      <li><span>菜单3</span></li>
+      <li><span>菜单4</span></li>
+      <li><span>菜单5</span></li>
+      <li><span>菜单6</span></li>
+      <li><span>菜单7</span></li>
+      <li><span>菜单8</span></li>
+      <li><span>菜单9</span></li>
+    </ul>
+  </nav>
+</body>
+
+</html>
