@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹跳小球</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background: #40739e;
+
+    }
+
+    div {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(at center, #00cec9, #fab1a0);
+      border-radius: 50%;
+      animation-name: jump;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+    }
+
+    .shadow {
+      width: 300px;
+      height: 40px;
+      border-radius: 50%;
+      background: #2d3436;
+      animation-name: shadow;
+      opacity: 0.8;
+      filter: blur(5px);
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate-reverse;
+    }
+
+    @keyframes jump {
+      to {
+        transform: translateY(-300px);
+      }
+    }
+
+    @keyframes shadow {
+      to {
+        width: 300px;
+        height: 20px;
+        opacity: 0.3;
+        filter: blur(35px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div></div>
+    <div class="shadow"></div>
+  </main>
+</body>
+
+</html>

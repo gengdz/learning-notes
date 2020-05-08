@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小心心</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background: #40739e;
+
+    }
+
+    div {
+      width: 200px;
+      height: 200px;
+      background: #ff7675;
+      position: relative;
+      opacity: 0.7;
+      transform: rotate(45deg) scale(0.5);
+      animation-name: jump;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+    div::before,
+    div::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: #ff7675;
+      border-radius: 50%;
+
+    }
+
+    div::before {
+      transform: translateX(-100px);
+
+    }
+
+    div::after {
+      transform: translateY(-100px);
+    }
+
+
+    @keyframes jump {
+
+      50% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+      }
+
+      100% {
+        opacity: 0.5;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div></div>
+  </main>
+</body>
+
+</html>

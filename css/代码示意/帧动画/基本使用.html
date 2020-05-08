@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帧动画基本使用</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background: #40739e;
+
+    }
+
+    div {
+      width: 200px;
+      height: 200px;
+      background: #81ecec;
+      animation-name: first;
+      animation-duration: 5s;
+    }
+
+    @keyframes first {
+      from {
+        opacity: 0.3;
+      }
+
+      35% {
+        background: gray;
+        transform: scale(0.5);
+      }
+
+      70% {
+        background: rebeccapurple;
+        transform: scale(1.5);
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+        background: goldenrod;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div></div>
+  </main>
+</body>
+
+</html>
