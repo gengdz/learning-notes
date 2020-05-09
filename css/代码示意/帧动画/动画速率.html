@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画速率感受</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      background: #40739e;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
+      /* justify-self: center; */
+      height: 100%;
+      list-style: none;
+    }
+
+    ul li {
+      background: aquamarine;
+      animation-name: move;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+
+    ul li:nth-child(1) {
+      animation-timing-function: linear;
+    }
+
+    ul li:nth-child(2) {
+      animation-timing-function: ease;
+    }
+
+    ul li:nth-child(3) {
+      animation-timing-function: ease-in;
+    }
+
+    ul li:nth-child(4) {
+      animation-timing-function: ease-out;
+    }
+
+    ul li:nth-child(5) {
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes move {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>linear</li>
+    <li>ease</li>
+    <li>ease-in</li>
+    <li>ease-out</li>
+    <li>ease-in-out</li>
+    <li>默认</li>
+  </ul>
+</body>
+
+</html>
