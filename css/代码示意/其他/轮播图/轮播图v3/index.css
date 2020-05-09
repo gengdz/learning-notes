@@ -6,19 +6,17 @@
 article {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  width: 400px;
+  margin: 50px auto;
   overflow: hidden;
-}
-article:hover pictures,
-article:hover footer::before {
-  animation-play-state: paused;
 }
 article pictures {
   display: flex;
   flex-direction: row;
   width: 400%;
+  height: 300px;
   transform: translate(0, 0);
-  animation: slide 15s steps(4, end) infinite;
+  animation: slide 4s steps(4, end) infinite;
 }
 article pictures div {
   width: 100%;
@@ -38,16 +36,13 @@ article pictures div img {
 article footer {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   justify-items: center;
-  position: relative;
-  margin-top: 5px;
   width: 200px;
-  margin: 0 auto;
+  margin: 5px auto;
+  position: relative;
 }
 article footer circle {
-  display: grid;
-  justify-items: center;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -57,18 +52,21 @@ article footer circle {
 article footer::before {
   content: '';
   position: absolute;
-  left: 15px;
+  left: 20px;
   top: 0;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: #74b9ff;
-  animation: num 15s infinite;
-  animation-timing-function: steps(4, end);
+  animation: num 4s steps(4, end) infinite;
   z-index: 1;
 }
 @keyframes num {
   100% {
     transform: translateX(200px);
   }
+}
+article:hover pictures,
+article:hover footer::before {
+  animation-play-state: paused;
 }
