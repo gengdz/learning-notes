@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>步进动画理解</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: #34495e;
+      display: grid;
+    }
+
+    main {
+      display: grid;
+      grid-template: repeat(3, 1fr)/repeat(4, 1fr);
+      width: 400px;
+      height: 400px;
+      justify-self: center;
+      align-self: center;
+    }
+
+    div {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      border: solid 1px #34495e;
+      background: #1abc9c;
+      position: relative;
+    }
+
+    div:nth-child(1)::after {
+      content: '过渡动画';
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(400px/4);
+      height: calc(400px/3);
+      background: #9b59b6;
+      z-index: 2;
+      animation: move 2s infinite;
+    }
+
+    div:nth-child(5)::after {
+      content: 'start';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(400px/4);
+      height: calc(400px/3);
+      background: #9b59b6;
+      z-index: 2;
+      animation: move 2s steps(4, start) infinite;
+    }
+
+    div:nth-child(9)::after {
+      content: 'end';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(400px/4);
+      height: calc(400px/3);
+      background: #9b59b6;
+      z-index: 2;
+      animation: move 2s steps(4, end) infinite;
+    }
+
+
+    @keyframes move {
+      to {
+        transform: translateX(400%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+  </main>
+</body>
+
+</html>
