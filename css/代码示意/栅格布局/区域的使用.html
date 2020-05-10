@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>区域的使用</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    page {
+      display: grid;
+      grid-template: 60px 1fr 60px/60px 1fr;
+      grid-template-areas: "header header"
+        "nav main"
+        "footer footer";
+      width: 100vw;
+      height: 100vh;
+      background: #34495e;
+      gap: 5px;
+    }
+
+    header,
+    nav,
+    main,
+    footer {
+      background: #16a085 content-box;
+    }
+
+    header {
+      grid-area: header;
+    }
+
+    footer {
+      display: grid;
+      grid-template: 1fr/repeat(4, 1fr);
+      column-gap: 2px;
+      grid-area: footer;
+    }
+
+    footer div {
+      background: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <page>
+    <header></header>
+    <nav></nav>
+    <main></main>
+    <footer>
+      <div>菜单1</div>
+      <div>菜单2</div>
+      <div>菜单3</div>
+      <div>菜单4</div>
+    </footer>
+  </page>
+</body>
+
+</html>

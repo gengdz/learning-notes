@@ -8,7 +8,7 @@
 
 fx作为基本单位，相当于占整体的几分之几
 
-```javascript
+```css
 // 所以可以使用 
 article {
   width: 300px;
@@ -24,7 +24,7 @@ article {
 
 `repeat(times,value)`，它接受两个参数，第一个参数表示重复多少次，第二个参数是需要重复的值。还可以 `repeat(3,10px 20px)` 表示重复三次，重复的值为 10px 20px;
 
-```javascript
+```css
 article {
   width: 300px;
   height: 300px;
@@ -67,17 +67,99 @@ article {
 
 
 
+### minmax的使用
+可以指定最小或者最大值。用范围来决定实际大小。
+```css
+display: grid;
+grid-template-rows: minmax(50px,1fr);
+grid-template-columns: 1fr;
+```
+
+
+
+### 组合定义
+使用 `grid-template` 组合定义。它是下面三个属性的简写。
+* grid-template-rows
+* grid-template-columns
+* grid-template-areas
+
+
+
+### 间距设置
+* 使用 `row-gap` 设置行间距
+* 使用 `column-gap` 设置列间距
+* 使用 `gap` 同时设置行和列间距
+
+
+
 ## 元素定位
 
 ### 根据栅格线
-
-左边为开始行；上边为开始列；右边为结束行；下边为结束列；
+使用栅格线的编号，把元素放在栅格里面。
 
 ```css
 article div {
   grid-row-start: 2;
-  grid-row-end:4;
   grid-column-start: 2;
+  grid-row-end:4;
   grid-column-end:4;
 }
+```
+
+
+### 根据偏移量
+使用 `span` 可以设置单元格占几个单元格。
+
+```css
+ grid-row-end: span 2;
+```
+
+
+### 元素定位简写
+可以使用诸如 `grid-row:1/3` 和 `grid-column:2/4` 的方式进行简写。
+也可以结合 *偏移量* 进行使用
+
+```css
+grid-row:1/ span 2;
+grid-column:1 /span 1;
+```
+
+
+### grid-area
+* `grid-area` 是 `grid-row` 和 `grid-column`的简写。
+* 搭配`grid-template-areas`使用。
+
+```css
+grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end。
+```
+
+```css
+ grid-template-areas: "header header"
+        "nav main"
+        "footer footer";
+
+  header {
+    grid-area: header;
+  }
+```
+
+
+### 区域声明
+使用`grid-template-areas`来定义区域。
+```css
+ grid-template-areas: "header header"
+        "nav main"
+        "footer footer";
+
+  header {
+    grid-area: header;
+  }
+```
+
+#### 区域占位
+使用一个或多个 . 定义区域占位。
+```css
+grid-template-areas: "top . ."
+            "top . ."
+            "bottom bottom bottom";
 ```
