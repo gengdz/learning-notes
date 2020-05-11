@@ -20,6 +20,8 @@ article {
 }
 ```
 
+
+
 ### 使用repeat+fr(重点，进阶使用)
 
 `repeat(times,value)`，它接受两个参数，第一个参数表示重复多少次，第二个参数是需要重复的值。还可以 `repeat(3,10px 20px)` 表示重复三次，重复的值为 10px 20px;
@@ -36,6 +38,8 @@ article {
 // 解释说明: repeat(3,1fr) 表示重复三次，每个占用1份。 类似于 flex: 1
 ```
 
+
+
 ### 基本声明(一般不会用)
 
 ```css
@@ -49,6 +53,8 @@ article {
 }
 
 ```
+
+
 
 ### repeat+百分比
 
@@ -85,6 +91,18 @@ grid-template-columns: 1fr;
 
 
 
+### 栅格的流动
+默认是从左到右，从上到下。
+使用 `grid-auto-flow` 属性控制栅格的方向。
+|  属性  |  说明  |
+|-------|--------|
+|  column  |  按列排序  |
+|  row  |  按行排列  |
+
+使用 **`dense`** 可以强制填充。比如设置了前面的元素之后有空间剩余，并且剩余空间足够后面的元素使用，那么后面的元素将会跑到前面。
+
+
+
 ### 间距设置
 * 使用 `row-gap` 设置行间距
 * 使用 `column-gap` 设置列间距
@@ -107,7 +125,9 @@ article div {
 ```
 
 
+
 ### 根据偏移量
+
 使用 `span` 可以设置单元格占几个单元格。
 
 ```css
@@ -115,7 +135,9 @@ article div {
 ```
 
 
+
 ### 元素定位简写
+
 可以使用诸如 `grid-row:1/3` 和 `grid-column:2/4` 的方式进行简写。
 也可以结合 *偏移量* 进行使用
 
@@ -125,7 +147,9 @@ grid-column:1 /span 1;
 ```
 
 
+
 ### grid-area
+
 * `grid-area` 是 `grid-row` 和 `grid-column`的简写。
 * 搭配`grid-template-areas`使用。
 
@@ -144,7 +168,9 @@ grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end。
 ```
 
 
+
 ### 区域声明
+
 使用`grid-template-areas`来定义区域。
 ```css
  grid-template-areas: "header header"
@@ -156,10 +182,42 @@ grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end。
   }
 ```
 
+
+
 #### 区域占位
+
 使用一个或多个 . 定义区域占位。
 ```css
 grid-template-areas: "top . ."
             "top . ."
             "bottom bottom bottom";
+```
+
+
+
+## 栅格对齐
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+|  选项  |  说明  |  对象  |
+|--------|-------|-------|
+|  justify-items  |  栅格内所有元素的水平排列方式  |  栅格容器  |
+|  align-items  |  栅格内所有元素垂直排列方式  |  栅格容器  |  
+|  justify-content  | 容器水平方向有额外空间时，分配方式  |  栅格容器  |
+|  align-content  |  容器垂直方向有额外空间时，分配方式  |  栅格容器  |
+|  justify-self  |  元素在栅格中水平对齐方式  |  栅格元素  |
+|  align-self  |  元素在栅格中垂直对齐方式  |  栅格元素  |
+
+
+
+### 属性简写
+**注意：属性的顺序，先是垂直方向，然后是水平方向**
+```css
+place-items: <align-items> <justify-items>
+```
+
+```css
+place-content: <align-content> <justify-content>
+```
+
+```css
+place-self: <align-self> <justify-self>
 ```

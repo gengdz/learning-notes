@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对齐方式</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      display: grid;
+      grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+      width: 100vw;
+      height: 100vh;
+      background: #34495e content-box;
+      gap: 5px;
+      /* justify-items: center;
+      align-items: center; */
+    }
+
+    main div {
+      background: rebeccapurple;
+      /* width: 60px;
+      height: 60px; */
+      /* width: 100%;
+      height: 100%; */
+      display: grid;
+      place-items: center start;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div>菜单1</div>
+    <div>菜单2</div>
+    <div>菜单3</div>
+    <div>菜单4</div>
+    <div>菜单5</div>
+    <div>菜单6</div>
+    <div>菜单7</div>
+    <div>菜单8</div>
+    <div>菜单9</div>
+  </main>
+</body>
+
+</html>
