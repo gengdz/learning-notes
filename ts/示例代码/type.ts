@@ -13,3 +13,28 @@ consoleLog(gdz[0], gdz[1], gdz[2]);
 gdz.push('前端工作者');
 // gdz.push(false); // 这样会报错
 consoleLog(gdz)
+
+// enum
+enum Days { '日', '一', '二', '三', '四', '五', '六' };
+// consoleLog(Days);
+
+const showDateInfo = () => {
+  const date = new Date().getDay();
+  return `今天是星期${Days[date]}`;
+}
+consoleLog(showDateInfo())
+
+// 字符串枚举
+enum StatusCode {
+  Success = '200',
+  Fail = '1',
+}
+
+// 常量枚举
+const enum Month {
+  Jan,
+  Feb,
+  Mar
+}
+const month = [Month.Jan, Month.Feb, Month.Mar];
+consoleLog(month)
