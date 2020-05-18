@@ -21,6 +21,11 @@ tmux new-window -n windowName
 tmux rename-window newName
 ```
 
+## 一些快捷键或者命令行
+* 翻屏模式 `ctrl + b + [`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
+* 退出翻屏模式 `q`
+* 切换窗口 `ctrl + b + p/n`
+
 ## tmux美化
 ```bash
 # 设置对齐方式
