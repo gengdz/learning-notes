@@ -145,3 +145,31 @@ concatMap = map + concatAll;
 mergeMap = map + mergeAll;
 switchMap = map + mergeMap;
 ```
+
+4) zip,combineLatest,withLatestFrom。
+*zip* 拉链，这个操作符的意思是：数据一定要一一对应。也就是说 source$ 产生一个数据`s1`，然后 data$ 产生一个数据`d1`，zip会把两个数据，组成 `[s1, d1]`。
+需要注意的是：数据积压的问题。如果 source$ 产生的速度很快，而 data$产生数据的速度比较慢，那么就会造成 source$ 数据积压，会消耗内存。
+
+*combineLatest* 组合两个流中最新的数据，一一配对。在两个流都有值的情况下，当一个流有值的时候，就找另外的流的最新的值进行配对。组成 `[s, d]`.
+
+*withLatestFrom* 没有静态方法。只有操作符方法，并且这时候，数据流不再是平等的了。而是以使用这个操作符的 *Observable* 为主导。当它产生数据的时候，去匹配另外的流的最新的值。
+
+5）startWith,forkJoin,race
+*startWith* 给流一个初始值。
+
+### 缓存
+把上游的多个数据缓存起来，当时机合适的时候再把汇集的数据,**以数组的形式**传递给下游。
+
+1）buffer,bufferTime,bufferCount,bufferWhen,bufferToggle
+*bufferTime* 缓存一定的时间，就把数据传给下游
+
+*bufferCount* 缓存一定的数量，就把数据传给下游
+
+*bufferWhen* 接受一个 *closeSelector* 返回一个 Observable, 通过这个这个来控制缓存
+```javascript
+bufferWhen(()=>interval(1000))
+```
+
+
+
+
