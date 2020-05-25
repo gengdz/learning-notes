@@ -1,13 +1,13 @@
-# Rxjs: Reactive Extensions For JavaScript
+# RxJS: Reactive Extensions For JavaScript
 
 这也被称为 Functional Reactive Programming，更切确地说是指 Functional Programming 及 Reactive Programming 两个编程思想的结合。
-Rxjs提供了一套完整的异步解决方案，让我们在面对各种异步行为时，能使用相同的API。
+RxJS提供了一套完整的异步解决方案，让我们在面对各种异步行为时，能使用相同的API。
 前端中的异步有：事件（event) 、AJSX、动画（animation)、定时器（timer）
 
 
 
-## Rxjs是什么？
-Rxjs是一套借由 **Observable sequences** 来组合 **非同步行为** 和 **事件基础** 程序的库
+## RxJS是什么？
+RxJS是一套借由 **Observable sequences** 来组合 **非同步行为** 和 **事件基础** 程序的库
 两种模式的结合，**观察者模式**， **迭代器模式**。
 
 
@@ -79,11 +79,6 @@ defer(()=>ajax(ajaxUrl))
 
 
 
-
-
-
-
-
 ## Observer
 Oberservable可以被订阅(subscribe),或者说可以被观察，而**订阅Obervable的对象 又称为观察者**。
 观察者是一个具有三个方法的对象。每当 *Observable* 发生事件时，便会呼叫观察者相对应的方法。 
@@ -108,6 +103,7 @@ source$.subscribe(
   () => console.log('complete')
 )
 ```
+
 > 1. 注意 *error* 之后不会再调用 *complete*。
 > 2. 参数依次是 `next | error | complete` 后面两个参数可以省略。
 
@@ -126,14 +122,26 @@ Subscription表示可清理资源的对象，基本上只有一个 `unsubscribe(
 
 
 
-## Rxjs使用
-### 导入方式
+## 操作符
+现在有些操作符不再推荐使用，**而是推荐使用对应的静态方法**。
+以 *merge* 举例说来就是：导入操作符的方式变为：`import { merge } from 'rxjs'`, 并且是含义变成了：合并多个 *Observable* ,而不是一个 *Observable* 与其他 *Observable* 合并。
+
+
+
+### 合并类操作符
+1) concat,merge
+区别是：concat要等上一个Observable对象complate之后再去订阅第二个Observable对象。而merge是同时处理多个Observable对象。
+
+2) concatAll,mgergeAll,switchAll
+用来将高阶的 Observable 对象压平成一阶的 Observable，和 loadash 中压平数组的 flatten 方法类似.
+concatAll会对内部的 *Observable* 对象做 *concat* 操作。和 *concat* 操作符类似，如果前一个 *Observable* 没有结束，那么 *concatAll* 就不会订阅下一个 *Observable*,
+*mergeAll* 则会同时处理。
+*switchAll* 比较特殊，**喜新厌旧**。如果有新的 *Observable* 那么他就会退订旧的而订阅新的，这也是 'switch' 的含义
+
+3) concatMap,mergeMap,switchMap
+高阶 *Observable* 常常是由 *map* 操作符将每个数据映射为 *Observable* 产生，而我们订阅的时候需要将其压平为一阶Observable,就是要先 map，然后再使用（2）中的操作符压平。所以rxjs提供了更简洁的API。
 ```javascript
-import { Observable,Subject,asapScheduler,pipe,of,from,interval,merge,fromEvent,SubscriptionLike,PartialObserver } from 'rxjs';
-import { map,filter,scan } from 'rxjs/operators' 
-import { webSocket } from 'rxjs/webSocket'
-import { ajax } from 'rxjs/ajax'
-import { TestScheduler } from 'testing'
+concatMap = map + concatAll;
+mergeMap = map + mergeAll;
+switchMap = map + mergeMap;
 ```
-### 约定和说明
-**代表流的变量使用 `$` 符号结尾，这是RxJS中的一种惯例**
