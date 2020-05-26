@@ -10,6 +10,13 @@ RxJS提供了一套完整的异步解决方案，让我们在面对各种异步�
 RxJS是一套借由 **Observable sequences** 来组合 **非同步行为** 和 **事件基础** 程序的库
 两种模式的结合，**观察者模式**， **迭代器模式**。
 
+*RxJS* 有**一个核心三个重点**。
+一个核心是：*Observable* 再加上相关的 operators。
+三个重点：
+* Observer(观察者)
+* Subject(订阅者)
+* Schedulers
+
 
 
 ## Observable?
@@ -157,6 +164,8 @@ switchMap = map + mergeMap;
 5）startWith,forkJoin,race
 *startWith* 给流一个初始值。
 
+
+
 ### 缓存
 把上游的多个数据缓存起来，当时机合适的时候再把汇集的数据,**以数组的形式**传递给下游。
 
@@ -168,6 +177,189 @@ switchMap = map + mergeMap;
 *bufferWhen* 接受一个 *closeSelector* 返回一个 Observable, 通过这个这个来控制缓存
 ```javascript
 bufferWhen(()=>interval(1000))
+```
+
+
+
+## Subject
+每个 observable 是可以多次订阅的。而且多个订阅是分开执行完全独立的。
+有些情况下，我们希望第二次订阅 source 不要从头开始接收元素，而是从第一次订阅到当前处理的元素开始发送，我们把这种处理方式称为**组播(multicast)**。
+
+思路：为了实现上述需求。我们可以建立一个中间人来订阅 source 再由中间人转送资料出去，就可以达到我们想要的效果。
+实现：这个中间人就是 *Subject*, 它即是一个 *Observer* 订阅 source, 又是一个 *Observable*,可以被别人订阅(内部维护一个订阅者清单)。
+
+```javascript
+class MyButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { count: 0 };
+        this.subject = new Rx.Subject();
+
+        this.subject
+            .mapTo(1)
+            .scan((origin, next) => origin + next)
+            .subscribe(x => {
+                this.setState({ count: x })
+            })
+    }
+    render() {
+        return <button onClick={event => this.subject.next(event)}>{this.state.count}</button>
+    }
+}
+```
+> 由于React本身API的原因，我们没办法直接使用的Observable 的创建符，创建 Observable,这时候就可以使用 Subject来做这件事
+
+
+
+### BehaviorSubject
+有时候我们会希望 Subject 能代表当前的状态，而不是单纯的事件发送，也就是说如果今天有一个新的订阅，我们希望 Subject 能立即给出最新的值，而不是没有回应。（你不看直播，也没看录播，没关系，只要你关注了LOL，你就能收到比赛的结果）
+BehaviorSubject 类似于状态 一开始可以提供默认状态，之后订阅之后都可以获取最新的状态
+
+```javascript
+import { BehaviorSubject } from 'rxjs';
+const subject = new BehaviorSubject(0);
+```
+
+
+
+### ReplaySubject
+表示重放，在新的订阅者订阅时重新发送原来的数据，可以通过参数指定重发最后几个数据
+
+```javascript
+const subject = new ReplaySubject(2) // 重放最后两个
+```
+
+
+### AsyncSubject
+AsyncSubject有点类似 last ,会在 subject 结束后送出最后一个值。
+
+
+
+### 多播操作符
+原始写法
+```javascript
+const source$ = interval(1000).pipe(take(3));
+const observerA = {
+    next: value => console.log('A next: ' + value),
+    error: error => console.log('A error: ' + error),
+    complete: () => console.log('A complete!')
+}
+const observerB = {
+    next: value => console.log('B next: ' + value),
+    error: error => console.log('B error: ' + error),
+    complete: () => console.log('B complete!')
+}
+const subject = new Subject()
+subject.subscribe(observerA)
+source$.subscribe(subject);
+setTimeout(() => {
+    subject.subscribe(observerB);
+}, 1000);
+
+// "A next: 0"
+// "A next: 1"
+// "B next: 1"
+// "A next: 2"
+// "B next: 2"
+// "A complete!"
+// "B complete!"
+```
+
+上面的代码我们用 subject 订阅了 source$, 再让 observerA，observerB订阅 subject。但是这样的写法太复杂。
+
+
+
+#### multicast
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  multicast(new Subject<number>())
+) as ConnectableObservable<number>;
+
+source$.subscribe(observerA); // subject.subscribe(observerA)
+const realSubscription = source$.connect(); // source.subscribe(subject)
+setTimeout(() => {
+    source$.subscribe(observerB); // subject.subscribe(observerB)
+  }, 1000);
+
+```
+*multicast* 可以用来挂在 subject, 并且返回一个 ConnectableObservable 类型的observable。 <small>可连接类型的 observalbe</small> 
+
+说明：
+* 必须等到执行`connect()`之后，才会真的用 *subject* 订阅 *source*，并开始送出元素，如果没有执行该方法，*observable* 不会真正的执行
+* 退订的时候，必须退订 *realSubscription* 才是真的退订。
+
+
+
+#### refCount
+使用 *multicast* 还必须手动 *connect* 比较麻烦。有没有一中可能，自动 *connect*, 自动 *unsubscribe*,于是有了 *refCount*
+*refCount* 必须搭配 *multicast* 使用，它可以建立一个只要有订阅就自动 *connect* 的 *observable*。
+
+```typescript
+const refCountSource$ = interval(1000).pipe(
+  take(3),
+  multicast(new Subject<number>()),
+  refCount()
+);
+
+refCountSource$.subscribe(v => console.log(`refCount A:${v}`)); // subject.subscribe(observerA)
+setTimeout(() => {
+refCountSource$.subscribe(v => console.log(`refCount B:${v}`));
+}, 1000);
+
+```
+说明：
+* 当订阅数大于0，自动 *connect*, 当订阅数=0，自动 *unsubscribe*
+
+
+
+#### publish
+是`multicast(new Subject<number>())`的简写
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  publish(),
+  refCount()
+);
+```
+
+加上 *Subject* 的三种变形
+`publishBehavior`
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  publishBehavior(0),
+  refCount()
+);
+```
+
+`publishReplay`
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  publishReplay(2),
+  refCount()
+);
+```
+
+`publishLast`
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  publishLast(0),
+  refCount()
+);
+```
+
+
+
+#### share
+*share* 是 `publish(); refCount()`的简写。
+```typescript
+const source$ = interval(1000).pipe(
+  take(3),
+  share()
+);
 ```
 
 
