@@ -362,4 +362,16 @@ bufferWhen(()=>interval(1000))
 
 
 
+### 转换
+1）scan
+类似于 ruduce，但是不同的是，*reduce* 只有在所有值都加合完成之后，才会有结果。但是，*scan* 会把每次加合的值传递出去。
+```javascript
+const source = of(1, 2, 3);
+// 基础的 scan 示例，从0开始，随着时间的推移计算总数
+const example = source.pipe(scan((acc, curr) => acc + curr, 0));
+```
+
+
+
+### 过滤
 
