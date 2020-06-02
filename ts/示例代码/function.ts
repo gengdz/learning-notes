@@ -15,8 +15,10 @@ const dictionaryList: IOption[] = [
 
 // 函数表达式 不存在变量提升。
 const getAli = (list: IOption[]) => list.filter(item => item.value === 'ali');
+const getAli2: (list: IOption[]) => IOption[] = (list: IOption[]) => list.filter(item => item.value === 'ali');
 
 consoleLog(getAli(dictionaryList));
+consoleLog('getAli完整的类型', getAli2(dictionaryList));
 
 // 可选参数
 const getItem = (list: IOption[], targetValue?: string) => list.filter(item => item.value === (targetValue || 'ali'))
