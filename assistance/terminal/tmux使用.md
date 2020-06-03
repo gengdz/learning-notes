@@ -21,10 +21,19 @@ tmux new-window -n windowName
 tmux rename-window newName
 ```
 
+三、交换窗口的位置
+```bash
+tmux swap-window -t
+```
+
 ## 一些快捷键或者命令行
 * 翻屏模式 `ctrl + b + [`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
 * 退出翻屏模式 `q`
 * 切换窗口 `ctrl + b + p/n`
+* 最大化窗格：`ctrl + b + z`。
+* 所有tmux命令：`tmux list-commands`
+
+
 
 ## tmux美化
 ```bash
