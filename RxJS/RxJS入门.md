@@ -242,7 +242,7 @@ setTimeout(() => {
 
 
 #### refCount
-使用 *multicast* 还必须手动 *connect* 比较麻烦。有没有一中可能，自动 *connect*, 自动 *unsubscribe*,于是有了 *refCount*
+使用 *multicast* 还必须手动 *connect* 比较麻烦。有没有一种可能，自动 *connect*, 自动 *unsubscribe*,于是有了 *refCount*
 *refCount* 必须搭配 *multicast* 使用，它可以建立一个只要有订阅就自动 *connect* 的 *observable*。
 
 ```typescript
@@ -321,16 +321,16 @@ const source$ = interval(1000).pipe(
 
 
 ### 合并类操作符
-1) concat,merge
+1) `concat`, `merge`
 区别是：concat要等上一个Observable对象complate之后再去订阅第二个Observable对象。而merge是同时处理多个Observable对象。
 
-2) concatAll,mgergeAll,switchAll
+2) `concatAll`, `mgergeAll`, `switchAll`
 > 用来将高阶的 Observable 对象压平成一阶的 Observable，和 loadash 中压平数组的 flatten 方法类似.
 * *concatAll* 会对内部的 *Observable* 对象做 *concat* 操作。和 *concat* 操作符类似，如果前一个 *Observable* 没有结束，那么 *concatAll* 就不会订阅下一个 *Observable*,
 * *mergeAll* 则会同时处理。
 * *switchAll* 比较特殊，**喜新厌旧**。如果有新的 *Observable* 那么他就会退订旧的而订阅新的，这也是 'switch' 的含义
 
-3) concatMap,mergeMap,switchMap
+3) `concatMap`, `mergeMap`, `switchMap`
 高阶 *Observable* 常常是由 *map* 操作符将每个数据映射为 *Observable* 产生，而我们订阅的时候需要将其压平为一阶Observable,就是要先 map，然后再使用（2）中的操作符压平。所以rxjs提供了更简洁的API。
 ```javascript
 concatMap = map + concatAll;
@@ -338,21 +338,34 @@ mergeMap = map + mergeAll;
 switchMap = map + mergeMap;
 ```
 
-4) zip, combineLatest, withLatestFrom。
+4) `zip`, `combineLatest`, `withLatestFrom`。
 * *zip* 拉链，这个操作符的意思是：数据一定要一一对应。也就是说 source$ 产生一个数据`s1`，然后 data$ 产生一个数据`d1`，zip会把两个数据，组成 `[s1, d1]`。
 需要注意的是：数据积压的问题。如果 source$ 产生的速度很快，而 data$产生数据的速度比较慢，那么就会造成 source$ 数据积压，会消耗内存。
 * *combineLatest* 组合两个流中最新的数据，一一配对。在两个流都有值的情况下，当一个流有值的时候，就找另外的流的最新的值进行配对。组成 `[s, d]`.
 * *withLatestFrom* 没有静态方法。只有操作符方法，并且这时候，数据流不再是平等的了。而是以使用这个操作符的 *Observable* 为主导。当它产生数据的时候，去匹配另外的流的最新的值。
 
-5）startWith, forkJoin, race
-*startWith* 给流一个初始值。
+5）`startWith`, `forkJoin`, `race`
+*startWith* 给流一个初始值。相当于先甩出一个默认值，然后流正常输出。
+*forkJoin* 多个流 *complate* 之后，将多个流的结果。放在数组中，组成`[r1, r2, r3]`。和 *promise.all* 的效果相同。
+
+
+6) `pairwise`
+作用是：将上一个值和当前值，合并成一个数组，然后发出。
+```javascript
+// 返回: [0,1], [1,2], [2,3], [3,4], [4,5]
+interval(1000)
+  .pipe(
+    pairwise(),
+    take(5)
+  )
+```
 
 
 
 ### 缓存
 把上游的多个数据缓存起来，当时机合适的时候再把汇集的数据,**以数组的形式**传递给下游。
 
-1）buffer, bufferTime, bufferCount, bufferWhen, bufferToggle
+1）`buffer`, `bufferTime`, `bufferCount`, `bufferWhen`, `bufferToggle`
 * *bufferTime* 缓存一定的时间，就把数据传给下游
 * *bufferCount* 缓存一定的数量，就把数据传给下游
 * *bufferWhen* 接受一个 *closeSelector* 返回一个 Observable, 通过这个这个来控制缓存
@@ -363,7 +376,7 @@ bufferWhen(()=>interval(1000))
 
 
 ### 转换
-1）scan
+1）`scan`
 类似于 ruduce，但是不同的是，*reduce* 只有在所有值都加合完成之后，才会有结果。但是，*scan* 会把每次加合的值传递出去。
 ```javascript
 const source = of(1, 2, 3);
@@ -371,7 +384,29 @@ const source = of(1, 2, 3);
 const example = source.pipe(scan((acc, curr) => acc + curr, 0));
 ```
 
+2）`partition`
+将一个流，一分为二。满足条件的在左边，不满足条件的在右边。
+```javascript
+const source = from([1, 2, 3, 4]);
+const [evens, odds] = source.partition(v => v % 2 === 0);
+```
+
 
 
 ### 过滤
+
+
+
+### 函数
+1)  `iif`
+这个函数，类似于 *R.ifElse*, 不过遗憾的是它不接受参数。
+```javascript
+const firstOrSecond = iif(
+  () => subscribeToFirst,
+  of('first'),
+  of('second'),
+);
+```
+ 
+
 
