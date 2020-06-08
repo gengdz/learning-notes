@@ -370,7 +370,7 @@ interval(1000)
 * *bufferCount* 缓存一定的数量，就把数据传给下游
 * *bufferWhen* 接受一个 *closeSelector* 返回一个 Observable, 通过这个这个来控制缓存
 ```javascript
-bufferWhen(()=>interval(1000))
+bufferWhen(() => interval(1000))
 ```
 
 
@@ -394,6 +394,15 @@ const [evens, odds] = source.partition(v => v % 2 === 0);
 
 
 ### 过滤
+1) `debounceTime`
+`debounceTime(1000)` 代表在1s内，没有新的进来那么就发出这个值，如果有新的进来，那就继续观察它后面1s有没有新的值进来。
+极端情况下：你一直不停的输入，那么永远也不会有值发出，因为这个值要待够1s,在这1s的时间内不被别人打扰它才会输出。
+
+2) `throttleTime`
+`throttleTime(1000)`,代表在1s内,只能有一个值送出，如果在这1s内还有别的值进来，那么忽略。
+
+3) `auditTime`
+`auditTime(1000)`,代表它会忽略流在刚开始的1s内发送的值，1s过后，会发出流的最新值
 
 
 

@@ -73,3 +73,18 @@ type EventCallback<EventValue, State, Inputs> = Not<
 >
 ```
 callback的第一个参数是 *event$*
+
+
+
+## 使用案例总结
+### 你需要原始数据 *data$*,又需要由他衍生出来的 *resultData$*
+这时候，可以使用 `mergeMap + from/of + map`。
+```javascript
+data$.pipe(
+  mergeMap(list=> from(list).pipe(
+    // 在这里做转换，生成 resultData$.
+    map(v => ({data, resultData }))
+  ))
+)
+
+```
