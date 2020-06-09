@@ -259,7 +259,7 @@ refCountSource$.subscribe(v => console.log(`refCount B:${v}`));
 
 ```
 说明：
-* 当订阅数大于0，自动 *connect*, 当订阅数=0，自动 *unsubscribe*
+* 当订阅数大于0，自动 *connect*, 当订阅数 = 0，自动 *unsubscribe*
 
 
 
@@ -274,7 +274,8 @@ const source$ = interval(1000).pipe(
 ```
 
 加上 *Subject* 的三种变形
-`publishBehavior`
+1) `publishBehavior`
+使用这个操作符，必须给一个初始值。
 ```typescript
 const source$ = interval(1000).pipe(
   take(3),
@@ -283,7 +284,8 @@ const source$ = interval(1000).pipe(
 );
 ```
 
-`publishReplay`
+2) `publishReplay`
+这个操作符代表重放最后几个元素
 ```typescript
 const source$ = interval(1000).pipe(
   take(3),
@@ -292,7 +294,7 @@ const source$ = interval(1000).pipe(
 );
 ```
 
-`publishLast`
+3) `publishLast`
 ```typescript
 const source$ = interval(1000).pipe(
   take(3),
@@ -331,7 +333,9 @@ const source$ = interval(1000).pipe(
 * *switchAll* 比较特殊，**喜新厌旧**。如果有新的 *Observable* 那么他就会退订旧的而订阅新的，这也是 'switch' 的含义
 
 3) `concatMap`, `mergeMap`, `switchMap`
-高阶 *Observable* 常常是由 *map* 操作符将每个数据映射为 *Observable* 产生，而我们订阅的时候需要将其压平为一阶Observable,就是要先 map，然后再使用（2）中的操作符压平。所以rxjs提供了更简洁的API。
+1. 高阶 *Observable* 常常是由 *map* 操作符将每个数据映射为 *Observable* 产生，而我们订阅的时候需要将其压平为一阶Observable,就是要先 *map*，然后再使用（2）中的操作符压平。所以rxjs提供了更简洁的API。
+2. `Observable ->(map) -> Observable<Observable<T>> ->(mergeAll等) -> ObserVable<T> `
+3. 细节：这三个 operator 可以把第一个参数回传的 *promise* 实例 直接转成 *Observable*
 ```javascript
 concatMap = map + concatAll;
 mergeMap = map + mergeAll;
