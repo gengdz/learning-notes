@@ -4,6 +4,9 @@
 RxJS提供了一套完整的异步解决方案，让我们在面对各种异步行为时，能使用相同的API。
 前端中的异步有：事件（event) 、AJSX、动画（animation)、定时器（timer）
 
+## 为什么使用 RxJS
+
+
 
 
 ## RxJS是什么？
@@ -351,7 +354,7 @@ switchMap = map + mergeMap;
 5）`startWith`, `forkJoin`, `race`
 *startWith* 给流一个初始值。相当于先甩出一个默认值，然后流正常输出。
 *forkJoin* 多个流 *complate* 之后，将多个流的结果。放在数组中，组成`[r1, r2, r3]`。和 *promise.all* 的效果相同。
-
+*race* 使用首先发出值的 *Observable*。和 *promise.race* 的效果相同。
 
 6) `pairwise`
 作用是：将上一个值和当前值，合并成一个数组，然后发出。
@@ -407,6 +410,20 @@ const [evens, odds] = source.partition(v => v % 2 === 0);
 
 3) `auditTime`
 `auditTime(1000)`,代表它会忽略流在刚开始的1s内发送的值，1s过后，会发出流的最新值
+
+
+
+### 工具操作符
+1) `timestamp`
+```typescript
+interface Timestamp<T> {
+  value: T
+  timestamp: number
+}
+```
+返回包含两个字段的对象：把原来流的信息放在 *value*，附带返回时间戳 *timestamp*
+
+
 
 
 
