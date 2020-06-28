@@ -49,7 +49,7 @@ equals:: Setoid a => a ~> a -> Boolean
 
 代数是遵循一定法则的、具有封闭性的，一系列值及一些列操作的集合。
 
-每个 Fantasy Land代数是一个单独的规范。一个代数可能依赖于其他必须实现的代数。
+每个 Fantasy Land 代数是一个单独的规范。一个代数可能依赖于其他必须实现的代数。
 
 ### Setoid
 
@@ -137,7 +137,7 @@ Functor的定律：
 
 
 #### `chain` 方法
-
+我们把 紧跟着 map 后面调用 join 的行为抽象成 chain
 ```javascript
 chain :: Chain m => (a -> m b) -> m a -> m b
 ```
@@ -176,18 +176,4 @@ chain :: Chain m => (a -> m b) -> m a -> m b
 *Either Monad* 提供两种构造器：`Either.Left` 和`Either.Right` ，**Left 和 Right 都是 Monad！理念是在 Left 中存储错误和异常，而在 Right 中存储有用的值**。
 
 虽然 Left 和 Right 都提供 map、chain 等方法，但是 Left 构造因为存储的是错误，所以不做任何事情。而 Right 构造器会实现所有的函数，因为它包含了实际的结果。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
