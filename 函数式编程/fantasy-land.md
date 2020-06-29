@@ -102,6 +102,7 @@ equals:: Setoid a => a ~> a -> Boolean
 ###  Functor
 
 任何存储一个值，并且实现了 `map` 方法的类（或者构造器函数）或者数据类型都被称为**Functor**。
+**Functor 应用函数到封装过的值**
 
 Functor的定律：
 
@@ -121,10 +122,9 @@ Functor的定律：
 
 
 ### Applicative
-
 实现 *Applicative* 规范的值还必须实现 *Apply* 规范。。
-
 必须实现`of` 方法。
+**Applicative 应用封装过的函数到封装过的值** 
 
 
 
@@ -152,28 +152,3 @@ chain :: Chain m => (a -> m b) -> m a -> m b
 2. `m.chain(M.of)` 等价于 `m` (右同一性)
 
 一般情况下我们使用更具体的，更有用的Monad,常用的Maybe Monad或者 Either Monad.
-
-
-
-#### Maybe Monad
-
-它的特殊之处是：**它用来处理 *null* 或者 *undefined* 。**
-
-特别是，如果存储的数据是 *null* 或者 *undefined* ，那么它的 *map* 函数完全不会执行，因而避免了 *null* 或者 *undefined* 的问题。
-
-空值类型的 *Maybe* 是`Nothing`
-
-非空值类型的 *Maybe* 是`Just`
-
-虽然 Just 和 Nothing 有相同的方法（map、orElse 等），不过 Just 的实例要做一些事情，而 Nothing 的实例是什么事都不做。
-
-
-
-#### Either Monad
-
-可以用它处理错误。
-
-*Either Monad* 提供两种构造器：`Either.Left` 和`Either.Right` ，**Left 和 Right 都是 Monad！理念是在 Left 中存储错误和异常，而在 Right 中存储有用的值**。
-
-虽然 Left 和 Right 都提供 map、chain 等方法，但是 Left 构造因为存储的是错误，所以不做任何事情。而 Right 构造器会实现所有的函数，因为它包含了实际的结果。
-
