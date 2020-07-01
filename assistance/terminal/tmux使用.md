@@ -23,7 +23,8 @@ tmux rename-window newName
 
 三、交换窗口的位置
 ```bash
-tmux swap-window -t
+# 比如我目前在 buffett窗口，我想让这个窗口和 `note` 窗口交换位置
+tmux swap-window -t note
 ```
 
 ## 一些快捷键或者命令行
