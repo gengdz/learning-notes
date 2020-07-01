@@ -214,6 +214,46 @@ git pull --rebase origin master
 
 
 
+## git commit 说明
+### Commit message的格式
+每次提交 Commit message 都包括三个部分：*Header*, *Body* 和 *Footer* 。其中 *Header* 是必须的。
+```html
+<type>(<scope>): <subject>
+// 空一行
+<body>
+// 空一行
+<footer>
+```
+
+
+
+#### Header
+(1) type
+**type** 用来说明 commit 的类型，只能使用以下7个标示。**必需**
+* feat: 新功能（feature)
+* fix: 修补bug
+* chore: 构建过程或者辅助工具的变动
+* refactor: 重构（即不是新增功能，也不是修改bug的代码改动）
+* style: 格式（不影响代码运行的变动）
+* docs: 文档（documentation)
+* test: 增加测试
+
+(2) scope
+**scope** 用来说明 commit 影响的范围，比如数据层、控制层、视图层等等。**可选**
+
+(3) subject
+**subject是** commit 目的的简短描述，不超过50个字符。**必需**
+* 以动词开头，使用第一人称现在时，比如change，而不是changed或changes
+* 第一个字母小写
+* 结尾不加句号（.）
+
+
+#### 示例
+```bash
+feat(page): 新增xx功能
+chore(*): 升级webpack的版本
+chore(utils): 删除没用到的函数
+```
 
 ## 场景化使用教程
 
