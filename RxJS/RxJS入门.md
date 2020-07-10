@@ -72,7 +72,8 @@ interval(1000).subscribe(console.log);
 5. `timer`
 接收两个参数，第一个参数为发出第一个值需要等待的时间，第二个参数表示之后的间隔时间。
 ```javascript
-timer(3000,500).subscribe(console.log);
+timer(1000) // 表示1000ms之后产生一个数据0，然后终结
+timer(3000,1000).subscribe(console.log); // 3000ms后吐出0，4000ms吐出1，5000ms吐出2，依次类推
 ```
 
 6. `range`
@@ -423,7 +424,8 @@ interface Timestamp<T> {
 ```
 返回包含两个字段的对象：把原来流的信息放在 *value*，附带返回时间戳 *timestamp*
 
-
+2）`repeat`
+使用 repeat 操作符要保证上游的 observable 会终结，不然使用这个操作符没意义。
 
 
 
