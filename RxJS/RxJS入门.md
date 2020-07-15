@@ -336,14 +336,19 @@ const source$ = interval(1000).pipe(
 * *mergeAll* 则会同时处理。
 * *switchAll* 比较特殊，**喜新厌旧**。如果有新的 *Observable* 那么他就会退订旧的而订阅新的，这也是 'switch' 的含义
 
-3) `concatMap`, `mergeMap`, `switchMap`
+3) `concatMap`, `mergeMap`, `switchMap`, `exhaustMap`
 1. 高阶 *Observable* 常常是由 *map* 操作符将每个数据映射为 *Observable* 产生，而我们订阅的时候需要将其压平为一阶Observable,就是要先 *map*，然后再使用（2）中的操作符压平。所以rxjs提供了更简洁的API。
 2. `Observable ->(map) -> Observable<Observable<T>> ->(mergeAll等) -> ObserVable<T> `
-3. 细节：这三个 operator 可以把第一个参数回传的 *promise* 实例 直接转成 *Observable*
+3. 细节：这四个 operator 可以把第一个参数回传的 *promise* 实例 直接转成 *Observable*
 ```javascript
 concatMap = map + concatAll;
 mergeMap = map + mergeAll;
+
+// switchMap: 如果有新的就处理新的，并且自动退订旧的
 switchMap = map + mergeMap;
+
+// exhuastMap: 先处理进来的第一个值，处理完第一个值之后不一定会处理第二个，而是处理当前最近的那个，依次类推 
+exhaustMap = map + exhaust;
 ```
 
 4) `zip`, `combineLatest`, `withLatestFrom`。
@@ -354,8 +359,8 @@ switchMap = map + mergeMap;
 
 5）`startWith`, `forkJoin`, `race`
 *startWith* 给流一个初始值。相当于先甩出一个默认值，然后流正常输出。
-*forkJoin* 多个流 *complate* 之后，将多个流的结果。放在数组中，组成`[r1, r2, r3]`。和 *promise.all* 的效果相同。
-*race* 使用首先发出值的 *Observable*。和 *promise.race* 的效果相同。
+*forkJoin* 多个流 *complate* 之后，将多个流的最新值放在数组中，组成`[r1, r2, r3]`。和 *promise.all* 的效果相同。
+*race* 使用首先发出值的 *Observable*。和 *promise.race* 的效果相同。这是一个竟态操作符，它会同时订阅它参数内的所有的流，但是只允许第一个产生值的流存在。
 
 6) `pairwise`
 作用是：将上一个值和当前值，合并成一个数组，然后发出。
@@ -426,6 +431,39 @@ interface Timestamp<T> {
 
 2）`repeat`
 使用 repeat 操作符要保证上游的 observable 会终结，不然使用这个操作符没意义。
+
+3) `timeout`
+`timeout(2500)` 表示：如果2500ms之内没有收到值的话就直接抛出错误
+```javascript
+makeRequest(duration).pipe(
+  timeout(2500),
+  catchError(error=> of(`Request timed out after: ${duration}`))
+)
+```
+
+3) `timeoutWith`
+`timeout(2500, observableInput)` 表示：如果2500ms之内没有收到值的话，就使用第二个参数（observableInput）做为下一步的数据源
+```javascript
+const requestTimeoutLogger = of('logging request timeout');
+fakeRequest(e).pipe(
+  timeoutWith(2500, requestTimeoutLogger),
+)
+```
+
+
+
+### 错误处理
+1）`catchError`
+当 Observale 放生错误的时候，可以使用 `catchError` 来捕获错误
+```javascript
+const source = throwError('This is an error!');
+//gracefully handle error, returning observable with error message
+const example = source.pipe(catchError(val => of(`I caught: ${val}`)));
+```
+> catchError需要返回一个 Observable, 一般我们可以使用 `of(1,2,3)`这种操作
+> 这里有个细节: 下面这种，直接返回一个 Iteratorable 的东西，也是可以的
+> catchError(err => ['I', 'II', 'III', 'IV', 'V'])
+
 
 
 
