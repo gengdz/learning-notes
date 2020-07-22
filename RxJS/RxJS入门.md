@@ -407,6 +407,7 @@ const [evens, odds] = source.partition(v => v % 2 === 0);
 
 
 ### 过滤
+很多过滤类操作符如 `filter | first` 的断言函数都接受 2-3 个参数！。分别是 `(value, index, source)`。
 1) `debounceTime`
 `debounceTime(1000)` 代表在1s内，没有新的进来那么就发出这个值，如果有新的进来，那就继续观察它后面1s有没有新的值进来。
 极端情况下：你一直不停的输入，那么永远也不会有值发出，因为这个值要待够1s,在这1s的时间内不被别人打扰它才会输出。
@@ -416,6 +417,28 @@ const [evens, odds] = source.partition(v => v % 2 === 0);
 
 3) `auditTime`
 `auditTime(1000)`,代表它会忽略流在刚开始的1s内发送的值，1s过后，会发出流的最新值
+
+4）`first`
+`first()` 表示第一个元素。`first(predFn)`表示第一个满足条件的元素
+方法签名如下：
+```javascript
+first<T, D>(predicate?: (value: T, index: number, source: Observable<T>) => boolean, defaultValue?: D): OperatorFunction<T, T | D>
+```
+
+```javascript
+const source = from([1, 2, 3, 4, 5]);
+// no arguments, emit first value
+const example = source.pipe(first());
+
+// emit first item to pass test
+const example = source.pipe(first(num => num === 5));
+// output: "First to pass test: 5"
+
+// no value will pass, emit default
+const example = source.pipe(first(v => v > 5, 'Nothing'));
+// output: 'Nothing'
+
+```
 
 
 
