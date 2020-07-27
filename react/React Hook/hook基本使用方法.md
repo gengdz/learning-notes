@@ -63,6 +63,8 @@ setData(prevState=>({...prevState, name: 'gdz' }))
 * useState产生的changeState方法后并没有类似setState第二个参数一样的功能，所以如果需要在state改变之后执行，那么必须使用useEffect
 * 当需要执行操作的时候，可以嵌入进去。这里可以做的事情很多。比如发送网络请求或者进行监视器的监听
 
+
+
 ### 使用说明
 
 该钩子接收两个参数，第一个参数 **函数** 是副作用需要执行的回调，生成的回调函数可以返回一个函数。(*将在组件卸载的时候运行* )，第二个参数为 **数组** ，只要这个数组发生变化，那么`useEffect` 就会执行
@@ -95,6 +97,34 @@ useEffect(() => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
   };
 });
+```
+
+
+
+### useEffect with async
+在 `useEffect()` 里面写 *async* 需要用下面的方式。
+```javascript
+// 正确的方式
+useEffect(() => {
+
+  const fetchData = async () => {
+    const result = await axios(
+      'http://hn.algolia.com/api/v1/search?query=redux',
+    );
+    setData(result.data);
+  };
+  fetchData();
+
+}, []);
+
+// 不正确的方式(会有警告)
+useEffect(async () => {
+  const result = await axios(
+    'http://hn.algolia.com/api/v1/search?query=redux',
+  );
+  setData(result.data);
+}, []);
+
 ```
 
 
@@ -296,6 +326,14 @@ function App() {
 ```
 
 
+
+### useCallback with async
+如果在 `useCallback` 中使用 *async* 可以使用如下方式
+```javascript
+const func = useCallback(async data => {
+  // do something
+}, [])
+```
 
 
 
