@@ -117,7 +117,7 @@ useEffect(() => {
 
 }, []);
 
-// 不正确的方式(会有警告)
+// 不正确的方式
 useEffect(async () => {
   const result = await axios(
     'http://hn.algolia.com/api/v1/search?query=redux',
