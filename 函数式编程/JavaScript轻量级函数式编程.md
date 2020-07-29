@@ -86,3 +86,32 @@ args永远是一个数组。多好，真靠谱。
 **偏函数** 严格来讲是一个减少函数参数个数 `(arity)` 的过程；这里的参数个数指的是希望传入的形参的数量。我们通过 `getOrder(..)` 把原函数 `ajax(..)` 的参数个数从 3 个减少到了 2 个。
 `getOrder(data,cb)` 是 `ajax(url,data,cb)` 函数的偏函数（partially-applied functions）。该术语代表的概念是：在函数调用现场（function call-site），将实参应用（apply） 于形参。如你所见，我们一开始仅应用了部分实参 —— 具体是将实参应用到 url 形参 —— 剩下的实参稍后再应用。
 
+
+
+## 减少副作用
+### 数学上的幂等
+数学上的幂等指的是：**`f(x)` 与 `f(f(x))`、 `f(f(f(x)))` 等 有相同的输出**
+典型的数学例子为： `Math.abs()` (取绝对值)。类似的还有 `Math.min()`、`Math.max()`、`Math.round()`、`Math.floor()` 和 `Math.ceil()`等。
+
+
+
+### 编程中的幂等
+编程中的幂等没有那么严格。它指的是：**`f(x)` 与 `f(x)` 等 有相同的输出。即 第 *n* 次调用 `f(x)` 的结果和 第 *1* 次调用 `f(x)` 的结果相同**
+
+
+
+### 纯粹
+```javascript
+const PI = 3.141592;
+
+function circleArea(radius) {
+    return PI * radius * radius;
+}
+
+function cylinderVolume(radius,height) {
+    return height * circleArea( radius );
+}
+```
+说明：
+`circleArea(..)` 中引用了自由变量 *PI*，但是这是一个常量所以不是一个侧因。`cylinderVolume(..)` 引用了自由变量 `circleArea`，这也不是一个侧因，因为这个程序把它当作一个常量引用它的函数值。这两个函数都是纯的。
+
