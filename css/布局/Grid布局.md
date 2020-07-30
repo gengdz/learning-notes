@@ -91,6 +91,28 @@ grid-template-columns: 1fr;
 
 
 
+### grid-auto-rows
+作用对象是：所有栅格元素
+作用是：调整栅格元素的行高。默认是: `auto`。意思是自适应。
+我们也可以指定大小
+```css
+grid-auto-rows: 100px;
+```
+
+
+
+### grid-auto-columns
+和上面的是一对。
+作用对象是：所有栅格元素
+作用是：调整栅格元素的宽度。
+```css
+grid-auto-columns: 1fr;
+grid-auto-columns: minmax(10px, auto);
+```
+
+
+
+
 ### 栅格的流动
 默认是从左到右，从上到下。
 使用 `grid-auto-flow` 属性控制栅格的方向。
@@ -158,6 +180,20 @@ grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end。
 ```
 
 ```css
+ body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+    }
+
+    header {
+        grid-area: 2/2/3/3;
+        background: #e67e22;
+    }
+```
+
+```css
  grid-template-areas: "header header"
         "nav main"
         "footer footer";
@@ -210,14 +246,17 @@ grid-template-areas: "top . ."
 
 ### 属性简写
 **注意：属性的顺序，先是垂直方向，然后是水平方向**
+控制所有栅格元素的对齐方式
 ```css
 place-items: <align-items> <justify-items>
 ```
 
+控制栅格的对齐方式
 ```css
 place-content: <align-content> <justify-content>
 ```
 
+控制单个元素的对齐方式
 ```css
 place-self: <align-self> <justify-self>
 ```
