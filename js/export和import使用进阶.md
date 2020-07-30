@@ -1,17 +1,95 @@
+# export 和 import 的进阶用法
+
 ## export进阶用法
 
 ### 用法示例
+```javascript
+// 单独导出
+export const doCallBack;
+export const isEmptyOrNil;
 
-* 采用`export { doCallBack, isEmptyOrNil }`代替 `export const doCallBack... 、 export const isEmptyOrNil`
-* 修改导出方法的名字 `export { doCallBack as otherName }`
+// 集中多个导出
+export { doCallBack, isEmptyOrNil };
 
-### 说明
+// 修改导出方法的名称
+export { doCallBack as otherName }
 
-> export命令规定的是对外的==接口==必须与模块内部变量建立一一对应关系
->
-> 错误示例：
->
-> `export  1` 或者`const a = 1  export a` 
+```
+
+```javascript
+// 报错
+export 1;
+
+// 报错
+var m = 1;
+export m;
 
 
+// 正确的写法应该是
+// 写法一
+export var m = 1;
+
+// 写法二
+var m = 1;
+export {m};
+
+// 写法三
+var n = 1;
+export {n as m};
+```
+> 说明
+> export命令规定的是对外的 ==接口== 必须与模块内部变量建立一一对应关系
+> 上面写法报错的原因是：**没有提供对外的接口**。第一种错误的写法会直接输出 *1* ，第二种错误的写法 通过变量 *m* 还是直接输出 *1*。*1* 只是一个值，不是接口。
+> 上面正确的写法，规定了对外的接口 *m*.其他脚本可以通过这个接口，取到值 *1*
+
+
+
+### export 与 import 的复合用法
+
+```javascript
+export { foo, bar } from 'my_module';
+
+// 可以简单理解为
+import { foo, bar } from 'my_module';
+export { foo, bar };
+
+```
+
+模块的接口改名和整体输出
+```javascript
+// 接口改名
+export { foo as myFoo } from 'my_module';
+
+// 整体输出
+export * from 'my_module';
+
+```
+
+默认接口的写法如下
+```javascript
+export { default } from 'foo';
+```
+具名接口改为默认接口的写法如下。
+```javascript
+export { es6 as default } from './someModule';
+
+// 等同于
+import { es6 } from './someModule';
+export default es6;
+
+```
+
+同样地，默认接口也可以改名为具名接口
+```javascript
+export { default as es6 } from './someModule';
+```
+
+ES2020之后多了一种复合写法
+```javascript
+export * as ns from 'mod';
+
+// 等同于
+import * as ns from "mod";
+export {ns};
+```
 
