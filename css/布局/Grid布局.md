@@ -150,7 +150,6 @@ article div {
 
 
 ### 根据偏移量
-
 使用 `span` 可以设置单元格占几个单元格。
 
 ```css
@@ -160,13 +159,18 @@ article div {
 
 
 ### 元素定位简写
-
-可以使用诸如 `grid-row:1/3` 和 `grid-column:2/4` 的方式进行简写。
+可以使用 `grid-row` 对 `grid-row-start | grid-row-end` 进行简写
+可以使用 `grid-column` 对 `grid-column-start | grid-column-end` 进行简写
 也可以结合 *偏移量* 进行使用
 
 ```css
-grid-row:1/ span 2;
-grid-column:1 /span 1;
+grid-row: 2/4;
+grid-column: 2/4;
+```
+
+```css
+grid-row: 1/span 2;
+grid-column: 1/span 1;
 ```
 
 
