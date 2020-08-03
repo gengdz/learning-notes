@@ -1,7 +1,7 @@
 # Grid布局
 *Grid* 布局即网格布局。比较擅长将一个页面划分为几个主要区域，以及定义这些区域的大小、位置、层级关系。**是目前唯一一种 *CSS* 二维布局** 
 
-
+[toc]
 
 
 grid 容器的属性还是有点多的，可以分为 *5* 大类
@@ -133,12 +133,32 @@ grid-template-areas:
  "nav main"
  "footer footer";
 ```
+
 使用的时候
 ```css
 .item1 {
   grid-area: header;
 }
 ```
+
+```css
+ grid-template-areas: "header header"
+        "nav main"
+        "footer footer";
+
+  header {
+    grid-area: header;
+  }
+```
+
+
+使用一个或多个 . 定义区域占位。
+```css
+grid-template-areas: "top . ."
+            "top . ."
+            "bottom bottom bottom";
+```
+
 
 
 
@@ -179,9 +199,16 @@ grid-template: 60px 1fr 60px/60px 1fr;
 place-items: <align-items> <justify-items>
 place-items: center start;
 ```
+**注意：属性的顺序，先是垂直方向，然后是水平方向**
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+
+
+
 
 #### justify-items
 `justify-items` 设置单元格内容的水平位置。默认为 `stretch`，也就是说默认是内容会在水平方向，铺满整个单元格。如果改变了这个值，那么会根据内容的多少，决定内容在单元格里的位置。
+
+
 
 
 #### align-items
@@ -203,6 +230,9 @@ place-items: center start;
 ```css
 place-content: <align-content> <justify-content>
 ```
+**注意：属性的顺序，先是垂直方向，然后是水平方向**
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+
 
 
 #### justify-content
@@ -260,40 +290,19 @@ grid-auto-columns: minmax(10px, auto);
 
 ## 项目属性
 
-### 根据栅格线
-使用栅格线的编号，把元素放在栅格里面。
-
-```css
-article div {
-  grid-row-start: 2;
-  grid-column-start: 2;
-  grid-row-end:4;
-  grid-column-end:4;
-}
-```
-
-
-
-### 根据偏移量
-使用 `span` 可以设置单元格占几个单元格。
-
-```css
- grid-row-end: span 2;
-```
-
-
-
-### 元素定位简写
-可以使用 `grid-row` 对 `grid-row-start | grid-row-end` 进行简写
-可以使用 `grid-column` 对 `grid-column-start | grid-column-end` 进行简写
+### grid-column、grid-row
+`grid-row` 是 `grid-row-start | grid-row-end` 的简写
+`grid-column` 是 `grid-column-start | grid-column-end` 的简写
 也可以结合 *偏移量* 进行使用
 
 ```css
+/* 使用栅格线的编号，把元素放在栅格里面 */
 grid-row: 2/4;
 grid-column: 2/4;
 ```
 
 ```css
+/* 结合 偏移量 使用 `span` 可以设置单元格占几个单元格。 */
 grid-row: 1/span 2;
 grid-column: 1/span 1;
 ```
@@ -301,92 +310,50 @@ grid-column: 1/span 1;
 
 
 ### grid-area
-
-* `grid-area` 是 `grid-row` 和 `grid-column`的简写。
-* 搭配`grid-template-areas`使用。
+`grid-area` 是 `grid-row` 和 `grid-column` 的简写。
+需要搭配 `grid-template-areas` 使用。
 
 ```css
 grid-area: grid-row-start/grid-column-start/grid-row-end/grid-column-end。
 ```
 
 ```css
- body {
-        width: 100vw;
-        height: 100vh;
-        display: grid;
-        grid-template: repeat(3, 1fr)/repeat(3, 1fr);
-    }
+body {
+  width: 100vw;
+  heigh: 100vh;
+  display: grid;
+  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+}
+header {
+  grid-area: 2/2/3/3;
+  background: #e67e22;
+}
 
-    header {
-        grid-area: 2/2/3/3;
-        background: #e67e22;
-    }
 ```
 
 ```css
- grid-template-areas: "header header"
-        "nav main"
-        "footer footer";
+grid-template-areas: "header header"
+ "nav main"
+ "footer footer";
 
-  header {
-    grid-area: header;
-  }
+header {
+  grid-area: header;
+}
 ```
 
 
 
-### 区域声明
-
-使用`grid-template-areas`来定义区域。
-```css
- grid-template-areas: "header header"
-        "nav main"
-        "footer footer";
-
-  header {
-    grid-area: header;
-  }
-```
-
-
-
-#### 区域占位
-
-使用一个或多个 . 定义区域占位。
-```css
-grid-template-areas: "top . ."
-            "top . ."
-            "bottom bottom bottom";
-```
-
-
-
-## 栅格对齐
-属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
-|  选项  |  说明  |  对象  |
-|--------|-------|-------|
-|  justify-items  |  栅格内所有元素的水平排列方式  |  栅格容器  |
-|  align-items  |  栅格内所有元素垂直排列方式  |  栅格容器  |
-|  justify-content  | 容器水平方向有额外空间时，分配方式  |  栅格容器  |
-|  align-content  |  容器垂直方向有额外空间时，分配方式  |  栅格容器  |
-|  justify-self  |  元素在栅格中水平对齐方式  |  栅格元素  |
-|  align-self  |  元素在栅格中垂直对齐方式  |  栅格元素  |
-
-
-
-### 属性简写
-**注意：属性的顺序，先是垂直方向，然后是水平方向**
-控制所有栅格元素的对齐方式
-```css
-place-items: <align-items> <justify-items>
-```
-
-控制栅格的对齐方式
-```css
-place-content: <align-content> <justify-content>
-```
-
-控制单个元素的对齐方式
+### place-self
+语法如下：
 ```css
 place-self: <align-self> <justify-self>
 ```
+**注意：属性的顺序，先是垂直方向，然后是水平方向**
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+
+
+#### align-self
+`justify-self` 元素在栅格中水平对齐方式 
+
+#### justify-self
+`justify-self` 元素在栅格中水平对齐方式
