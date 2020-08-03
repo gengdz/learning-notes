@@ -3,28 +3,98 @@
 
 
 
-## 声明容器
 
-### 使用fr进行指定行列大小(重点)
+grid 容器的属性还是有点多的，可以分为 *5* 大类
 
-fx作为基本单位，相当于占整体的几分之几
+1. `grid-template` 系列
+    * grid-template-columns
+    * grid-template-rows
+    * grid-template-areas
+
+2. `grid-gap` 系列
+    * grid-column-gap
+    * grid-row-gap
+
+3. `place-items` 系列
+    * justify-items
+    * align-items
+
+4. `place-content` 系列
+    * justify-content
+    * align-content
+
+
+5. `grid-auto` 系列
+    * grid-auto-columns
+    * grid-auto-rows
+    * grid-auto-flow
+
+
+
+grid 项目的属性，可以分为以下几类
+1. grid-column、grid-row
+2. grid-area
+3. place-self
+
+
+
+## 容器属性
+### grid-template 系列
+
+#### grid-template-columns、grid-template-rows
+
+##### 前置知识
+1. `fx`
+作为基本单位，相当于占整体的几分之几
 
 ```css
-// 所以可以使用 
 article {
   width: 300px;
   height: 300px;
-  border: soild 5px silver
+  border: soild 5px silver;
   display: grid;
   grid-template-rows: 1fx 2fx 1fx; // 多少行
   grid-template-columns: 1fx 2fx 1fx; // 多少列
 }
 ```
 
+2. `repeat`
+重复。 语法为: `repeat(重复次数, 重复值)` 。
+`repeat(3,33%)`: 表示重复三次，每个值都是 33%
+```css
+article {
+  width: 300px;
+  height: 300px;
+  border: soild 5px silver
+  display: grid;
+  grid-template-rows: repeat(3, 33%); // 多少行
+  grid-template-columns: repeat(3, 33%); // 多少列
+}
+```
+
+3. `auto-fill`
+自动填充
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+}
+```
 
 
-### 使用repeat+fr(重点，进阶使用)
+4. `minmax`
+可以指定最小或者最大值。用范围来决定实际大小。
+```css
+display: grid;
+grid-template-rows: minmax(50px, 1fr);
+grid-template-columns: 1fr;
+```
 
+
+
+##### 声明方式
+
+1. 使用 repeat + fr
 `repeat(times,value)`，它接受两个参数，第一个参数表示重复多少次，第二个参数是需要重复的值。还可以 `repeat(3,10px 20px)` 表示重复三次，重复的值为 10px 20px;
 
 ```css
@@ -41,8 +111,7 @@ article {
 
 
 
-### 基本声明(一般不会用)
-
+2. 基本声明 百分比
 ```css
 article {
   width: 300px;
@@ -50,71 +119,133 @@ article {
   border: soild 5px silver
   display: grid;
   grid-template-rows: 100px 100px 100px; // 多少行
-  grid-template-columns: 100px 100px 100px; // 多少列
+  grid-template-columns: 60% 20% 20%; // 多少列
 }
-
 ```
 
 
 
-### repeat+百分比
-
+#### grid-template-areas
 ```css
-// 解释说明: repeat(3,33%) 表示重复三次，每个值都是 33%
-article {
-  width: 300px;
-  height: 300px;
-  border: soild 5px silver
-  display: grid;
-  grid-template-rows: repeat(3, 33%); // 多少行
-  grid-template-columns: repeat(3, 33%); // 多少列
+grid-template: 60px 1fr 60px/60px 1fr;
+grid-template-areas:
+ "header header"
+ "nav main"
+ "footer footer";
+```
+使用的时候
+```css
+.item1 {
+  grid-area: header;
 }
-
 ```
 
 
 
-### minmax的使用
-可以指定最小或者最大值。用范围来决定实际大小。
-```css
-display: grid;
-grid-template-rows: minmax(50px,1fr);
-grid-template-columns: 1fr;
-```
+#### grid-template
 
-
-
-### 组合定义
 使用 `grid-template` 组合定义。它是下面三个属性的简写。
 * grid-template-rows
 * grid-template-columns
 * grid-template-areas
 
+```css
+grid-template: repeat(3, 1fr)/repeat(4, 1fr);
+grid-template: 60px 1fr 60px/60px 1fr;
+```
 
 
-### grid-auto-rows
-作用对象是：所有栅格元素
-作用是：调整栅格元素的行高。默认是: `auto`。意思是自适应。
-我们也可以指定大小
+
+### grid-gap 系列
+* 使用 `row-gap` 设置行间距
+* 使用 `column-gap` 设置列间距
+* 使用 `grid-gap | gap` 同时设置行和列间距
+
+
+
+
+### place-items 系列
+这个属性的的使用场景：
+
+> 我们先声明一个 宽为 800px， 高为 800px 的栅格容器。
+> 再声明 3行 3列 的排布。
+> 注意如果我们没有指定里面每个单元格的高度和宽度，那么默认拉伸，也就是说，内容会填充整个单元格。
+> 如果我们想规定单元格的内容，在单元格内是怎么排布的话
+> 我们就使用 place-items 来决定我们栅格元素中内容的位置。
+
+`place-items` 是 `align-items` 和 `justify-items` 的简写
+
+```css
+place-items: <align-items> <justify-items>
+place-items: center start;
+```
+
+#### justify-items
+`justify-items` 设置单元格内容的水平位置。默认为 `stretch`，也就是说默认是内容会在水平方向，铺满整个单元格。如果改变了这个值，那么会根据内容的多少，决定内容在单元格里的位置。
+
+
+#### align-items
+`align-items` 设置单元格内容的垂直位置。默认为 `stretch`。
+
+
+
+
+### place-content 系列
+这个属性的使用场景：
+
+> 我们在一个 宽 1000px, 高 1000px 的页面作业。
+> 然后声明了一个 宽为 800px， 高为 800px 的栅格容器。
+> 这时候，页面是不是还有 宽度 200px， 高度 200px 的剩余空间。
+> 我们就使用 place-content 来决定我们栅格容器的位置。
+
+`place-content` 是 `align-content` 和 `justify-content` 的简写
+
+```css
+place-content: <align-content> <justify-content>
+```
+
+
+#### justify-content
+`justify-content` 容器水平方向有额外空间时，分配方式
+
+#### align-content
+`align-content` 容器垂直方向有额外空间时，分配方式
+
+   
+
+### grid-atuo 系列
+这个不是一个简写属性，只是都以 *grid-auto* 开头，并且作用的对象差不多。所以放在一起了
+
+
+
+#### grid-auto-rows 和 grid-auto-columns
+在讲 `grid-auto-columns` 属性和 `grid-auto-rows` 属性之前，先来看看隐式和显式网格的概念
+隐式和显式网格：显式网格指的是你在 `grid-auto-columns` 属性和 `grid-auto-rows` 属性中定义的行和列。如果你定了了两行，但是实际的行数超过了两行，那么网格就会在隐式网格中创建行和列。
+
+假如有多余的网格（也就是上面提到的隐式网格），那么它的行高和列宽可以根据 `grid-auto-columns` 属性和 `grid-auto-rows` 属性设置。它们的写法和 `grid-template-columns` 和 `grid-template-rows` 完全相同。如果不指定这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高(auto).
+
+
+`grid-auto-columns` 与 `grid-auto-rows` 可以用来定义我们超出网格格数的隐式网格的大小。
+
 ```css
 grid-auto-rows: 100px;
-```
 
-
-
-### grid-auto-columns
-和上面的是一对。
-作用对象是：所有栅格元素
-作用是：调整栅格元素的宽度。
-```css
 grid-auto-columns: 1fr;
 grid-auto-columns: minmax(10px, auto);
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 200px 100px;
+  /*  只设置了两行，但实际的数量会超出两行，超出的行高会以 grid-auto-rows 算 */
+  grid-template-rows: 100px 100px;
+  grid-gap: 10px 20px;
+  grid-auto-rows: 50px;
+}
 ```
 
 
 
-
-### 栅格的流动
+#### 栅格的流动
 默认是从左到右，从上到下。
 使用 `grid-auto-flow` 属性控制栅格的方向。
 |  属性  |  说明  |
@@ -126,14 +257,8 @@ grid-auto-columns: minmax(10px, auto);
 
 
 
-### 间距设置
-* 使用 `row-gap` 设置行间距
-* 使用 `column-gap` 设置列间距
-* 使用 `gap` 同时设置行和列间距
 
-
-
-## 元素定位
+## 项目属性
 
 ### 根据栅格线
 使用栅格线的编号，把元素放在栅格里面。
@@ -241,7 +366,7 @@ grid-template-areas: "top . ."
 |  选项  |  说明  |  对象  |
 |--------|-------|-------|
 |  justify-items  |  栅格内所有元素的水平排列方式  |  栅格容器  |
-|  align-items  |  栅格内所有元素垂直排列方式  |  栅格容器  |  
+|  align-items  |  栅格内所有元素垂直排列方式  |  栅格容器  |
 |  justify-content  | 容器水平方向有额外空间时，分配方式  |  栅格容器  |
 |  align-content  |  容器垂直方向有额外空间时，分配方式  |  栅格容器  |
 |  justify-self  |  元素在栅格中水平对齐方式  |  栅格元素  |

@@ -18,18 +18,24 @@
       height: 100vh;
       background: #34495e content-box;
       gap: 5px;
-      /* justify-items: center;
-      align-items: center; */
+
+      place-items: center;
+      /* place-content: center; */
     }
 
     main div {
       background: rebeccapurple;
-      /* width: 60px;
-      height: 60px; */
+      width: 60px;
+      height: 60px;
       /* width: 100%;
       height: 100%; */
-      display: grid;
-      place-items: center start;
+
+      /* display: grid;
+      place-items: center; */
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
