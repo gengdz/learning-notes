@@ -13,7 +13,7 @@
 
     page {
       display: grid;
-      grid-template: 60px 1fr 60px/60px 1fr;
+      grid-template: 60px 1fr 60px/120px 1fr;
       grid-template-areas: "header header"
         "nav main"
         "footer footer";
@@ -34,6 +34,42 @@
       grid-area: header;
     }
 
+    header {
+      display: flex;
+      align-items: center;
+    }
+
+    nav>div {
+      display: flex;
+      padding: 1em;
+    }
+
+    nav>div>span {
+      flex: 1;
+      writing-mode: vertical-lr;
+    }
+
+    nav>div>time {
+      flex: 1;
+      writing-mode: vertical-lr;
+    }
+
+    main>article {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1em;
+    }
+
+    main>article>h3 {
+      margin: 0 auto;
+    }
+
+    main>article>section {
+      margin: 0 0 10px 0;
+    }
+
+
     footer {
       display: grid;
       grid-template: 1fr/repeat(4, 1fr);
@@ -43,15 +79,58 @@
 
     footer div {
       background: #ddd;
+      display: grid;
+      place-items: center;
     }
   </style>
 </head>
 
 <body>
   <page>
-    <header></header>
-    <nav></nav>
-    <main></main>
+    <header>
+      <h1>区域的使用介绍</h1>
+    </header>
+    <nav>
+      <div>
+        <span>作者：耿德洲</span>
+        <time>时间：2020-08-03</time>
+      </div>
+    </nav>
+    <main>
+      <article>
+        <h3>区域的使用</h3>
+        <section>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum velit libero architecto possimus qui
+          ipsum, quisquam praesentium dolore distinctio nemo voluptas repudiandae, dolorem enim error reiciendis. Ullam
+          neque magnam, voluptas dolores explicabo inventore! Sint animi quibusdam commodi perferendis. Explicabo
+          officiis facilis harum nam voluptates consequatur? Explicabo molestiae perspiciatis perferendis ipsa deleniti
+          corporis dolorem vel a, unde, rerum quidem quia neque, numquam minus fugiat officiis suscipit illo
+          necessitatibus ex dignissimos at! Similique ut vel quas dignissimos expedita earum veritatis eligendi mollitia
+          harum pariatur quaerat odio natus, quia saepe sit in quae. Blanditiis inventore neque sint suscipit quod saepe
+          eius eveniet debitis.
+        </section>
+        <section>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum velit libero architecto possimus qui
+          ipsum, quisquam praesentium dolore distinctio nemo voluptas repudiandae, dolorem enim error reiciendis. Ullam
+          neque magnam, voluptas dolores explicabo inventore! Sint animi quibusdam commodi perferendis. Explicabo
+          officiis facilis harum nam voluptates consequatur? Explicabo molestiae perspiciatis perferendis ipsa deleniti
+          corporis dolorem vel a, unde, rerum quidem quia neque, numquam minus fugiat officiis suscipit illo
+          necessitatibus ex dignissimos at! Similique ut vel quas dignissimos expedita earum veritatis eligendi mollitia
+          harum pariatur quaerat odio natus, quia saepe sit in quae. Blanditiis inventore neque sint suscipit quod saepe
+          eius eveniet debitis.
+        </section>
+        <section>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum velit libero architecto possimus qui
+          ipsum, quisquam praesentium dolore distinctio nemo voluptas repudiandae, dolorem enim error reiciendis. Ullam
+          neque magnam, voluptas dolores explicabo inventore! Sint animi quibusdam commodi perferendis. Explicabo
+          officiis facilis harum nam voluptates consequatur? Explicabo molestiae perspiciatis perferendis ipsa deleniti
+          corporis dolorem vel a, unde, rerum quidem quia neque, numquam minus fugiat officiis suscipit illo
+          necessitatibus ex dignissimos at! Similique ut vel quas dignissimos expedita earum veritatis eligendi mollitia
+          harum pariatur quaerat odio natus, quia saepe sit in quae. Blanditiis inventore neque sint suscipit quod saepe
+          eius eveniet debitis.
+        </section>
+      </article>
+    </main>
     <footer>
       <div>菜单1</div>
       <div>菜单2</div>
