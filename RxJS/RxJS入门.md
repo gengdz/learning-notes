@@ -440,6 +440,20 @@ const example = source.pipe(first(v => v > 5, 'Nothing'));
 
 ```
 
+5）`takeUntil`
+发送值，知道提供的 observable 发送值，它便完成。
+这里 takeUntil 会接受一个 obserbvable 当这个 observable 开始发送值的时候，source流停止。
+```javascript
+// 每1秒发出值
+const source = interval(1000);
+// 5秒后发出值
+const timer$ = timer(5000);
+// 当5秒后 timer 发出值时， source 则完成
+const example = source.pipe(takeUntil(timer$));
+// 输出: 0,1,2,3
+const subscribe = example.subscribe(val => console.log(val));
+```
+
 
 
 ### 工具操作符
