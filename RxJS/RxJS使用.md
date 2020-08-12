@@ -77,14 +77,25 @@ callback的第一个参数是 *event$*
 
 
 ## 使用案例总结
-### 你需要原始数据 *data$*,又需要由他衍生出来的 *resultData$*
+1. 你需要原始数据 *data$*,又需要由他衍生出来的 *resultData$*
 这时候，可以使用 `mergeMap + from/of + map`。
 ```javascript
 data$.pipe(
-  mergeMap(list=> from(list).pipe(
+  mergeMap(data) => from(list).pipe(
     // 在这里做转换，生成 resultData$.
-    map(v => ({data, resultData }))
+    map(v => ({ data, resultData }))
   ))
 )
+```
 
+2. 当值变化的时候，需要调用api，返回值是一个数组，然后需要对返回的数组做一些操作，可以采用下面的方式，先打散，然后再 toArray 
+```javascript
+word$.pipe(
+  switchMap(word => from(getUser(word)).pipe(
+    mergeMap(data => form(data)),
+    take(5),
+    toArray(),
+    retry(2),
+  ))
+)
 ```
