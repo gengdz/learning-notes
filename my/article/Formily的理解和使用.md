@@ -8,7 +8,7 @@
 > **本文目的：**
 > 1. 希望能说明白为什么有Formily、为什么是Formily
 > 2. 希望能说明白Formily是什么、和它的一些核心概念
-> 3. 通过代码示例，说明白怎么开始使用Formily，并且引申出一些复杂的场景结合 rxjs 使用 Formily
+> 3. 通过代码示例，希望能说明白怎么开始使用Formily，并且引申出一些复杂的场景结合 rxjs 使用 Formily
 
 
 ## Why
@@ -231,7 +231,8 @@ const useOneToManyEffects = () => {
 }
 ```
 上面代码什么意思呢？
-当 aa: boolean 字段变化的时候，让 bb,cc,dd字段显示或者隐藏
+当 aa: boolean 字段变化的时候，让 bb,cc,dd 字段显示或者隐藏。
+
 
 #### 表单联动-多对一联动
 ```javascript
@@ -290,7 +291,7 @@ onFieldInit$('bb').subscribe(fieldState => {
 ```
 
 
-它来了，它来了，它踏着祥云走来了！
+它来了!
 ```javascript
 merge(onFieldValueChange$('aa'), onFieldInit$('bb')).subscribe(fieldState => {
    // do something like
@@ -341,7 +342,7 @@ $(
 
 
 
-它来了，它来了，它踏着祥云走来了！
+它来了，它来了!
 ```javascript
 // 当总数和个数都发生过变化（有值）的情况下，实时计算出 百分比
 combineLatest(
@@ -369,6 +370,8 @@ userId: {
   required: true,
   'x-rules': {
     required: true,
+    max: 20,
+    whitespace: true,
     message: '错误提示信息',
   },
 }
