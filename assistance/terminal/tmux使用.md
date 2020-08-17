@@ -5,10 +5,23 @@
 
 
 ### session
-一、新建会话
+一、分离对话
+```bash
+tmux detach
+```
+
+
+二、新建会话
 ```bash
 tmux new -s sessionName
 ```
+
+三、切换对话
+```bash
+tmux switch -t sessionName
+```
+
+
 
 #### window
 一、新建window
