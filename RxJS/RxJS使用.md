@@ -15,6 +15,12 @@ import { TestScheduler } from 'testing'
 
 
 
+### 网站
+* [RxJS Live](https://www.youtube.com/channel/UCmvhqGbbqkhJ63V3g-l-5Gg)
+* ng-conf 
+
+
+
 ## rxjs-hooks
 两个api, `useObservable`,`useEventCallback`
 
