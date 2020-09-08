@@ -1,6 +1,6 @@
-const compose = (...fns) => (...params) => {
-  return fns.reduceRight((args, fn) => fn(...[].concat(args)), params)
-}
+const compose = (...fns) => (...params) =>
+  fns.reduceRight((args, fn) => fn(...[].concat(args)), params)
+
 
 const add = (x: number) => (y: number) => x + y;
 const multiply2 = (x: number) => x * 2;
