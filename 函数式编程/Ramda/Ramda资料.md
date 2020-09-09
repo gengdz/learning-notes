@@ -30,7 +30,11 @@
 
 ## 其他
 * 大部分 js函数式编程的书，使用的库都是 Ramda, 感兴趣的可以看下
+    * JavaScript函数式编程指南
 * youtube 搜索 Ramda。（虽然听不懂，但是代码没国界）
+    * [Ramda Js Tutorial](https://www.youtube.com/watch?v=Cltoo-NJ2JM&list=PLrhzvIcii6GMeyUfpn-o5xVCH3_UykrzI)
+    * [Ramda Tutorial Series](https://www.youtube.com/watch?v=1fzpQ0zJMQs&list=PLs0HJRuXPAqu6OLH_2K0K6jlxFP7erHDy)
+    * [Composition | functional programming in javascript (with Ramda.JS) ](https://www.youtube.com/watch?v=amcbnkKzDqc&list=PLa_W0QyB2915fPj4LqViPQK9rpdC2E1c8)
 
 
 
