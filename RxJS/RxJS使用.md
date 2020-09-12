@@ -81,6 +81,45 @@ type EventCallback<EventValue, State, Inputs> = Not<
 >
 ```
 callback的第一个参数是 *event$*
+返回值为： 一个 `[callback, value]` 元组
+
+
+
+### 代码示例
+```javascript
+const [handleClick] = useEventCallback(event$ =>
+  event$.pipe(
+    map(data => ({ ...data, rowData: data.record, visible: true })),
+    map(dispatchPayload)
+  )
+);
+```
+
+```javascript
+const [onOk] = useEventCallback(
+  (event$, state$, input$) =>
+    event$.pipe(
+      tap(() => setLoading(true)),
+      debounceTime(300),
+      withLatestFrom(state$, input$),
+      exhaustMap(([a, b, [actions]]) => from(actions.submit())),
+      map(({ values }) => formateData(values)),
+      exhaustMap(saveOuAuth),
+      tap(() => {
+        handleClose();
+        trigger();
+        Message.success('保存成功!!!,成功啦啦啦啦啦啦');
+        setLoading(false);
+      }),
+      catchError(() => {
+        setLoading(false);
+        return EMPTY;
+      })
+    ),
+  undefined,
+  [actions]
+);
+```
 
 
 
