@@ -23,7 +23,7 @@ import { TestScheduler } from 'testing'
 
 
 ## rxjs-hooks
-两个api, `useObservable`,`useEventCallback`
+两个api, `useObservable`, `useEventCallback`
 
 ### useObservable
 1) 没有默认值
@@ -60,8 +60,8 @@ const value = useObservable(() => of(1000), 20)
   * 第2个参数是任意类型，是默认值。*state$* 流的默认值
   * 第3个参数是数组，表示外部的状态。
 > ⚠️注意事项：
-> *inputs$* 流发出的值和 *useObservable* 第三个参数的值是对应的。同样是一个数组。
-> 使用到 *state$* 时候必须搭配 *withLatestFrom* 使用。
+> * *inputs$* 流发出的值和 *useObservable* 第三个参数的值是对应的。同样是一个数组。在上面的示例中 *input$* 流发出的值总是一个 `[a, b]` 元组。
+> * 使用到 *state$* 时候必须搭配 *withLatestFrom* 使用。
 
 
 

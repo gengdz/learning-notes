@@ -489,6 +489,10 @@ fakeRequest(e).pipe(
 )
 ```
 
+4）`finalize`
+`finalize` 当流 **完成** 或者 **失败** 的时候调用!
+
+
 
 
 ### 错误处理
