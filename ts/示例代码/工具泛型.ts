@@ -75,3 +75,31 @@ namespace Record {
 
 
 }
+
+
+namespace Exclude {
+  type T0 = Exclude<"name" | "age" | "sex", "age" | "sex">
+  const a0: T0 = 'name'
+
+  type T1 = Exclude<"a" | "b" | "c", "a">;
+  const a1: T1 = 'b';
+
+  type T2 = Exclude<string | number, "age" | number>
+  const a2: T2 = '只能是字符串';
+}
+
+namespace Extract {
+  type T0 = Extract<"a" | "b" | "c", "a" | "f">;
+  const a0: T0 = "a";
+  type T1 = Extract<string | number | (() => void), Function>;
+  const a1: T1 = () => { }
+}
+
+
+namespace Nonullable {
+  type T0 = NonNullable<string | number | undefined>;
+  const a0: T0 = 11;
+
+  type T1 = NonNullable<string[] | null | undefined>;
+  const a1: T1 = ['1', '2'];
+}
