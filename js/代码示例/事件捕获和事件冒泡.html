@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件捕获和事件冒泡</title>
+</head>
+
+<body>
+  <main onclick="console.log('我是 main')">
+    <article onclick="console.log('我是 article')">
+      <section onclick="console.log('我是 section')">第一部分</section>
+    </article>
+  </main>
+
+</body>
+
+<!-- <script>
+  const main = document.getElementsByTagName("main");
+  const article = document.getElementsByTagName("article");
+  const section = document.getElementsByTagName("section");
+  main.addEventListener('click', () => console.log('main click'), false)
+</script> -->
+
+
+</html>
