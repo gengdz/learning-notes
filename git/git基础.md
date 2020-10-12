@@ -1,4 +1,6 @@
 # Git基础
+`Git` 是一个版本控制软件
+[toc]
 
 ## 一些命令
 
@@ -14,11 +16,11 @@
 
 
 
- ## 分支
+## 分支
 
 ### 分支出现的意义？
 
-分支就是保证master上始终是干净的，可运行的，可靠的代码，如果要新加功能的的话，如加入bbs功能或者ask功能的时候，这时候就需要用到分支
+分支就是保证 master上始终是干净的，可运行的，可靠的代码，如果要新加功能的的话，如加入 bbs 功能或者 ask 功能的时候，这时候就需要用到分支
 
 ### 分支常用命令
 
@@ -48,7 +50,7 @@
 
 ### 本地分支和远程分支关系
 
-远程仓库的默认名称是`origin`
+远程仓库的默认名称是 `origin`
 
 > 本地分支和远程分支之间的关联关系：
 >
@@ -157,60 +159,6 @@
 | ------------ | ------------ |
 | git tag      | 获取标签列表 |
 | git tag v1.0 | 打标签       |
-
-
-
-## rebase的用法
-
-### 注意事项
-
-1. <mark>**绝对不要在master分支（公共开发分支）执行 `git rebase`，会引起很多问题**</mark>
-2. <mark>***执行 `rebase` 的分支都是自己的本地分支，并且没有推送到远程版本库(没执行push操作)***</mark>
-
-### rebase的使用场景？
-
-1. 创建一个分支dev
-2. 主分支发生改变，已经往前移动了，
-3. 这时候，如果直接合并分支的代码就会产生合并线
-4. 如何让记录非常干净的呈现出一条线呢
-
-### rebase语法
-
-rebase可以理解为replace base，他可以实现的功能就是移动分支的位置到当前的主分支位置。这时候在进行合并就不会产生合并线。
-
-`git rebase master`
-
-使用流程：
-
-1. 切换到master分支，使用git pull 更新分支的代码
-2. 切换到dev分支，使用git rebase master 这样可以移动当前分支的基点到最新
-3. 切换到master分支，执行合并操作
-4. 然后执行git push 操作，把master分支的代码推送到远程 
-
-### 使用展示
-
-```bash
-git pull = git fetch + git merge 
-git pull --rebase = git fetch + git rebase
-
-# 在dev分支上拉取master分支的代码
-git pull origin master 
-
-# 在dev分支上拉取master分支的代码,使用rebase的方式
-git pull --rebase origin master
-```
-
-如果在rebase的过程中发生了冲突，可以按照一下方式解决冲突
-
-> 1. 解决一个冲突
-> 2. 执行`git add 冲突文件名`
-> 3. `git rebase —continue`
-> 4. `git push`
-> 5. 任何时候都可以执行 `git rebase —abort`，来终止rebase操作
-
-
-### rebase小结
-1. `git rebase` 操作发生在分支上，目的是移动分支的基点。
 
 
 
