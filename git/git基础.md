@@ -2,8 +2,8 @@
 `Git` 是一个版本控制软件
 [toc]
 
-## 一些命令
 
+## 一些命令
 | 命令                     | 使用场景                                                     |
 | ---------------------------- | ------------------------------------------------------------ |
 | git init                 | git init 把普通文件变成由git托管的文件                       |
@@ -26,8 +26,8 @@
 
 | 命令                                | 说明/场景                        |
 | ----------------------------------- | -------------------------------- |
-| git  branch                         | 查看分支                         |
-| git brahch -a                       | 查看本地和远程分支               |
+| `git branch`                        | 查看分支                         |
+| `git brahch -a`                       | 查看本地和远程分支               |
 | git branch home                     | 创建 home 分支                   |
 | git checkout home                   | 切换分支                         |
 | git checkout -b home                | 创建并切换到home分支             |
@@ -91,45 +91,6 @@
 
 
 
-## gitconfig配置
-
-### 查看和配置命令
-
-* `git config -- global(local) —list`   查看全局或者是本地配置
-* `git config --global(local) user(alias).email  1583751445@qq.com`
-
-### 配置方式
-
-* 一种是使用git 的全局配置，配置文件的位置在C:\Users\dezhougeng\.gitconfig 文件中，设置的方式有两种
-  * 通过 `code .gitconfig` 打开配置界面，然后设置
-  
-  * 通过命令直接设置 `git config --global alias.s   status`
-  
-  * 目前的设置如下：
-  
-     ```javascript
-      [alias]
-      	a = add .
-      	c = commit
-      	s = status
-      	l = log
-      	b = branch
-     ```
-  
-* 一种是使用系统进行配置。window下 配置文件在`C:\Users\dezhougeng\.bash_profile` 文件中。打开方式为 `code .bash_profile`；mac下配置文件在 `~/.zshrc`，打开方式为 `code .zshrc`
-
-  * 目前的设置如下：
-
-     ```javascript
-     alias gs="git status"
-     alias gc="git commit -m "
-     alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit  "
-     alias gb="git branch"
-     alias ga="git add ."
-     alias go="git checkout"
-     ```
-
-
 
 ## reset的用法
 
@@ -159,46 +120,3 @@
 | ------------ | ------------ |
 | git tag      | 获取标签列表 |
 | git tag v1.0 | 打标签       |
-
-
-
-## git commit 说明
-### Commit message的格式
-每次提交 Commit message 都包括三个部分：*Header*, *Body* 和 *Footer* 。其中 *Header* 是必须的。
-```html
-<type>(<scope>): <subject>
-// 空一行
-<body>
-// 空一行
-<footer>
-```
-
-
-
-#### Header
-(1) type
-**type** 用来说明 commit 的类型，只能使用以下7个标示。**必需**
-* feat: 新功能（feature)
-* fix: 修补bug
-* chore: 项目工程方面的改动，代码逻辑并未产生任何变化  <small>阿里前端规范给出的解释</small> 。(构建过程或者辅助工具的变动)
-* refactor: 重构代码或其他优化举措（不是新增功能，也不是修改bug的代码改动）
-* style: 对代码的格式化改动，代码逻辑并未产生任何变化
-* docs: 文档（documentation)
-* test: 增加测试
-
-(2) scope
-**scope** 用来说明 commit 影响的范围，比如数据层、控制层、视图层等等。**可选**
-
-(3) subject
-**subject是** commit 目的的简短描述，不超过50个字符。**必需**
-* 以动词开头，使用第一人称现在时，比如change，而不是changed或changes
-* 第一个字母小写
-* 结尾不加句号（.）
-
-
-#### 示例
-```bash
-feat(page): 新增xx功能
-chore(*): 升级webpack的版本
-chore(utils): 删除没用到的函数
-```
