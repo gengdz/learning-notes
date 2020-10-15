@@ -1,31 +1,7 @@
-# RxJS使用
-## 导入方式
-```javascript
-import { Observable,Subject,asapScheduler,pipe,of,from,interval,merge,fromEvent,SubscriptionLike,PartialObserver } from 'rxjs';
-import { map,filter,scan } from 'rxjs/operators' 
-import { webSocket } from 'rxjs/webSocket'
-import { ajax } from 'rxjs/ajax'
-import { TestScheduler } from 'testing'
-```
-
-
-
-## 约定和说明
-**代表流的变量使用 `$` 符号结尾，这是RxJS中的一种惯例**
-
-
-
-### 网站
-* [RxJS Live](https://www.youtube.com/channel/UCmvhqGbbqkhJ63V3g-l-5Gg)
-* ng-conf 
-* [egghead](https://egghead.io);
-
-
-
-## rxjs-hooks
+# rxjs-hooks
 两个api, `useObservable`, `useEventCallback`
 
-### useObservable
+## useObservable
 1) 没有默认值
 ```javascript
 const value = useObservable(() => of(1000))
@@ -65,7 +41,7 @@ const value = useObservable(() => of(1000), 20)
 
 
 
-### useEventCallback
+## useEventCallback
 *useEventCallback* 主要是用来处理交互逻辑
 *useEventCallback* 同样会接收 **1-3** 个参数。后面两个参数和 *useObservable* 相同。差异主要在第一个参数。
 *useEventCallback* 的第一个参数 *callback* 是 *EventCallback* 类型
@@ -85,7 +61,7 @@ callback的第一个参数是 *event$*
 
 
 
-### 代码示例
+## 代码示例
 ```javascript
 const [handleClick] = useEventCallback(event$ =>
   event$.pipe(
@@ -122,27 +98,3 @@ const [onOk] = useEventCallback(
 ```
 
 
-
-## 使用案例总结
-1. 你需要原始数据 *data$*,又需要由他衍生出来的 *resultData$*
-这时候，可以使用 `mergeMap + from/of + map`。
-```javascript
-data$.pipe(
-  mergeMap(data) => from(list).pipe(
-    // 在这里做转换，生成 resultData$.
-    map(v => ({ data, resultData }))
-  ))
-)
-```
-
-2. 当值变化的时候，需要调用api，返回值是一个数组，然后需要对返回的数组做一些操作，可以采用下面的方式，先打散，然后再 toArray 
-```javascript
-word$.pipe(
-  switchMap(word => from(getUser(word)).pipe(
-    mergeMap(data => form(data)),
-    take(5),
-    toArray(),
-    retry(2),
-  ))
-)
-```
