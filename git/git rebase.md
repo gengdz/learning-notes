@@ -72,6 +72,8 @@ git rebase -i  [startpoint]  [endpoint]
 然后我们一顿操作下来发现我们进入了一个临时分支(从dev分支切出来的临时分支)！！！
 这个问题怎么解决呢？现在我们基于这个临时分支新建一个分支 temp, 然后我们再切回我们的dev分支，执行 `git rebase temp`。即可解决问题
 
+如果想合并到上一次的改动中，或者修改上一次改动的 commit 使用 `git commit --amend` 即可
+
 总结：
 * 这次合并多个 commit，主要用到的命令是：`git rebase -i [startpoint] [endpoint]`。
 * 合并完成之后，会进入一个临时分支。需要在dev分支上 rebase 这个临时分支。 
