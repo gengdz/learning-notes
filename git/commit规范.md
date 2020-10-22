@@ -25,6 +25,7 @@ commit是有一定的规范的。
 * style: 对代码的格式化改动，代码逻辑并未产生任何变化
 * docs: 文档（documentation)
 * test: 增加测试
+* revert: 恢复之前的提交
 
 (2) scope
 **scope** 用来说明 commit 影响的范围，比如数据层、控制层、视图层等等。**可选**
