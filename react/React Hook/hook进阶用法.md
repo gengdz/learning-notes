@@ -17,7 +17,7 @@ function Example({id}) {
 
   useEffect(() => {
     requestParams.current = {page: 1, size: 20, id};
-  });
+  }, []);
 
   const refresh = useCallback(() => {
     doRefresh(requestParams.current);
@@ -38,10 +38,14 @@ function Example({id}) {
 2. 将 Hook 拆分为 逻辑更独立更小的单元
 3. 通过合并相关的state, 将多个依赖值聚合为一个
 4. 通过 `setState` 回调函数的方式来获取最新的 `state`, 以减少外部依赖
+5. 通过 `ref` 来读取可变变量的值。
 
 
 
 ## React中性能优化
+性能优化的方向主要有两个
+* 减少 render 次数。
+* 减少计算量
 
 ### Hook 会因为在渲染时创建函数而变慢吗？
 不会。在现代浏览器中，闭包和类的原始性能只有在极端场景下才有明显的差别。
@@ -51,8 +55,11 @@ function Example({id}) {
 
 
 ### React.memo
+优化的方式是：较少计算量
+针对的对象是：当前组件
 
 说明：用在函数式组件中，类似于class组件中的 **PureComponent**，作用是性能优化。
+使用之后，如果 props 通过比较（默认浅比较，也就是值的内存地址）之后和上一次值相同，那么不更新。
 
 方法签名如下
 ```typescript
@@ -77,24 +84,36 @@ export default React.memo(ProjectCard);
 
 
 ### useMemo
-#### 使用场景
-一、**应该使用 `useMemo` 的场景**
+优化的方式是：减少计算量。
+针对的对象是：当前组件
+
+#### 应该使用 `useMemo` 的场景
 1. 保持引用相等
     * 对于组件内部用的 object, array, 函数等，如果用在了其他 Hook 的依赖项中，应该使用 `useMemo`
     * 作为 props 传递给下游组件，应该使用 `useMemo`
     * 自定义 Hook 暴露出来的 object, array, 函数等，都应该使用 `useMemo`
-    * 使用 `Context`时， `Provider`中的 value 应该使用 `useMemo` 
+    * 使用 `Context` 时， `Provider`中的 value 应该使用 `useMemo` 
 
 2. 成本很高的计算
-  * 比如 `cloneDeep` 一个很大并且层级很深的数据
+    * 比如 `cloneDeep` 一个很大并且层级很深的数据
 
-二、**无需使用 `useMemo` 的场景**
+#### 无需使用 `useMemo` 的场景
 1. 如果返回值是原始值
-2. 仅在组件内部用的 object, array, 函数等（没有作为 props 传递给自组件），且没有用到其他 Hook的依赖数组中，一般不需要使用 `useMemo`
-
+2. 仅在组件内部用的 object, array, 函数等（没有作为 props 传递给子组件），且没有用到其他 Hook 的依赖数组中，一般不需要使用 `useMemo`
 
 
 
 ### useCallback
+优化的方式是：减少组件 render 的次数。
+针对的对象是：子组件
+
+
+父组件重新渲染的时候，会重新创建函数，所以如果传递给子组件的属性中有函数，那么会导致子组件重新渲染。
+
 `useCallback(fn, deps)` 相当于 `useMemo(() => fn, deps)`
-所以它的使用规则和上面的是一样的
+所以它的使用规则和上面的是一样的。
+
+
+
+### 合理的拆分组件
+如果整个页面只有一个大组件，那么当 props 或者 state 变化后，哪怕就改了一个文字，也会导致组件重新渲染。如果合理的拆分组件，那么就可以以更小的颗粒度来控制更新。
