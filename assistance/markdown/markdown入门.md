@@ -1,5 +1,13 @@
 # markdown 入门
 
+代办事项
+```markdown
+* [ ] 未办事件
+* [x] 已办事件
+```
+* [ ] 待办
+* [x] 已处理
+
 ## markdown中链接和脚注
 
 ```markdown
