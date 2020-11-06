@@ -76,18 +76,17 @@
 
 
 ## stash
-
 使用场景：你正在修改a分支，但是由于一些特殊的原因，不得不切换到b分支，但是现在a分支的还没有修改完成，不应该提交。但是不提交就不能切换到b分支
 
 解决方法：是用stash相关的命令
 
-| 命令                          | 说明/场景        |
-| ----------------------------- | ---------------- |
-| git stash                     | 暂存起来         |
-| git stash list                | 获取暂存列表     |
-| git stash apply \<?stash@{0}> | 恢复暂存区       |
-| git stash drop  stash@{0}     | 删除第一个暂存区 |
-| git stash pop                 | 恢复并删除暂存区 |
+| 命令           | 说明/场景      |       示例     |
+| ----------------| -----------|-----------------|
+| `git stash`        | 暂存起来       | `git stash` <br/> `git stash save "暂存的内容说明"`  |
+| `git stash list`    | 获取暂存列表    |                 |
+| `git stash apply stash@{0}` | 恢复暂存区      |                 |
+| `git stash drop stash@{0}`     | 删除第一个暂存区 |                 |
+| `git stash show`    | 查看stash内容 | `git stash show ` -> 显示 stash 差异总结 <br/> `git stash show -p` -> 显示完整的差异 <br/> `git stash show stash@{0} -p` -> 显示具体某个stash的差异   |
 
 
 
