@@ -8,8 +8,8 @@
 require.context(path: string, deep?: boolean, filter?: RegExp, mode?: "sync等"): RequireContext;
 ```
 输入：
-* path：路径，
-* deep: 是否遍历子目录
+* path：目录路径
+* deep: 是否递归遍历子目录
 * filter：需要什么样子的文件（正则）
 
 输出：
