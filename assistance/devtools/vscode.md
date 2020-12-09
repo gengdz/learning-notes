@@ -1,7 +1,7 @@
 # vscode篇
 
 ## 快捷键
- |快捷键|功能|说明|
+ |   快捷键       |           功能           |      说明      |
  |---------------|------------------------------|----------------------|
  | ctrl + space  |触发提示快捷键（trigger Suggest) | mac下和输入法的切换快捷键冲突|
  | option + ->   |  光标跳转至单词的右边        | |
@@ -12,6 +12,8 @@
  | command + ↓   | 跳转到文件尾部| |
  | command + k + v  | 右侧预览markdown | |
  | shift + command + v  | tab模式预览markdown | |
+ | alt + 鼠标左键  | 多选 | |
+ | ctrl + shift + l  | 批量修改选中的变量 | |
 
 ## 彻底删除vscode
 
