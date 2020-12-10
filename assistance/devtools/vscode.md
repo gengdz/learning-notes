@@ -15,6 +15,14 @@
  | alt + 鼠标左键  | 多选 | |
  | ctrl + shift + l  | 批量修改选中的变量 | |
 
+
+
+## 键盘设置
+酷冷至尊烈焰枪旗舰版适配mac需要做的事情
+1. 开启 任意6键无冲 `FN + N + INS`
+2. 关闭键盘上的 `FN | Window ` 常量
+
+
 ## 彻底删除vscode
 
 ![彻底删除vscode](../../images/devtools/彻底删除vscode.jpg)

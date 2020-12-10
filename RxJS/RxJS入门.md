@@ -410,17 +410,17 @@ const [evens, odds] = source.partition(v => v % 2 === 0);
 
 ### 过滤
 很多过滤类操作符如 `filter | first` 的断言函数都接受 2-3 个参数！。分别是 `(value, index, source)`。
-1) `debounceTime`
+* `debounceTime`
 `debounceTime(1000)` 代表在1s内，没有新的进来那么就发出这个值，如果有新的进来，那就继续观察它后面1s有没有新的值进来。
 极端情况下：你一直不停的输入，那么永远也不会有值发出，因为这个值要待够1s,在这1s的时间内不被别人打扰它才会输出。
 
-2) `throttleTime`
+* `throttleTime`
 `throttleTime(1000)`,代表在1s内,只能有一个值送出，如果在这1s内还有别的值进来，那么忽略。
 
-3) `auditTime`
+* `auditTime`
 `auditTime(1000)`,代表它会忽略流在刚开始的1s内发送的值，1s过后，会发出流的最新值
 
-4）`first`
+* `first`
 `first()` 表示第一个元素。`first(predFn)`表示第一个满足条件的元素
 方法签名如下：
 ```javascript
@@ -442,8 +442,8 @@ const example = source.pipe(first(v => v > 5, 'Nothing'));
 
 ```
 
-5）`takeUntil`
-发送值，知道提供的 observable 发送值，它便完成。
+* `takeUntil`
+发送值，直到提供的 observable 发送值，它便完成。
 这里 takeUntil 会接受一个 obserbvable 当这个 observable 开始发送值的时候，source流停止。
 ```javascript
 // 每1秒发出值
@@ -455,6 +455,18 @@ const example = source.pipe(takeUntil(timer$));
 // 输出: 0,1,2,3
 const subscribe = example.subscribe(val => console.log(val));
 ```
+
+* `sample`
+取样。根据另一个流取样。
+```javascript
+// 每次点击， 取样最新的 "seconds" 时间器
+const seconds = interval(1000);
+const clicks = fromEvent(document, 'click');
+const result = seconds.pipe(sample(clicks));
+result.subscribe(x => console.log(x));
+```
+这个操作符什么作用呢？
+这个一个过滤类操作符，现在有个时间流 `seconds`，它只会在 `clicks` 发出值的时候，取出 `seconds` 的最新值。
 
 
 
