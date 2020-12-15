@@ -6,7 +6,7 @@ fantasy-land规定了通用代数数据结构及其通用方法，可以看作�
 
 ## 依赖关系图
 
-![fantasy-land 依赖关系图](../images/fantasy-land dependencies.png)
+![fantasy-land 依赖关系图](../images/fp/fantasy-land-dependencies.png)
 
 
 
