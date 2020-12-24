@@ -37,3 +37,30 @@ const nextCharForNumberString = str =>
 const result = nextCharForNumberString(' 64');
 console.log(result); // "Box(A)"
 ```
+
+### 使用Box重构代码
+```javascript
+const moneyToFloat = str =>
+  Box(str)
+    .map(s => s.replace(/\$/g, ''))
+    .map(r => parseFloat(r))
+
+console.log('Box式', moneyToFloat('$5.00').fold(x => x))
+
+const percentToFloat = str =>
+  Box(str)
+    .map(str => str.replace(/\%/g, ''))
+    .map(replaced => parseFloat(replaced))
+    .map(number => number * 0.01);
+
+console.log('Box式', percentToFloat('20%').fold(x => x))
+
+const applyDiscount = (price, discount) =>
+  moneyToFloat(price)
+    .fold(cost =>
+      percentToFloat(discount)
+        .fold(discount => cost - cost * discount)
+    )
+console.log('Box式', applyDiscount('$5.00', '20%'))
+
+```
