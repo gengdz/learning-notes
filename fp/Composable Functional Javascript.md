@@ -64,3 +64,83 @@ const applyDiscount = (price, discount) =>
 console.log('Box式', applyDiscount('$5.00', '20%'))
 
 ```
+
+
+
+## Either
+同步分支使用 `Either`。`Either` 由两部分组成，`Left | Right`。
+
+### Right
+```javascript
+const Right = x => ({
+  map: f => Right(f(x)),
+  chain: f => f(x),
+  fold: (f, g) => g(x),
+  inspect: () => `Right(${x})`
+})
+Right.of = x => Right(x);
+
+```
+### Left
+```javascript
+const Left = x => ({
+  map: f => Left(x),
+  chain: f => Left(x),
+  fold: (f, g) => f(x),
+  inspect: () => `Left(${x})`
+})
+Left.of = x => Left(x);
+
+```
+
+### Either提供一些方法
+```javascript
+const fromNullable = x => (x != null || x != undefined) ? Right(x) : Left(x)
+
+const tryCatch = f => {
+  try {
+    return Right(f())
+  } catch (e) {
+    return Left(e)
+  }
+}
+```
+
+### 使用 chain 解决 Either 嵌套问题
+```javascript
+// 命令式代码
+const streetName = user => {
+  const address = user.address;
+  if (address) {
+    const street = address.street;
+    if (street) {
+      return street.name;
+    }
+  }
+  return 'no street';
+};
+
+// fp
+const streetNameFp = user =>
+  fromNullable(user.address)
+    .chain(address => fromNullable(address.street))
+    .chain(s => fromNullable(s.name))
+    .fold(() => 'no street', name => name)
+
+
+const user = {
+  address: {
+    street: {
+      name1: '道路名称'
+    }
+  }
+}
+const street = streetNameFp(user);
+console.log('stree', street) // 'no street'
+
+```
+
+
+## 半群
+半群是一种具有 `concat` 方法的类型，要求 `concat` 方法满足结合律。
+举例：`Array | String`
