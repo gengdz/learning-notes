@@ -144,3 +144,4 @@ console.log('stree', street) // 'no street'
 ## 半群
 半群是一种具有 `concat` 方法的类型，要求 `concat` 方法满足结合律。
 举例：`Array | String`
+> 结合律：
