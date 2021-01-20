@@ -9,10 +9,36 @@
 我们把状态逻辑叫做服务。
 
 
-而是 react hooks api 那些东西本质上就是 类似 rxjs 的管道结构
-回忆一下？一定要按照顺序在顶部 调用 hooks，一定不能在 if 和 for 结构中用hooks？
+## React Hooks的本质
+管道风格的极限函数式！
+react hooks api 本质上就是 类似 rxjs 的管道结构。
+我们把 React Hooks规则罗列一下：
+* 确保总在你的 React 函数的最顶层调用Hook
+* 不要在循环，条件或者嵌套函数中调用Hook
+
 这些规则一加，你再把**依赖数组作为形参，回调作为操作函数，按照顺序连接起来，这是不是一个管道？**
-react hooks 调用方式本质就是管道
+举个例子
+```javascript
+const [state,setState] = useState(0)
+useEffect(()=>{
+  console.log(map 1 time)
+},[state])
 
+useEffect(()=>{
+  console.log(map 2 time)
+},[state])
+```
+上面的结构会组装成
+```javascript
+ReactScheduler$.pipe(
+  startWith({state: 0,setState(res){this.state = res}}),
+  map((res)=>{console.log(map 1 time);return res}),
+  map((res)=>{console.log(map 2 time);return res}),
+)
+```
 
+这个**按照次序调用的Hooks,就是管道操作函数，依赖数组就是管道函数的形参，回调就是操作函数**
+
+## React 中性能
+其实大部分时候，框架的基准优化都是次要的，最重要的是**业务级别的优化**
 **惰性初始化是性能优化的唯一考量**
