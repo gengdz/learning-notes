@@ -1,4 +1,4 @@
-# gitconfig配置
+# git config配置
 主要是配置一个命令简写。
 
 
