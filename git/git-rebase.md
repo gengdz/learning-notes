@@ -92,8 +92,11 @@ git rebase [startpoint]  [endpoint] --onto [branchName]
 # 1.在dev分支执行如下命令 注意编辑区间为 前开后闭
 git  rebase   90bc0045b^   5de0da9f2   --onto master
 
-# 2.这时候HEAD指向是对的，但是master分支的指向是不对的
+
+# 2.执行 git rebase 命令之后，我们发现当前的 HEAD 处于游离状态。 显示为 `de9998bd`。
+# 这时候HEAD指向是对的，但是master分支的指向是不对的
 # 所以需要master分支指向设置为当前HEAD指向即可
 git checkout master
 git reset --hard headCommitId
+# 在本例中就是 执行 git reset --hard de9998bd
 ```
