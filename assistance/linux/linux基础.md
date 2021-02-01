@@ -88,7 +88,7 @@ grep [选项] <字符串> <源文件>
 
 进入方式是：vim
 
-![vim编辑器模式](../../images/linux/vim编辑器模式.jpg)
+![vim编辑器模式](./pictures/vim编辑器模式.jpg)
 
 一共有三种模式
 
