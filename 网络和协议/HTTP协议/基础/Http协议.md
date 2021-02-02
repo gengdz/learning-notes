@@ -16,7 +16,7 @@
 
 
 ### TCP建立连接的三次握手
-![三次握手时序图](../../images/http协议/三次握手时序图.png)
+![三次握手时序图](./pictures/三次握手时序图.png)
 
 说明：
 * SYN是同步（标志位)，其中 1为是，0为否，
@@ -47,12 +47,12 @@
 ## 什么是http协议
 http协议就是客户端，服务端按照一定的规则进行交流，客服端按照一定的规则发送请求，服务端按照一定的规则发送响应数据
 
-![从输入url到http返回](../../images/http协议/从输入url到http返回.png)
+![从输入url到http返回](./pictures/从输入url到http返回.png)
 
 
 
 ## http报文格式
-![http报文](../../images/http协议/http报文.png)
+![http报文](./pictures/http报文.png)
 
 在Chrome中 General 就是起始行
 
