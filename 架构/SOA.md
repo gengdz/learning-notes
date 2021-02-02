@@ -1,5 +1,5 @@
 # SOA
-面向服务的体系结构(Service-Oriented Rrchitecture,SOA)。
+面向服务的架构(Service-Oriented Rrchitecture,SOA)。
 
 通俗理解：把系统按照实际业务，拆分成刚刚好大小的，合适的，独立部署的模块，每个模块之间相互独立。服务间通过接口和契约联系起来。
 
