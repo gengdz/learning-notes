@@ -69,9 +69,20 @@
 
 > 说明：
 >
-> * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
 > * git pull 的完整写法为 `git pull origin remotehome:home` 将远程的home分支拉取到本地的home分支
-> 
+> * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
+
+
+
+## git pull
+
+强制覆盖本地分支代码：
+```bash
+git pull --force  <远程主机名> <远程分支名>:<本地分支名>
+
+<!-- 示例 -->
+git pull --force origin master:daily/0.8.88
+```
 
 
 
