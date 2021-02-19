@@ -49,9 +49,8 @@ setTimeout
 1. async总结
 
    * 看到async不用慌张，它和普通函数的区别是：1. 返回值是promise类型的；2. 里面有await
-
-   - await async2()的执行机制是，(从右向左执行)先执行async2函数，然后看到await会暂定async的执行，让出线程，执行async外面的同步代码。
-   - 同步代码执行完之后，回到当前的await，执行下面的同步代码，执行完再执行当前宏任务的其他微任务
+   * await async2()的执行机制是，(从右向左执行)先执行async2函数，然后看到await会暂定async的执行，让出线程，执行async外面的同步代码。
+   * 同步代码执行完之后，回到当前的await，执行下面的同步代码，执行完再执行当前宏任务的其他微任务
 
 2. promise总结
 
