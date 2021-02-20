@@ -16,76 +16,6 @@
 
 
 
-## 分支
-
-### 分支出现的意义？
-
-分支就是保证 master上始终是干净的，可运行的，可靠的代码，如果要新加功能的的话，如加入 bbs 功能或者 ask 功能的时候，这时候就需要用到分支
-
-### 分支常用命令
-
-| 命令                                | 说明/场景                        |
-| ----------------------------------- | -------------------------------- |
-| `git branch`                        | 查看分支                         |
-| `git brahch -a`                       | 查看本地和远程分支               |
-| git branch home                     | 创建 home 分支                   |
-| git checkout home                   | 切换分支                         |
-| git checkout -b home                | 创建并切换到home分支             |
-| git merge home                      | 合并home分支到主分支             |
-| git branch - d ask                  | 删除ask分支                      |
-| git branch -D ask                   | 删除没有合并的ask分支            |
-| git branch --merged                 | 查看已合并的分支                 |
-| git branch --no-merged              | 查看未合并的分支                 |
-| git rebase master/ git merge master | (git replace base)  更新分支代码 |
-
-### 分支冲突
-
-#### 分支产生的原因？
-
-两个分支都对同一个文件进行的改动，那么当先合并home分支的时候是没有冲突产生的，然后再合并company分支的时候就会产生冲突
-
-#### 解决方案
-
-用一个编辑器打开代码，然后决定去和留
-
-### 本地分支和远程分支关系
-
-远程仓库的默认名称是 `origin`
-
-> 本地分支和远程分支之间的关联关系：
->
-> git remote -v 
->
-> git remote show origin
-
-| 命令                                                         | 用法                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1. git push -u origin home<br> 2. git push --set-upstream origin test<br> 3. git branch --set-upstream-to=origin/company company | 创建远程home分支并和本地home分支联系起来                     |
-| git push origin --delete home                                | 删除远程的home分支                                           |
-| git pull origin home:home                                    | 把远程的home分支的代码拉取到本地，<br />如果本地没有home分支那么自动创建 |
-| git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来                 |
-| git push -u origin home                                      | 1.创建远程home分支 2.将本地home代码推送到远程home            |
-| git branch –-set-upstream-to=origin/home                     | 把本地home分支和远程home分支相关联                           |
-
-> 说明：
->
-> * git pull 的完整写法为 `git pull origin remotehome:home` 将远程的home分支拉取到本地的home分支
-> * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
-
-
-
-## git pull
-
-强制覆盖本地分支代码：
-```bash
-git pull --force  <远程主机名> <远程分支名>:<本地分支名>
-
-<!-- 示例 -->
-git pull --force origin master:daily/0.8.88
-```
-
-
-
 ## stash
 使用场景：你正在修改a分支，但是由于一些特殊的原因，不得不切换到b分支，但是现在a分支的还没有修改完成，不应该提交。但是不提交就不能切换到b分支
 
@@ -130,3 +60,7 @@ git pull --force origin master:daily/0.8.88
 | ------------ | ------------ |
 | git tag      | 获取标签列表 |
 | git tag v1.0 | 打标签       |
+
+
+## 参考
+* [阿里巴巴前端技术官网规范](https://f2e.alibaba-inc.com/markdown?spm=a2o8t.11089562.0.0.7d076654j0cg8Q&gitlab=f2e-specs%2Fstyle-guide%2F2.engineering%2F1.git.md#2-git-%E5%88%86%E6%94%AF%E5%91%BD%E5%90%8D%E8%A7%84%E7%BA%A6)
