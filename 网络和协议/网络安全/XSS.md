@@ -37,4 +37,37 @@ DOM 型指的是：攻击者构建了特殊的 URL，用户打开网站后， js
 
 ## 防范措施
 
+### HttpOnly
+浏览器将禁止页面的 JavaScript 访问带有 HttpOnly 属性的 Cookie
+就是服务器在 setCookie 的时候，设置 HttpOnly；
+
+它解决的是 XSS 后 Cookie 劫持问题。就是无法拿到这种类型的 Cookie。
+
+### 输入检查
+原则：**不要相信用户的任何输入**。
+
+措施：对于用户的任何输入要进行检查、过滤、转义。建立可信任的字符和 HTML 标签白名单，对于不在白名单之列的字符或者标签进行过滤或编码。
+
+说明：而在一些前端框架中，都会有一份 decodingMap， 用于对用户输入所包含的特殊字符或标签进行编码或过滤，如 <，>，script，防止 XSS 攻击。
+
+
+### 输出检查
+一般说来，所有需要输出到 HTML 页面的变量，全部需要使用编码或者转义来防御。
+措施：对内容进行编码或者转义。
+
+
+
+
+## React 如何防范 XSS 攻击
+React DOM 在渲染所有输入内容之前，默认会进行转义。
+所有的内容在渲染之前都被转换成了字符串，因此恶意代码无法成功注入，从而有效地防止了 XSS 攻击。我们具体看下：
+
+但是有一个需要自己考虑 `dangerouslySetInnerHTML` 
+```javascript
+ <p
+  dangerouslySetInnerHTML={{
+    __html: getURL(dialogData.content),
+  }}
+ />
+```
 
