@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分别控制时间</title>
+  <style>
+    div{
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+    div::before {
+      content: '耿德洲';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 10%;
+      background: #cef;
+      font-size: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 1s;
+    }
+
+    div::after {
+      content: 'gengdz';
+      position: absolute;
+      bottom: -40px;
+      width: 100%;
+      font-size: 1em;
+      transition: 1s;
+      text-align: center;
+      transform: translateX(999px);
+    }
+
+    div:hover::before {
+      transform: rotate(360deg);
+    }
+
+    div.move::after{
+      transform: translateX(0);
+    }
+
+    
+  
+  </style>
+</head>
+<body>
+  <main>
+    <div></div>
+  </main>
+</body>
+</html>
