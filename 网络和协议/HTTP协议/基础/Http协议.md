@@ -1,6 +1,7 @@
-# Http协议基础
+# HTTP 协议基础
 
 ## 前置知识
+
 
 ### 经典的五层模型
 | 名称       | 关键词                                                       |
@@ -11,11 +12,11 @@
 | 数据链路层 | 在通信的实体间建立数据链路连接<br />物理设备已经通过物理层创建了连接<br />通过软件创建电路的连接用来传输数据(基础的就是 0 1) |
 | 物理层     | 定义物理设备如何传输数据，网卡，网线，端口，光缆<br />硬件设备相关的东西 |
 
-> 说明：一次TCP连接可以发送一个或者多个http请求
+> 说明：一次 TCP  连接可以发送一个或者多个 HTTP 请求
 
 
 
-### TCP建立连接的三次握手
+### TCP 建立连接的三次握手
 ![三次握手时序图](./pictures/三次握手时序图.png)
 
 说明：
@@ -37,22 +38,21 @@
 
 
 
-## http使用场景
-* REST = http协议 + json
-* API = http + json/xml
-* webservice = http协议 + XML
+## HTTP 使用场景
+* REST =  HTTP 协议 + json
+* API =  HTTP  + json/xml
+* webservice =  HTTP 协议 + XML
 
 
 
-## 什么是http协议
-http协议就是客户端，服务端按照一定的规则进行交流，客服端按照一定的规则发送请求，服务端按照一定的规则发送响应数据
+## 什么是 HTTP 协议
+ HTTP 协议就是客户端，服务端按照一定的规则进行交流，客服端按照一定的规则发送请求，服务端按照一定的规则发送响应数据
 
-![从输入url到http返回](./pictures/从输入url到http返回.png)
+![从输入 url 到 HTTP 返回](./pictures/从输入url到 HTTP 返回.png)
 
 
-
-## http报文格式
-![http报文](./pictures/http报文.png)
+## HTTP 报文格式
+![HTTP 报文](./pictures/http报文.png)
 
 在Chrome中 General 就是起始行
 
@@ -66,7 +66,7 @@ http协议就是客户端，服务端按照一定的规则进行交流，客服�
    * HEAD
    * GET
    * POST
-2. HTTP的头信息不超出以下几种字段：
+2. HTTP 的头信息不超出以下几种字段：
    * Accept
    * Accept-Language
    * Content-Language
@@ -116,7 +116,7 @@ http协议就是客户端，服务端按照一定的规则进行交流，客服�
 
 | <div style='width:230px'>可取的值</div>  | 说明                                             |
 | --------------------------------------- | ----------------------------------------------- |
-| `no-referrer-when-downgrade`           | 这是默认值。当从https网站跳转到http网站或者请求其资源时（安全降级HTTPS→HTTP），不显示`referrer`的信息，其他情况（安全同级HTTPS→HTTPS，或者HTTP→HTTP）则在`referrer`中显示完整的源网站的URL信息。 |
+| `no-referrer-when-downgrade`           | 这是默认值。当从 https 网站跳转到 http 网站或者请求其资源时（安全降级 HTTPS → HTTP ），不显示`referrer`的信息，其他情况（安全同级 HTTPS → HTTP S，或者 HTTP → HTTP ）则在`referrer`中显示完整的源网站的URL信息。 |
 | `no-referrer`                           | 不显示`referrer`的任何信息在请求头中                         |
 | `same-origin`                           | 表示浏览器只会显示`referrer`信息给同源网站，并且是完整的URL信息。所谓同源网站，是协议、域名、端口都相同的网站。 |
 | `origin`                                | 表示浏览器在`referrer`字段中只显示源网站的源地址（即协议、域名、端口），而不包括完整的路径。 |
