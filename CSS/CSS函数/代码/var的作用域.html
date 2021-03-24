@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>var的作用域</title>
+  <style>
+    /* 定义3个作用域的变量 */
+    :root {
+      --color: purple;
+    }
+
+    div {
+      --color: green;
+    }
+
+    #alert {
+      --color: red;
+    }
+
+    /* 设置变量 */
+    * {
+      color: var(--color);
+    }
+  </style>
+</head>
+
+<body>
+  <p>我的紫色继承于根元素</p>
+  <div>我的绿色来自直接设置</div>
+  <div id='alert'>
+    ID选择器权重更高，因此阿拉是红色！
+    <p>我也是红色，沾了继承的光</p>
+  </div>
+
+</body>
+
+</html>
