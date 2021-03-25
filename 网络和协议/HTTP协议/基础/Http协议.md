@@ -50,6 +50,12 @@
 
 ![从输入url到HTTP返回](./pictures/从输入url到http返回.png)
 
+> 1. 用户输入 url -> 浏览器会经过解析，拿到 url 的 domain 也就是域名 -> 通过 DNS (域名系统)解析之后返回这个 domain 对应的 IP 地址 -> 将 IP 地址和参数写入协议中进行转发到网络层
+> 2. 经过局域网、交换机、路由器、主干网络到达服务端
+> 3. 服务端是一个 MVC 架构，把我们请求的结果通过 view 层返回到网络层 -> 传输到浏览器
+> 4. 浏览器进行 render  (ssr 既是：Server Side Render)
+>
+
 
 ## HTTP 报文格式
 ![HTTP 报文](./pictures/http报文.png)
