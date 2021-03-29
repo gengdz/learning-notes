@@ -1,22 +1,34 @@
 # tmux配置
 ## tmux的几个概念
-一个session下面可以有几个window，一个window可以分割几个pane。
+一个 session 下面可以有几个 window，一个 window 可以分割几个 pane。
 
 
 
 ### session
-一、分离对话
+接入会话
+```bash
+# 使用会话名称
+tmux attach -t <session-name>
+```
+
+分离对话
+快捷键 `Ctrl+b d`
 ```bash
 tmux detach
 ```
 
-
-二、新建会话
+新建会话
 ```bash
 tmux new -s sessionName
 ```
 
-三、切换对话
+杀死会话
+```bash
+# 使用会话名称
+tmux kill-session -t <session-name>
+```
+
+切换对话
 ```bash
 tmux switch -t sessionName
 ```
@@ -24,7 +36,7 @@ tmux switch -t sessionName
 
 
 #### window
-一、新建window
+一、新建 window
 ```bash
 tmux new-window -n windowName
 ```
@@ -50,6 +62,8 @@ tmux swap-window -t note
 
 
 ## tmux美化
+通过 `code .tmux.conf` 设置
+
 ```bash
 # 设置对齐方式
 tmux set-option -g status-justify centre
