@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10条数据怎么做到不卡顿</title>
+</head>
+
+<body>
+  <ul></ul>
+  <script>
+    const ul = document.querySelector('ul');
+
+    function add(total, pieceCount) {
+      // 创建虚拟节点。不会触发渲染
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < pieceCount; i++) {
+        const li = document.createElement('li');
+        li.innerText = Math.floor(Math.random() * total)
+        fragment.appendChild(li);
+      }
+
+      // 一次性添加 pieceCount 条数据
+      ul.appendChild(fragment);
+    }
+
+    function loop(total, pieceCount) {
+      let countHasRender = 0;
+      const needLoopCount = total / pieceCount;
+      // 分段渲染，每次渲染 pieceCount 条
+      while (countHasRender < needLoopCount) {
+        // 逐帧渲染
+        window.requestAnimationFrame(() => add(total, pieceCount));
+        // setTimeout(() => add(total, pieceCount), 16)
+        countHasRender += 1;
+      }
+    }
+
+    loop(100000, 100);
+
+  </script>
+</body>
+
+</html>
