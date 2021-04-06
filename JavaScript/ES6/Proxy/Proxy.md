@@ -26,6 +26,24 @@ const proxy = new Proxy(target, handler);
   
 
 ## 实战
+
+### 实现数组负索引
+```typescript
+const nth = (list: any[]) => {
+  const length = list.length;
+  return new Proxy(list, {
+    get(target, prop) {
+      let key = Number(prop);
+      while (key < 0) {
+        key += length;
+      }
+      return target[key];
+    }
+  });
+};
+const list = nth([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(list[-1]);
+```
 ### 如何监控一个数组或者对象的值，当值变化的时候打印一句话
 
 使用ES6中的Proxy,对数组的length属性进行监控。
