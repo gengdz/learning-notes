@@ -12,3 +12,7 @@ var obj = {
 obj.say(); // 22
 obj.arrow(); // 22
 
+const specialSay = obj.say;
+
+specialSay();
+
