@@ -1,4 +1,4 @@
-# js中面向对象
+# JS 中面向对象
 
 面向对象是指：**封装**，**继承**，**多态**；
 
@@ -8,19 +8,21 @@
 
 > <dfn>多态</dfn>：由继承而产生了相关的不同的类。对同一个方法有不同的响应。狗和猫都是动物吃饭的行为不同
 
-es5中没有class的概念，为了实现面向对象，采取了一种比较曲折的方式（分为以下几步）：1.给function添加了一个*protrotype* 属性，2.使用函数来代替class的方式。
+ES5 中没有 Class 的概念，为了实现面向对象，采取了一种比较曲折的方式（分为以下几步）：
+1. 给 function 添加了一个 *protrotype* 属性，
+2. 使用函数来代替 Class 的方式。
 
 
 
 ## 新建一个类
 
-在js中新建一个类只需要写一个函数就可以实现
+在 JS 中新建一个类只需要写一个函数就可以实现
 
 ```javascript
-// 新建一个Puppy类
+// 新建一个 Puppy 类
 function Puppy() {}
 
-// 然后可以使用new关键字生成实例对象
+// 然后可以使用 new 关键字生成实例对象
 const myPuppy = new Puppy();
 
 // 现在的问题是：1.我们没有构造函数不能设置小狗的年龄 2.我们没有实例方法
@@ -30,7 +32,7 @@ const myPuppy = new Puppy();
 
 ## 函数本身就是构造函数
 
-当做类使用的函数，它本身就是构造函数。我们可以让它接受参数就可以解决问题1
+当做类使用的函数，它本身就是构造函数。我们可以让它接受参数就可以解决问题 1
 
 ```javascript
 function Puppy(age) {
@@ -40,19 +42,19 @@ function Puppy(age) {
 const myPuppy = new Puppy(2);
 ```
 
-上面当作类使用的函数里面的this总是指向实例对象，这么设计的目的让使用者可以通过构造函数给实例对象设置属性。
+上面当作类使用的函数里面的 this 总是指向实例对象，这么设计的目的让使用者可以通过构造函数给实例对象设置属性。
 
 
 
 ## 类方法的两种实现方式
 
-上面实现了类和构造函数。如何实现类方法呢？js给出的两种方案是：
+上面实现了类和构造函数。如何实现类方法呢？JS 给出的两种方案是：
 
-1. **给function添加了一个*prototype* 的属性，挂载到这上面的方法或者属性，在实例化的时候，会给到实例对象。**
+1. **给 function 添加了一个 *prototype* 的属性，挂载到这上面的方法或者属性，在实例化的时候，会给到实例对象。**
 2. **把方法写在构造函数内，我们可以称之为*函数内方法***
 
 ```javascript
-// 1.prototype的方式给Puppy增加类方法
+// 1.prototype 的方式给 Puppy 增加类方法
 Puppy.prototype.say = function() {
   console.log(`hello, my age is ${this.age}`)
 }
@@ -70,18 +72,18 @@ function Puppy(age) {
 
 | 方式            | 使用场景           | 优点                                                         |
 | --------------- | ------------------ | ------------------------------------------------------------ |
-| prototype的方式 | 不变的属性和方法   | 可以节省内存：<small>原型链上面的属性会被多个实例共享，构造函数不会</small> |
+| prototype 的方式 | 不变的属性和方法   | 可以节省内存：<small>原型链上面的属性会被多个实例共享，构造函数不会</small> |
 | 函数内方法      | 需要使用到私有变量 | 不会暴露私有变量                                             |
 
 
 
 ## 实例对象怎么使用类方法呢？
 
-这就该**\__proto__**登场了。
+这就该 `__proto__` 登场了。
 
-当你访问对象上没有的属性时，比如`myPuppy.say`，对象会去\__proto__上去查找，\__proto__ 的值就等于父类的*prototype*。 `myPuppy.__proto__`指向了`Puppy.prototype`。
+当你访问对象上没有的属性时，比如 `myPuppy.say`，对象会去 `__proto__` 上去查找，`__proto__` 的值就等于父类的 *prototype*。 `myPuppy.__proto__` 指向了 `Puppy.prototype`。
 
-如果你访问的属性在`Puppy.prototype`也没有，那么就会去`Puppy.prototype.__proto__`上找，这个时候其实就找到了`Object.prototype`了，`Object.prototype`再往上找就没了，也就是null，**这就是原型链！！！**
+如果你访问的属性在 `Puppy.prototype` 也没有，那么就会去 `Puppy.prototype.__proto__` 上找，这个时候其实就找到了 `Object.prototype` 了，`Object.prototype` 再往上找就没了，也就是 null，**这就是原型链！！！**
 
 ```javascript
 myPuppy.__proto__ === Puppy.prototype // true
@@ -93,7 +95,7 @@ Puppy.prototype.__proto__ === Object.prototype // true
 
 ## constructor
 
-一般constructor是指 **类的`prototype.constructor`**。`prototype.constructor`是prototype上的一个保留属性，**这个属性就指向函数本身**，用于指示当前类的构造函数。
+一般 constructor 是指 **类的 `prototype.constructor`**。`prototype.constructor` 是 prototype 上的一个保留属性，**这个属性就指向函数本身**，用于指示当前类的构造函数。
 
 ```javascript
 Puppy.prototype.constructor === Puppy // true
@@ -122,7 +124,7 @@ Puppy.staticFunc()
 
 ## 继承
 
-实现继承就是要做到：**让子类拥有父类的方法和属性。** 其中方法和属性有两个来源，一个是类函数内部的，一个是prototype上的。
+实现继承就是要做到：**让子类拥有父类的方法和属性。** 其中方法和属性有两个来源，一个是类函数内部的，一个是 prototype 上的。
 
 ```javascript
 function Person(name, age) {

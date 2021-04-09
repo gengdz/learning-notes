@@ -1,6 +1,6 @@
 # export 和 import 的进阶用法
 
-## export进阶用法
+## export 进阶用法
 
 ### 用法示例
 ```javascript
@@ -84,7 +84,7 @@ export default es6;
 export { default as es6 } from './someModule';
 ```
 
-ES2020之后多了一种复合写法
+ES2020 之后多了一种复合写法
 ```javascript
 export * as ns from 'mod';
 

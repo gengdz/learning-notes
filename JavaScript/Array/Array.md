@@ -56,8 +56,6 @@ const arrFrom = Array.from(data); // [ 'a', 'b', undefined, undefined, undefined
 
 
 
-
-
 ### 检测数组
 
 使用 `Array.isArray()`
@@ -65,8 +63,6 @@ const arrFrom = Array.from(data); // [ 'a', 'b', undefined, undefined, undefined
 ```javascript
 Array.isArray([]); // true
 ```
-
-
 
 
 
