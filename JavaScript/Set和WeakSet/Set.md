@@ -6,6 +6,8 @@
 * 便利顺序是添加的顺序，方便保存回调函数
 
 
+
+
 ## 基本使用
 两种方式
 1. 在构造的时候传递参数
@@ -21,25 +23,35 @@
     ```
 
 
+
 ## 获取数量
+
 使用 `set.size` 属性获取
+
+
 
 
 ## 检测是否存在
 使用 `set.has(value)` 方法判断
 
 
+
+
 ## 删除元素
 使用 `set.delete(value)` 方法
+
+
 
 
 ## 清空所有元素
 使用 `set.clear()` 方法
 
 
+
 ## 转换成数组
-1. `Array.from(set)`
-2. `[...set]`
+
+1. `[...set]`
+2. `Array.from(set)`
 
 ```javascript
 const set1 = new Set([1, 2, 3, 4]);
@@ -64,7 +76,9 @@ console.log(uniqueArr3) // [ 1, 2, 3, 4, 5 ]
 ```
 
 
+
 ## 遍历 Set 对象
+
 使用 `set.values() | set.keys() | set.entries()` 都可以返回迭代对象
 ```javascript
 const set4 = new Set([1, 2, 3, 4]);
@@ -89,7 +103,10 @@ for (const value of set4) {
 // 1 2 3 4
 ```
 
+
+
 ## 并集，交集，差集
+
 ```javascript
 const set5 = new Set([1, 2, 5, 6, 9]);
 const set6 = new Set([1, 5, 9, 10, 8]);
