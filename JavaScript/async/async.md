@@ -1,16 +1,16 @@
-# async用法介绍
+# async 用法介绍
 
-## 为什么是async?
+## 为什么是 async?
 
-* async的出现是为了解决异步函数 **回调地狱** 的问题
+* async 的出现是为了解决异步函数 **回调地狱** 的问题
 * 采用更形象的语法，async 和 await 来代替 generator 函数和机制
 * 更好用的异步处理机制。
   * 调用方式和同步方法相同，直接 `asyncReadFile();`即可调用
-  * async==函数的返回值==是Promise对象，这样可以采用 .then的方法实现链式调用
+  * async ==函数的返回值== 是 Promise 对象，这样可以采用 .then 的方法实现链式调用
 
 
 
-## async的多种使用方式
+## async 的多种使用方式
 
 ```javascript
 // 箭头函数
@@ -77,7 +77,7 @@ const foo = async function () {};
   // 验证成功 async返回值是promise对象
   asyncReadFile().then(console.log)
   
-  //注释掉的代码表示不是继发关系的使用方法(如果不是继发,写在一个async里面没意义)
+  //注释掉的代码表示不是继发关系的使用方法(如果不是继发,写在一个 async 里面没意义)
   
   // 打印结果 --> 
   /*
@@ -133,11 +133,11 @@ const foo = async function () {};
 
   
 
-## await详解
+## await 详解
 
-* 正常情况下,await后面如果是一个Promise，则返回该对象的结果。如果不是Promise对象，就直接返回对应的值 (特殊的是，如果await对象是一个 thenable对象<定义了then方法的对象>，则视其为Promise对象)
-* await后面的Promise对象如果变成了 *reject* 状态，那么reject的参数会被catch方法接收到（即便是你的await方法前面没写return），也就是说。如果出错了。那么错误参数一定会被catch到
-* 任意一个await语句后面的Promise对象变成 *reject* 状态，那么async函数将中断执行，(后面的await不再执行)
-* 基于上面的原因，如果有多个await，那么最好要使用 `try{} catch(e) {}` 代码结构  将await包围住
-* 如果多个await 确实不存在继发关系，那么最好让他们同时触发。否则async方法就会执行完一次再执行下一个
+* 正常情况下, await 后面如果是一个 Promise，则返回该对象的结果。如果不是Promise对象，就直接返回对应的值 (特殊的是，如果 await 对象是一个 thenable 对象<定义了 then 方法的对象>，则视其为 Promise 对象)
+*  await 后面的Promise对象如果变成了 *reject* 状态，那么 reject 的参数会被 catch 方法接收到（即便是你的 await 方法前面没写 return），也就是说。如果出错了。那么错误参数一定会被 catch 到
+* 任意一个 await 语句后面的Promise对象变成 *reject* 状态，那么 async 函数将中断执行，(后面的 await 不再执行)
+* 基于上面的原因，如果有多个 await ，那么最好要使用 `try{} catch(e) {}` 代码结构  将 await 包围住
+* 如果多个 await  确实不存在继发关系，那么最好让他们同时触发。否则 async 方法就会执行完一次再执行下一个
   * 使用`const [a,b] = await Promise.all([asyncRead('a.txt'),asyncRead('b.txt') ])`
