@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动画</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div desc="1">小木块</div>
+  <div desc="2">小木块</div>
+  <div desc="3">小木块</div>
+  <div desc="4">小木块</div>
+  <div desc="6">小木块</div>
+
+  <script>
+    const divs = document.querySelectorAll('div');
+    divs.forEach(div => {
+      let desc = div.getAttribute('desc');
+      div.addEventListener('click', () => {
+        console.log(desc)
+        console.log(div); // 这里就是内存的泄漏，我们只是想添加点击函数，但是闭包保留了所有 div
+      });
+      div = null // 这里就是 解决，这样我们就不会保留 div 了
+    })
+  </script>
+</body>
+
+</html>
