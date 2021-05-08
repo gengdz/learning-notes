@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this</title>
+</head>
+
+<body>
+  <button>新增</button>
+  <script>
+    const dom = {
+      user: 'gdz',
+      bind() {
+        const button = document.querySelector('button');
+        // button.addEventListener('click', (event) => {
+        //   console.log(this) // 这里指向了 bind 中的 this 也就是 dom
+        // })
+        button.addEventListener('click', function (event) {
+          console.log(this) // 这里指向了 button
+        })
+      }
+    }
+
+    dom.bind()
+
+  </script>
+</body>
+
+</html>
