@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双向绑定</title>
+</head>
+
+<body>
+  <input type="text" v-model="title">
+  <input type="text" v-model="title">
+  <h4 v-bind="title">里面的内容会随着改变</h4>
+  <hr />
+  <input type="text" v-model="content">
+  <input type="text" v-model="content">
+  <h4 v-bind="content">里面的内容会随着改变</h4>
+</body>
+<!-- <script>
+  function View() {
+    const proxy = new Proxy({}, {
+      get(target, proterty) {
+        return target[proterty]
+
+      },
+      set(target, proterty, value) {
+        console.log(value);
+        document.querySelectorAll(`[v-model=${proterty}]`).forEach(el => el.value = value)
+        document.querySelectorAll(`[v-bind=${proterty}]`).forEach(el => el.innerHTML = value)
+        return true;
+      }
+    });
+    this.init = function () {
+      const els = document.querySelectorAll('[v-model]');
+      console.log(els)
+      els.forEach(el => el.addEventListener('keyup', event => {
+        proxy[el.getAttribute('v-model')] = el.value
+      }))
+    }
+
+  };
+  new View().init();
+</script> -->
+<script>
+  class View {
+    proxy = new Proxy({}, {
+      get(target, proterty) {
+        return target[proterty]
+      },
+      set(target, proterty, value) {
+        console.log(value);
+        document.querySelectorAll(`[v-model=${proterty}]`).forEach(el => el.value = value)
+        document.querySelectorAll(`[v-bind=${proterty}]`).forEach(el => el.innerHTML = value)
+        return true;
+      }
+    })
+
+    init() {
+      const els = document.querySelectorAll('[v-model]');
+      console.log(els)
+      els.forEach(el => el.addEventListener('keyup', event => {
+        this.proxy[el.getAttribute('v-model')] = el.value
+      }))
+    }
+  };
+  new View().init();
+</script>
+
+</html>
