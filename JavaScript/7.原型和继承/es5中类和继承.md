@@ -1,9 +1,9 @@
-# es5中的类和继承
+# ES5 中的类和继承
 
-## es5中实现类和继承
+## ES5 中实现类和继承
 
 ```javascript
-// es5里面的类
+// ES5里面的类
 function Person(name, age) {
   // 通过构造函数的方式增加属性和方法
   this.name = name

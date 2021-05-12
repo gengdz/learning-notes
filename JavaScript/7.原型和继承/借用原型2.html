@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>借用原型</title>
+</head>
+
+<body>
+  <button class="color">A</button>
+  <button>B</button>
+  <script>
+    // 下面想获取带有 class 的 button
+    const buttons = document.querySelectorAll('button');
+
+    const btns = Array.prototype.filter.call(buttons, button => {
+      return button.hasAttribute('class')
+    });
+    console.log(btns, btns[0].innerHTML)
+  </script>
+</body>
+
+</html>
