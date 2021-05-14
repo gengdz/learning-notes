@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点对象</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="h1">节点对象</h1>
+    <span class="span" data="gengdezhou">节点对象 1</span>
+    <span class="span">节点对象 2</span>
+  </div>
+
+  <script>
+    const span = document.querySelector(`#app .span[data="gengdezhou"]`)
+    console.log(span)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点对象</title>
+</head>
+
+<body>
+  <h1 id="h1">节点对象</h1>
+  <span class="span" gdz="gdz">节点对象 1</span>
+  <span class="span" sx="gdz">节点对象 2</span>
+  <div class="span" data-age="age">标准自定义特征</div>
+  <script>
+    const h1 = document.getElementById('h1');
+    const span1 = document.querySelector('.span');
+    const span2 = document.querySelector('[sx]');
+    const div = document.querySelector('div');
+    console.log(div)
+
+    // 标准属性可以直接用这种方式操作
+    h1.style.background = 'red'
+
+    // 自定义的属性不能用上面的方式
+    span1.gdz = '耿德洲'
+
+    console.log(span2)
+    // 我们需要使用这种方式
+    span2.setAttribute('sx', '耿德洲');
+
+    // 标准的自定义特征应该以 data- 开头
+    console.log(div.dataset);
+    div.dataset.age = '20'
+
+
+  </script>
+</body>
+
+</html>
