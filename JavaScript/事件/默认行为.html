@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>默认行为</title>
+  <style>
+    a {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="https://www.bilibili.com" title="点击之后会跳转到网站">默认的行为</a>
+  <a href="https://www.bilibili.com/" title="取消默认行为">取消默认的行为</a>
+
+  <script>
+    const a = document.querySelector('a[title*="取消"]');
+
+    a.addEventListener('click', (event) => {
+      event.preventDefault(); // 不会进行跳转了
+      window.alert(event.target.innerHTML)
+    })
+  </script>
+</body>
+
+
+</html>
