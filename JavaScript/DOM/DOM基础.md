@@ -56,7 +56,15 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
    <div id="hdcms"></div>
    ```
 
+5. 声明为模块
 
+   ```html
+   <script type="module">
+      const node = document.getElementById('hdcms')
+   </script>
+   ```
+
+   
 
 ## 节点对象
 
