@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点关系</title>
+  <style>
+    ul>li:first-of-type {
+      color: palegreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>div1</div>
+    <div>div2</div>
+  </div>
+  <script>
+    const app = document.querySelector('#app');
+    app.insertAdjacentText('beforebegin', '<h1>元素本身前面</h1>')
+    app.insertAdjacentText('afterend', '<h1>元素本身后面</h1>')
+    app.insertAdjacentText('afterbegin', '<h1>元素内部前面</h1>')
+    app.insertAdjacentText('beforeend', '<h1>元素内部后面</h1>')
+
+  </script>
+</body>
+
+</html>

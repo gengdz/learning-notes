@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点关系</title>
+  <style>
+    ul>li:first-of-type {
+      color: palegreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>div1</div>
+    <div>div2</div>
+  </div>
+  <script>
+    let app = document.querySelector('#app')
+    app.outerHTML = '<h1>新增h1</h1>'
+    console.log(app)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点关系</title>
+  <style>
+    ul>li:first-of-type {
+      color: palegreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h3>h3原生</h3>
+    <div>div2</div>
+  </div>
+  <script>
+    const app = document.querySelector('#app');
+    console.log(app.innerText)
+
+
+    let h3 = document.querySelector('h3');
+    console.log(h3.innerText, h3.textContent);
+    h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
+    // app.textContent = "<h1>新增H1</h1>" // 无论设置啥都是文本
+
+
+
+  </script>
+</body>
+
+</html>

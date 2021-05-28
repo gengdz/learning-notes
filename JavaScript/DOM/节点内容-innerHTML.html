@@ -31,32 +31,12 @@
   </ul>
 
   <script>
-    const app = document.getElementById('app');
-    console.log('app', app, app.childNodes);
-    const uls = document.getElementsByTagName('ul');
-    console.log('ulssss', uls);
-    const ul = document.querySelector('ul');
-
-    console.group('ul->child')
-    console.log(ul.childNodes);
-    console.log(ul.firstChild);
-    console.log(ul.lastChild);
-    console.groupEnd('ul->child')
-
-
-    console.group('ul-> element')
-    console.log(ul.children)
-    console.log(ul.firstElementChild)
-    console.log(ul.lastElementChild);
-    console.groupEnd('ul-> element', )
-
-
-    console.group('first-li')
-    const firstLi = document.querySelector('ul>li:first-of-type');
-    console.log(firstLi)
-    console.log(firstLi.childNodes)
-    console.log(firstLi.nodeValue)
-    console.groupEnd('first-li')
+    const li = document.querySelector('li');
+    li.addEventListener('click', function () {
+      alert(this.innerHTML)
+      this.style.background = "pink"
+      this.parentElement.outerHTML += '<hr/>新的内容'
+    })
   </script>
 </body>
 

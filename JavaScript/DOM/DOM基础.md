@@ -1,4 +1,7 @@
+
+
 # DOM 基础
+
 英文：Document Object Model
 中文：文档对象模型
 
@@ -17,7 +20,7 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 ```html
 <script>
   const node = document.getElementById('hdcms')
-  console.log(node) //null
+  console.log(node) // null
 </script>
 <h1 id="hdcms">houdunren.com</h1>
 ```
@@ -79,20 +82,12 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 
 节点有很多种类型：
 ```javascript
-// document节点 noteType为9
+// document节点 noteType 为9
 console.log(document.nodeType)
   
-// body 是标签节点 nodeType为1
+// body 是标签节点 nodeType 为1
 console.log(document.body.nodeType) 
 ```
-
-| nodeType | 说明          |
-| -------- | ------------- |
-| 1        | 标签元素节点  |
-| 2        | 属性节点      |
-| 3        | 文本节点      |
-| 8        | 注释节点      |
-| 9        | document 对象 |
 
 
 
@@ -129,10 +124,10 @@ showProtoType(h1)
 | ------------------ | ----------------------------------------------- |
 | Object             | 根对象                                          |
 | EventTarget        | 提供事件支持                                    |
-| Node               | 提供parentNode等节点操作方法                    |
-| Element            | 提供getElementsByTagName、querySelector等方法   |
-| HTMLElement        | 所有元素的基础类，提供className、nodeName等方法 |
-| HTMLHeadingElement | Head标题元素类                                  |
+| Node               | 提供 parentNode 等节点操作方法                    |
+| Element            | 提供 getElementsByTagName、querySelector 等方法   |
+| HTMLElement        | 所有元素的基础类，提供 className、nodeName 等方法 |
+| HTMLHeadingElement | Head 标题元素类                                  |
 
 
 
@@ -149,9 +144,98 @@ h1.title = 'sssss' // 鼠标放上去的时候就会提示文字
 
 
 
-## 选取节点
+## 节点属性
 
-### `getElementById(id)`
+### nodeType
+
+通过 `node.nodeType` 来获取节点类型
+
+| nodeType | 说明                                   |
+| -------- | -------------------------------------- |
+| 1        | 标签元素节点                           |
+| 2        | 属性节点                               |
+| 3        | 文本节点。其中需要注意「空白文本节点」 |
+| 8        | 注释节点                               |
+| 9        | document 对象                          |
+
+
+
+### nodeValue
+
+通过 `node.nodeValue` 来获取节点的值
+
+| nodeType | nodeValue |
+| -------- | --------- |
+| 1        | null      |
+| 2        | 属性值    |
+| 3        | 文本内容  |
+| 8        | 注释内容  |
+
+
+
+
+
+## 节点关系
+
+由于 HTML 结构是嵌套的，所以节点对象也存在父子、兄弟、祖先、后代等节点关系。
+
+
+
+### 基础知识
+
+下面是通过节点关系获取相应元素的方法
+
+| 节点属性        | 说明             |
+| --------------- | ---------------- |
+| childNodes      | 获取所有子节点   |
+| parentNode      | 获取父节点       |
+| firstChild      | 子节点中第一个   |
+| lastChild       | 子节点中最后一个 |
+| nextSibling     | 下一个兄弟节点   |
+| previousSibling | 上一个兄弟节点   |
+
+```js
+const ul = document.querySelector('ul');
+console.group('ul->child')
+console.log(ul.childNodes);
+console.log(ul.firstChild);
+console.log(ul.lastChild);
+console.groupEnd('ul->child')
+```
+
+
+
+### 元素关系
+
+使用 childNodes 等获取的节点包括文本与注释，但这不是我们常用的，系统也提供了**只操作元素的关系方法**。
+
+| 节点属性               | 说明                                             |
+| ---------------------- | ------------------------------------------------ |
+| parentElement          | 获取父元素                                       |
+| children               | 获取所有子元素                                   |
+| childElementCount      | 子标签元素的数量                                 |
+| firstElementChild      | 第一个子标签                                     |
+| lastElementChild       | 最后一个子标签                                   |
+| previousElementSibling | 上一个兄弟标签                                   |
+| nextElementSibling     | 下一个兄弟标签                                   |
+| contains               | 返回布尔值，判断传入的节点是否为该节点的后代节点 |
+
+```js
+const ul = document.querySelector('ul');
+console.group('ul-> element')
+console.log(ul.children)
+console.log(ul.firstElementChild)
+console.log(ul.lastElementChild);
+console.groupEnd('ul-> element', )
+```
+
+
+
+## 节点选取
+
+### `getElement/getElements`
+
+#### `getElementById(id)`
 
 ```js
 const h1 = document.getElementById('h1');
@@ -159,7 +243,7 @@ const h1 = document.getElementById('h1');
 
 
 
-### `getElementByName()`
+#### `getElementByName()`
 
 根据 name 属性获取设置了 name 属性的**元素集合**
 
@@ -167,29 +251,29 @@ const h1 = document.getElementById('h1');
 
 
 
-### `getElemnetByTagName()`
+#### `getElementsByTagName()`
 
 根据标签名获取**元素集合**
 
 ```js
-const divs = documentByTagName('div');
+const divs = document.getElementsByTagName('div');
 ```
 
 
 
-### `getElementByClassName()`
+#### `getElementsByClassName()`
 
 根据类型获取**元素集合**
 
 ```js
-const divs = documentByClassName('class1 class2')
+const divs = document.getElementsByClassName('class1 class2')
 ```
 
 
 
-## 样式选择器
+### 样式选择器
 
-### `querySelector()`
+#### `querySelector()`
 
 获取匹配到的第一个元素
 
@@ -220,11 +304,108 @@ console.log(span)
 
 
 
-### `querySelectorAll()`
+#### `querySelectorAll()`
 
 选取符合样式选择器的 **NodeList 集合**。
 
 用法和上面一样
+
+
+
+
+
+## 节点内容
+
+### `innerHTML`
+
+向标签中添加 HTML。里面外面都改。这里会触发「重绘」操作
+
+```js
+app.innerHTML = '<h1>h1</h1>'
+```
+
+```js
+const ul = document.querySelector('ul');
+ul.addEventListener('click', function () {
+  alert(this.innerHTML)
+  this.parentElement.innerHTML += '<hr/>新的内容'
+})
+```
+
+因为是「重绘」，所以在上面的代码中，只会执行一遍，第二遍就不会生效了。
+
+* 因为对 ul 内容进行了重绘，即删除原内容然后设置新内容
+* 重绘后产生的 ul 对象没有事件
+
+
+
+### `outerHTML`
+
+**只改变外边，里面的内容不改**
+
+```html
+<body>
+  <div id="app">
+    <div>div1</div>
+    <div>div2</div>
+  </div>
+  <script>
+    let app = document.querySelector('#app')
+    app.outerHTML = '<h1>新增h1</h1>'
+    console.log(app) // 打印的内容依然是 div1,div2。显示的是 h1。只改变外观
+  </script>
+</body>
+
+```
+
+
+
+### `innerText | textContent`
+
+获取和设置文本内容。
+
+```js
+h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
+```
+
+
+
+### `outerText`
+获取和设置文本，但是会影响所操作的标签。
+
+
+
+
+### `insertAdjacentText`
+```html
+<body>
+  <div id="app">
+    <div>div1</div>
+    <div>div2</div>
+  </div>
+  <script>
+    const app = document.querySelector('#app');
+    app.insertAdjacentText('beforebegin', '<h1>元素本身前面</h1>')
+    app.insertAdjacentText('afterend', '<h1>元素本身后面</h1>')
+    app.insertAdjacentText('afterbegin', '<h1>元素内部前面</h1>')
+    app.insertAdjacentText('beforeend', '<h1>元素内部后面</h1>')
+
+  </script>
+</body>
+```
+
+
+
+
+## 创建节点
+
+### `createElement`
+
+
+
+### sss
+
+
 
 
 
@@ -273,8 +454,8 @@ console.log(span)
 
 随便我们可以随便命名特征，但是官方提供了标准的方式是 `data-自定义特征名` 有以下好处
 
-* 会把我们自定义的值放在 dataset 中。
-* 我们可以通过 dataset 设置或者获取值
+* 会把我们自定义的值放在 `dataset` 中。
+* 我们可以通过 `dataset` 设置或者获取值
 
 ```html
 <span class="span" data-age="age">标准自定义特征</span>
@@ -284,53 +465,5 @@ console.log(span)
   console.log(div.dataset);
   div.dataset.age = '20'
 </script>
-```
-
-
-
-## 节点关系
-
-由于 HTML 结构是嵌套的，所以节点对象也存在父子、兄弟、祖先、后代等节点关系。
-
-
-
-下面是通过节点关系获取相应元素的方法
-
-| 节点属性        | 说明             |
-| --------------- | ---------------- |
-| childNodes      | 获取所有子节点   |
-| parentNode      | 获取父节点       |
-| firstChild      | 子节点中第一个   |
-| lastChild       | 子节点中最后一个 |
-| nextSibling     | 下一个兄弟节点   |
-| previousSibling | 上一个兄弟节点   |
-
-
-
-#### 元素关系
-
-使用 childNodes 等获取的节点包括文本与注释，但这不是我们常用的，系统也提供了**只操作元素的关系方法**。
-
-| 节点属性               | 说明                                             |
-| ---------------------- | ------------------------------------------------ |
-| parentElement          | 获取父元素                                       |
-| children               | 获取所有子元素                                   |
-| childElementCount      | 子标签元素的数量                                 |
-| firstElementChild      | 第一个子标签                                     |
-| lastElementChild       | 最后一个子标签                                   |
-| previousElementSibling | 上一个兄弟标签                                   |
-| nextElementSibling     | 下一个兄弟标签                                   |
-| contains               | 返回布尔值，判断传入的节点是否为该节点的后代节点 |
-
-
-
-## 节点内容
-
-### `innerHTML`
-
-向标签中添加 HTML
-
-```js
-app.innerHTML = '<h1>h1</h1>'
 ```
 
