@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点对象</title>
+</head>
+<style>
+  article {
+    background: #f3a683;
+  }
+
+  article>section:first-of-type {
+    background: #778beb;
+    margin: 10px;
+  }
+</style>
+
+<body>
+  <article>
+    <section>
+      <h1 id="h1">节点对象</h1>
+      <span class="span">节点对象 1</span>
+      <span class="span">节点对象 2</span>
+    </section>
+  </article>
+  <script>
+    const article = document.querySelector('article');
+
+    const div = document.createElement('div');
+    div.innerText = '新增div'
+
+    article.insertAdjacentElement('beforebegin', div);
+
+    // article.remove();
+
+
+  </script>
+</body>
+
+</html>

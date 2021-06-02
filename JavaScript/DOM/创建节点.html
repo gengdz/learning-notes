@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点对象</title>
+</head>
+<style>
+
+</style>
+
+<body>
+  <article>
+    <h1 id="h1">节点对象</h1>
+    <span class="span">节点对象 1</span>
+    <span class="span">节点对象 2</span>
+  </article>
+  <script>
+    const article = document.querySelector('article');
+    const text = document.createTextNode('  createTextNode 方式，节点对象 3');
+    article.appendChild(text);
+
+    const span = document.createElement('span');
+    span.innerText = '   createElement 方式增加一个 span'
+    article.appendChild(span);
+
+    const div3 = document.createElement('div');
+    div3.innerText = 'createElement -> 节点对象4'
+    article.appendChild(div3);
+
+  </script>
+</body>
+
+</html>

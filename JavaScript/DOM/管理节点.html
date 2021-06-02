@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节点对象</title>
+</head>
+<style>
+  article {
+    background: #f3a683;
+  }
+
+  article>section:first-of-type {
+    background: #778beb;
+    margin: 10px;
+  }
+</style>
+
+<body>
+  <article>
+    <section>
+      <h1 id="h1">节点对象</h1>
+      <span class="span">节点对象 1</span>
+      <span class="span">节点对象 2</span>
+    </section>
+  </article>
+  <script>
+    const article = document.querySelector('article');
+
+    const appentDiv = document.createElement('div');
+    appentDiv.innerText = 'append 节点内 -》后面'
+    article.append(appentDiv);
+
+    const prependDiv = document.createElement('div');
+    prependDiv.innerText = '节点内 -》后面'
+    article.prepend(prependDiv);
+
+    article.before('节点外 -》前面', '还可以插入多个');
+    article.after('节点外 -》后面');
+
+    const h1 = document.querySelector('h1');
+    h1.after('<h1>字符串</h1>'); // 这里插入的也是字符串
+    // h1.after(<h1>字符串</h1>); // 这种方式也是不行的
+
+  </script>
+</body>
+
+</html>

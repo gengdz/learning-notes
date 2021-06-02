@@ -1,5 +1,3 @@
-
-
 # DOM 基础
 
 英文：Document Object Model
@@ -375,8 +373,19 @@ h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
 
 
 
-
 ### `insertAdjacentText`
+
+将 「text 文本」插入到指定位置
+
+| 选项        | 说明         |
+| ----------- | ------------ |
+| beforebegin | 元素本身前面 |
+| afterend    | 元素本身后面 |
+| afterbegin  | 元素内部前面 |
+| beforeend   | 元素内部后面 |
+
+
+
 ```html
 <body>
   <div id="app">
@@ -399,11 +408,129 @@ h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
 
 ## 创建节点
 
-### `createElement`
+### `createElement(标签名)`
+
+创建元素节点
+
+```js
+const article = document.querySelector('article');
+
+const span = document.createElement('span');
+span.innerText = '   createElement 方式增加一个 span'
+article.appendChild(span); // 添加一个 span
+
+const div3 = document.createElement('div');
+div3.innerText = 'createElement -> 节点对象4'
+article.appendChild(div3); // 添加一个 div
+```
 
 
 
-### sss
+### `createTextNode(文本)`
+
+创建文本节点
+
+```js
+const article = document.querySelector('article');
+const text = document.createTextNode('  createTextNode 方式，节点对象 3');
+article.appendChild(text); // 添加一个文本节点
+```
+
+
+
+## 节点管理
+
+### `append | prepend | before | after | replaceWith`
+
+| 方法        | 说明                             |
+| ----------- | -------------------------------- |
+| append      | **节点尾部**添加新节点或者字符串 |
+| prepend     | **节点开始**添加新节点或者字符串 |
+| before      | **节点前面**添加新节点或者字符串 |
+| after       | **节点后面**添加新节点或者字符串 |
+| replaceWith | 将节点**替换成**新节点或者字符串 |
+
+
+
+```js
+const article = document.querySelector('article');
+
+const appentDiv = document.createElement('div');
+appentDiv.innerText = 'append 节点内 -》后面'
+article.append(appentDiv);
+
+const prependDiv = document.createElement('div');
+prependDiv.innerText = '节点内 -》后面'
+article.prepend(prependDiv);
+
+article.before('节点外 -》前面', '还可以插入多个');
+article.after('节点外 -》后面')
+
+
+const h1 = document.querySelector('h1');
+h1.after('<h1>字符串</h1>'); // 这里插入的也是字符串
+// h1.after(<h1>字符串</h1>); // 这种方式也是不行的
+```
+
+说明：
+
+* 添加的内容只能是 **字符串** 或者 **通过 `createElement` 创建的标签 **
+* 字符串会当成 「text 字符串」而不是「HTML 字符串」
+
+
+
+### `insertAdjacentElement`
+
+将 「HTML 文本」插入到指定位置
+
+| 选项        | 说明         |
+| ----------- | ------------ |
+| beforebegin | 元素本身前面 |
+| afterend    | 元素本身后面 |
+| afterbegin  | 元素内部前面 |
+| beforeend   | 元素内部后面 |
+
+```js
+article.insertAdjacentHTML('beforebegin', '<div>beforebegin</div>')
+article.insertAdjacentHTML('afterend', '<div>afterend</div>')
+
+article.insertAdjacentHTML('afterbegin', 'div>afterbegin</div>')
+article.insertAdjacentHTML('beforeend', 'div>afterend</div>')
+```
+
+
+
+### `insertAdjacentElement`
+
+```js
+const article = document.querySelector('article');
+
+const div = document.createElement('div');
+div.innerText = '新增div'
+
+article.insertAdjacentElement('beforebegin', div)
+```
+
+
+
+### `remove()`
+
+删除节点
+
+```js
+article.remove();
+```
+
+
+
+### 一些老方法
+
+| 方法         | 说明                       |
+| ------------ | -------------------------- |
+| appendChild  | 添加节点                   |
+| insertBefore | 插入元素到另一个元素的前面 |
+| removeChild  | 删除节点                   |
+| replaceChild | 节点替换                   |
 
 
 
