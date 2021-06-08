@@ -523,6 +523,12 @@ article.remove();
 
 
 
+### DocumentFragment
+
+
+
+
+
 ### 一些老方法
 
 | 方法         | 说明                       |
