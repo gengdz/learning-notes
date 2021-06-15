@@ -479,7 +479,7 @@ h1.after('<h1>字符串</h1>'); // 这里插入的也是字符串
 
 
 
-### `insertAdjacentElement`
+### `insertAdjacentHTML`
 
 将 「HTML 文本」插入到指定位置
 
@@ -525,7 +525,29 @@ article.remove();
 
 ### DocumentFragment
 
+当对节点进行添加、删除等操作时，都会引起页面回流，如果频繁操作，或者操作量太大都会影响页面性能。可以使用 `createDocumentFragment()` 来管理节点。
 
+原理：此时的操作产生的节点等都存在内存中，而不是 DOM 树中，不会引起回流。
+
+使用场景：在排序/移动等大量 DOM 操作时
+
+```js
+const ul = document.querySelector('ul');
+
+function add(total, pieceCount) {
+  // 创建虚拟节点。不会触发渲染
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < pieceCount; i++) {
+    const li = document.createElement('li');
+    li.innerText = Math.floor(Math.random() * total)
+    fragment.appendChild(li);
+  }
+
+  // 一次性添加 pieceCount 条数据
+  ul.appendChild(fragment);
+}
+```
 
 
 
@@ -600,3 +622,111 @@ article.remove();
 </script>
 ```
 
+
+
+## 表单控制
+
+### 表单查找
+
+* 使用 `document.forms` 获取表单集合
+* 使用 form 的 name 属性获取指定的 form 元素。 `documnet.forms.form1`
+* 使用 表单项的 name 属性获取表单项。`form.name`
+* 如果已知一个表单项 item，那么可以使用 `item.form` 反向查找表单
+
+```html
+<form action="" name="form1">
+  <input type="text" name="name">
+  <input type="number" name="age">
+</form>
+
+<script>
+  const form = document.forms.form1;
+  console.log('fffff', form, form.name.form)
+</script>
+```
+
+
+
+## 样式管理
+
+我们可以使用更改元素的 class 属性或者通过 style 对象设置行样式来完成。
+
+### 批量设置
+
+* `app.className = 'css1'` 使用 JS 的 className 可以批量设置 
+
+  ```html
+  <div id="app" class="d-flex container">样式</div>
+  <script>
+    let app = document.getElementById('app')
+    app.className = 'css1'
+  </script>
+  ```
+
+* `app.setAttribute('class', 'css2')`
+
+
+
+### classList
+
+| 方法                              | 说明                     |
+| --------------------------------- | ------------------------ |
+| `node.classList.add('css1')`      | 添加类                   |
+| `node.classList.remove('css1')`   | 删除类                   |
+| `node.classList.toggle('css1')`   | 有的话去掉，没有的话加上 |
+| `node.classList.contains('css1')` | 是否包含该类             |
+
+
+
+### 设置行样式
+
+* `ele.style.color = 'green'` 
+
+  注意：**多个单词属性采用驼峰命名**
+
+  ```html
+  <script>
+    const app = document.getElementById('app');
+    app.style.backgroundColor = 'red';
+    app.style.color = 'green';
+  </script>
+  ```
+
+* <code>node.style.cssText = `background-color:red;color:yellow`</code>
+
+  ```html
+  <script>
+    let app = document.getElementById('app')
+    app.style.cssText = `background-color:red;color:yellow`
+  </script>
+  ```
+
+*  `node.setAttribute('style', 值)`
+
+  ```html
+  <script>
+    let app = document.getElementById('app');
+    app.setAttribute('style', `background-color:red;color:yellow`)
+  </script>
+  ```
+
+  
+
+### 获取样式
+
+* `ele.style | ele.style.backgroundColor | ele.style.margin`
+
+  这种方式无法获取不是写在 style 标签里面的样式
+
+* `ele.getComputedStyle(ele)`
+
+  ```html
+  <script>
+    let app = document.getElementById('app');
+    const fontSize = app.getComputedStyle(app).fontSize;
+    console.log(fontSize, fontSize.slice(0, -2))
+    console.log(parseInt(fontSize))
+  </script>
+  ```
+
+  
