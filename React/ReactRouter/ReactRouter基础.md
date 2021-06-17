@@ -30,11 +30,15 @@ https://segmentfault.com/a/1190000011956628#articleHeader2
 
 这种 `#`。后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发 `hashchange` 这个事件，通过这个事件我们就可以知道 hash 值发生了哪些变化。
 
+通过 location.hash 、hashChange 来保持 UI 同 URL 一致
+
 
 
 ### HTML history 模式
 
 14年后，因为 HTML5 标准发布。多了两个 API，`pushState` 和 `replaceState`，通过这两个 API 可以改变 url 地址且不会发送请求。同时还有 `onpopstate` 事件。通过这些就能用另一种方式来实现前端路由了，但原理都是跟 hash 实现相同的。用了 HTML5 的实现，单页路由的 url 就不会多出一个 `#`，变得更加美观。但因为没有 `#` 号，所以当用户刷新页面之类的操作时，浏览器还是会给服务器发送请求。为了避免出现这种情况，所以这个实现需要服务器的支持，需要把所有路由都重定向到根页面。
+
+通过 HTML5 history API （pushState、replaceState、popstate）机制来维持页面 UI 同 URL 的统一
 
 
 
@@ -69,7 +73,11 @@ Route 的容器组件。负责只匹配一个路由，匹配到就直接返回�
 
 ## 问题
 
-1. react-router 和 react-router-dom 的联系和区别？
+1. `react-router` 和 `react-router-dom` 的联系和区别？
+
+   `react-router` 实现了核心功能
+
+   `react-router-dom` 基于 `react-router`。加入了在**浏览器运行环境**下的一些功能。比如 Link 组件，BrowserRouter 和 HashRouter 组件等。
 
 2. react-router 里的「 `<Link>` 标签」和 「 `<a>` 标签」有什么区别？
 
