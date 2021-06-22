@@ -1,8 +1,8 @@
-# html基础
+# HTML 基础
+HTML（Hypertext Markup Language）超文本标记语言
 
-## html原则
-
-***我们使用html是使用它的语义而不是使用它的样式。***
+## HTML 原则
+***我们使用 HTML 是使用它的语义而不是使用它的样式。***
 
 
 
