@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本相关</title>
+  <style>
+    article>section {
+      margin: 15px 0;
+      padding: 5px;
+      min-height: 50px;
+      background: #1dd1a1;
+      border-radius: 5px;
+    }
+
+    article>section>h3 {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 1em;
+      width: max-content;
+      color: #e66767
+    }
+
+    article>section>h3::after {
+      content: ' 标签用法';
+    }
+  </style>
+
+</head>
+
+
+<body>
+  <article>
+    <section>
+      <h3>code</h3>
+      <code>
+      git log
+      git branch
+      git status
+    </code>
+    </section>
+    <section>
+      <h3>cite</h3>
+      <p><cite>The Scream</cite> by Edward Munch. Painted in 1893.</p>
+    </section>
+    <section>
+      <h3>abbr</h3>
+      <abbr title="前端编程语言">JS</abbr>
+    </section>
+    <section>
+      <h3>del & ins</h3>
+      原价 <del>200元</del> 现价 <ins>100元</ins>
+    </section>
+    <section>
+      <h3>mark</h3>
+      <mark>git rebase 使用的要领</mark>
+    </section>
+    <section>
+      <h3>pre</h3>
+      <pre>
+          这是一段  文本
+        
+      里面还有空白
+
+      换行
+      </pre>
+    </section>
+    <section>
+      <h3>progress</h3>
+      <progress value=60 max=100></progress>
+    </section>
+    <section>
+      <h3>small & time & address</h3>
+      <div>
+        耿德洲
+        <small>前端开发，html</small>
+        <time>2020-01-17</time>
+        <address>浙江省杭州市</address>
+      </div>
+    </section>
+    <section>
+      <h3>strong & em</h3>
+      <div>
+        <strong>耿德洲</strong>前端开发
+        <em>耿德洲</em>开发者
+      </div>
+    </section>
+    <section>
+      <h3>sub & sup</h3>
+      <div>
+        h<sub>2</sub>o
+        5<sup>2</sup>
+      </div>
+    </section>
+  </article>
+
+</body>
+
+</html>
