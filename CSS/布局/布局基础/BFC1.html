@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    section {
+      background: chocolate;
+      display: flow-root;
+      margin: 20px 0;
+      padding: 5px;
+    }
+
+    .box {
+      background-color: rgb(224, 206, 247);
+      border: 5px solid rebeccapurple;
+    }
+
+    .box[style] {
+      background-color: aliceblue;
+      border: 5px solid steelblue;
+    }
+
+    .float {
+      float: left;
+      overflow: hidden;
+      /* required by resize:both */
+      resize: both;
+      margin-right: 25px;
+      width: 200px;
+      height: 100px;
+      background-color: rgba(255, 255, 255, 0.75);
+      border: 1px solid black;
+      padding: 10px;
+    }
+  </style>
+
+
+  <section>
+    <div class="float">Try to resize this outer float</div>
+    <div class="box">
+      <p>Normal</p>
+    </div>
+  </section>
+  <section>
+    <div class="float">Try to resize this outer float</div>
+    <div class="box" style="display:flow-root">
+      <p>
+        <code>display:flow-root</code>
+      <p>
+    </div>
+  </section>
+  <section>
+    <div class="float">Try to resize this outer float</div>
+    <div class="float">Try to resize this outer float</div>
+    <div class="box">
+      <p>Normal</p>
+    </div>
+  </section>
+  <section>
+    <div class="float">Try to resize this outer float</div>
+    <div class="float">Try to resize this outer float</div>
+    <div class="box" style="display: flow-root">
+      <p><code>display:flow-root</code></p>
+      <p>xx</p>
+    </div>
+  </section>
+
+</body>
+
+</html>
