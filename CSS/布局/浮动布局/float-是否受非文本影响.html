@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浮动布局</title>
+  <style>
+    article {
+      background: #10ac84;
+      padding: 20px;
+      /* 清除浮动带来的高度影响 */
+      display: flow-root;
+    }
+
+    article>section[data-float] {
+      float: right;
+      border: solid 2px #ff6b6b;
+      height: 200px;
+    }
+
+    article>section[data-hasImg] {
+      border: solid 7px #ff9f43;
+      height: 400px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <article>
+    <section data-float>
+      这是第一个盒子，设置了浮动
+    </section>
+    <section data-hasImg>
+      <img src="../../../my/pictures/头像.jpg" alt="🦅">
+    </section>
+    <section>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint rerum iure doloribus, eveniet error deserunt
+        magnam accusantium nostrum. Quaerat, odio!</p>
+    </section>
+  </article>
+
+  </article>
+</body>
+
+</html>

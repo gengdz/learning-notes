@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浮动布局</title>
+  <style>
+    article {
+      background: #10ac84;
+      padding: 20px;
+      /* 清除浮动带来的高度影响 */
+      display: flow-root;
+    }
+
+    article>section {
+      height: 200px;
+    }
+
+    article>section:nth-of-type(1) {
+      float: left;
+      border: solid 2px #ff6b6b;
+    }
+
+    article>section:nth-of-type(2) {
+      border: solid 7px #ff9f43;
+    }
+  </style>
+
+</head>
+
+<body>
+  <article>
+    <section>
+      这是第一个盒子，设置了浮动
+    </section>
+    <section>
+      Accusantium aperiam sapiente rerum obcaecati iure quidem eaque assumenda. Quae illo accusantium harum
+      praesentium nostrum! Natus dolore doloribus officiis perspiciatis expedita quia, corrupti qui, sint fuga atque
+      quaerat laborum debitis eaque quae sit non suscipit magnam. Architecto, expedita dolorum inventore eos placeat,
+      reprehenderit illo nobis animi voluptatibus perferendis nam earum!
+    </section>
+  </article>
+
+  </article>
+</body>
+
+</html>
