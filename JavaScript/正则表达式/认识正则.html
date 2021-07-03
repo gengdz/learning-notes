@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="content">gengdezhou</div>
+</body>
+<script>
+  const con = prompt(`原文是：gengdezhou \n请输入需要替换的内容，支持正则`);
+  const reg = new RegExp(con, 'g');
+  const div = document.querySelector('div');
+  div.innerHTML = div.innerHTML.replace(reg, value => `<span style="color:red">${value}</span>`)
+
+</script>
+
+</html>
