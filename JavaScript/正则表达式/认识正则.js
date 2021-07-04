@@ -40,3 +40,5 @@ let person = `
 let res = person.match(/[^:-\d,]+/g);
 
 console.log(res);
+
+
