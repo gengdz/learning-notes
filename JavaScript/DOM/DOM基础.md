@@ -502,6 +502,8 @@ article.insertAdjacentHTML('beforeend', 'div>afterend</div>')
 
 ### `insertAdjacentElement`
 
+将指定元素插入到元素的指定位置
+
 ```js
 const article = document.querySelector('article');
 

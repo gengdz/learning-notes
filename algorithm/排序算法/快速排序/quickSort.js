@@ -1,4 +1,4 @@
-function quickSort(list: number[]): number[] {
+function quickSort(list) {
   if (list.length <= 1) return list;
 
   const index = Math.floor(list.length / 2);
@@ -21,7 +21,5 @@ const list = [2, 9, 5, 7, 3, 4, 6];
 const sortedData = quickSort(list);
 
 console.log(sortedData, list)
-
-export { }
 
 
