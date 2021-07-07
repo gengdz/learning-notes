@@ -4,7 +4,7 @@ HTTP 协议是无状态的，也就是说它不知道访问当前内容的用户
 
 
 
-## 什么是Session？
+## 什么是 Session？
 Session 是会话状态跟踪技术。Session 将会话状态保存在了服务端。
 
 什么是会话呢？
@@ -13,7 +13,7 @@ Session 是会话状态跟踪技术。Session 将会话状态保存在了服务�
 
 
 
-## Session的工作原理
+## Session 的工作原理
 在服务器中，系统会为每个会话维护一个 Session，不同的会话对应不同的 Session。
 那么系统是如何识别各个 Session 对象的呢？也就是系统如何做到同一个会话中使用同一个 Session 的呢？
 
