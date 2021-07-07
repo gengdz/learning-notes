@@ -8,5 +8,9 @@ console.log(randomNum)
 const rangeNum = 2 + Math.floor(Math.random() * (5 - 2 + 1));
 console.log('range', rangeNum)
 
+
+const floorNum = Math.floor(3.2);
+console.log(floorNum) //=> 3
+
 const ceilNum = Math.ceil(3.2)
-console.log(ceilNum)
+console.log(ceilNum); //=> 4

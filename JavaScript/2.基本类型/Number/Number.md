@@ -18,7 +18,17 @@ const rangeNum = 2 + Math.floor(Math.random() * (5 - 2 + 1));
 
 
 
-### Math.floor()，Math.ceil()
+### Math.floor()
+返回：**不大于给定数字的最大整数**
+floor 地板，地面
+
+```javascript
+const ceilNum = Math.floor(3.2) // 3
+```
+
+### Math.ceil()
+返回：**不小于给定数字的最小整数**
+ceil 天花板
 
 ```javascript
 const ceilNum = Math.ceil(3.2) // 4
