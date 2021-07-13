@@ -18,7 +18,7 @@ symbol.description // Symbol的描述
 
 
 ## Symbol.for()，Symbol.keyFor()
-使用 `Symbol.for(description)` 也可以定义一个 Symbol，区别是它会根据 description 来记录 Symbol，如果已经存在了，那么那么再定义一个一样的，则比较结果为真
+使用 `Symbol.for(description)` 也可以定义一个 Symbol，区别是它会根据 description 来记录 Symbol，如果已经存在了，那么再定义一个一样的，则比较结果为真
 
 ```javascript
 const symbolFor = Symbol.for('gdz');
