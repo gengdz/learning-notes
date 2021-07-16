@@ -17,10 +17,10 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 
 ```html
 <script>
-  const node = document.getElementById('hdcms')
+  const node = document.getElementById('gdz')
   console.log(node) // null
 </script>
-<h1 id="hdcms">houdunren.com</h1>
+<h1 id="gdz">gengdezhou</h1>
 ```
 
 解决方案为：
@@ -32,11 +32,11 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
    ```html
    <script>
      setTimeout(() => {
-       const node = document.getElementById('hdcms')
+       const node = document.getElementById('gdz')
        console.log(node)
      })
    </script>
-   <h1 id="hdcms">houdunren.com</h1>
+   <h1 id="gdz">gengdezhou</h1>
    ```
 
 3. 放在文档加载后的事件处理函数中
@@ -44,11 +44,11 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
    ```html
    <script>
      window.onload = function () {
-       let hd = document.getElementById('hd')
-       console.log(hd)
+       let id = document.getElementById('id')
+       console.log(id)
      }
    </script>
-   <div id="hd">houdunren</div>
+   <div id="h2d">ni</div>
    
    ```
    
@@ -56,14 +56,14 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 
    ```html
    <script defer="defer" src="3.js"></script>
-   <div id="hdcms"></div>
+   <div id="gdz"></div>
    ```
 
 5. 声明为模块
 
    ```html
    <script type="module">
-      const node = document.getElementById('hdcms')
+      const node = document.getElementById('gdz')
    </script>
    ```
 

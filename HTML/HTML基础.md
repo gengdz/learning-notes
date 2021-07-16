@@ -13,7 +13,7 @@ HTML（Hypertext Markup Language）超文本标记语言
 绝对路径包含`主机+服务器地址+目录+文件名`的完整路径
 
 ```html
-https://www.houdunren.com/edu/front/lesson/298.html
+https://www.gengdezhou/edu/front/lesson/298.html
 ```
 
 ### 相对路径

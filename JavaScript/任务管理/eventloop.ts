@@ -1,6 +1,6 @@
 namespace first {
   console.log("runtime");
-  function hd(num) {
+  function f1(num) {
     let count = 0;
     for (let i = 0; i <= num; i++) {
       count += i;
@@ -9,33 +9,33 @@ namespace first {
     console.log("runtime");
   }
   let num = 3876543211;
-  hd(num);
-  console.log("houdunren.com"); //需要等待上面执行完才会执行
+  f1(num);
+  console.log("gengdezhou"); //需要等待上面执行完才会执行
 }
 
 namespace secondHong {
   console.log("runtime");
   let count = 0;
   let num = 987654321;
-  function hd() {
+  function f2() {
     for (let i = 0; i < 100000000; i++) {
       if (num <= 0) break;
       count += num--;
     }
     if (num > 0) {
       console.log(num);
-      setTimeout(hd);
+      setTimeout(f2);
     } else {
       console.log(num);
       console.log(count);
     }
   }
-  hd();
-  console.log("houdunren.com"); //立刻显示出来
+  f2();
+  console.log("gengdezhou"); //立刻显示出来
 }
 
 namespace thirdWei {
-  async function hd(num) {
+  async function f3(num) {
     let res = await Promise.resolve().then(_ => {
       let count = 0;
       for (let i = 0; i < num; i++) {
@@ -45,6 +45,6 @@ namespace thirdWei {
     });
     console.log(res);
   }
-  hd(987654321);
-  console.log("后盾人");
+  f3(987654321);
+  console.log("执行结束");
 }
