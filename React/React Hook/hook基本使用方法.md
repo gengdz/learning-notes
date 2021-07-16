@@ -378,7 +378,7 @@ function TextInputWithFocusButton() {
 需要注意的
 
 * 当 ref 对象内容发生改变的时候，**useRef 并不会通知你！**，因为变更.current属性并不会引发组件的重新渲染。
-* `Function Component` 没有ref，所以没有办法直接调用里面的方法，但是可以在子组件中使用 `useImperativeHandle` + `forwordRef` 这套组合拳向外暴露方法出去。 
+
 
 
 
@@ -391,18 +391,33 @@ function TextInputWithFocusButton() {
 ### 使用说明
 
 ```javascript
-function FancyInput(props, ref) {
+// 子组件
+function Child(props, ref) {
   const inputRef = useRef();
   useImperativeHandle(ref, () => ({
     focus: () => {
       inputRef.current.focus();
     }
   }));
-  return <input ref={inputRef} ... />;
+  return <input ref={inputRef} {...props} />;
 }
 export default forwardRef(FancyInput);
-```
 
+// 父组件
+function Father(props) {
+  const ref = useRef();
+
+  // 假设有个 handle 方法，想要调用子组件的 focus 方法
+  const handle = () => {
+    ref.current.focus();
+  }
+
+  return(
+    <Child ref={ref}/>
+  )
+}
+```
+* `Function Component` 没有 ref，所以没有办法直接调用里面的方法，但是可以在子组件中使用 `useImperativeHandle` + `forwordRef` 这套组合拳向外暴露方法出去。 
 
 
 ## useLayoutEffect
@@ -417,3 +432,6 @@ export default forwardRef(FancyInput);
 
 
 
+
+## QA
+1. useLayoutEffect 和 useEffect 的区别
