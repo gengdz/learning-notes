@@ -1,14 +1,16 @@
-# React Hook介绍
+# React Hook 基础
 
-## 为什么有Hook？
+## 为什么有 Hook？
+1. **状态逻辑难以复用**
+    如把组件连接到 store，可以通过 「*render props*」 或者 「*高阶组件*」 的方式解决，但是会改变组件结构并会引入「*嵌套地狱*」
+2. **复杂组件变得难以理解**
+    你要按照生命周期拆分一些相关的事件到不同的生命周期，比如事件的监听和取消监听
+3. **Class 难以理解**
+    Class 有学习成本。比如 this 绑定
 
-1. 在组件之间复用状态很难（如把组件连接到store，可以通过**高阶组件**的方式解决，但是会引入**嵌套地狱**）
-2. 复杂组件变得难以理解（你要按照生命周期拆分一些相关的事件到不同的生命周期）
-3. 难以理解的class（this绑定）
 
 
-
-## React中内置的Hook有以下这些
+## React 中内置的 Hook 有以下这些
 
 - [基础 Hook](https://react.docschina.org/docs/hooks-reference.html#basic-hooks)
   - [`useState`](https://react.docschina.org/docs/hooks-reference.html#usestate)
@@ -29,25 +31,25 @@
 
 ### 使用场景
 
-* 设置state
-* 函数式组件没有construct，可以使用这个达到类似的效果
+* 设置 state
+* 函数式组件没有 construct，可以使用这个达到类似的效果
 
 ### 使用说明
 
 这个钩子的使用形式如下：
 
 ```javascript
-// 1.直接给一个初始值比如string，number，对象，数组
+// 1.直接给一个初始值比如 string，number，对象，数组
 const [ data, setData ] = useState("test")
 
-// 2.如果state的初始值比较复杂，可以传递一个函数给 `useState`
+// 2.如果 state 的初始值比较复杂，可以传递一个函数给 `useState`
 const [ data, setData ] = useState(() => {
   const initialValue = someExpensiveComputation(props);
   return initialValue
 })
 ```
 
-如果现在的状态要依赖之前的状态可以通过传给setData一个函数，类似于如下方式
+如果现在的状态要依赖之前的状态可以通过传给 setData 一个函数，类似于如下方式
 
 ```javascript
 setData(prevState=>({...prevState, name: 'gdz' }))
@@ -60,19 +62,19 @@ setData(prevState=>({...prevState, name: 'gdz' }))
 ### 使用场景
 
 * 在类似于生命周期或者某个值变化的时候使用
-* useState产生的changeState方法后并没有类似setState第二个参数一样的功能，所以如果需要在state改变之后执行，那么必须使用useEffect
+* useState 产生的 changeState 方法后并没有类似 setState 第二个参数一样的功能，所以如果需要在 state 改变之后执行，那么必须使用 useEffect
 * 当需要执行操作的时候，可以嵌入进去。这里可以做的事情很多。比如发送网络请求或者进行监视器的监听
 
 
 
 ### 使用说明
 
-该钩子接收两个参数，第一个参数 **函数** 是副作用需要执行的回调，生成的回调函数可以返回一个函数。(*将在组件卸载的时候运行* )，第二个参数为 **数组** ，只要这个数组发生变化，那么`useEffect` 就会执行
+该钩子接收两个参数，第一个参数 **函数** 是副作用需要执行的回调，生成的回调函数可以返回一个函数。(*将在组件卸载的时候运行* )，第二个参数为 **数组** ，只要这个数组发生变化，那么 `useEffect` 就会执行
 
 * 如果只要更新就执行，那么只需要写第一个函数即可。
-* 如果只需要执行一次，那么将第二个参数设置为空数组 【】
+* 如果只需要执行一次，那么将第二个参数设置为空数组 []
 
-* 如果只有当一些变量变化的时候发送请求，那么将第二个参数设置为 【field1，field2】
+* 如果只有当一些变量变化的时候发送请求，那么将第二个参数设置为 [field1, field2]
 * 如果需要在组件卸载的时候执行清除副作用操作，那么将第一个函数返回一个函数即可
 
 代码示例
@@ -133,7 +135,7 @@ useEffect(async () => {
 
 ### 使用场景
 
-* 在需要用到context的时候可以使用这个方式
+* 在需要用到 context 的时候可以使用这个方式
 
 ### 使用说明
 
@@ -182,12 +184,12 @@ function App() {
 
 ### 使用场景
 
-* state逻辑复杂，并且包含多个子值
-* 下一个state依赖之前的state
+* state 逻辑复杂，并且包含多个子值
+* 下一个 state 依赖之前的 state
 
 ### 使用说明
 
-它是`useState` 的替代方案。就是说如果你的某个state是一个对象，里面还有比较多的属性的时候，这个时候你可以使用类似于redux中 action -> state 的方式，这样的好处是，1）你可以依赖之前的状态去生成新的state，2）你可以对一个state进行多种方式的处理 
+它是 `useState` 的替代方案。就是说如果你的某个 state 是一个对象，里面还有比较多的属性的时候，这个时候你可以使用类似于 redux 中 action -> state 的方式，这样的好处是：1）你可以依赖之前的状态去生成新的 state，2）你可以对一个 state 进行多种方式的处理 
 
 使用语法是
 
@@ -200,7 +202,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init)
 代码示例
 
 ```javascript
-// 定义一个reducer，用来处理action
+// 定义一个 reducer，用来处理 action
 function reducer(state, { type, payload }) {
   switch (type) {
     case 'updateState':
@@ -246,14 +248,14 @@ function getTableData(data = {}) {
 
 ### 使用场景
 
-* 这个hook是用来做性能优化的
+* 这个 hook 是用来做性能优化的
 * 只需要在某些依赖项变化的时候才调用某个方法
 * 当进行昂贵的计算的时候，要考虑是不是有相关的依赖项，减少没必要的渲染
 * 减少不必要的子组件渲染
 
 ### 使用说明
 
-useMemo接受两个参数，第一个是一个函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个变量**
+useMemo 接受两个参数，第一个是一个函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个变量**
 
 ```javascript
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
@@ -280,12 +282,12 @@ function Parent({ a, b }) {
 
 ### 使用场景
 
-* 这个hook使用来做性能优化的
+* 这个 hook 使用来做性能优化的
 * 外部组件在特定条件下调用该组件方法的时候
 
 ### 使用说明
 
-1. useCallback接受两个参数，第一个是函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个函数**。这样只要子组件继承了 PureComponent 或者使用 React.memo 就可以有效避免不必要的 VDOM 渲染。
+1. useCallback 接受两个参数，第一个是函数，第二个是依赖项数组，只有当依赖项发生改变的时候，才会执行第一个函数，**返回值是一个函数**。这样只要子组件继承了 PureComponent 或者使用 React.memo 就可以有效避免不必要的 VDOM 渲染。
 
 2. `React.memo` 和 `React.useCallback` 一定记得需要配对使用，缺了一个都可能导致性能不升反“降”
 
@@ -341,7 +343,7 @@ const func = useCallback(async data => {
 
 ### 使用场景
 
-* 拿到元素的Dom实例
+* 拿到元素的 DOM 实例
 * 父组件调用自组件里面的方法
 
 ### 使用说明
@@ -352,7 +354,7 @@ const func = useCallback(async data => {
 const refContainer = useRef(initialValue)
 ```
 
-里面有一个`current` 属性值，代表当前Dom实例，然后使用如下方法就可以调用该Dom的实例方法
+里面有一个 `current` 属性值，代表当前 DOM 实例，然后使用如下方法就可以调用该 DOM 的实例方法
 
 ```javascript
 inputEl.current.focus()
@@ -377,7 +379,7 @@ function TextInputWithFocusButton() {
 
 需要注意的
 
-* 当 ref 对象内容发生改变的时候，**useRef 并不会通知你！**，因为变更.current属性并不会引发组件的重新渲染。
+* 当 ref 对象内容发生改变的时候，**useRef 并不会通知你！**，因为变更 .current 属性并不会引发组件的重新渲染。
 
 
 
