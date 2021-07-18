@@ -424,14 +424,33 @@ function Father(props) {
 
 ## 使用场景
 
-* 需要根据新的UI来进行Dom操作，也就是说页面渲染出来是最终的效果，如果使用 `useEffect` ，页面很可能会因为渲染了两次而出现了抖动。
+* 需要根据新的 UI 来进行 DOM 操作，也就是说页面渲染出来是最终的效果，如果使用 `useEffect` ，页面很可能会因为渲染了两次而出现了抖动。
 
 ### 使用方法
 
-使用方法和`useEffect` 一模一样。
+使用方法和 `useEffect` 一模一样。
 
 
 
 
 ## QA
-1. useLayoutEffect 和 useEffect 的区别
+###  useLayoutEffect 和 useEffect 的区别
+React 更新步骤大概是这样的
+1. 用户点击事件，改变了某一个 state 
+2. React 内部更新 state 变量
+3. React 处理更新组件中 return 出来的 DOM 节点（进行一系列 diff 调度等流程）
+4. 将更新过的 DOM 数据绘制到浏览器中
+5. 用户看到新的页面
+
+前 3 步都是 React 在处理。
+
+useEffect 只会在第 4 步后才会调用，也就是浏览器绘制完成之后才调用，而且 useEffect 还是异步执行的，所谓异步就是被 React 使用 requestIdleCallback 封装的，只有在浏览器空闲的时候才会执行，这就保证了不会阻塞浏览器的渲染过程。
+
+useLayoutEffect 会在第 3 步和第 4 步之间执行。而且是同步阻塞后面的流程。
+
+总结如下：
+* useEffect 是异步非阻塞调用；useLayoutEffect 是同步阻塞调用
+* useEffect 是浏览器绘制后；useLayoutEffect 是 DOM 变更后，浏览器绘制前完成所有操作；
+* useEffect 不会阻塞渲染，只有在涉及到**修改 DOM**、**动画**等场景下考虑使用 useLayoutEffect，所有的修改会一次性更新到浏览器中，减少用户体验上的不适。
+
+> [解析 useEffect 和 useLayoutEffect](https://juejin.cn/post/6862624266723000328)
