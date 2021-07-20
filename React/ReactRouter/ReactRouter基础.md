@@ -15,12 +15,12 @@ React 是单页面应用。也就是只有一个页面，它是没有路由导�
 
 两种模式：
 
-1. hash 模式
+1. Hash 模式
 2. HTML5 history 模式 
 
 
 
-### hash 模式
+### Hash 模式
 
 url hash 就是如下
 
@@ -40,6 +40,9 @@ https://segmentfault.com/a/1190000011956628#articleHeader2
 
 通过 HTML5 history API （pushState、replaceState、popstate）机制来维持页面 UI 同 URL 的统一
 
+
+
+> [前端路由 Hash 与 History 模式](https://segmentfault.com/a/1190000020888923)
 
 
 ## Link
