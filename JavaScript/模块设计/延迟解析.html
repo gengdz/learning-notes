@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延迟解析</title>
+</head>
+
+<body>
+  <script type="module">
+    lsfjlsj = 'aaa' // 报错 没定义 严格模式
+    console.log('module', document.querySelector("button")); // Button
+  </script>
+  <script>
+    agsdfsfe = 'bbb' // 不报错 非严格模式
+    console.log('非 module', document.querySelector("button")); // null
+  </script>
+  <button>button</button>
+</body>
+
+</html>

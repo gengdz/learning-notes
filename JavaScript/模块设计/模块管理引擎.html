@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模块管理引擎</title>
+</head>
+
+<body>
+  <script>
+    // 模块引擎
+    const module = (function () {
+      const moduleList = {};
+      function define(name, modules, action) {
+        const realModules = modules.map((module) => moduleList[module]);
+        moduleList[name] = action.apply(null, realModules)
+      }
+      return { define }
+    })();
+
+    // 定义模块 tool
+    module.define('tool', [], function () {
+      return {
+        first(arr) { return arr[0] },
+        max(arr) {
+          return arr.sort((a, b) => b.price - a.price)[0];
+        }
+      }
+    });
+
+    // 使用模块 
+    module.define('lesson', ['tool'], function (tool) {
+      const data = [
+        { name: 'js', price: 1929 },
+        { name: 'ts', price: 1399 },
+        { name: 'html', price: 13339 },
+      ];
+      const max = tool.max(data);
+      console.log('max', max)
+    })
+  </script>
+</body>
+
+</html>
