@@ -5,6 +5,35 @@ HTML（Hypertext Markup Language）超文本标记语言
 ***我们使用 HTML 是使用它的语义而不是使用它的样式。***
 
 
+## href 与 src
+
+## 定义
+href 是 Hypertext Reference 的简写，表示超文本引用，指向网络资源所在的位置。
+常见场景：
+```html
+<a href="www.baidu.com"></a>
+<link type="text/css" href="./style.css">
+```
+
+src 是 source 的简写，目的是要把文件下载到 HTML 页面中去。
+常见场景：
+```html
+<script src="a.js"></script>
+<img src="img/a.jgp">
+<iframe src="a.html">
+```
+
+
+### 作用结果
+href 用在当前文档和引用资源之间确立联系
+
+src 用于替换当前内容
+
+
+### 浏览器解析方式
+当浏览器遇到 href 会并行下载资源并且不会停止对当前文档的处理。（这也是为什么使用 link 的方式加载 CSS，而不是使用 @import 方式
+当浏览器解析到 src，会暂停其他资源的下载和处理，直到将该资源加载或者执行完毕。（这也是 script 标签为什么放在底部而不是头部的原因）
+
 
 ## 路径
 
