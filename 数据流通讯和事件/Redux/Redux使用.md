@@ -24,3 +24,16 @@ const result: any = useSelector(selector: Function, equalityFn?: Function)
 
 #### 与 `connect()` 的区别
 *useSelector()* 默认使用 *===* 严格相等来比较返回值。*connect() 使用 **浅比较** 来比较 mapState 执行后的结果，从而决定是否触发重渲染。*
+
+
+
+## connect 方法
+```js
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList)
+
+const mapStateToProps = (state) => ({dict: state.dict}); // 接受 state 返回一个对象
+const mapDispatchToprops = (dispatch) => ({ getDict: bindActionCreators(actions.getDict, dispatch) }) // 也是返回一个对象
+```
