@@ -11,8 +11,12 @@ User.prototype.show = function () {
 function admin(name, age) {
   const instance = Object.create(User.prototype);
   User.call(instance, name, age);
+  instance.role = function () {
+    console.log('role')
+  }
   return instance;
 }
 
 const a = admin('耿德洲', 18)
-a.show()
+a.show();
+a.role();
