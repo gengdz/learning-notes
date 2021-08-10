@@ -17,18 +17,24 @@ Session 是会话状态跟踪技术。Session 将会话状态保存在了服务�
 在服务器中，系统会为每个会话维护一个 Session，不同的会话对应不同的 Session。
 那么系统是如何识别各个 Session 对象的呢？也就是系统如何做到同一个会话中使用同一个 Session 的呢？
 
+![Session 认证流程](./Session认证流程.jpg)
 
-* 写入 Session 列表
+
+* 创建 Session，写入 Session 列表
   * Session 列表是一个 Map
   * 服务器对当前应用中的 Session，是以 Map 的形式进行管理的，key 是 string 类型的 sessionId，value 则为 Session 对象的引用。
   * 也就是说当请求到来的时候，就会将生成的 sessionId 和新生成的 Session 对象组成键值对写入到 Session 列表中去
 * 服务器生成并发送 Cookie
-  * 在将 session 写入 session 列表以后，系统还会自动将 JSESSIONID 作为 name，将 sessionId 作为 value,以 Cookie 的形式存放到响应头中，并伴随着响应，将 Cookie 发送到客户端。如果已经有 cookie，那么就不会再次设置
+  * 在将 Session 写入 Session 列表以后，系统还会自动将 JSESSIONID 作为 name，将 sessionId 作为 value,以 Cookie 的形式存放到响应头中，并伴随着响应，将 Cookie 发送到客户端。如果已经有 cookie，那么就不会再次设置
 * 客户端接收并发送 Cookie
   * 客户端接收到这个 Cookie 之后就将其存放到浏览器的缓存中，只要客户端浏览器不关闭，浏览器缓存中的 Cookie 就不会消失，关闭了也不一定消失
   * 当用户接着发送请求的时候就会将 Cookie，伴随着请求的头部信息，一块发送到服务器
 * 从 Session 列表中查找
   * 服务端从请求中获取 Cookie，然后根据 sessionId，在 session 列表中，找到这个 Session 对象，然后对这个对象的属性，进行读写操作
+
+SessionId 是连接 Cookie 和 Session 的一道桥梁，大部分系统也是根据此原理来验证用户登录状态。
+
+
 
 
 
@@ -42,6 +48,9 @@ Session 是会话状态跟踪技术。Session 将会话状态保存在了服务�
 ## 存在的问题
 1. 存在 CSRF 安全问题。由于 Session 是通过 Cookie 来实现的，黑客通过链接盗用 Cookie
 2. 服务器需要把 SessionId 存放在数据库中，如果是百度淘宝级别的网站，会是一个巨大的开销
+
+
+
 
 ## 代码中的体现
 > ⚠️ 下面是伪代码
@@ -67,3 +76,10 @@ Session.getCookie();
 当我们在客户端写入数据时，客户端会自动的在请求的时候把 Cookie 值带上。
 
 
+
+## Session 和 Cookie 的区别
+1. **存储位置**：Session 存储在服务器端，Cookie 存储在客户端
+2. **安全性**：Session 比 Cookie 安全
+3. **存取值的类型不同**：Cookie 只支持字符串，Session 支持任意类型
+4. **有效期不同**：Cookie 可以设置为长时间保存，Session 一般有效期较短，客户端关闭（默认情况下）或者 Session 超时都会失效
+5. **存储大小不同**：单个 Cookie 保存的数据不能超过 4K，Session 可存储的远高于 Cookie
