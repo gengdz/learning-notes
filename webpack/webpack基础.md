@@ -478,7 +478,7 @@ module.exports = {
 
 
 
-### devtool <调试工具>
+## devtool <调试工具>
 
 souce-map: 源码映射,方便出错调试
 
@@ -489,7 +489,7 @@ souce-map: 源码映射,方便出错调试
 | `devtool: 'cheap-moudle-source-map'`      | 会生成映射文件<br />不会标识列                       |
 | `devtool: 'cheap-moudle-eval-source-map'` | 不会生成映射文件<br />不会标识列                     |
 
-### 实时打包
+## 实时打包
 
 ```javascript
 module.exports = {
@@ -502,7 +502,7 @@ module.exports = {
 }
 ```
 
-### 几个插件
+## 几个插件
 
 * 清空dist之后再打包
 
@@ -527,7 +527,7 @@ module.exports = {
   new webpack.BannerPlugin('耿德洲,2019-09-03')
   ```
 
-### 代理 proxy
+## 代理 proxy
 
 1. 服务器接口是3000，webpack中devServer的默认端口是8080
 
@@ -569,7 +569,7 @@ module.exports = {
    ```
 
 
-### resolve配置
+## resolve配置
 
 ```javascript
   // 解析
@@ -587,7 +587,7 @@ module.exports = {
 
 
 
-### 动态链接库
+## 动态链接库
 
 原因：第三库没必要每次都打包，因为没有发生变动，打包起来很慢
 
@@ -597,13 +597,13 @@ module.exports = {
 
 
 
-### webpack自带优化
+## webpack自带优化
 * import多个时，会进行 tree-shaking  会把没用到的代码自动删除掉。但require不会进行tree-shaking
 * webpack会自动省略可以简化的代码
 * es6模块会把结果放在default上
 
 
-### 抽离公共代码
+## 抽离公共代码
 有文件被多个地方使用，如Pateo系列组件，那么可以进行的抽离公共代码
 
 ```javascript
@@ -627,7 +627,7 @@ module.exports = {
   },
 ```
 
-### 懒加载
+## 懒加载
 ```javascript
 // 这里的import要使用到 在use.options.plugins中配置@babel/plugin-syntax-dynamic-import 
 handleClick = () => {
@@ -640,7 +640,8 @@ handleClick = () => {
 
 
 
-### 热更新
+## 热更新
+Hot Module Replacement 简称 HMR，无需完全刷新整个页面的同时，更新模块
 
 ```javascript
 devServer:{
@@ -653,9 +654,51 @@ plugins:[
 ]
 ```
 
+### webpack 热更新原理
 
+HotModuleReplacementPlugin 会生成两个补丁文件
+1. 上一次编译生成的 hash.hot-update.json 。返回的内容为
+  ```json
+  {
+    "h": "fb3csdfceaq2", // 这次新生成的 hash
+    "c": {  "main": true  } // 哪些文件发生了变化
+  }
+  ```
+2. chunk 名字.上一次编译生成的 hash.hot-update.js。存放着此代码块最新的模块定义，里面会调用 webpackHotUpdate 方法。
 
-## webpack中的path和publicPath
+```js
+// 编辑器对象
+const compiler = webpack(config);
+const server = new Server(compiler);
+server.listen(9090,localhost, ()=>{
+  console.log('服务器已经在 9090 启动')
+})
+```
+
+1. webpack-dev-server 启动本地服务
+    * 启动 webpack，生成 compiler 实例。
+    * 使用 express 启动本地 server，让浏览器可以请求本地的静态资源
+    * 再启动 websocket 服务，通过 websocket，可以建立本地服务和浏览器的双向通信。这样可以实现本地文件发生变化，立马告知浏览器可以热更新代码啦。
+2. 修改 webpack.config.js 的 entry 配置
+    * 把客户端与浏览器通信代码塞到前端中
+3. 监听 webpack 编译结束
+    * 调用 setupHooks 方法，监听编译完成事件，compiler.hooks.done.tap。然后发出 hash 和 ok 
+4. webpack 监听文件变化
+    * 调用 setupDevMiddleware 方法，调用 compiler.watch 方法，以监听模式启动编译（如果文件变更了，它会重新编译）
+    * 使用 MemoryFS 将编译后的文件打包到内存。
+5. 浏览器接受到热更新的通知
+    * 第 2 步中注入的文件，会在浏览器运行。建立和服务端的 socket 连接 `socket(socketUrl, onSocketMessage)`，会调用 reloadApp 方法。然后发出 webpackHotUpdate 消息。
+    * 这时候 webpack 监听到了 webpackHotUpdate 事件，并且获取了最新的 hash 值。然后调用 module.hot.check 方法。
+6. HotModuleReplacementPlugin
+    * 
+
+7. moudle.hot.check 开始热更新
+8. hotApply 热更新模块替换
+    * 删除过期的模块，通过 hotUpdate 可以找到旧模块
+    * 将新的模块添加到 modules 中
+    * 通过 `__webpack_require__` 执行相关模块的代码
+
+## webpack 中的 path 和 publicPath
 
 
 
