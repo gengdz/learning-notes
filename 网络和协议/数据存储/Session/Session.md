@@ -76,6 +76,11 @@ Session.getCookie();
 当我们在客户端写入数据时，客户端会自动的在请求的时候把 Cookie 值带上。
 
 
+## Session 存在的问题
+* 依赖于 Cookie，客户端可以禁用 Cookie 
+* 如果后端是多个服务器集群，Session 共享比较难做。
+* 服务端的开销很大
+* 移动端对 Cookie 的支持不是很好，而 Session 需要基于 cookie 实现，所以移动端常用的是 Token
 
 ## Session 和 Cookie 的区别
 1. **存储位置**：Session 存储在服务器端，Cookie 存储在客户端

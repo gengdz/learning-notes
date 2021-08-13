@@ -56,9 +56,8 @@ Cookie 是由服务端生成，保存在客户端的一种信息载体。载体�
 
 
 ## 代码中的体现
-> ⚠️ 下面是伪代码
 
-服务端代码
+### 服务端代码
 ```java
 // 设置 Cookie
 response.setCookie('userId', 'abcsdff', 「过期时间」, 「可以看到 Cookie 的路径」);
@@ -71,5 +70,22 @@ Cookie 可以设置过期时间。上述示例「购物车」中，就是因为 
 request.getCookie();
 ```
 
+
+### 前端代码
+```js
+// 获取 cookie
+const cookie = document.cookie;
+
+// 设置 cookie
+document.cookie = "userName=gengdezhou;path=/"
+```
+
 当我们在客户端写入数据时，客户端会自动的在请求的时候把 Cookie 值带上。
 
+
+## Cookie 存在的问题
+* 不安全。存储在客户端，容易被篡改或者窃取
+* 每次发送请求都携带大量的 Cookie 带宽吃不消
+* Cookie 只能存储 4kb 的内容
+* Cookie 无法跨域
+* 移动端对 Cookie 的支持不是很好，而 Session 需要基于 Cookie 实现，所以移动端常用的是 Token
