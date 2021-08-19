@@ -117,3 +117,12 @@ export default React.memo(ProjectCard);
 
 ### 合理的拆分组件
 如果整个页面只有一个大组件，那么当 props 或者 state 变化后，哪怕就改了一个文字，也会导致组件重新渲染。如果合理的拆分组件，那么就可以以更小的颗粒度来控制更新。
+
+
+## 组件默认值
+
+```javascript
+MyStatelessComponent.defaultProps = {
+  bar: '',
+};
+```

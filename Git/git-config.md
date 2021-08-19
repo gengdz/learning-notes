@@ -1,4 +1,4 @@
-# git config配置
+# git config
 主要是配置一个命令简写。
 
 
@@ -40,3 +40,8 @@ alias go="git checkout"
 ```
 
 
+## 重置密码和记住密码
+```bash
+git config --system --unset credential.helper
+git config --global credential.helper store
+```
