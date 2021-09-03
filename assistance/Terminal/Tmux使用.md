@@ -62,7 +62,7 @@ tmux swap-window -t note
 
 
 ## tmux美化
-通过 `code .tmux.conf` 设置
+通过 `code .tmux.conf` 设置。需要注意的是如果是直接写在文件中，那么不需要有前面的 `tmux`
 
 ```bash
 # 设置对齐方式
