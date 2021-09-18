@@ -16,6 +16,8 @@
 <body>
   <div id="app">
     <h3>h3原生</h3>
+    <br />
+    slsss
     <div>div2</div>
   </div>
   <script>
@@ -29,6 +31,14 @@
     // app.textContent = "<h1>新增H1</h1>" // 无论设置啥都是文本
 
 
+
+
+  const htmlText = '<DIV style="clear: both;">阿里健康</DIV><DIV style="clear: both;">整体</DIV>';
+
+  let div = document.createElement('div');
+  div.insertAdjacentHTML('beforeend', htmlText);
+  console.log('aaaaa', div.innerText)
+        // console.log(htmlText.match(/\<[^>]*\>(([^<])*)/g));
 
   </script>
 </body>
