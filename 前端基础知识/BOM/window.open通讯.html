@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>window.open通讯</title>
+  <style>
+    button:last-of-type {
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button onclick="onClick()">open</button>
+    <br />
+    <button>send</button>
+  </div>
+  <script>
+    const onClick = () => {
+      console.log('open window')
+      // ref.current = window.open('//moon.caijing.alibaba.net/fpa-report/edit');
+    };
+
+    document.querySelector(`button:last-of-type`).addEventListener('click', event => {
+      console.log('send message');
+    })
+
+    window.onmessage = (event) => {
+      console.log('eeeeee', event.data, event);
+    };
+  </script>
+</body>
+
+</html>
