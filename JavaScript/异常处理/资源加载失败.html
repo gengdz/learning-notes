@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资源加载失败</title>
+</head>
+
+<body>
+  <img alt="替补方案" src="a.png" />
+  <script>
+    const img = document.querySelector('img');
+
+
+
+    img.onerror = (event) => {
+      console.log('img.onerror', event)
+    }
+
+    window.onerror = (event) => {
+      console.log('window.onerror', event)
+      // 如果不加下面这行，依然会在控制台报错
+      return true;
+    }
+
+    window.addEventListener('error', event => {
+      console.log('window.addEventListener', event)
+    }, true);
+
+    gengdezhou;
+
+    setTimeout(() => {
+
+      Jartto;
+
+    });
+
+
+  </script>
+</body>
+
+</html>

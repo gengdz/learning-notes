@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise 错误</title>
+</head>
+
+<body>
+  <h1>Promise 报错了。页面是否能正常显示</h1>
+  <script>
+    const p2 = async () => {
+      Promise.reject(Error("Promise.reject Error"));
+      console.log("Promise.reject 之后的代码还会执行吗？");
+    };
+
+    p2();
+    console.log("这是 p2() 之后的代码");
+
+    const a = 1, b = 2;
+    console.log('a + b =', a + b)
+
+
+    window.onerror = function (event, source) {
+      console.log("window.onerror 收到了错误");
+      return true
+    };
+
+    window.addEventListener("error", (event) => {
+      console.log("window.addEventListener 接受到了错误");
+    }, true);
+
+    // window.addEventListener(
+    //   "unhandledrejection",
+    //   (event) => {
+    //     event.preventDefault(); // 阻止控制台输出报错信息
+    //     console.log("unhandledrejection 接受到了错误", event);
+    //   },
+    //   true
+    // );
+
+    try {
+      new Promise((resolve, reject) => {
+        reject('WTF 123')
+      })
+    } catch (e) {
+      console.log('try catch 是捕获不到 Promise 异常的', e)
+      throw e
+    }
+
+  </script>
+</body>
+
+</html>
