@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原子表</title>
+</head>
+
+<body>
+  <a href="https://www.houdunren.com">后盾人</a>
+  <a href="https://www.hdcms.com">hdcms</a>
+  <a href="https://www.sina.com.cn">新浪</a>
+</body>
+
+<script>
+  let body = document.body.innerHTML;
+  let reg = /<a\s*.+?(?<link>https?:\/\/(\w+\.)+(com|org|cc|cn)).*>(?<title>.+)<\/a>/gi;
+  const links = [];
+  for (const iterator of body.matchAll(reg)) {
+    links.push(iterator["groups"]);
+  }
+  console.log(links);
+</script>
+
+</html>

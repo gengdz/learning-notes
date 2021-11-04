@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重复匹配</title>
+</head>
+
+<body>
+  <main>
+    <h1>
+      h1
+    </h1>
+    <h2>h2</h2>
+    <h3></H3>
+    <H1></H1>
+    <h2>test</h2>
+    <h2 style="color:red">前端框架 - React</h2>
+    <h2 style="color:red">前端框架 - Vue</h2>
+    <h2 style="color:red">前端框架 - Angular</h2>
+  </main>
+  <script>
+    const main = document.querySelector('main');
+
+    function search(string, reg) {
+      let result = [];
+      while (res = reg.exec(string)) {
+        result.push(res)
+      }
+      return result;
+    }
+
+    // TODO 这里想要只匹配 <h[1-6] >
+    console.log('ssss', search(main.innerHTML, /<(h[1-6])[\s\S]+?>[\s\S]*?<\/\1>/gi))
+
+  </script>
+</body>
+
+</html>

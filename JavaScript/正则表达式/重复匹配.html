@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重复匹配</title>
+</head>
+
+<body>
+  <main>
+    <span>React</span>
+    <span>Vue</span>
+    <span>Angular</span>
+  </main>
+  <script>
+    const main = document.querySelector('main');
+    const reg = /<span>([\s\S]*?)<\/span>/gi
+    const content = main.innerHTML.replace(reg, (v, p1) => {
+      return `<h2 style="color:red">前端框架 - ${p1}</h2>`
+    });
+    main.innerHTML = content;
+
+
+    let str = "gengdezhou";
+    let reg1 = /[a-z]/ig;
+    for (const iterator of str.matchAll(reg1)) {
+      console.log(iterator);
+    }
+
+    while (res = reg1.exec(str)) {
+      console.log(res)
+    }
+
+    function search(string, reg) {
+      let result = [];
+      while (res = reg.exec(string)) {
+        result.push(res)
+      }
+      return result;
+    }
+
+
+    console.log('mmm', main, /<h2[\s\S]*?<\/h2>/gi.test(main))
+    console.log('ssss', search(main, /<h2[\s\S]*>([\s\S]*?)<\/h2>/gi))
+
+  </script>
+
+</body>
+
+</html>
