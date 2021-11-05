@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+  <style>
+    h1 {
+      counter-reset: h1;
+    }
+
+    h2 {
+      counter-reset: h2;
+    }
+
+    h1::before {
+      counter-increment: h1;
+      content: "Section "counter(h1) ": ";
+    }
+
+    h2::before {
+      counter-increment: h2;
+      content: counter(h1) '.'counter(h2) " ";
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HTML 教程:</h1>
+  <h2>HTML 教程</h2>
+  <h2>CSS 教程</h2>
+
+  <h1>Scripting 教程:</h1>
+  <h2>JavaScript</h2>
+  <h2>VBScript</h2>
+
+  <h1>XML 教程:</h1>
+  <h2>XML</h2>
+  <h2>XSL</h2>
+</body>
+
+</html>
