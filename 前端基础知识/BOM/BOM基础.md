@@ -186,3 +186,9 @@ iframePage.html
 ```
 
 
+
+## JS 派发事件
+
+```js
+window.dispatchEvent(new Event('resize'));
+```
