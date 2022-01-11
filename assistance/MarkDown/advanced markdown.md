@@ -1,4 +1,5 @@
-## markdown 加入导出样式
+# Markdown 进阶
+## Markdown 加入导出样式
 ```html
 <style>
     h1 {
@@ -25,11 +26,11 @@
 ```
 然后在下面写文件即可,仅在导出的使用生效。在编辑器中不生效
 
-## markdown自定义样式
+## Markdown 自定义样式
 
 * 偏好 --> 外观 --> 主题文件
 
-* 找到你是用的主题的.css文件，然后新建一个如github.user.css
+* 找到你是用的主题的 .css 文件，然后新建一个如 github.user.css
 
   ```css
   /* 序号设置 */

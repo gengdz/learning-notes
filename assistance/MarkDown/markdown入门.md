@@ -1,6 +1,13 @@
-# markdown 入门
+# Markdown 入门
 
-代办事项
+## 解锁表情
+```markdown
+:smile:
+```
+:smile: :iphone:
+
+
+## 代办事项
 ```markdown
 * [ ] 未办事件
 * [x] 已办事件
@@ -8,7 +15,7 @@
 * [ ] 待办
 * [x] 已处理
 
-## markdown中链接和脚注
+## Markdown 中链接和脚注
 
 ```markdown
 链接：[文字](链接的地址)
@@ -21,15 +28,15 @@
 
 > [具体的可以看这里](https://www.jianshu.com/p/31eade263e7a)
 
-* `&emsp;`  &emsp;它叫“全角空格”，全称是 **Em Space**，其占据的宽度正好是1个中文宽度，而且基本上不受字体影响。
-* `&ensp; ` &ensp; 它叫“半角空格”，全称是 **En Space**，其占据的宽度正好是1/2个中文宽度，而且基本上不受字体影响。
+* `&emsp;`  &emsp;它叫“全角空格”，全称是 **Em Space**，其占据的宽度正好是 1 个中文宽度，而且基本上不受字体影响。
+* `&ensp; ` &ensp; 它叫“半角空格”，全称是 **En Space**，其占据的宽度正好是 1/2 个中文宽度，而且基本上不受字体影响。
 * `&nbsp;`&nbsp;它叫不换行空格，全称是 **No-Break Space**，该空格占据宽度受字体影响明显而强烈。
 
 
 
 ## 生成目录
 
-使用 `[toc]` 。
+使用 `[toc]` 
 
 
 
@@ -44,6 +51,7 @@
 ```markdown
 ![描述文字](地址)
 ```
+![蓝1|center|200*200](https://files.mdnice.com/blue.jpg)
 
 
 ## 引用可以有多种方式

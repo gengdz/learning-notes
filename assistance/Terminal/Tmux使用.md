@@ -1,5 +1,5 @@
-# tmux配置
-## tmux的几个概念
+# Tmux
+## Tmux 的几个概念
 一个 session 下面可以有几个 window，一个 window 可以分割几个 pane。
 
 
@@ -35,33 +35,40 @@ tmux switch -t sessionName
 
 
 
-#### window
+### window
 一、新建 window
 ```bash
 tmux new-window -n windowName
 ```
 
-二、window重命名
+二、window 重命名
 ```bash
 tmux rename-window newName
 ```
 
 三、交换窗口的位置
 ```bash
-# 比如我目前在 buffett窗口，我想让这个窗口和 `note` 窗口交换位置
+# 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
 tmux swap-window -t note
 ```
+
+
+切换窗口 
+```bash
+tmux select-window -t name
+```
+
 
 ## 一些快捷键或者命令行
 * 翻屏模式 `ctrl + b + [`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
 * 退出翻屏模式 `q`
 * 切换窗口 `ctrl + b + p/n`
 * 最大化窗格：`ctrl + b + z`。
-* 所有tmux命令：`tmux list-commands`
+* 所有 Tmux 命令：`tmux list-commands`
 
 
 
-## tmux美化
+## Tmux 美化
 通过 `code .tmux.conf` 设置。需要注意的是如果是直接写在文件中，那么不需要有前面的 `tmux`
 
 ```bash
