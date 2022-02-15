@@ -1,0 +1,55 @@
+# JavaScript 编码规范
+
+
+## 对象
+### 使用对象属性和方法的简写语法
+```js
+const obj = {
+  name,
+  getAge(user) {
+    // to something 
+  }
+}
+```
+
+### 将对象的简写属性写在一起
+```js
+const obj = {
+  name,
+  age,
+  other1: '',
+  other2: 2,
+}
+```
+
+
+
+
+
+## 注释
+### 注释应单独一行写在被注释对象的上方，不要追加在某条语句的后面
+
+### 多行注释应该使用 /** */ 而不是多行的 //
+
+### 合理使用特殊注释标记。
+
+* `// FIXME: 说明问题是什么`
+* `// TODO: 说明还要做什么或者问题的解决方案`
+
+
+
+
+## 命名
+### 常量命名应该全部大写，单词间使用下划线隔开
+导出给其他文件用的变量采用这种方式
+```js
+export const MY_CONSTANT = 'const';
+```
+
+**只有对象本身需要使用 UPPERCASE_VARIABLES ，对象属性的 key 仍然使用正常命名风格：**
+
+```js
+export const AN_OBJECT = {
+  key: 'value',
+};
+```
