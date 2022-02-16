@@ -55,3 +55,14 @@ enum FormStateEnum {
 }
 
 type FormState = keyof typeof FormStateEnum;
+
+
+type ObjectValueOf<T> = T[keyof T];
+
+interface A {
+  name: string;
+  age: number;
+}
+
+type a = ObjectValueOf<A>; // string | number
+
