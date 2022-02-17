@@ -26,7 +26,7 @@ namespace B {
 
 
 namespace C {
-  // 自己实现一个类似Array的Box
+  // 自己实现一个类似 Array 的 Box
   const Box = x => ({
     map: f => Box(f(x)),
     fold: f => f(x),
