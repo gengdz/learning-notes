@@ -88,3 +88,54 @@ Route 的容器组件。负责只匹配一个路由，匹配到就直接返回�
 
 
 
+
+## withRouter
+
+### 作用
+把不是通过路由切换过来的组件，将 `react-router` 的 history, location, match 这三个对象就会被放进这个组件的 props 属性中。
+
+默认情况下必须经过路由匹配的组件才拥有路由参数。然而并不是所有的组件都直接与路由相连（通过路由跳转到此组件）的，当这些组件需要路由参数时，使用 withRouter 就可以给此组件传入路由参数了。
+
+
+
+### 实现原理：
+
+```javascript
+const withRouter = Compontent => () => <Route component={Component}/>
+```
+
+
+
+### 使用的示例
+
+```javascript
+import React from 'react'
+import './nav.css'
+import {
+    NavLink,
+    withRouter
+} from "react-router-dom"
+
+class Nav extends React.Component{
+   handleClick = () => {
+      // Route 的 三个对象将会被放进来, 对象里面的方法可以被调用
+      console.log(this.props);
+   }
+   render() {
+      return (
+         <div className={'nav'}>
+            <span className={'logo'} onClick={this.handleClick}>掘土社区</span>
+            <li><NavLink to="/" exact>首页</NavLink></li>
+            <li><NavLink to="/activities">动态</NavLink></li>
+            <li><NavLink to="/topic">话题</NavLink></li>
+            <li><NavLink to="/login">登录</NavLink></li>
+         </div>
+      );
+   }
+}
+
+// 导出的是 withRouter(Nav) 函数执行
+export default withRouter(Nav)
+```
+
+说明：将`span`使用`withRouter`作为一个可点击跳转的`Link`

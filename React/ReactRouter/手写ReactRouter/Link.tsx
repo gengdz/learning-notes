@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RouterService } from "./Router";
+import { RouterService } from "../Router";
 
 type Props = {
   to: string;
