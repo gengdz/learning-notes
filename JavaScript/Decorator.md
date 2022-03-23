@@ -1,4 +1,4 @@
-# Decorator的用法
+# Decorator 的用法
 
 ## 装饰器是什么？
 
