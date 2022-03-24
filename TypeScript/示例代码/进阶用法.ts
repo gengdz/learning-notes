@@ -49,9 +49,9 @@ example("hello world");
 
 
 enum FormStateEnum {
-  add = "add",
-  edit = "edit",
-  view = "view"
+  Add = "add",
+  Edit = "edit",
+  View = "view"
 }
 
 type FormState = keyof typeof FormStateEnum;
