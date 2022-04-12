@@ -43,7 +43,7 @@ Grid 项目的属性，可以分为以下几类
 
 #### grid-template-columns、grid-template-rows
 
-##### 前置知识
+##### 划分行列
 1. `fx`
 作为基本单位，相当于占整体的几分之几
 
@@ -89,6 +89,9 @@ display: grid;
 grid-template-rows: minmax(50px, 1fr);
 grid-template-columns: 1fr;
 ```
+
+5. `auto`
+使用 `auto` 让栅格获取所有剩余空间
 
 
 
@@ -173,6 +176,15 @@ grid-template-areas: "top . ."
 grid-template: repeat(3, 1fr)/repeat(4, 1fr);
 grid-template: 60px 1fr 60px/60px 1fr;
 ```
+
+
+
+---
+使用小结：
+* 在定义栅格容器的时候，可以指定宽高。相对的是：不指定容器的宽高，直接通过 `grid-template` 系列的属性来间接的声明容器。这两种方式可以用在不同的场景
+* Grid 项目不需要指定宽高。因为已经在声明行列的时候，指明了项目的大小。
+
+
 
 
 
