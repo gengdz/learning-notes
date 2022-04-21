@@ -1,15 +1,23 @@
 # DOM 基础
 
-英文：Document Object Model
+英文：`Document Object Model`
 中文：文档对象模型
 
-DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问和操作 HTML 文档的标准方法
+DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问和操作 HTML 文档的标准方法。
 
-浏览器在加载页面的时候会生成 DOM 对象，以供我们使用 JS 控制页面元素
+浏览器在加载页面的时候会生成 DOM 对象，以供我们使用 JS 控制页面元素。
 
 
 
 ## 基础知识
+
+### 名称介绍
+* **文档**：**一个页面就是一个文档**，DOM 中使用 *document* 表示
+* **元素**：页面中的所有**标签都是元素**，DOM 中使用 *element* 表示
+* **节点**：网页中的**所有内容都是节点**（标签、属性、文本、注释等），DOM 中使用 *node* 表示
+
+在 DOM 中以上内容都看成是对象。
+
 
 
 ### 操作时机
@@ -150,7 +158,7 @@ h1.title = 'sssss' // 鼠标放上去的时候就会提示文字
 
 | nodeType | 说明                                   |
 | -------- | -------------------------------------- |
-| 1        | 标签元素节点                           |
+| 1        | **标签元素节点**                       |
 | 2        | 属性节点                               |
 | 3        | 文本节点。其中需要注意「空白文本节点」 |
 | 8        | 注释节点                               |
@@ -168,8 +176,6 @@ h1.title = 'sssss' // 鼠标放上去的时候就会提示文字
 | 2        | 属性值    |
 | 3        | 文本内容  |
 | 8        | 注释内容  |
-
-
 
 
 
@@ -231,7 +237,7 @@ console.groupEnd('ul-> element', )
 
 ## 节点选取
 
-### `getElement/getElements`
+### `getElement/getElements` 系列
 
 #### `getElementById(id)`
 
@@ -269,7 +275,7 @@ const divs = document.getElementsByClassName('class1 class2')
 
 
 
-### 样式选择器
+### 样式选择器 系列
 
 #### `querySelector()`
 
@@ -308,6 +314,23 @@ console.log(span)
 
 用法和上面一样
 
+
+
+### 获取特殊元素（body、html）系列
+
+#### 获取 body 元素
+
+```html
+document.body // 返回 body 元素对象
+```
+
+
+
+#### 获取 html 元素
+
+```html
+document.documentElement
+```
 
 
 
@@ -361,6 +384,8 @@ ul.addEventListener('click', function () {
 ### `innerText | textContent`
 
 获取和设置文本内容。
+
+interText 不能识别 HTML 标签，会去除空格和换行。
 
 ```js
 h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
@@ -569,6 +594,10 @@ function add(total, pieceCount) {
 ## 元素特征
 
 标准属性我们可以直接使用 DOM 属性的方式进行操作，但对于非标准的属性无法通过这种方式设置
+
+
+
+### 基础操作
 
 可以理解为元素的属性分两个地方保存，DOM 属性中记录标准属性，特征中记录标准和定制属性
 

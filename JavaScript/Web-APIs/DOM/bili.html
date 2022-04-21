@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bili</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      width: 300px;
+      height: 300px;
+      background: pink;
+    }
+
+    .triangle-up {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid red;
+    }
+
+    .triangle-down {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-top: 100px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    这是主要区域
+    <!-- <input type="number"> -->
+    <!-- <i class="triangle-up"></i> -->
+    <!-- <i class="triangle-down"></i> -->
+    <!-- <button>加速</button> -->
+    <div>xxxxxx</div>
+    <span></span><span></span>
+    <div>xxxxxx</div>
+
+
+  </main>
+  <script>
+    const main = document.querySelector('main');
+    const button = document.createElement('button');
+    const btn2 = `<button style="width:100px; height:100px; ">加速2</button>`
+    button.innerHTML = '加速';
+    button.draggable = true;
+    button.style.background = 'red';
+    button.style.width = '100px'
+    button.style.height = '100px'
+    button.onclick = function () {
+      alert('加速了')
+    }
+    main.append(button);
+    main.insertAdjacentHTML('beforebegin', btn2)
+
+    // main.insertAdjacentHTML('beforeend', '<button class="my-control-speed">加速</button>')
+  </script>
+</body>
+
+</html>
