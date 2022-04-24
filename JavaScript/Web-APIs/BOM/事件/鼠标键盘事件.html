@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>键盘事件</title>
+</head>
+<style>
+  article {
+    padding: 100px
+  }
+
+  .con {
+    display: none;
+    position: relative;
+    width: 300px;
+    height: 20px;
+    border: solid 1px pink;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px 0px grey;
+  }
+
+  .con::after {
+    display: none;
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 10px;
+    bottom: -8px;
+    border-top: solid 8px white;
+    border-left: solid 8px transparent;
+    border-right: solid 8px transparent;
+  }
+</style>
+
+<body>
+  <article>
+    <div class="con"></div>
+    <input type="text">
+  </article>
+
+  <script>
+    const input = document.querySelector('input');
+    const content = document.querySelector('.con')
+
+    input.addEventListener('keyup', e => {
+      console.log('eee', input.value.length)
+      content.style.display = input.value.length > 0 ? 'block' : 'none';
+      content.innerHTML = input.value;
+    })
+
+    input.addEventListener('focus', e => {
+      content.style.display = input.value.length > 0 ? 'block' : 'none';
+    })
+
+    input.addEventListener('blur', e => {
+      content.style.display = 'none';
+    })
+
+  </script>
+</body>
+
+</html>
