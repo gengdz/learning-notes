@@ -311,14 +311,16 @@ iframePage.html
 ### location 属性
 用于 URL 相关的操作。
 
-| 属性                | 作用                                  |
-| ------------------- | ------------------------------------- |
-| `location.href`     | 获取当前页面的 url 或者跳转到新的 url |
-| `location.hostname` | 获取 url 中主机部分                   |
-| `location.pathname` | 获取 url 中路径部分                   |
-| `location.search`   | 返回参数                              |
-| `location.hash`     | 返回 #后面内容 常用于锚点链接         |
-| `location.reload()` | 刷新当前页面                          |
+| 属性和方法           | 作用                                               |
+| -------------------- | -------------------------------------------------- |
+| `location.href`      | 获取当前页面的 url 或者跳转到新的 url              |
+| `location.hostname`  | 获取 url 中主机部分                                |
+| `location.pathname`  | 获取 url 中路径部分                                |
+| `location.search`    | 返回参数                                           |
+| `location.hash`      | 返回 #后面内容 常用于锚点链接                      |
+| `location.assign()`  | 跟 href 一样，跳转页面。记录浏览历史，可以后退页面 |
+| `location.replace()` | 替换当前页面，不记录浏览历史，所以不能后退         |
+| `location.reload()`  | 刷新当前页面                                       |
 
 
 
@@ -328,7 +330,7 @@ iframePage.html
 | -------------------------------------- | -------- |
 | `history.back()`                       | 后退 <-  |
 | `history.forward()`                    | 前进 ->  |
-| `history.go()`                         | 任意跳转 |
+| `history.go(number)`                   | 任意跳转 |
 | `history.pushState(data,title,url)`    | 手动添加 |
 | `history.replaceState(data,title,url)` | 手动替换 |
 
@@ -337,11 +339,11 @@ iframePage.html
 ### Navigator 属性
 用户浏览器相关的信息
 
-| 属性                                                    | 作用         |
-| ------------------------------------------------------- | ------------ |
-| `navigator.userAgent`                                   |              |
-| `navigator.geolocation.getCurrentPosition(console.log)` | 设备地理位置 |
-|                                                         |              |
+| 属性                                                    | 作用                           |
+| ------------------------------------------------------- | ------------------------------ |
+| `navigator.userAgent`                                   | 版本信息，（操作系统，浏览器） |
+| `navigator.geolocation.getCurrentPosition(console.log)` | 设备地理位置                   |
+|                                                         |                                |
 
 
 
@@ -355,3 +357,26 @@ iframePage.html
 | `screen.height` | 屏幕高度 |
 |                 |          |
 
+
+
+## PC 端网页特效
+
+### 元素偏移量 offset 系列
+
+获取元素的偏移和大小。
+
+* 获取元素距离带有定位父元素的位置
+* 获得元素自身的大小（宽度高度）
+* 返回的数值都不带单位
+
+| 属性                   | 作用                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `element.offsetParent` | 返回作为该元素带有定位的父级元素，如有父级都没有定位则返回 body |
+| `element.offsetTop`    | 返回元素相对带有定位的父级元素上方的偏移                     |
+| `element.offsetLeft`   | 返回元素相对带有定位的父级元素左边的偏移                     |
+| `element.offsetWidth`  | 返回自身包括 padding、边框、内容区的宽度                     |
+| `element.offsetHeight` | 返回自身包括 padding、边框、内容区的高度                     |
+
+
+
+offset 与 style 区别
