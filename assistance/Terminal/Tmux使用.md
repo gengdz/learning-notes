@@ -1,34 +1,50 @@
 # Tmux
 ## Tmux 的几个概念
+
 一个 session 下面可以有几个 window，一个 window 可以分割几个 pane。
 
 
 
 ### session
-接入会话
+Ctrl+b s：列出所有会话。
+Ctrl+b $：重命名当前会话。
+
+#### 接入会话
+
 ```bash
 # 使用会话名称
 tmux attach -t <session-name>
 ```
 
-分离对话
+
+
+#### 分离对话
+
 快捷键 `Ctrl+b d`
 ```bash
 tmux detach
 ```
 
-新建会话
+
+
+#### 新建会话
+
 ```bash
 tmux new -s sessionName
 ```
 
-杀死会话
+
+
+#### 杀死会话
+
 ```bash
 # 使用会话名称
 tmux kill-session -t <session-name>
 ```
 
-切换对话
+
+
+#### 切换对话
 ```bash
 tmux switch -t sessionName
 ```
