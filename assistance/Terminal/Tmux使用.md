@@ -52,34 +52,52 @@ tmux switch -t sessionName
 
 
 ### window
-一、新建 window
+#### 新建 window
 ```bash
 tmux new-window -n windowName
 ```
 
-二、window 重命名
+#### window 重命名
 ```bash
 tmux rename-window newName
 ```
 
-三、交换窗口的位置
+#### 交换窗口的位置
 ```bash
 # 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
 tmux swap-window -t note
 ```
 
 
-切换窗口 
+#### 切换窗口 
+* `<P-p/n>` 前一个后一个
+
 ```bash
 tmux select-window -t name
 ```
 
 
+### pane
+
+#### 新增窗格
+* `<P-%>` 竖直分屏
+* `<P-">` 水平分屏
+
+
+#### 关闭窗格
+
+* `<P-x>` 关闭窗格
+
+
+### 窗格大小
+
+* `<P-z>` 最大化窗格 
+
+
+
 ## 一些快捷键或者命令行
 * 翻屏模式 `ctrl + b + [`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
 * 退出翻屏模式 `q`
-* 切换窗口 `ctrl + b + p/n`
-* 最大化窗格：`ctrl + b + z`。
 * 所有 Tmux 命令：`tmux list-commands`
 
 
