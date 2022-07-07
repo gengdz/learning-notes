@@ -45,17 +45,17 @@ set key=value
 
 #### 使用元访问器进行设置
 **作用域**
-vim.o：普通作用域
-vim.g：全局作用域
-vim.b：缓冲区作用域 
-vim.w：窗口作用域
+* `vim.o`：普通作用域
+* `vim.g`：全局作用域
+* `vim.b`：缓冲区作用域 
+* `vim.w`：窗口作用域
 
 
 
 **配置项**
-vim.o：普通作用域
-vim.bo：缓冲区配置项（buffer-options)
-vim.wo：窗口配置项
+* `vim.o`：普通作用域
+* `vim.bo`：缓冲区配置项（buffer-options)
+* `vim.wo`：窗口配置项
 
 
 一些配置
