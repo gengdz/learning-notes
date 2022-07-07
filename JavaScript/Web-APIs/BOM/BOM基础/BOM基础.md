@@ -45,6 +45,8 @@ window 对象的特点：
 
 
 #### 窗口加载事件
+当整个页面及所有依赖资源如样式表和图片都已完成加载时，将触发 load 事件。
+
 ```ts
 window.addEventListener('load', function() {})
 
