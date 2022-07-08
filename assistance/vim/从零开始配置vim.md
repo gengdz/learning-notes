@@ -1,14 +1,73 @@
-# 从零开始配置vim
+# 从零开始配置 vim
+
+## 改键
+分两步走：
+1. Mac 键盘设置切换上一个输入法为：`<Ctrl-Option-Command-0>`。
+2. 在 `karabiner element` 的配置项 `～/.config/karabiner/karabiner.json` 中配置如下内容：
+    ```json
+      {
+        "description": "单击shift切换输入法",
+        "manipulators": [
+            {
+                "from": {
+                    "key_code": "left_shift"
+                },
+                "to": [
+                    {
+                        "key_code": "left_shift"
+                    }
+                ],
+                "to_if_alone": [
+                    {
+                        "key_code": "0",
+                        "modifiers": [
+                            "left_control",
+                            "left_option",
+                            "left_command"
+                        ]
+                    }
+                ],
+                "type": "basic"
+            },
+            {
+                "from": {
+                    "key_code": "right_shift"
+                },
+                "to": [
+                    {
+                        "key_code": "right_shift"
+                    }
+                ],
+                "to_if_alone": [
+                    {
+                        "key_code": "0",
+                        "modifiers": [
+                            "left_control",
+                            "left_option",
+                            "left_command"
+                        ]
+                    }
+                ],
+                "type": "basic"
+            }
+        ]
+      }
+    ```
+
+
 
 ## 配置文件
 neovim 想要加载 vimscript 配置。可以将文件放在：`~/.config/nvim/init.vim`
 neovim 想要加载 lua 配置，可以将文件放在：`~/.config/nvim/init.lua` 中。
 
 
+
 ## set 语句
 ```bash
 set attribute
 ```
+
+
 
 ### 设置布尔值
 ```bash
@@ -20,10 +79,12 @@ vim set number?
 ```
 
 
+
 ### 设置键值对
 ```bash
 set key=value
 ```
+
 
 
 ### lua 设置
@@ -63,11 +124,6 @@ set key=value
 vim.o.syntax = "enable"
 vim.o.number = true
 ```
-
-
-
-
-
 
 
 
