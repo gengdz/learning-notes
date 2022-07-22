@@ -137,6 +137,7 @@ vim.o.number = true
 * `backspace` 键对应 `<bs>` 
 * `Enter` 键对应 `<cr>` 
 * `f1` 到 `f12` 对应 `<f1>` 到 `<f12>` 
+* 其他键 `<Left>`  `<Rigth>`  `<End>`  
 
 这些功能功能键与普通字母做配合时，将字母键放入到 `<>` 中，并以 `-` 和功能键做分割，比如：`:map <c-d> dd` 将 `<Ctrl + d>` 映射为 `dd`。
 当然有时为了可读性，可以将功能键用大些字母表示，例如：`<C-d>` 就表示 `<Ctrl + d>`
@@ -201,9 +202,8 @@ neovim 定义了一系列的函数帮助我们定义、获取和删除快捷键
 
 这样我们就可以快速定义快捷键了。
 ```bash
-vim.api.nvim_set_keymap("n", "<leader>ee", ":vs $MYVIMRC<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>ss", ":source $MYVIMRC<CR>:q<CR>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>co", ":vs $MYVIMRC<CR>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>cs", ":source $MYVIMRC<CR>:q<CR>", {silent = true, noremap = true})
 ```
-
 
 
