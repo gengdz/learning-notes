@@ -334,6 +334,10 @@ u 撤销
 
 
 
+* `<C-v>[u]{code}` 通过字符编码，插入字符。通过ga 可以知道某个字符的编码
+* `<C-k>{char1}{char2}` 用二合字母的方式的方式插入非常用字符，比如插入 ½ ，可以使用 `C-k 12`。所有的二合字母可以使用 `:h digraph-table`。比如：ﬁ ，可以使用：`C-k fi`
+
+
 
 ## 可视模式
 
@@ -344,15 +348,16 @@ u 撤销
 
 
 
+
 ## 命令模式
 
 ### 打开文件
 
-* vim test.md 打开这个文件
-* vim + test.md 打开这个文件并将光标置于最后一行
-* vim + n test.md 打开这个文件并将光标置于第 n 行
-* vim + /string test.md 打开这个文件并高亮 string 按 n 进行切换 
-* vim test1.md test2.md 代表同时打开多个文件 
+* `vim test.md` 打开这个文件
+* `vim + test.md` 打开这个文件并将光标置于最后一行
+* `vim + n test.md` 打开这个文件并将光标置于第 n 行
+* `vim + /string test.md` 打开这个文件并高亮 string 按 n 进行切换 
+* `vim test1.md test2.md` 代表同时打开多个文件 
 * 末行模式下使用 :next 或者 :n 切换到下一个文件 使用 :prev 切换到上一个文件
 
 
