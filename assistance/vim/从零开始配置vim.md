@@ -207,3 +207,58 @@ vim.api.nvim_set_keymap("n", "<leader>cs", ":source $MYVIMRC<CR>:q<CR>", {silent
 ```
 
 
+
+## 缩写
+基本用法：命令中输入 `:iabbrev mian main` 就会做到自动纠正。
+iabbrev 是 `i+ abbrev` 合成的一条命令。
+
+利用这个功能可以做到代码片段的能力。
+
+
+lua 目前没有集成关于缩写的功能，可以使用 vim.cmd 直接执行vim命令
+
+
+
+
+
+## 自动命令
+定义一个自动命令的格式如下:
+`:autocmd type pattern cmd`
+* autocmd: 自动命令以 autocmd 关键字开始，它的作用类似与 js 中定义函数时使用的 function 关键字
+* type: 触发该命令的事件类型
+* pattern: 事件的过滤，根据不同的事件类型有不同的含义
+* cmd : 将要执行的命令
+
+
+使用示例：
+> 打开新文件的时候就创建
+> * `:autocmd BufNewFile * w`
+
+
+> 自动格式化 .html 文件
+> * `:autocmd BufReadPost,BufWritePre *.html normal gg=G`
+
+
+解其他的事件，可以使用 `:help autocmd-events`
+
+
+
+
+## 快捷键配置
+### lua 模块加载
+使用 `require("basic")` 的方式进行模块的加载
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
