@@ -208,6 +208,19 @@ vim.api.nvim_set_keymap("n", "<leader>cs", ":source $MYVIMRC<CR>:q<CR>", {silent
 
 
 
+## 本地设置和全局设置
+set 是做全局选项。
+setlocal 可以设置当前被打开缓冲区的选项。
+
+vimscript 中统一使用 setlocal 来设置本地选项。但是在 lua 中，对窗口值和缓冲区值进行了区分。并且定义了。
+* `vim.api.nvim_buf_set_option` 来设置缓冲区值。
+* `vim.api.nvim_win_set_option` 来设置窗口值。
+
+number 是一个窗口值，我们可以在配置文件中加上一句 `vim.api.nvim_win_set_option(0, 'number', true)` 将0号窗口设置为显示行号。
+
+
+
+
 ## 缩写
 基本用法：命令中输入 `:iabbrev mian main` 就会做到自动纠正。
 iabbrev 是 `i+ abbrev` 合成的一条命令。
@@ -222,6 +235,8 @@ lua 目前没有集成关于缩写的功能，可以使用 vim.cmd 直接执行v
 
 
 ## 自动命令
+从编程的角度来看，自动命令有点类似于事件响应，或者回调函数之类。当外部发生某些事件的时候，自动执行事先定义好的一组命令。
+
 定义一个自动命令的格式如下:
 `:autocmd type pattern cmd`
 * autocmd: 自动命令以 autocmd 关键字开始，它的作用类似与 js 中定义函数时使用的 function 关键字
@@ -241,7 +256,80 @@ lua 目前没有集成关于缩写的功能，可以使用 vim.cmd 直接执行v
 
 解其他的事件，可以使用 `:help autocmd-events`
 
+还有一个很常用的 type 叫做 FileType 事件
+取消 HTML 自动换行的代码做一个改写，改写成使用 FileType
+```bash
+:autocmd FileType html setlocal nowrap
+```
 
+根据不同的语言，定义一个快捷键快速添加注释
+```bash
+:autocmd FileType python nnoremap <buffer> <localleader>c I#<esc> 
+:autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+```
+
+结合之前介绍过的本地缩写的定义，针对不同的文件类型定义不同的缩写
+```bash
+:autocmd FileType c iabbrev <buffer> main int main(int argc, char* argv[]) 
+:autocmd FileType python iabbrev <buffer> main if __name__ == "__main__":
+```
+
+
+
+### 自动命令组
+使用关键字 augroup 来创建一个自动命令组。
+
+分组
+```lua
+augroup testgrp 
+    autocmd BufWrite * echom "hello1" 
+    autocmd BufWrite * echom "hello2"
+augroup END
+```
+
+使用 `autocmd!` 来清除同一组之前的命令。
+
+```lua
+augroup testgrp 
+    autocmd!
+    autocmd BufWrite * echom "hello3"
+augroup END
+```
+
+### 改进自动加载配置文件的操作
+利用自动命令，可以做到配置文件被保存了，就自动加载。
+```bash
+:augroup NVIMRC 
+:    autocmd! 
+:    autocmd BufWritePost init.vim source % 
+:augroup END
+```
+
+
+### 使用 lua 添加自动命令组
+使用新版 neovim api 在 neovim0.7 版本以后，我们可以使用下列 api 来创建并使用自动命令组
+* `vim_create_augroup({name}, {*opts})`: 创建自动命令组，如果创建成功，返回自动命令组的id
+* `nvim_create_autocmd({event}, {*opts})`：创建自动命令。
+
+`nvim_create_augroup` 传递一个自动命令组的名称，另外它可以接受一个 table 作为属性值，目前属性值可以传入一个 clear 的布尔值，相当于是否执行 autocmd! 。
+`nvim_create_autocmd` 第一个参数是一个或者多个事件字符串组成的 table，它的含义与 autocmd 中的事件相同，用的字符串也相同。第二个参数是一个表示属性的 table。常用的有:
+* group: 所属自动命令组
+* pattern: autocmd中的 pattern部分
+* callback: 一个lua的回调函数，当事件发生时，调用该回调函数
+* command : 该字段可以填入一个 vim 命令的字符串，相当于 autocmd 中的 command 部分
+
+在 0.7 以前的版本中无法通过上述 api 来创建自动命令。但是它提供了执行 vim 命令的接口。我们可以使用 vim.cmd 来执行 vim 命令。它接收一个字符串参数，该字符串表示将要执行的 vim 命令。可以使用引号括起来，但是需要对其中的特殊字符进行转义。也可以使用 [[]] 来括起来，此时就不需要进行转义了。使用上述函数我们可以很轻松的实现上面的功能
+
+```lua
+vim.cmd[[
+  augroup NVIMRC
+    autocmd!
+    autocmd BufWritePost init.lua source %
+    autocmd BufReadPost init.lua set path+=**/*
+  augroup END
+]]
+
+```
 
 
 ## 快捷键配置
@@ -251,6 +339,7 @@ lua 目前没有集成关于缩写的功能，可以使用 vim.cmd 直接执行v
 
 
 
+## 
 
 
 
