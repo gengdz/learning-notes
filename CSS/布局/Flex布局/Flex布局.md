@@ -68,6 +68,15 @@ footer section h4 {
 
 
 
+## 实战经验
+如果父元素的大小也是 flex 出来，非固定的，那么子元素也想 `flex: 1` 的话，要加上 `width: 0`，这样才能出现 `文本文本...` 的效果。
+```html
+<>
+
+```
+
+
+
 ## 主要的参考资料有
 
 * [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
