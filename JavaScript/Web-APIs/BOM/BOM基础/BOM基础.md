@@ -310,7 +310,7 @@ iframePage.html
 
 
 
-### location 属性
+### location 
 用于 URL 相关的操作。
 
 | 属性和方法           | 作用                                               |
@@ -326,7 +326,7 @@ iframePage.html
 
 
 
-### Histroy 属性
+### histroy 
 
 | 属性                                   | 作用     |
 | -------------------------------------- | -------- |
@@ -338,18 +338,18 @@ iframePage.html
 
 
 
-### Navigator 属性
+### navigator 
 用户浏览器相关的信息
 
 | 属性                                                    | 作用                           |
 | ------------------------------------------------------- | ------------------------------ |
 | `navigator.userAgent`                                   | 版本信息，（操作系统，浏览器） |
 | `navigator.geolocation.getCurrentPosition(console.log)` | 设备地理位置                   |
-|                                                         |                                |
+| `navigator.clipboard()`                                 | 获取系统剪切板                  |
 
 
 
-### Screen 属性
+### screen 
 用户屏幕相关的信息
 
 
