@@ -6,3 +6,33 @@ background: var(--color-brand1-3);
 background: $color-brand1-3
 
 ```
+
+
+## 变量 $
+
+定义变量：`$apple-color: red`
+使用变量：
+* `山东苹果颜色：$apple-color`
+
+在一个变量中使用另一个变量 `#`
+示例：
+`.#{apple-color}-china: {}`
+
+
+
+## 导入、变量前缀、继承
+```scss
+@import '../../../global.scss';
+
+$class-prefix: 'prefix';
+
+.#{$class-prefix} {
+  &-content {
+    @extend .onter-content;
+  }
+  &-nav {
+    @extend .other-nav;
+  }
+}
+
+```
