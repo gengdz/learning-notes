@@ -55,6 +55,12 @@ const worker = new Worker(new URL('./worker.js', import.meta.url));
 import Worker from './wasted.time.worker.js';
 const worker = new Worker();
 
+
+// 在 vite 中还可以这么使用 。通过 `url?worker`
+import MyWorker from './worker?worker'
+const worker = new MyWorker()
+
+
 ```
 
 
