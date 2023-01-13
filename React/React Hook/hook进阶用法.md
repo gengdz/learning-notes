@@ -1,5 +1,36 @@
 # Hook 进阶用法
 
+
+## useSyncExternalStore
+Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React’s knowledge, you need to manually subscribe your components to it. This is often done with an Effect, 
+
+
+### Usage
+https://beta.reactjs.org/reference/react/useSyncExternalStore#subscribing-to-a-browser-api
+
+```js
+const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
+```
+
+### Parameters 
+`subscribe`: A function that takes a single callback argument and subscribes it to the store. When the store changes, it should invoke the provided callback. This will cause the component to re-render. The subscribe function should return a function that cleans up the subscription.
+
+`getSnapshot`: A function that returns a snapshot of the data in the store that’s needed by the component. While the store has not changed, repeated calls to getSnapshot must return the same value. If the store changes and the returned value is different (as compared by Object.is), React will re-render the component.
+
+*optional* `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If this function is not provided, rendering the component on the server will throw an error.
+
+### Returns 
+The current snapshot of the store which you can use in your rendering logic.
+
+
+### Caveats
+**The store snapshot returned by getSnapshot must be immutable**. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+
+If a different subscribe function is passed during a re-render, React will re-subscribe to the store using the newly passed subscribe function. You can prevent this by declaring subscribe outside the component.
+
+
+
+
 ## 应该使用单个 state 还是多个 state 变量
 在 Class 组件中，我们把所有的 state 放在一个对象中，在 Hook 中，我们可以使用多个 `useState`，那么应该使用一个还是多个呢？
 **推荐用法：**
