@@ -8,12 +8,9 @@
   <title>三角形</title>
   <style>
     main {
-
       background: #fef;
-    }
-
-    main>div {
-      margin: 30px
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
     }
 
     .first {
@@ -31,6 +28,22 @@
       border-left: solid 100px transparent;
       border-right: solid 100px transparent;
       border-bottom: solid 100px pink;
+    }
+
+    .three {
+      width: 0;
+      height: 0;
+      border-top: solid 100px pink;
+      border-left: solid 50px transparent;
+      border-right: solid 50px transparent;
+    }
+
+    .four {
+      width: 100px;
+      height: 100px;
+      background: pink;
+      clip-path: polygon(0 0, 100% 50%, 0% 100%);
+
     }
   </style>
 </head>
