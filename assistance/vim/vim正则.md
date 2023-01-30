@@ -121,10 +121,10 @@ man 被替换成 man,man,what
 
 ### very magic
 
-`\v` very magic 模式，即除了 `_`、数字、字母之外的所有字符都具有特殊含义。
+`\v` very magic 模式，即除了 字母、数字、`_` 之外的所有字符都具有特殊含义。
 
 
 
 ### very magic
 
-`\V` very nomagic 模式，只表示自身，
+`\V` very nomagic 模式，只表示自身，只有反斜杠有特殊的意义
