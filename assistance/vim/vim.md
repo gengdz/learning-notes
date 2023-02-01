@@ -53,6 +53,7 @@ vim 是文本编辑器
 
 
 
+
 ## 光标移动
 
 * i (inner) 表示这个里面的
@@ -328,11 +329,9 @@ u 撤销
 
 
 
-
 ### 补充
 
 如果未保存则会生成 .swap 文件，这时候可以可以使用 `rm test.swap` 就会执行删除操作
-
 
 
 
@@ -352,4 +351,10 @@ u 撤销
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.extandtab = true
-`
+```
+
+
+## 键盘映射
+可以使用命令 `:h key-notation` 来查看对应的映射
+
+
