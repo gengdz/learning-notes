@@ -3,11 +3,12 @@
 
 一个 session 下面可以有几个 window，一个 window 可以分割几个 pane。
 
-
+使用 `C-b ?` 可以查看所有帮助信息
 
 ### session
-Ctrl+b s：列出所有会话。
-Ctrl+b $：重命名当前会话。
+C-b s：列出所有会话。
+
+
 
 #### 接入会话
 
@@ -20,7 +21,8 @@ tmux attach -t <session-name>
 
 #### 分离对话
 
-快捷键 `Ctrl+b d`
+* `C-b d`
+
 ```bash
 tmux detach
 ```
@@ -34,7 +36,6 @@ tmux new -s sessionName
 ```
 
 
-
 #### 杀死会话
 
 ```bash
@@ -44,28 +45,46 @@ tmux kill-session -t <session-name>
 
 
 
-#### 切换对话
+#### 切换会话
+
+* `C-b (` Switch to previous client
+* `C-b )` Switch to next client
+
 ```bash
 tmux switch -t sessionName
 ```
 
 
+#### 重命名会话
+
+* `C-b $`
+
+```bash
+tmux rename-session -t 0 <new-name>
+```
+
+
+#### 快捷键补充
+
+* `C-b s` 列出所有会话
+
+
+
 
 ### window
+
 #### 新建 window
+* `C-b c`
+
 ```bash
 tmux new-window -n windowName
 ```
 
 #### window 重命名
+* `C-b ,`
+
 ```bash
 tmux rename-window newName
-```
-
-#### 交换窗口的位置
-```bash
-# 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
-tmux swap-window -t note
 ```
 
 
@@ -75,6 +94,15 @@ tmux swap-window -t note
 ```bash
 tmux select-window -t name
 ```
+
+
+
+#### 交换窗口的位置
+```bash
+# 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
+tmux swap-window -t note
+```
+
 
 
 ### pane
@@ -94,9 +122,14 @@ tmux select-window -t name
 * `<P-z>` 最大化窗格 
 
 
+### 移动窗格
+
+`<P-h/l/j/k>`
+
+
 
 ## 一些快捷键或者命令行
-* 翻屏模式 `ctrl + b + [`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
+* 翻屏模式 `<P-[`。然后使用 *方向键* 或者使用 *pageUp, pageDown* 进行翻屏
 * 退出翻屏模式 `q`
 * 所有 Tmux 命令：`tmux list-commands`
 
