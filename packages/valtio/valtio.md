@@ -1,6 +1,8 @@
 # valtio
 
-```ts
+## state 和 action 的组织方式 
+
+```tsx
 import { proxy } from 'umi';
  
 // 方法一：放一起
