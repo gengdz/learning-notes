@@ -277,7 +277,10 @@ lua 目前没有集成关于缩写的功能，可以使用 vim.cmd 直接执行v
 
 
 ### 自动命令组
-使用关键字 augroup 来创建一个自动命令组。
+
+使用关键字 `augroup` 来创建一个自动命令组。
+
+如果分组名称相同，那么不会执行覆盖操作，而是执行追加操作。
 
 分组
 ```lua
@@ -296,7 +299,10 @@ augroup testgrp
 augroup END
 ```
 
+
+
 ### 改进自动加载配置文件的操作
+
 利用自动命令，可以做到配置文件被保存了，就自动加载。
 ```bash
 :augroup NVIMRC 
@@ -306,16 +312,18 @@ augroup END
 ```
 
 
+
 ### 使用 lua 添加自动命令组
 使用新版 neovim api 在 neovim0.7 版本以后，我们可以使用下列 api 来创建并使用自动命令组
 * `vim_create_augroup({name}, {*opts})`: 创建自动命令组，如果创建成功，返回自动命令组的id
 * `nvim_create_autocmd({event}, {*opts})`：创建自动命令。
 
 `nvim_create_augroup` 传递一个自动命令组的名称，另外它可以接受一个 table 作为属性值，目前属性值可以传入一个 clear 的布尔值，相当于是否执行 autocmd! 。
+
 `nvim_create_autocmd` 第一个参数是一个或者多个事件字符串组成的 table，它的含义与 autocmd 中的事件相同，用的字符串也相同。第二个参数是一个表示属性的 table。常用的有:
 * group: 所属自动命令组
-* pattern: autocmd中的 pattern部分
-* callback: 一个lua的回调函数，当事件发生时，调用该回调函数
+* pattern: autocmd 中的 pattern 部分
+* callback: 一个 lua 的回调函数，当事件发生时，调用该回调函数
 * command : 该字段可以填入一个 vim 命令的字符串，相当于 autocmd 中的 command 部分
 
 在 0.7 以前的版本中无法通过上述 api 来创建自动命令。但是它提供了执行 vim 命令的接口。我们可以使用 vim.cmd 来执行 vim 命令。它接收一个字符串参数，该字符串表示将要执行的 vim 命令。可以使用引号括起来，但是需要对其中的特殊字符进行转义。也可以使用 [[]] 来括起来，此时就不需要进行转义了。使用上述函数我们可以很轻松的实现上面的功能
@@ -329,25 +337,22 @@ vim.cmd[[
   augroup END
 ]]
 
+local nvimrc = vim.api.nvim_create_augroup("NVIMRC", {clear = true})
+vim.api.nvim_create_autocmd({"BufReadPost"}, {
+    pattern = "init.lua",
+    group = nvimrc,
+    command = "source %"
+    callback = function()
+      vim.o.path = vim.o.path ..",**/*"
+    end
+  })
 ```
 
 
 ## 快捷键配置
+
 ### lua 模块加载
 使用 `require("basic")` 的方式进行模块的加载
-
-
-
-
-## 
-
-
-
-
-
-
-
-
 
 
 
