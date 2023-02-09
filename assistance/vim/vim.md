@@ -178,10 +178,10 @@ u 撤销
 
 ## 代码
 
-* zc 折叠代码块
-* zo 展开代码块
-* zC 折叠所有代码块
-* zO 展开所有代码块
+* zc 折叠光标下代码块 close one fold under the cursor
+* zC 递归折叠光标下的所有代码块 Open all folds under the cursor recursively
+* zo 展开代码块 open one fold under the cursor
+* zO 递归展开光标下的所有代码块
 * = 格式化代码
 * zM 折叠所有（折叠更多，more）
 * zR 打开所有折叠（reduce）
