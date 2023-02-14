@@ -48,7 +48,8 @@ vim.g.im_select_default = "com.apple.keylayout.ABC"
   { "ggandor/flit.nvim", enabled = false },
 
 ```
-## 默认快捷键的禁用
+## LSP 快捷键的禁用
+LSP 快捷键 的禁用必须要使用 init 函数。同时如果 mode 不是 normal，那么要显式写明 mode。
 
 ```lua
 init = function()
@@ -56,6 +57,7 @@ init = function()
   -- disable a keymap
   keys[#keys + 1] = { "K", false }
   keys[#keys + 1] = { "gt", false }
+  keys[#keys + 1] = { "<c-k>", false, mode = "i" }
   keys[#keys + 1] = { "gh", vim.lsp.buf.hover, desc = "Hover" }
 end,
 
