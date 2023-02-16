@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.wrap = false
     vim.opt_local.spell = false
+    vim.wo.conceallevel = 0
   end,
 })
 
