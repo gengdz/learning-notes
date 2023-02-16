@@ -2,7 +2,7 @@
 
 ## 分支出现的意义？
 
-分支就是保证 master上始终是干净的，可运行的，可靠的代码，如果要新加功能的的话，如加入 bbs 功能或者 ask 功能的时候，这时候就需要用到分支
+分支就是保证 master 上始终是干净的，可运行的，可靠的代码，如果要新加功能的的话，如加入 bbs 功能或者 ask 功能的时候，这时候就需要用到分支
 
 
 
@@ -21,34 +21,37 @@
 说明：
 * 该命名规范只针对新建的临时分支，其他常驻分支如 master develop 不受影响
 * 在工程领域中为了区别发布资源的版本，往往还需要在分支中加入版本的信息。例如 DEF 平台中对于分支命名的要求为：`{prefix}/{semver}`
- `prefix`：用于简要描述迭代信息，命名遵循本节定义的 {type}-{issue id}-the-thing-you-do 规范
+ `prefix`：用于简要描述迭代信息，命名遵循本节定义的 `{type}-{issue id}-the-thing-you-do` 规范
  `semver`：本次发布的迭代版本号，格式需要遵循 [semantic version](https://semver.org/lang/zh-CN/?spm=a2o8t.11089562.0.0.ea766654D5ovLk)
  比如以下格式都满足规范
   * `feat-TagInput/1.0.0`：新增 TagInput 功能, 迭代版本号为 1.0.0
   * `fix-TagInput-style/1.0.0`：修复 TagInput 样式问题，迭代版本号为 1.0.0
+
+
 
 ## 分支常用命令
 
 | 命令                                | 说明/场景                        |
 | ----------------------------------- | -------------------------------- |
 | `git branch`                        | 查看分支                         |
-| `git brahch -a`                       | 查看本地和远程分支               |
-| git branch home                     | 创建 home 分支                   |
-| git checkout home                   | 切换分支                         |
-| git checkout -b home                | 创建并切换到home分支             |
-| git merge home                      | 合并home分支到主分支             |
-| git branch - d ask                  | 删除ask分支                      |
-| git branch -D ask                   | 删除没有合并的ask分支            |
-| git branch --merged                 | 查看已合并的分支                 |
-| git branch --no-merged              | 查看未合并的分支                 |
-| git rebase master/ git merge master | (git replace base)  更新分支代码 |
+| `git brahch -a`                     | 查看本地和远程分支               |
+| `git branch home`                   | 创建 `home ` 分支               |
+| `git checkout home`                 | 切换分支                         |
+| `git checkout -b home`              | 创建并切换到 `home` 分支         |
+| `git merge home`                    | 合并 `home` 分支到主分支         |
+| `git branch - d ask`                | 删除 `ask` 分支                  |
+| `git branch -D ask`                 | 删除没有合并的 `ask` 分支        |
+| `git branch --merged`               | 查看已合并的分支                 |
+| `git branch --no-merged`            | 查看未合并的分支                 |
+| `git rebase master` /  `git merge master ` | ( `git replace base` )  更新分支代码 |
 
 
 ## 分支冲突
 
 ### 分支产生的原因？
 
-两个分支都对同一个文件进行的改动，那么当先合并home分支的时候是没有冲突产生的，然后再合并company分支的时候就会产生冲突
+两个分支都对同一个文件进行的改动，那么当先合并 home 分支的时候是没有冲突产生的，然后再合并 company 分支的时候就会产生冲突
+
 
 ### 解决方案
 
@@ -64,19 +67,20 @@
 >
 > git remote show origin
 
+
 | 命令                                                         | 用法                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1. git push -u origin home<br> 2. git push --set-upstream origin test<br> 3. git branch --set-upstream-to=origin/company company | 创建远程home分支并和本地home分支联系起来                     |
-| git push origin --delete home                                | 删除远程的home分支                                           |
-| git pull origin home:home                                    | 把远程的home分支的代码拉取到本地，<br />如果本地没有home分支那么自动创建 |
-| git checkout -b home origin/home                             | 在本地创建home分支并和远程的home分支联系起来                 |
-| git push -u origin home                                      | 1.创建远程home分支 2.将本地home代码推送到远程home            |
-| git branch –-set-upstream-to=origin/home                     | 把本地home分支和远程home分支相关联                           |
+| 1. `git push -u origin home`<br> 2. `git push --set-upstream origin test`<br> 3. `git branch --set-upstream-to=origin/company company` | 创建远程 `home` 分支并和本地 `home` 分支联系起来                     |
+| `git push origin --delete home`                                | 删除远程的 `home` 分支                                           |
+| `git pull origin home:home`                                    | 把远程的 `home` 分支的代码拉取到本地，<br />如果本地没有 `home` 分支那么自动创建 |
+| `git checkout -b home origin/home`                             | 在本地创建 `home` 分支并和远程的 `home` 分支联系起来                 |
+| `git push -u origin home`                                      | 1.创建远程 `home` 分支 2.将本地 `home` 代码推送到远程 `home`             |
+| `git branch --set-upstream-to=origin/home`                     | 把本地 `home` 分支和远程 `home` 分支相关联                           |
 
 > 说明：
 >
-> * git pull 的完整写法为 `git pull origin remotehome:home` 将远程的home分支拉取到本地的home分支
-> * git push 的完整写法为 `git push origin localhome:home` 将本地的home分支推送到远程的home分支。第一个localhome为本地的home，第二个home为远程的home 
+> * `git pull` 的完整写法为 `git pull origin remotehome:home` 将远程的 home 分支拉取到本地的 home 分支
+> * `git push` 的完整写法为 `git push origin localhome:home` 将本地的 home 分支推送到远程的 home 分支。第一个localhome为本地的 home ，第二个 home 为远程的 home  
 
 
 
