@@ -24,7 +24,7 @@
 
 
 
-```ts
+```typescript
 const data = {
   name: 'gengdezhou',
   age: 18,

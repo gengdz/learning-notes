@@ -8,7 +8,7 @@ Sometimes, your components may need to subscribe to some data outside of the Rea
 ### Usage
 https://beta.reactjs.org/reference/react/useSyncExternalStore#subscribing-to-a-browser-api
 
-```js
+```javascript
 const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
 ```
 

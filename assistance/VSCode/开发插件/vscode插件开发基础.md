@@ -47,7 +47,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 ### `package.json`
 
-```json
+```javascript
 {
   // 扩展的激活事件
   "activationEvents": [

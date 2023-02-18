@@ -124,7 +124,7 @@ p.then(data => console.log(data))
 
 使用 Promise.race 封装一个请求超时
 
-```js
+```javascript
 function requestWithTimeout(promise, waitTime) {
   const timeoutPromise = new Promise((resolve, reject) =>
     setTimeout(() => reject(Error('request timeout')), waitTime)

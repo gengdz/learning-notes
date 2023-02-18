@@ -10,7 +10,7 @@ substring(start: number, end?: number): string;
 * 包含 start，不包含 end
 * 不会改变原数组
 * 如果只有 start，那么将从 start 开始，截取到最后
-```js
+```javascript
 const str = 'gengdezhou'
 console.log(str.substring(2, 5), str) //=> ngd gengdezhou 
 console.log(str.substring(2), str) //=> ngdezhou
@@ -25,7 +25,7 @@ substr(from: number, length?: number): string;
 * 包含 from，第二个参数为截取的长度
 * 如果只有 from，那么将从 from 开始，截取到最后
 
-```js
+```javascript
 console.log(str.substr(2, 3), str) //=> ngd gengdezhou
 console.log(str.substr(2), str) //=> ngdezhou gengdezhou
 ```
@@ -47,7 +47,7 @@ padStart(maxLength: number, fillString?: string): string;
 * 第一个参数为补全之后字符串的长度
 * 第二个参数为用来补全的字符串
 
-```js
+```javascript
 console.log(str.padStart(100, '   xx  '), str);
 console.log(str.padEnd(100, '   xx  '), str);
 ```

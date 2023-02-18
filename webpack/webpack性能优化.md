@@ -53,7 +53,7 @@ terser-webpack-plugin：压缩ES6版本的JS代码
 
 
 ### 分割代码
-```js
+```javascript
  optimization: {
         runtimeChunk: { name: "manifest" }, // 抽离WebpackRuntime函数
         splitChunks: {

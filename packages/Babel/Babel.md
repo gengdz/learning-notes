@@ -54,7 +54,7 @@ Preset 的顺序则刚好相反(从最后一个逆序执行)
 把所有的 `a` 变成 'b'
 
 接收了当前 Babel 对象作为参数的 Function 开始
-```js
+```javascript
 export default function({ types: t }) {
   return {
     visitor: {

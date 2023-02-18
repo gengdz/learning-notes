@@ -26,7 +26,7 @@ Fiber 可以理解为划分一个个更小的执行单元，把一个大任务�
 ### 一种数据结构
 Fiber 还可以理解为是一种数据结构，React Fiber 就是采用链表实现的。每个 Virtual DOM 都可以表示为一个 Fiber。
 
-```js
+```javascript
 Fiber = {
     // 标识 fiber 类型的标签，详情参看下述 WorkTag
     tag: WorkTag,

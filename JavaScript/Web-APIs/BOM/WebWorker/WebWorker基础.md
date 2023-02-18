@@ -19,7 +19,7 @@
 ### webpack4 项目
 需要使用 `worker-loader`。
 worker-loader 配置
-```ts
+```typescript
 //配置worker-loader
 module.exports = {
     ...,
@@ -35,7 +35,7 @@ module.exports = {
 ```
 
 
-```ts
+```typescript
 import Worker from './wasted.time.worker.js';
 //在主线程中使用web worker
 const worker = new Worker();
@@ -47,7 +47,7 @@ worker.onmessage = e => {
 
 
 ### webpackt5/vite
-```ts
+```typescript
 // 方法一
 const worker = new Worker(new URL('./worker.js', import.meta.url));
 

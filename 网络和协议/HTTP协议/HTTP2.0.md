@@ -40,7 +40,7 @@ HTTP1.x 版本中，对于同一个协议、域名、端口，浏览器允许同
 ## 怎么使用 HTTP2.0?
 客户端：更新你的客户端
 Nginx: 更改配置。 
-```js
+```javascript
 server
 {
     listen 443 ssl http2; // 看这里

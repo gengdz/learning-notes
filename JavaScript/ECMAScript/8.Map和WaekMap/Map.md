@@ -56,7 +56,7 @@ map1.has('string') // true
 
 `get(key)`
 
-```js
+```javascript
 map1.get('string') // 字符串作为 key
 ```
 
@@ -66,7 +66,7 @@ map1.get('string') // 字符串作为 key
 
 `delete(key)`
 
-```js
+```javascript
 map1.delete('string');
 ```
 
@@ -76,7 +76,7 @@ map1.delete('string');
 
 `clear()`
 
-```js
+```javascript
 map1.clear();
 ```
 

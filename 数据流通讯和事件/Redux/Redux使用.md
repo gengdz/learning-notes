@@ -28,7 +28,7 @@ const result: any = useSelector(selector: Function, equalityFn?: Function)
 
 
 ## connect 方法
-```js
+```javascript
 const VisibleTodoList = connect(
   mapStateToProps,
   mapDispatchToProps

@@ -16,7 +16,7 @@
 
 `Array` 就是一个 type constructor 。Array 本身不能直接作为某个值的类型使用，它必须接受另外一个 type。
 
-```ts
+```typescript
 const arr: Array = [ '1' ]; // 这里会报错，Generic type 'Array<T>' requires 1 type argument(s)
 
 const arr1: Array<string> = ['1']; // 这种正确
@@ -40,7 +40,7 @@ typeclass 可以想象成一个个社团。比如 Eq 社、Show 社。如果想�
 没找到比较好的定义。
 我理解就是：类型类规定的函数，我们针对自己的数据结构，给出实现。
 
-```ts
+```typescript
 // 这里就是为 number 类型提供了 Ord 的 instance 
 // 这里是 number 类型的 Ord 实例
 const ordNumDesc: ord.Ord<number> = {
@@ -50,7 +50,7 @@ const ordNumDesc: ord.Ord<number> = {
 
 下面是一些实例。
 
-```ts
+```typescript
 export const Pointed: Pointed1<URI> = {
   URI,
   of
@@ -59,7 +59,7 @@ export const Pointed: Pointed1<URI> = {
 
 
 
-```ts
+```typescript
 export const Functor: Functor1<URI> = {
   URI,
   map: _map
@@ -68,7 +68,7 @@ export const Functor: Functor1<URI> = {
 
 
 
-```ts
+```typescript
 export const Apply: Apply1<URI> = {
   URI,
   map: _map,
@@ -78,7 +78,7 @@ export const Apply: Apply1<URI> = {
 
 
 
-```ts
+```typescript
 export const Applicative: Applicative1<URI> = {
   URI,
   map: _map,
@@ -89,7 +89,7 @@ export const Applicative: Applicative1<URI> = {
 
 
 
-```ts
+```typescript
 export const Chain: Chain1<URI> = {
   URI,
   map: _map,
@@ -100,7 +100,7 @@ export const Chain: Chain1<URI> = {
 
 
 
-```ts
+```typescript
 export const Monad: Monad1<URI> = {
   URI,
   map: _map,
@@ -112,7 +112,7 @@ export const Monad: Monad1<URI> = {
 
 
 
-```ts
+```typescript
 export const Foldable: Foldable1<URI> = {
   URI,
   reduce: _reduce,
@@ -123,7 +123,7 @@ export const Foldable: Foldable1<URI> = {
 
 
 
-```ts
+```typescript
 export const Traversable: Traversable1<URI> = {
   URI,
   map: _map,
@@ -139,7 +139,7 @@ export const Traversable: Traversable1<URI> = {
 
 
 ## 导入方式
-```ts
+```typescript
 // 第一种导入方式
 import { option } from 'fp-ts';
 
@@ -154,7 +154,7 @@ import { flow, pipe } from 'fp-ts/function'
 ## 类型模块
 
 ### Identity
-```ts
+```typescript
 const func = flow(
   makUrl,
   ID.bindTo("url"),
@@ -169,7 +169,7 @@ const func = flow(
 #### `bindTo`
 接受两个参数，返回一个对象。 `{ firstParam: second }`。等价于 ramda 中的 `objOf`
 
-```ts
+```typescript
 const learnBindTo = ID.bindTo("name")("gengdezhou"); // { name: 'gengdezhou' }
 
 ```
@@ -178,7 +178,7 @@ const learnBindTo = ID.bindTo("name")("gengdezhou"); // { name: 'gengdezhou' }
 #### `bind`
 先接收两个参数，再接收一个参数，返回一个对象。
 使用这个对象，生成一个值。然后把这个值赋给第一个 key，然后合并成一个对象。
-```ts
+```typescript
 const learnBind = ID.bind(
   "result",
   flow((x) => x.url, requestSync, handleResponse)
@@ -196,7 +196,7 @@ learnBind  // { url: "ss", result: "on" }
 #### `lookup`
 查找对象中的某个属性，返回值为 Option 类型。
 
-```ts
+```typescript
 const mapToDobule: A1 = (key) => (obj) =>
   pipe(
     obj,
@@ -213,7 +213,7 @@ const mapToDobule: A1 = (key) => (obj) =>
 
 #### `Do`
 构建一个 Some 类型的空对象
-```ts
+```typescript
 const a = O.Do // {_tag: "Some", value: {}}
 ```
 
@@ -221,7 +221,7 @@ const a = O.Do // {_tag: "Some", value: {}}
 
 #### `apS`
 接收一个 key 和一个 Option 值，再接收一个 Option 对象。合并成一个对象。 
-```ts
+```typescript
 O.apS("age", O.some(18))(O.some({name: 'name'})); // Some({age: 18, name: 'name'})
 ```
 
@@ -229,7 +229,7 @@ O.apS("age", O.some(18))(O.some({name: 'name'})); // Some({age: 18, name: 'name'
 
 #### `ap`
 接收一个包着的值和一个包着的函数，然后把值作用在函数上。
-```ts
+```typescript
 const apAdd: A3 = (oneKey, twoKey) => (obj) =>
   pipe(
     O.of((x: number) => (y: number) => x + y),
@@ -257,14 +257,14 @@ const apAdd: A3 = (oneKey, twoKey) => (obj) =>
 
 
 ### Eq
-```ts
+```typescript
 interface Eq<A> {
   readonly equals: (x:A, y:A) => boolean
 }
 ```
 
 生成实例
-```ts
+```typescript
 const eqNumber: Eq<number> = {
   equals: (x, y) => x === y
 }
@@ -277,7 +277,7 @@ const eqNumber: Eq<number> = {
 
 
 ### Ord
-```ts
+```typescript
 type Ordering = -1 | 0 | 1
 
 interface Ord<A> extends Eq<A> {
@@ -292,7 +292,7 @@ interface Ord<A> extends Eq<A> {
 
 
 #### `fromCompare`
-```ts
+```typescript
 const ordNumDesc: ord.Ord<number> = {
   compare: (second) => (first) =>
     second === first ? 0 : second > first ? 1 : -1
@@ -307,7 +307,7 @@ const ordNumDesc1: ord.Ord<number> = ord.fromCompare((second) => (first) =>
 
 
 ### Semigroup
-```ts
+```typescript
 interface Semigroup<A> {
   concat: (x: A, y: A) => A
 }
@@ -317,7 +317,7 @@ interface Semigroup<A> {
 
 
 实现半群 `(number, *)`
-```ts
+```typescript
 const semigroupProduct: Semigroup<number> = {
   concat: (x, y) => x * y
 }
@@ -325,14 +325,14 @@ const semigroupProduct: Semigroup<number> = {
 
 
 ### Monoid
-```ts
+```typescript
 interface Monoid<A> extends Semigroup<A> {
   readonly empty: A
 }
 ```
 
 实例
-```ts
+```typescript
 const monoidSum: Monoid<number> = {
   concat: (x, y) => x + y,
   empty: 0
@@ -361,7 +361,7 @@ const monoidString: Monoid<string> = {
 还有一个 组合 的函数。
 
 
-```ts
+```typescript
 function compose<A, B, C>(g: (b: B) => C, f: (a: A) => B): (a: A) => C {
   return a => g(f(a))
 }
@@ -383,14 +383,14 @@ function compose<A, B, C>(g: (b: B) => C, f: (a: A) => B): (a: A) => C {
 现在的链路是：`A -> Fb` -> `Fb -> Fc（也就是 B）` -> `B -> C`
 
 找到一个这样的 lift
-```ts
+```typescript
 function lift<B, C>(g: (b: B) => C): (fb:Option<B>) => Option<C> {
   return fb => (isNone(fb) ? none : some(g(fb.value)))
 }
 ```
 
 总结下来 lift 的签名如下：
-```ts
+```typescript
 lift: <A, B>(f: (a: A) => B) => ((fa: F<A>) => F<B>)
 ```
 
@@ -401,7 +401,7 @@ lift: <A, B>(f: (a: A) => B) => ((fa: F<A>) => F<B>)
 ### Applicative
 在 Funcor 的基础上实现了 `ap` 就是 `Apply`。 在 `Apply` 的基础上实现了 `of` 就是 `Applicative`
 
-```ts
+```typescript
 const applicativeOption = {
   map: <A, B>(fa: Option<A>, f: (a: A) => B): Option<B> =>
     isNone(fa) ? none : some(f(fa.value)),
@@ -413,7 +413,7 @@ const applicativeOption = {
 
 继续解决上面的问题，如果是多参数，那么需要 把多参数 函数进行进行柯里化操作， 然后再使用 liftAn 的函数进行提升
 
-```ts
+```typescript
 import { HKT } from 'fp-ts/HKT'
 import { Apply } from 'fp-ts/Apply'
 

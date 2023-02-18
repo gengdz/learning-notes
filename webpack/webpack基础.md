@@ -150,7 +150,7 @@ loader 配置在 `module` 属性中
 
   
 
-```js
+```javascript
 {
   module: {
     rules: [
@@ -187,7 +187,7 @@ loader 配置在 `module` 属性中
 
 还是使用 `file-loader`
 
-```js
+```javascript
 {
   module: {
     rules: [
@@ -237,7 +237,7 @@ loader 配置在 `module` 属性中
 
   需求是有结构的 HTML，那么
 
-```js
+```javascript
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 {
@@ -265,7 +265,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 * 下载 `webpack-dev-server` 并使用这种方式启动 `npx webpack-dev-server`
 
-```js
+```javascript
 {
   devServer: {
     contentBase: path.resolve(__dirname, 'bulid'),  // 项目构建后的路径
@@ -361,7 +361,7 @@ module.exports = {
 
 这种方式是提取 CSS 成单独的文件，然后通过 `<link href="css/built.css">` 的方式应用
 
-```js
+```javascript
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -394,7 +394,7 @@ module.exports = {
 
 有些语法，比如 flex、grid 有些浏览器可能不兼容，所以可以让一些 loader 帮助我们做兼容处理，我们使用 `postcss-loader | postcss-preset-env` 来做兼容处理
 
-```js
+```javascript
 module.exports = {
   module: {
     rules: [
@@ -431,7 +431,7 @@ module.exports = {
 
 使用 `optimize-css-assets-webpack-plugin` 插件
 
-```js
+```javascript
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 {
@@ -664,7 +664,7 @@ plugins:[
 
 HotModuleReplacementPlugin 会生成两个补丁文件
 1. 上一次编译生成的 hash.hot-update.json 。返回的内容为
-  ```json
+  ```javascript
   {
     "h": "fb3csdfceaq2", // 这次新生成的 hash
     "c": {  "main": true  } // 哪些文件发生了变化
@@ -672,7 +672,7 @@ HotModuleReplacementPlugin 会生成两个补丁文件
   ```
 2. chunk 名字.上一次编译生成的 hash.hot-update.js。存放着此代码块最新的模块定义，里面会调用 webpackHotUpdate 方法。
 
-```js
+```javascript
 // 编辑器对象
 const compiler = webpack(config);
 const server = new Server(compiler);

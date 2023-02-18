@@ -47,7 +47,7 @@ window 对象的特点：
 #### 窗口加载事件
 当整个页面及所有依赖资源如样式表和图片都已完成加载时，将触发 load 事件。
 
-```ts
+```typescript
 window.addEventListener('load', function() {})
 
 // 或者
@@ -85,7 +85,7 @@ window.onload = function() {}
 
 普通函数是直接调用，这个函数需要等待时间，时间到了才会去调用这个函数，因此也被称为回调函数。
 
-```ts
+```typescript
 function setTimeout<TArgs extends any[]>(callback: (...args: TArgs) => void, ms?: number, ...args: TArgs): NodeJS.Timeout;
 
 function setTimeout(callback: (args: void) => void, ms?: number): NodeJS.Timeout;
@@ -105,7 +105,7 @@ function setTimeout(callback: (args: void) => void, ms?: number): NodeJS.Timeout
 
 每隔一段时间就调用一次回调函数。
 
-```ts
+```typescript
 function setInterval<TArgs extends any[]>(callback: (...args: TArgs) => void, ms?: number, ...args: TArgs): NodeJS.Timer;
 
 function setInterval(callback: (args: void) => void, ms?: number): NodeJS.Timer;
@@ -123,7 +123,7 @@ function setInterval(callback: (args: void) => void, ms?: number): NodeJS.Timer;
 
 因为是 window.setInterval()，所以 this 指向 window
 
-```ts
+```typescript
 btn.addEventListener('click', function() {
   setInterval(function() {
     console.log(this) // 这个 this 指向了 window 对象。

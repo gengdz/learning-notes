@@ -9,7 +9,7 @@
 
 ## execCommand
 
-```js
+```javascript
 const inputElement = document.querySelector('#input');
 inputElement.select();
 document.execCommand('copy');
@@ -46,7 +46,7 @@ document.execCommand('paste');
 * Clipboard.writeText() 将文本内容写入到剪切板。
 
 
-```js
+```javascript
 const text = await navigator.clipboard.readText();
 navigator.cliboard.read();
 ```
@@ -54,7 +54,7 @@ navigator.cliboard.read();
 
 
 ## copy 和 paste 事件
-```js
+```javascript
 // 将用户放入剪贴板的文本，转为大写。
 const source = document.querySelector('.source');
 source.addEventListener('copy', (event) => {

@@ -72,7 +72,7 @@ request.getCookie();
 
 
 ### 前端代码
-```js
+```javascript
 // 获取 cookie
 const cookie = document.cookie;
 

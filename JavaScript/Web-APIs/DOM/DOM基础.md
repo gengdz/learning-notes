@@ -101,7 +101,7 @@ console.log(document.body.nodeType)
 
 以 H1 为例子，打印它的原型链
 
-```js
+```javascript
 const h1 = document.getElementById('h1');
 console.dir(h1)
 
@@ -141,7 +141,7 @@ showProtoType(h1)
 
 可以像操作对象一样操作 DOM 元素，但是一些属性不能随便赋值(会影响元素)
 
-```js
+```javascript
 const h1 = document.getElementById('h1');
 h1.name = 'sss'
 h1.id = 'id';
@@ -198,7 +198,7 @@ h1.title = 'sssss' // 鼠标放上去的时候就会提示文字
 | nextSibling     | 下一个兄弟节点   |
 | previousSibling | 上一个兄弟节点   |
 
-```js
+```javascript
 const ul = document.querySelector('ul');
 console.group('ul->child')
 console.log(ul.childNodes);
@@ -224,7 +224,7 @@ console.groupEnd('ul->child')
 | nextElementSibling     | 下一个兄弟标签                                   |
 | contains               | 返回布尔值，判断传入的节点是否为该节点的后代节点 |
 
-```js
+```javascript
 const ul = document.querySelector('ul');
 console.group('ul-> element')
 console.log(ul.children)
@@ -241,7 +241,7 @@ console.groupEnd('ul-> element', )
 
 #### `getElementById(id)`
 
-```js
+```javascript
 const h1 = document.getElementById('h1');
 ```
 
@@ -259,7 +259,7 @@ const h1 = document.getElementById('h1');
 
 根据标签名获取**元素集合**
 
-```js
+```javascript
 const divs = document.getElementsByTagName('div');
 ```
 
@@ -269,7 +269,7 @@ const divs = document.getElementsByTagName('div');
 
 根据类型获取**元素集合**
 
-```js
+```javascript
 const divs = document.getElementsByClassName('class1 class2')
 ```
 
@@ -341,11 +341,11 @@ document.documentElement
 
 向标签中添加 HTML。里面外面都改。这里会触发「重绘」操作
 
-```js
+```javascript
 app.innerHTML = '<h1>h1</h1>'
 ```
 
-```js
+```javascript
 const ul = document.querySelector('ul');
 ul.addEventListener('click', function () {
   alert(this.innerHTML)
@@ -387,7 +387,7 @@ ul.addEventListener('click', function () {
 
 interText 不能识别 HTML 标签，会去除空格和换行。
 
-```js
+```javascript
 h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
 ```
 
@@ -437,7 +437,7 @@ h3.innerText = "<h1>新增H1</h1>" // 无论设置啥都是文本
 
 创建元素节点
 
-```js
+```javascript
 const article = document.querySelector('article');
 
 const span = document.createElement('span');
@@ -455,7 +455,7 @@ article.appendChild(div3); // 添加一个 div
 
 创建文本节点
 
-```js
+```javascript
 const article = document.querySelector('article');
 const text = document.createTextNode('  createTextNode 方式，节点对象 3');
 article.appendChild(text); // 添加一个文本节点
@@ -477,7 +477,7 @@ article.appendChild(text); // 添加一个文本节点
 
 
 
-```js
+```javascript
 const article = document.querySelector('article');
 
 const appentDiv = document.createElement('div');
@@ -515,7 +515,7 @@ h1.after('<h1>字符串</h1>'); // 这里插入的也是字符串
 | afterbegin  | 元素内部前面 |
 | beforeend   | 元素内部后面 |
 
-```js
+```javascript
 article.insertAdjacentHTML('beforebegin', '<div>beforebegin</div>')
 article.insertAdjacentHTML('afterend', '<div>afterend</div>')
 
@@ -529,7 +529,7 @@ article.insertAdjacentHTML('beforeend', 'div>afterend</div>')
 
 将指定元素插入到元素的指定位置
 
-```js
+```javascript
 const article = document.querySelector('article');
 
 const div = document.createElement('div');
@@ -544,7 +544,7 @@ article.insertAdjacentElement('beforebegin', div)
 
 删除节点
 
-```js
+```javascript
 article.remove();
 ```
 
@@ -558,7 +558,7 @@ article.remove();
 
 使用场景：在排序/移动等大量 DOM 操作时
 
-```js
+```javascript
 const ul = document.querySelector('ul');
 
 function add(total, pieceCount) {
