@@ -24,4 +24,5 @@
 * mv  文件/文件夹 目标路径    还有一个作用 改名字 mv 旧名称 新名称
 * cat test.md 正序显示内容
 * tac test.md 倒叙显示内容
+* rm -rf fileName/folder 删除文件或者文件夹。r 递归 f 强制
 
