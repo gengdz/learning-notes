@@ -3,7 +3,11 @@
 
 一个 session 下面可以有几个 window，一个 window 可以分割几个 pane。
 
-使用 `C-b ?` 可以查看所有帮助信息
+* `C-b ?` 可以查看所有帮助信息
+* `C-b :` 可以使用所有命令。比如：`<C-b>: new -s code`
+
+
+
 
 ### session
 C-b s：列出所有会话。
