@@ -37,6 +37,17 @@ export default serviceMoudules;
 // export default { ...serviceMoudules };
 ```
 
+调用 default 函数
+```typescript
+const middlewares = require.context('./middlewares/', true, /\.ts$/);
+
+middlewares
+  .keys()
+  .filter(key => key !== './index.ts')
+  .forEach(key => middlewares(key).default(axiosInstance));
+
+```
+
 ## 问题
 ### ts提示 context 不存在的问题
 ```bash
