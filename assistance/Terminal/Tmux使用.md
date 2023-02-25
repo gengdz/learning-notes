@@ -99,9 +99,13 @@ tmux rename-window newName
 tmux select-window -t name
 ```
 
+#### 杀死窗口
+* `<P-&>` 
+
 
 
 #### 交换窗口的位置
+* `<P-.>` 
 ```bash
 # 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
 tmux swap-window -t note
@@ -116,7 +120,7 @@ tmux swap-window -t note
 * `<P-">` 水平分屏
 
 
-#### 关闭窗格
+#### 杀死窗格
 
 * `<P-x>` 关闭窗格
 
@@ -133,7 +137,7 @@ tmux swap-window -t note
 
 
 ### 交换窗格
-`<C-b {}` 
+`<C-b {}>` 
 
 
 
