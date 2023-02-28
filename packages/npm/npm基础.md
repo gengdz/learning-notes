@@ -6,9 +6,14 @@
 ## 一些命令
 | 命令                                                      | 作用               |
 | --------------------------------------------------------- | ------------------ |
-| `tnpm install -S package1 package2` | 安装 npm 包到 dependencies                   |
-| `tnpm install -D package1 package2`                 | 安装 npm 包到 devDependencies |
-| `tnpm install --save package1@latest` | 升级指定包到最新版 |
+| `npm install -S package1 package2` | 安装 npm 包到 dependencies                   |
+| `npm install -D package1 package2`                 | 安装 npm 包到 devDependencies |
+| `npm install --save package1@latest` | 升级指定包到最新版 |
+| `npm update package1` | 升级 package1 |
+| `npm uninstall package1` | 删除package1 |
+| `npm ls` | 列出项目中用到的包和其依赖关系 |
+| `npm ls axios` | 查看 axios 的依赖关系 |
+| `npm view axios dependencies` | 查看 axios 的依赖依赖了哪些包 |
 
 
 
