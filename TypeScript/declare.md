@@ -7,7 +7,7 @@ declare 就是告诉TS编译器你担保这些变量和模块存在，并声明�
 
 
 ## declare 用法
-1. 在 `a.d.ts` 文件中使用：
+在 `a.d.ts` 文件中使用：
 ```typescript
 // 用来声明一个对象
 declare namespace myNamespace {
@@ -38,8 +38,19 @@ declare class Animal {
 ```
 
 
+`declare module` 的用法
+为 npm 包完善类型，如果是需要扩展原有模块的话，需要在类型声明文件中**先引用原有模块，再使用 declare module 扩展原有模块**：
+```typescript
+// moment 一定要导入, 因为只有导入才是扩充, 不导入就会变成覆盖.
+import * as moment from 'moment';
 
-## declare 在 npm 包中与 export 的使用说明
-npm 包的声明文件与全局变量的声明文件有很大区别。
-在 npm 包的声明文件中，使用 declare 不再会声明一个全局变量，而只会在当前文件中声明一个局部变量。只有在声明文件中使用 export 导出，然后在使用方 import 导入后，才会应用到这些类型声明。
-export 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现
+declare module 'moment' {
+    export function foo(): moment.CalendarKey;
+}
+```
+
+
+
+## declare 中 import/export
+
+* 如果在声明文件中使用了 import/export，那么在使用的时候，就需要手动 import 了。
