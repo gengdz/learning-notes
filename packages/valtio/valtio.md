@@ -2,7 +2,7 @@
 
 ## state 和 action 的组织方式 
 
-```typescriptx
+```typescript
 import { proxy } from 'umi';
  
 // 方法一：放一起
@@ -28,3 +28,6 @@ const actions = {
   },
 };
 ```
+
+放在一起的坏处是：
+* 所有的逻辑需要集中写在 model 层，看起来离业务比较远。
