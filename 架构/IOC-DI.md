@@ -1,6 +1,10 @@
 # IOC 和 DI
 
 ## 什么是IOC
+
+[5种React组件设计模式](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
+> 控制反转：给予使用组件的开发人员的**灵活性**和**控制级别**。
+
 IOC（Inversion of Control) 翻译为：**控制反转** 或者 **依赖倒置**。主要包含下面三个准则：
 1. 高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象
 2. 抽象不应该依赖于具体实现，具体实现应该依赖于抽象
