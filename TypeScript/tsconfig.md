@@ -2,11 +2,11 @@
 
 ## 前置知识
 
-### TypeScript 编辑器
+### TypeScript 编译器
 
-Q：什么是 TypeScript 编辑器？
+Q：什么是 TypeScript 编译器？
 
-TypeScript 编辑器是**一款将 TypeScript 代码编译成 JavaScript 代码的工具，并在转换的过程中，进行类型检查、语法转换、代码优化等操作**。具体作用如下：
+TypeScript 编译器是**一款将 TypeScript 代码编译成 JavaScript 代码的工具，并在转换的过程中，进行类型检查、语法转换、代码优化等操作**。具体作用如下：
 * 将 TypeScript 代码转换成 JavaScript 代码，使代码可以在浏览器或 Node.js 环境中运行
 * 进行类型检查，检查代码中的类型错误和错误使用，减少代码中的 Bug
 * 进行语法转换，将 TypeScript 语法转换成 JavaScript 语法，使得 JavaScript 引擎可以识别
@@ -15,7 +15,7 @@ TypeScript 编辑器是**一款将 TypeScript 代码编译成 JavaScript 代码�
 
 
 
-Q：常用的 TypeScript 编辑器，以及用法？
+Q：常用的 TypeScript 编译器，以及用法？
 
 * tsc
   * 官方的 TypeScript 编译器，可以通过命令行或集成到构建工具中来使用
