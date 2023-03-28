@@ -1,8 +1,10 @@
-# webpack 基础？
+# webpack 基础
+
+
 ## 是什么？
 > webpack 是一个**静态模块打包工具**，它的任务是：分析项目结构，找到 JS 模块，以及其它一些浏览器不能直接运行的拓展语言(如 less，TS)，并将其打包成合适的格式，供浏览器使用。
 >
-> 通俗版：就是把程序员写的代码，经过编译、压缩、语法检查，最终加工成浏览器能够识别的、精简的，高效运行的代码
+> 把代码经过编译、压缩、语法检查，最终加工成浏览器能够识别的、精简的，高效运行的代码
 >
 > ==说明：webpack 本身只能处理 JS 和 JSON==
 
@@ -10,7 +12,7 @@
 
 ## 能干什么？
 
-* 代码转换  -- 将 ES6 转换成 ES5，将 less 装换成 css 等
+* 编译  -- 将 ES6 转换成 ES5，将 less 装换成 css 等
 * 文件优化  -- 可以压缩文件大小
 * 代码校验  -- eslint
 * 自动刷新
@@ -30,7 +32,10 @@
 | dev          | 开发环境、模拟运行项目<br />(相当于进行 dist 操作，但是不生成实质的文件) | 模拟做饭的机器 |
 
 
+
+
 ## webpack 构建过程｜打包原理
+
 webpack 的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：
 1. 初始化参数： 从配置文件和 Shell 语句中 读取与合并参数，得出最终的参数。
 2. 开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法，开始执行编译。
@@ -41,6 +46,20 @@ webpack 的运行流程是一个串行的过程，从启动到结束会依次执
 7. 输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
 
 在以上过程中，webpack 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，并且插件可以调用 webpack 提供的 API 改变 webpack 的运行结果
+
+
+
+模块加载的触发方式
+- 3 种模块系统 AMD CMD ESM
+- loader 加载的非 javascript 如 css loader 加载到@import 指令和 url函数，html loader 加载 img src，a标签的herf属性
+
+从入口文件出发，根据文件中出现的import/require 等触发模块加载的语句，解析这个文件所依赖的资源模块，
+然后再分别去解析每个资源模块对应的依赖，这样就形成了 整个项目的依赖关系树。
+然后再递归遍历这个依赖树找到每个节点所对应的资源文件，最后再根据 rules 找到每个模块对应的加载器来加载这个模块，最后将加载后的结果放在 bundle.js，从而实现整个项目的打包。
+
+
+
+
 
 ## 安装
 
@@ -54,6 +73,7 @@ webpack 的运行流程是一个串行的过程，从启动到结束会依次执
 * 使用 `npx webpack` 进行打包 默认打包的出口是 `dist/main.js`
 * 新建一个 `webpack.config.js` 对 webpack 进行配置
 
+webpack.config.js 是运行在node 环境下的，所以我们用 CMD 的模块化工具
 
 
 ## 配置说明
@@ -63,15 +83,24 @@ webpack 的运行流程是一个串行的过程，从启动到结束会依次执
 
 
 
+
 ## 五个核心概念
 
 ### entry（活蹦乱跳的猪）
 
 以哪个文件为入口，开始打包
 
+
+
+
 ### output（香喷喷的红烧肉）
 
 出口，我们可以通过配置，修改输出文件的名称和文件位置
+
+webpack 默认把打包的内容放在了网站的根目录，可以使用 output 中的 publicPath 来指定打包内容的目录
+
+
+
 
 ### loader（加工工具）
 
@@ -81,15 +110,19 @@ webpack 自身只能处理 JS 和 JSON 模块，使用不同的 loader 可以将
 * 有的 loader 可以图片 变成可识别的
 
 其中
-
 * loader 的 test 属性表明：配置哪些文件，
 * use 属性代表使用哪些 loader。执行顺序是：从下到上
+
+
+
 
 ### plugins
 
 插件可以完成 loader 不能完成的功能。比如：打包优化和压缩，
 
-### Mode
+
+
+### mode
 
 | 选项          | 描述                                                         |
 | :------------ | :----------------------------------------------------------- |
@@ -110,13 +143,24 @@ webpack 自身只能处理 JS 和 JSON 模块，使用不同的 loader 可以将
 loader 配置在 `module` 属性中
 
 
+不同类型的 loader 分类：
+- 编译转换类
+- 文件操作类
+- 代码检查类
+
+
+
 
 ### 打包样式资源
 
-* `style-loader` 创建 `<style>` 标签，将 JS 中的样式资源添加到 `<head>` 中
-* `css-loader` 将 CSS 文件，变成 commonjs 模块加载到 JS 中，里面内容是样式字符串
+CSS 模块的加载原理
+如果你需要解析 CSS 文件，那么需要使用 loader 去指定 CSS 文件用什么去解析。具体在 module 下写 rules 数组下配置 test 和 use 
+CSS 文件是先把 CSS 文件转换为 js 代码，然后通过 style 标签的形式，追加到页面上，
 
+* `css-loader` 将 CSS 文件，变成 Commonjs 模块加载到 JS 中，里面内容是样式字符串
 * `less-loader` 将 `.less` 文件编译成 `.css` 文件
+* `style-loader` 创建 `<style>` 标签，将 JS 中的样式资源添加到 `<head>` 中
+
 
 ```javascript
 {
@@ -139,6 +183,13 @@ loader 配置在 `module` 属性中
 
 ### 打包图片资源
 
+图片、字体的加载原理
+使用 file loader
+将资源拷贝到输出目录，然后再将文件的路径作为模块的返回值返回，对应用来说所需要的资源就被发布出来了(拷贝物理文件)
+
+还有一种方式为 DataUrl 的方式，就是把图片，字体等通过 base64 生成，里面就包含了内容，这样就不用物理拷贝文件了
+
+
 * `url-loader`
 * `file-loader`
 
@@ -154,14 +205,6 @@ loader 配置在 `module` 属性中
 {
   module: {
     rules: [
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ]
-      }, 
       {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader', // 只使用一个 loader 可以用 loader 属性
@@ -192,14 +235,6 @@ loader 配置在 `module` 属性中
   module: {
     rules: [
       {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ]
-      }, 
-      {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader', // 只使用一个 loader 可以用 loader 属性
         options: {
@@ -210,7 +245,7 @@ loader 配置在 `module` 属性中
         }
       },
       {
-        text: /\.html$/,
+        test: /\.html$/,
         loader: 'html-loader'
       },
       {
@@ -222,6 +257,10 @@ loader 配置在 `module` 属性中
   }
 }
 ```
+
+
+
+### 开发一个 loader
 
 
 

@@ -14,3 +14,9 @@
 ```typescript
 type AA = React.ComponentPropsWithoutRef<typeof SchemaForm>;
 ```
+
+
+## `React.FC<xxxProps>` 的方式来声明的好处：
+* props 会包含 children
+* 有 displayName 的 type 提示
+
