@@ -268,6 +268,14 @@ CSS 文件是先把 CSS 文件转换为 js 代码，然后通过 style 标签的
 
 ## plugins
 
+常用插件：
+* clean-webpack-plugin 自动清除输出目录，清除上一次的打包文件
+* html-webpack-plugin 自动生成一个 html 文件，引用打包后的js文件。
+
+plugins 工作原理：通过在生命周期的钩子函数中挂载函数实现拓展
+
+
+
 ### 打包 HTML 文件
 
 * `html-webpack-plugin` 
