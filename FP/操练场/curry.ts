@@ -6,7 +6,7 @@
  *  作用是： 改变函数执行时的this指向。
  *  核心理念是：借用方法
  *  只有函数才有bind
- *  bind会返回一个函数
+ *  bind会返回一个 新的函数
  *  如果 `thisArg` 是 `null` 或者 `undefined`, 执行作用域的 `this` 将被视为新函数的 `thisArg` 
  * 
  * 代码执行过程如下：
