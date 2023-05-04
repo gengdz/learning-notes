@@ -7,6 +7,27 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 
 浏览器在加载页面的时候会生成 DOM 对象，以供我们使用 JS 控制页面元素。
 
+示例：
+一段 HTML 文档
+```html
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试</title>
+	</head>
+	<body>
+		<h1>标题</h1>
+		<ul>
+			<1i>
+				<a href="#">链接</a>
+			</1i>
+		</ul>
+	</body>
+</html>
+```
+
+DOM 树
+![DOM 树](./DOM树.jpg)
 
 
 ## 基础知识
