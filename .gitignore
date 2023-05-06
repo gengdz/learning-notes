@@ -3,3 +3,5 @@ my/work/财数通
 my/work/指南针
 .vscode
 .DS_Store
+
+node_modules

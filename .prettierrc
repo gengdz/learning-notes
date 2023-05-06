@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "bullet": "*",
+        "proseWrap": "never" 
+      }
+    }
+  ]
+}
