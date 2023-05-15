@@ -5,7 +5,7 @@
       "files": "*.md",
       "options": {
         "bullet": "*",
-        "proseWrap": "never" 
+        "proseWrap": "preserve"
       }
     }
   ]
