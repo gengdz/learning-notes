@@ -2,23 +2,17 @@
 
 React 是单页面应用。也就是只有一个页面，它是没有路由导航机制的，我们需要这种路由机制，以便在不同的视图之间切换而不用刷新整个页面。所以就有了 ReactRouter
 
-
-
 ## 路由和前端路由
 
-* 路由是根据不同的 url 地址展示不同的内容或页面
-* 前端路由就是把不同路由对应不同的内容或页面的任务交给前端来做，之前是服务端根据不同的 url，返回不同的页面。
-
-
+- 路由是根据不同的 url 地址展示不同的内容或页面
+- 前端路由就是把不同路由对应不同的内容或页面的任务交给前端来做，之前是服务端根据不同的 url，返回不同的页面。
 
 ## 实现原理
 
 两种模式：
 
 1. Hash 模式
-2. HTML5 history 模式 
-
-
+2. HTML5 history 模式
 
 ### Hash 模式
 
@@ -32,47 +26,68 @@ https://segmentfault.com/a/1190000011956628#articleHeader2
 
 通过 location.hash 、hashChange 来保持 UI 同 URL 一致
 
-
-
 ### HTML history 模式
 
-14年后，因为 HTML5 标准发布。多了两个 API，`pushState` 和 `replaceState`，通过这两个 API 可以改变 url 地址且不会发送请求。同时还有 `onpopstate` 事件。通过这些就能用另一种方式来实现前端路由了，但原理都是跟 hash 实现相同的。用了 HTML5 的实现，单页路由的 url 就不会多出一个 `#`，变得更加美观。但因为没有 `#` 号，所以当用户刷新页面之类的操作时，浏览器还是会给服务器发送请求。为了避免出现这种情况，所以这个实现需要服务器的支持，需要把所有路由都重定向到根页面。
+14 年后，因为 HTML5 标准发布。多了两个 API，`pushState` 和 `replaceState`，通过这两个 API 可以改变 url 地址且不会发送请求。同时还有 `onpopstate` 事件。通过这些就能用另一种方式来实现前端路由了，但原理都是跟 hash 实现相同的。用了 HTML5 的实现，单页路由的 url 就不会多出一个 `#`，变得更加美观。但因为没有 `#` 号，所以当用户刷新页面之类的操作时，浏览器还是会给服务器发送请求。为了避免出现这种情况，所以这个实现需要服务器的支持，需要把所有路由都重定向到根页面。
 
 通过 HTML5 history API （pushState、replaceState、popstate）机制来维持页面 UI 同 URL 的统一
 
-
-
 > [前端路由 Hash 与 History 模式](https://segmentfault.com/a/1190000020888923)
-
 
 ## Link
 
 进行路由跳转。
-
-
 
 ## Route
 
 路由
 如果给定的 path 和当前 location.pathName 匹配就显示，否则不显示
 
-
-
 ## Switch
 
 Route 的容器组件。负责只匹配一个路由，匹配到就直接返回，防止同时有多个匹配到
 
-
-
 ## Router
 
 总的容器组件，负责数据的提供。
-* 提供 `history` 和 `location`
-* 监听和取消监听 `history`，更新 `location`
 
+- 提供 `history` 和 `location`
+- 监听和取消监听 `history`，更新 `location`
 
+## `OutLet`
 
+用在父组件中去渲染它们的子路由组件。
 
+```typescript
+function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+
+      {/* This element will render either <DashboardMessages> when the URL is
+          "/messages", <DashboardTasks> at "/tasks", or null if it is "/"
+      */}
+      <Outlet />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />}>
+        <Route
+          path="messages"
+          element={<DashboardMessages />}
+        />
+        <Route path="tasks" element={<DashboardTasks />} />
+      </Route>
+    </Routes>
+  );
+}
+
+```
+[OutLet](https://reactrouter.com/en/main/components/outlet)
 
 ## 问题
 
@@ -86,56 +101,59 @@ Route 的容器组件。负责只匹配一个路由，匹配到就直接返回�
 
    `<Link>` 标签本质也是 `<a>` 标签。只不过 点击 Link 标签的时候，会阻止 a 标签的默认行为（这样点击完就不会跳转和刷新了）。然后取出 href。使用 history 的方式进行跳转。这样就不会刷新页面了。
 
-
-
-
 ## withRouter
 
 ### 作用
+
 把不是通过路由切换过来的组件，将 `react-router` 的 history, location, match 这三个对象就会被放进这个组件的 props 属性中。
 
 默认情况下必须经过路由匹配的组件才拥有路由参数。然而并不是所有的组件都直接与路由相连（通过路由跳转到此组件）的，当这些组件需要路由参数时，使用 withRouter 就可以给此组件传入路由参数了。
 
-
-
 ### 实现原理：
 
 ```javascript
-const withRouter = Compontent => () => <Route component={Component}/>
+const withRouter = (Compontent) => () => <Route component={Component} />;
 ```
-
-
 
 ### 使用的示例
 
 ```javascript
-import React from 'react'
-import './nav.css'
-import {
-    NavLink,
-    withRouter
-} from "react-router-dom"
+import React from 'react';
+import './nav.css';
+import { NavLink, withRouter } from 'react-router-dom';
 
-class Nav extends React.Component{
-   handleClick = () => {
-      // Route 的 三个对象将会被放进来, 对象里面的方法可以被调用
-      console.log(this.props);
-   }
-   render() {
-      return (
-         <div className={'nav'}>
-            <span className={'logo'} onClick={this.handleClick}>掘土社区</span>
-            <li><NavLink to="/" exact>首页</NavLink></li>
-            <li><NavLink to="/activities">动态</NavLink></li>
-            <li><NavLink to="/topic">话题</NavLink></li>
-            <li><NavLink to="/login">登录</NavLink></li>
-         </div>
-      );
-   }
+class Nav extends React.Component {
+  handleClick = () => {
+    // Route 的 三个对象将会被放进来, 对象里面的方法可以被调用
+    console.log(this.props);
+  };
+  render() {
+    return (
+      <div className={'nav'}>
+        <span className={'logo'} onClick={this.handleClick}>
+          掘土社区
+        </span>
+        <li>
+          <NavLink to="/" exact>
+            首页
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/activities">动态</NavLink>
+        </li>
+        <li>
+          <NavLink to="/topic">话题</NavLink>
+        </li>
+        <li>
+          <NavLink to="/login">登录</NavLink>
+        </li>
+      </div>
+    );
+  }
 }
 
 // 导出的是 withRouter(Nav) 函数执行
-export default withRouter(Nav)
+export default withRouter(Nav);
 ```
 
 说明：将`span`使用`withRouter`作为一个可点击跳转的`Link`
