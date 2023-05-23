@@ -22,8 +22,12 @@ observer.observe(target);
 > rootMargin 是 root 元素的外边距。用来扩大 root 范围的。
 > threshold 是交叉度。指交叉了多少的时候触发 callback。0-1 的取值
 
+实例方法：
+IntersectionObserver 的 disconnect()方法终止对所有目标元素可见性变化的观察。
+IntersectionObserver 的 unobserve() 方法命令 IntersectionObserver 停止对一个元素的观察。
 
-可以用来做 
-* 判断一个元素和另一个元素是否相交
-* 下拉刷新
-* 上拉加载 
+可以用来做
+
+- 判断一个元素和另一个元素是否相交
+- 下拉刷新
+- 上拉加载
