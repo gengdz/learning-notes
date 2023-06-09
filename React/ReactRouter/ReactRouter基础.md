@@ -76,26 +76,23 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route
-          path="messages"
-          element={<DashboardMessages />}
-        />
+        <Route path="messages" element={<DashboardMessages />} />
         <Route path="tasks" element={<DashboardTasks />} />
       </Route>
     </Routes>
   );
 }
-
 ```
+
 [OutLet](https://reactrouter.com/en/main/components/outlet)
 
 ## 问题
 
 1. `react-router` 和 `react-router-dom` 的联系和区别？
 
-   `react-router` 实现了核心功能
+   `react-router` 实现了核心功能，是个 core 包，不仅可以在 WEB 中使用，也可以在 native 应用中使用。
 
-   `react-router-dom` 基于 `react-router`。加入了在**浏览器运行环境**下的一些功能。比如 Link 组件，BrowserRouter 和 HashRouter 组件等。
+   `react-router-dom` 基于 `react-router`。用于 WEB 环境的前端路由，加入了在**浏览器运行环境**下的一些功能。比如 Link 组件、BrowserRouter 和 HashRouter 组件等。
 
 2. react-router 里的「 `<Link>` 标签」和 「 `<a>` 标签」有什么区别？
 
