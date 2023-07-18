@@ -104,7 +104,7 @@ tmux select-window -t name
 
 
 
-#### 交换窗口的位置
+#### 移动，交换窗口的位置
 * `<P-.>` 
 ```bash
 # 比如我目前在 buffett 窗口，我想让这个窗口和 `note` 窗口交换位置
