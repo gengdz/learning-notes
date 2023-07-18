@@ -72,7 +72,24 @@ funciton App(){
 
 ### watch
 
-`watch` 通过 getter 可以订阅多个代理对象。会立即执行一次，当代理对象变化时，执行回调。
+`watch` 通过 getter 可以订阅多个代理对象。会立即执行一次，当代理对象包含子对象变化时，执行回调。
+
+```typescript
+const userState = proxy({ user: { name: 'Juuso' } });
+const sessionState = proxy({ expired: false });
+
+watch((get) => {
+  // `get` adds `sessionState` to this callback's watched proxies
+  get(sessionState);
+  const expired = sessionState.expired;
+  // Or call it inline
+  const name = get(userState).user.name;
+  console.log(`${name}'s session is ${expired ? 'expired' : 'valid'}`);
+});
+// 'Juuso's session is valid'
+sessionState.expired = true;
+// 'Juuso's session is expired'
+```
 
 ### subscirbe
 
