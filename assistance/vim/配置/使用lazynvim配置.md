@@ -1,7 +1,9 @@
 # 使用 lazy.nvim 配置 Neovim
 
 ## autocmds
+
 使用下面的方式，关闭拼写检查
+
 ```lua
 -- 不需要拼写检查
 vim.api.nvim_create_autocmd("FileType", {
@@ -28,12 +30,16 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 ```
 
 ## 自动切换输入法
+
 1. 安装插件
+
 ```lua
   { "brglng/vim-im-select" },
 
 ```
+
 2. 设置
+
 ```lua
 -- 自动切换输入法
 vim.g.im_select_get_im_cmd = "['im-select']"
@@ -41,15 +47,15 @@ vim.g.im_select_default = "com.apple.keylayout.ABC"
 
 ```
 
-
-
 ## 插件的禁用
 
 ```lua
   { "ggandor/flit.nvim", enabled = false },
 
 ```
+
 ## LSP 快捷键的禁用
+
 LSP 快捷键 的禁用必须要使用 init 函数。同时如果 mode 不是 normal，那么要显式写明 mode。
 
 ```lua
@@ -65,6 +71,7 @@ end,
 ```
 
 ## init 方式的 keys 的禁用
+
 ```lua
 init = function()
   local keys = require("lazyvim.plugins.lsp.keymaps").get()
@@ -76,8 +83,8 @@ end,
 
 ```
 
-
 ## keys 的禁用
+
 ```lua
 {
     "folke/noice.nvim",
@@ -88,11 +95,10 @@ end,
     },
   }
 
-  ```
-
-
+```
 
 ## 开启折叠
+
 ```lua
 {
     "nvim-treesitter/nvim-treesitter",
@@ -108,6 +114,26 @@ end,
       vim.wo.foldlevel = 99
     end,
   }
+```
 
-  ```
+## lazy 安装的包位置
 
+```bash
+ /Users/xingya/.local/share/nvim/lazy
+```
+
+## 保存并格式化
+
+```bash
+local formatOnSave = function()
+  require("lazyvim.plugins.lsp.format").format({ force = true })
+  -- vim.api.nvim_command("w")
+  -- vim.api.nvim_input("<esc>")
+  vim.api.nvim_input("<cmd>w<cr><esc>")
+end
+
+vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", formatOnSave, opts)
+
+```
+
+`vim.api.nvim_input` 把字符串当成参数，将它作为输入插入到 Vim 的输入缓冲区中，并模拟 Vim 的按键处理过程。
