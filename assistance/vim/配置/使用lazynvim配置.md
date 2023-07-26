@@ -137,3 +137,7 @@ vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", formatOnSave, opts)
 ```
 
 `vim.api.nvim_input` 把字符串当成参数，将它作为输入插入到 Vim 的输入缓冲区中，并模拟 Vim 的按键处理过程。
+
+## 替换插件报错: gsed: `Executable not found`
+
+`brew install gnu-sed`
