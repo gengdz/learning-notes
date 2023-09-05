@@ -32,7 +32,12 @@
 
   "resolutions": {
     "test/aa": "^1.1.0"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://my-private-registry.com",
+    "access": "publish",
+    "tag": "next", // 默认为 ltest 版本。
+  },
 }
 ```
 
@@ -135,3 +140,14 @@ npm install = npm prepare && npm install
 锁定你依赖的包的依赖。
 
 如果你项目依赖的包 test，依赖了 test/aa,test/aa 发布了一个有问题的版本，这时候会导致 test 出问题，我们可以使用 resolutions 的方式锁定包的版本。
+
+
+### publishConfig
+用来配置发布到 npm 上的包的参数。
+
+registry：指定发布时要使用的仓库地址。默认为：`https://registry。npmjs.org`。
+access: 设置这个包的访问权限。
+tag: 发布的包被标记的值。有 next。默认为 latest
+
+
+如果 registry 指定了一个私有地址作为 npm 仓库，那么别人是无法直接看到和下载你的包。
