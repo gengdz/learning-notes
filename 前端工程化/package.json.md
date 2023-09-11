@@ -56,20 +56,78 @@ B 使用的是 A 的 module 文件
 
 ### exports
 
-package.json 中的 exports 字段是 Node.js 12.16.0 及以上版本新增的，用于指定模块的导出方式，以替代旧的方式（例如 main 和 module 字段）。
+package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，用于指定模块的导出方式，以替代旧的方式（例如 main 和 module 字段）。
+**它的优先级是高于任何入口字段的（module、main、browser**
+
+
+用它可以指定需要暴露的子目录。没暴露出来的子目录不会被访问到。
 
 `.` 代表当前模块的根目录。
 
 - 当使用 ES6 的 import 语句加载该模块时，默认导出的是 "./dist/axios.mjs"。
 - 当在 CommonJS 模块中和 Node.js 环境中使用 require() 函数加载该模块时，默认导出的是 "./dist/axios.cjs"。
 - 当在 Node.js 环境中加载模块时，默认导出的时："./dist/axios.node.js",
-- 如果在 node.js 的环境，并且使用 require 的方式加载模块，那么最终使用的是 node 属性指定的文件。
+- 如果在 node.js 的环境，并且使用 require 的方式加载模块，那么使用 node 属性指定的文件。
 - require 属性指定的文件会在 CommonJS 模块中和 Node.js 环境中使用，而 node 属性指定的文件仅在 Node.js 环境中使用。
-- default 配置了默认的导出路径，指定了在浏览器环境中加载该模块时使用的路径。
+- default 配置了默认的导出路径。上面的没匹配到就会走到这里，无论是通过哪种方式加载模块。
+
+**在 "exports" 对象中，键序很重要。在条件匹配过程中，排序靠前的入口具有较高的优先级。通常规则是，这些条件应该从最特殊到最不特殊来排序。**
 
 > 如果在 A 项目中我定义了 main & module & browser & exports，我在 B 项目中通过 import 的方式使用 A，那么最终我使用的是那个属性定义的文件?
 > 是 exports 的 import 定义的文件被使用。
 > exports 的优先级高，又通过 import 的方式使用
+
+### `main` & `module` & `browser` & `exports.import` & `export.require` & `export.node` & `export.default`
+
+有一个包 myPkg 既可以在浏览器使用，也可以在 node 使用，在 package.json 配置了以上字段时。
+
+```json
+{
+  "main": "./dist/index.main.js",
+  "module": "./dist/index.module.js",
+  "browser": "./dist/index.browser.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.exports.import.js",
+      "require": "./dist/index.exports.require.js"
+    }
+  }
+}
+```
+
+在 **浏览器** 中使用
+
+- 通过 `import myPkg from 'myPkg'` 的方式使用：browser > module > main > index.js(myPkg 根目录下的 index.js 和 package.json)
+- 通过 `const myPkg from 'myPkg'` 的方式使用：browser > main > module > index.js(myPkg 根目录下的 index.js 和 package.json)
+
+在 **Node** 中使用
+等需要的时候再补充
+
+构建工具可以指定入口顺序，干预上面的过程：
+webpack 使用 [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolvemainfields) 的方式干预。
+**webpack 在 target: web 的情况下 mainFields 字段默认为 ['browser', 'module', 'main']**。webpack 默认的 target 为 web
+
+Rollup 进行构建你的项目，你也可以通过 `@rollup/plugin-node-resolve` 插件中的 `mainFields` 来实现这个功能。
+
+环境是怎么来的，怎么设置环境
+上述所谓的 browser、development 等运行环境究竟是如何被设置的呢。
+或者换一个问题，如果我们在 exports 中希望额外添加一个环境的引入路径，应该如何做呢？
+
+在运行 NodeJs 脚本时可以通过 `--conditions` 标志添加自定义用户条件。
+
+比如此时我们通过
+
+```bash
+node --conditions=customMode main.js
+```
+
+所谓的 target 仅仅是表示构建环境的区别。比如传入 web 表示 browser 构建环境，传入 node 表示 node 构建环境。
+
+对应过来也就是设置 --conditions 参数。
+
+参考资料
+
+- [package.json 来聊聊如何管理一款优秀的 Npm 包](https://zhuanlan.zhihu.com/p/548202395)
 
 ### types
 
@@ -141,13 +199,12 @@ npm install = npm prepare && npm install
 
 如果你项目依赖的包 test，依赖了 test/aa,test/aa 发布了一个有问题的版本，这时候会导致 test 出问题，我们可以使用 resolutions 的方式锁定包的版本。
 
-
 ### publishConfig
+
 用来配置发布到 npm 上的包的参数。
 
 registry：指定发布时要使用的仓库地址。默认为：`https://registry。npmjs.org`。
 access: 设置这个包的访问权限。
 tag: 发布的包被标记的值。有 next。默认为 latest
-
 
 如果 registry 指定了一个私有地址作为 npm 仓库，那么别人是无法直接看到和下载你的包。
