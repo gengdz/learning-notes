@@ -144,3 +144,6 @@ npm config set registry="https://my-private-registry.com"
 | ----------------------------- | ------------------------------------------------------------- |
 | `npx webpack-dev-server`      | 在当前项目查找并运行 webpack-dev-server，启动项目的开发服务器 |
 | `npx create-react-app my-app` | 使用 create-react-app 创建一个名为 my-app 的 react 项目       |
+
+npm create vite = npx create-vite 只有 create-xx 包，才能使用这个命令
+npx = npm exec
