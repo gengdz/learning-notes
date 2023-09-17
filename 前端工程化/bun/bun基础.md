@@ -2,7 +2,7 @@
 
 ## bun 是什么？
 
-> Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It ships as a single executable called bun​.
+> Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It ships as a single executable called bun
 > bun 是一个开发 JavaScript 和 TypeScript 应用的工具包
 
 它是一个 JavaScript 运行时，用来取代 Node.js
@@ -17,7 +17,6 @@ JavaScript 运行时（Runtime）是指 JavaScript 代码在浏览器或服务�
 
 JavaScript 运行时提供了一种可编程的环境，使得 JavaScript 代码可以与 Web 应用程序交互，实现动态的用户界面和交互式的 Web 应用程序。
 
-
 ### 模板
 
 `bun create 模板名称 位置`
@@ -30,15 +29,12 @@ bun create react app
 bun init
 ```
 
-
 ## RUNTIME
 
 ### bun run
-* run a file。`bun run 文件地址`。支持 .js, .ts, .jsx, .tsx
-* run a `package.json` scripts  `bun run dev`
 
-
-
+- run a file。`bun run 文件地址`。支持 .js, .ts, .jsx, .tsx
+- run a `package.json` scripts `bun run dev`
 
 ## Package Manager
 
@@ -50,7 +46,7 @@ bun install
 bun add react
 
 # dev dependency
-bun add -d bun-types 
+bun add -d bun-types
 
 # 删除一个依赖
 bun remove preact
@@ -58,10 +54,10 @@ bun remove preact
 
 ```
 
-
 ## Bundler
 
 为什么需要打包
-* 减少 HTTP 请求。
-* 代码转换
-* 框架功能依赖打包 
+
+- 减少 HTTP 请求。
+- 代码转换
+- 框架功能依赖打包
