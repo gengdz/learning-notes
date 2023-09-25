@@ -1,0 +1,6 @@
+{
+  "name": "learning-notes",
+  "devDependencies": {
+    "vite": "^4.4.9"
+  }
+}
