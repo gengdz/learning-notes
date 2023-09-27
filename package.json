@@ -1,6 +1,7 @@
 {
   "name": "learning-notes",
   "devDependencies": {
+    "prettier": "^3.0.3",
     "vite": "^4.4.9"
   }
 }
