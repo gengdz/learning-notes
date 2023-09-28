@@ -1,7 +1,27 @@
 {
   "name": "learning-notes",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --quiet --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
+  "scripts": {
+    "prepare": "husky install"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9"
   }
 }
