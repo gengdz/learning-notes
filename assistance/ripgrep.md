@@ -1,0 +1,76 @@
+# ripgrep
+
+## 使用说明
+
+- `man rg`
+- [ripgrep 文档](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md)
+- [Rust 正则语法](https://docs.rs/regex/1.9.5/regex/#syntax)
+
+## Option
+
+```bash
+rg "正则" javascript
+```
+
+### rg -g
+
+```bash
+rg -g "*.{js,md}" "vim"
+```
+
+匹配的是文件名
+
+### rg --iglob
+
+匹配的是文件路径
+
+```bash
+# args 插件
+"正则" --iglob javascript/**
+
+--iglob assistance/** "vim"
+# args 不包含
+--iglob !assistance/** "vim"
+
+#
+rg --iglob="assistance/**" "vim"
+```
+
+### rg -F
+
+rg 默认使用正则进行搜索。可以使用 -F 将模式视为字面量字符串
+
+```bash
+rg -F "需要搜索的内容"
+```
+
+### rg -uu
+
+默认 rg 会忽略 .gitignore 和隐藏文件，可以使用 -uu 来查询所有内容：
+
+```bash
+rg -uu "word" .
+```
+
+### rg -e
+
+使用 -e REGEX 来指定正则表达式
+
+-C2 打印匹配到的前后2行。
+
+```bash
+rg -e "*sql" -C2
+```
+
+### rg -w
+
+查一个单词
+
+### rg -t
+
+查文件类型
+
+```bash
+rg -tjson "rg"
+
+```
