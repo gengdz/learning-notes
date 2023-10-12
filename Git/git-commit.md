@@ -6,7 +6,7 @@ commit 是有一定的规范的。
 
 每次提交 Commit message 都包括三个部分：
 
-- _Header_ (必需的)
+- _Header_ （必需的）
 - _Body_
 - _Footer_
 
@@ -24,7 +24,9 @@ commit 是有一定的规范的。
 
 ### Header
 
-(1) type **type** 用来说明 commit 的类型，只能使用以下 7 个标示。**必需**
+#### type
+
+**type** 用来说明 commit 的类型，只能使用以下 7 个标示。**必需**
 
 - feat: 新功能（feature)
 - fix: 修补 bug
@@ -34,10 +36,17 @@ commit 是有一定的规范的。
 - docs: 文档（documentation)
 - test: 增加测试
 - revert: 恢复之前的提交
+- build: 修改了项目的构建系统（例如对 vite、webpack 的配置等） 的提交
+- ci: 修改项目继续集成流程（例如 Travis，Jenkins，GitLab CI，Circle 等）的提交
+- perf: 性能优化
 
-(2) scope **scope** 用来说明 commit 影响的范围，比如数据层、控制层、视图层等等。**可选**
+#### scope
 
-(3) subject **subject 是** commit 目的的简短描述，不超过 50 个字符。**必需**
+**scope** 用来说明 commit 影响的范围，比如数据层、控制层、视图层等等。**可选**
+
+#### subject
+
+**subject 是** commit 目的的简短描述，不超过 50 个字符。**必需**
 
 - 以动词开头，使用第一人称现在时，比如 change，而不是 changed 或 changes
 - 第一个字母小写
@@ -46,8 +55,8 @@ commit 是有一定的规范的。
 ### 示例
 
 ```bash
-feat(page): 新增xx功能
-chore(*): 升级webpack的版本
+feat(page): 新增 xx 功能
+chore(*): 升级 webpack 的版本
 chore(utils): 删除没用到的函数
 ```
 
