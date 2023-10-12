@@ -14,11 +14,11 @@ rg "正则" javascript
 
 ### rg -g
 
+匹配的是文件名
+
 ```bash
 rg -g "*.{js,md}" "vim"
 ```
-
-匹配的是文件名
 
 ### rg --iglob
 
@@ -56,7 +56,7 @@ rg -uu "word" .
 
 使用 -e REGEX 来指定正则表达式
 
--C2 打印匹配到的前后2行。
+-C2 打印匹配到的前后 2 行。
 
 ```bash
 rg -e "*sql" -C2
@@ -73,4 +73,21 @@ rg -e "*sql" -C2
 ```bash
 rg -tjson "rg"
 
+```
+
+## ripgrep 配置
+
+在 .ripgreprc 中配置
+
+```bash
+
+# Search hidden files and directories.
+--hidden
+
+# Searches case insensitively.
+--smart-case
+
+# 不搜索 .git 文件夹
+--glob
+!.git/*
 ```
