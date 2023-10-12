@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 -- 取消换行注释
--- 用o换行不要延续注释
+-- 用 o 换行不要延续注释
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "*" },
   callback = function()
@@ -45,6 +45,13 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.g.im_select_get_im_cmd = "['im-select']"
 vim.g.im_select_default = "com.apple.keylayout.ABC"
 
+```
+
+## keymap 的禁用
+
+```lua
+-- 【禁用】内置的 windows 快捷键。
+vim.keymap.set("n", "<leader>ww", "<Nop>")
 ```
 
 ## 插件的禁用
@@ -138,6 +145,12 @@ vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", formatOnSave, opts)
 
 `vim.api.nvim_input` 把字符串当成参数，将它作为输入插入到 Vim 的输入缓冲区中，并模拟 Vim 的按键处理过程。
 
-## 替换插件报错: gsed: `Executable not found`
+## 替换插件报错：gsed: `Executable not found`
 
 `brew install gnu-sed`
+
+## neovim/nvim-lspconfig 滚动文档
+
+调用 `vim.lsp.buf.hover()` 显示文档，再调用一次就可以进入文档的浮动窗口
+
+在我的配置中就是两次 gh
