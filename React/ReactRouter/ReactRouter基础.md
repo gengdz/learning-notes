@@ -48,19 +48,6 @@ history.replaceState(state, title, url);
 
 > [前端路由 Hash 与 History 模式](https://segmentfault.com/a/1190000020888923)
 
-## Link
-
-进行路由跳转。
-
-## Route
-
-路由
-如果给定的 path 和当前 location.pathName 匹配就显示，否则不显示
-
-## Switch
-
-Route 的容器组件。负责只匹配一个路由，匹配到就直接返回，防止同时有多个匹配到
-
 ## Router
 
 总的容器组件，负责数据的提供。
@@ -68,7 +55,47 @@ Route 的容器组件。负责只匹配一个路由，匹配到就直接返回�
 - 提供 `history` 和 `location`
 - 监听和取消监听 `history`，更新 `location`
 
-## `OutLet`
+```typescript
+useEffect(() => {
+  const unListen = history.listen(({ location: loc }) => {
+    setLocation(loc as any);
+  });
+  return unListen;
+}, [history]);
+
+return {
+  history,
+  location,
+};
+```
+
+## Switch
+
+Route 的容器组件。负责只匹配一个路由，匹配到就直接返回，防止同时有多个匹配到
+
+```typescript
+for (let child of childrens) {
+  if (location.pathname.match(child?.props?.path)) {
+    return child;
+  }
+}
+```
+
+## Route
+
+如果给定的 path 和当前 location.pathName 匹配就显示，否则不显示
+
+```typescript
+if (location.pathname.match(path)) {
+  return React.createElement(component);
+}
+```
+
+## Link
+
+进行路由跳转。
+
+## OutLet
 
 用在父组件中去渲染它们的子路由组件。
 
@@ -100,18 +127,6 @@ function App() {
 
 [OutLet](https://reactrouter.com/en/main/components/outlet)
 
-## 问题
-
-1. `react-router` 和 `react-router-dom` 的联系和区别？
-
-   `react-router` 实现了核心功能，是个 core 包，不仅可以在 WEB 中使用，也可以在 native 应用中使用。
-
-   `react-router-dom` 基于 `react-router`。用于 WEB 环境的前端路由，加入了在**浏览器运行环境**下的一些功能。比如 Link 组件、BrowserRouter 和 HashRouter 组件等。
-
-2. react-router 里的「 `<Link>` 标签」和 「 `<a>` 标签」有什么区别？
-
-   `<Link>` 标签本质也是 `<a>` 标签。只不过 点击 Link 标签的时候，会阻止 a 标签的默认行为（这样点击完就不会跳转和刷新了）。然后取出 href。使用 history 的方式进行跳转。这样就不会刷新页面了。
-
 ## withRouter
 
 ### 作用
@@ -135,7 +150,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 class Nav extends React.Component {
   handleClick = () => {
-    // Route 的 三个对象将会被放进来, 对象里面的方法可以被调用
+    // Route 的 三个对象将会被放进来，对象里面的方法可以被调用
     console.log(this.props);
   };
   render() {
@@ -168,3 +183,30 @@ export default withRouter(Nav);
 ```
 
 说明：将`span`使用`withRouter`作为一个可点击跳转的`Link`
+
+## 问题
+
+1. `react-router` 和 `react-router-dom` 的联系和区别？
+
+   `react-router` 实现了核心功能，是个 core 包，不仅可以在 WEB 中使用，也可以在 native 应用中使用。
+
+   `react-router-dom` 基于 `react-router`。用于 WEB 环境的前端路由，加入了在**浏览器运行环境**下的一些功能。比如 Link 组件、BrowserRouter 和 HashRouter 组件等。
+
+2. react-router 里的「 `<Link>` 标签」和 「 `<a>` 标签」有什么区别？
+
+   `<Link>` 标签本质也是 `<a>` 标签。只不过 点击 Link 标签的时候，会阻止 a 标签的默认行为（这样点击完就不会跳转和刷新了）。然后取出 href。使用 history 的方式进行跳转。这样就不会刷新页面了。
+
+### 下面这段代码会在 pathname 变化的时候执行吗
+
+```typescript
+useEffect(() => {
+  const a = window.location.pathname;
+  console.log('xxx', a);
+}, [window.location.pathname]);
+```
+
+不会。
+
+这里写了 window.location.pathname 其实和没写是一样的效果。因为 useEffect 的依赖项应该是 state 和 props。
+
+只有渲染了才有机会说 useEffect 会不会执行。React 更新就两个：state 变化、props 变化
