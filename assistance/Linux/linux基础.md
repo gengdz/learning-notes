@@ -73,12 +73,23 @@ grep 【选项】 《字符串》 《源文件》
 | lsof -i:4444                      | 查看端口号                            |
 | kill -9 PID                       | 杀死进程                              |
 
-## ln
+### ln
 
 link 命令，创建一个链接。软链接、硬链接
 
 ```bash
-ln -s /Users/xingya/Desktop/重要 重要 link
+ln [options] source target
+```
+
+- 第一个参数是源文件或目录的路径。这是你想要链接的文件或目录的位置。
+- 第二个参数是目标路径。这是你希望链接创建在的位置。
+
+例如，假设你有一个名为 file.txt 的文件，位于 /path/to/source/file.txt。你希望在 /path/to/target 目录下创建一个链接。
+
+使用 link 命令的示例为：
+
+```bash
+ln -s /path/to/source/file.txt  /path/to/target
 ```
 
 软链接
@@ -92,3 +103,20 @@ ln -s /Users/xingya/Desktop/重要 重要 link
 1. 硬链接，以文件副本的形式存在。但不占用实际空间。
 2. 不允许给目录创建硬链接
 3. 硬链接只有在同一个文件系统中才能创建
+
+### cp
+
+复制文件或者目录
+
+```bash
+cp [options] source... directory
+```
+
+```bash
+# 复制 package.json 文件到 dist 目录
+cp package.json dist/
+
+# 复制 test/ 目录到新目录 newtest
+cp –r test/ newtest
+
+```
