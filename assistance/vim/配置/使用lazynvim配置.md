@@ -1,5 +1,7 @@
 # 使用 lazy.nvim 配置 Neovim
 
+安装包的位置：`~/.local/share/nvim`
+
 ## autocmds
 
 使用下面的方式，关闭拼写检查
@@ -111,6 +113,14 @@ end,
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = { "bash", "help", "html", "css", "scss", "javascript", "json", "lua", "bash", "markdown", "markdown_inline", "python", "query", "regex", "tsx", "typescript", "vim", "yaml", },
+      highlight = {
+        disable = { "json" },
+        -- disable = function(lang, bufnr)
+        --   local filesize = vim.fn.getfsize(vim.fn.expand("%:p"))
+        --   return filesize > 1024 * 10
+        -- end,
+      },
+
     },
     init = function()
       -- 开启 Folding

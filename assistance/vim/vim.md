@@ -1,7 +1,7 @@
 # vim
 
-gcc 是一款编译器，只负责程序的翻译
-gdb 是一款调试器，只负责程序的调试
+- gcc 是一款编译器，只负责程序的翻译
+- gdb 是一款调试器，只负责程序的调试
 
 vim 是文本编辑器
 
@@ -82,9 +82,9 @@ vim 是文本编辑器
 - y(yank) 复制
 - v(visual) 选中并进入 VISVAL 模式
 
-u 撤销
-`<C-r>` 反撤销
-2dd 删除 2 行
+* u
+* 撤销 `<C-r>` 反撤销
+* 2dd 删除 2 行
 
 ## 操作符 + 动作
 
@@ -101,7 +101,6 @@ u 撤销
 - guu 将当前行的字母改成小写
 - gUaw(gUiw) 将当前光标下的单词改成大写
 - guaw(guiw) 将当前光标下的单词改成小写
-
 
 ## tips
 
@@ -144,6 +143,7 @@ u 撤销
 - zC 递归折叠光标下的所有代码块 Open all folds under the cursor recursively
 - zo 展开代码块 open one fold under the cursor
 - zO 递归展开光标下的所有代码块
+- za 转换折叠状态
 - = 格式化代码
 - zM 折叠所有（折叠更多，more）
 - zR 打开所有折叠（reduce）
@@ -155,6 +155,8 @@ u 撤销
   - zf10（从当前位置折叠 10 行）
   - zfgg（从当前位置折叠到行首）
   - zfG（从当前位置折叠到行尾）
+- zd 删除光标下的折叠
+- zD 递归删除删除光标下的所有折叠
 
 ## 剪切操作
 
@@ -271,11 +273,13 @@ u 撤销
 
 如果未保存则会生成 .swap 文件，这时候可以可以使用 `rm test.swap` 就会执行删除操作
 
+删除所有：`rm -rf ~/.local/state/nvim/swap/`
+
 ### 配色
 
-使用 :colorscheme 显示当前的主题配色，默认是 default
-使用 :colorscheme `<C-d>` 显示所有的主题
-使用 :colorscheme 配色名 就可以修改配色
+- 使用 :colorscheme 显示当前的主题配色，默认是 default
+- 使用 :colorscheme `<C-d>` 显示所有的主题
+- 使用 :colorscheme 配色名 就可以修改配色
 
 ## 配置
 

@@ -1,0 +1,3 @@
+let l:bm_file_version = 1
+let l:bm_sessions = {'default': {'/Users/xingya/Documents/learning/learning-notes/assistance/Linux/linux基础.md': [{'sign_idx': 9500, 'line_nr': 76, 'content': '## ln'},],'/Users/xingya/Documents/learning/learning-notes/Node.js/基础.md': [{'sign_idx': 9501, 'line_nr': 147, 'content': '## Path模块'},],}}
+let l:bm_current_session = 'default'
