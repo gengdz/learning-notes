@@ -12,17 +12,23 @@
 rg "正则" javascript
 ```
 
-### rg -g
+### rg -g(--glob)
 
-匹配的是文件名
+用一个模式来匹配文件和文件夹
 
 ```bash
 rg -g "*.{js,md}" "vim"
 ```
 
+`--glob=!{pnpm-lock.\*}`
+
+在 ripgrep 中，--glob=!{pattern} 的语法表示排除匹配 pattern 的文件。
+
+具体来说，!{pnpm-lock.\*} 表示排除文件名以 pnpm-lock. 开头的文件
+
 ### rg --iglob
 
-匹配的是文件路径
+-g 的 大小写不敏感模式
 
 ```bash
 # args 插件
@@ -88,6 +94,8 @@ rg -tjson "rg"
 --smart-case
 
 # 不搜索 .git 文件夹
---glob
-!.git/*
+--glob=!.git/*
+# 不搜索 .*-lock 文件夹
+--glob=!{*-lock.*}
+
 ```
