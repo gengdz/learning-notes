@@ -135,15 +135,31 @@ npm config set registry="https://my-private-registry.com"
 | `npm pkg get <key>`         | 获取 package.json 字段 |
 | `npm pkg delete key`        | 删除 package.json 字段 |
 
+### npm exec
+
+在项目的范围内执行 shell 命令。`node_modules/.bin` 里面的命令都可以使用
+
+它可以使用全局安装和项目级别安装的依赖的命令。
+
+```bash
+npm exec jest
+```
+
+还有一个用途：如果项目是 monorepo，每个子模块都有自己的 package.json 文件和 scripts 字段定义了一些特定的命令。如果你想在根目录中一次性运行所有子模块的特定命令，而不需要进入每个子模块执行相同的命令。
+
 ### npx
 
-是 npm 的一个内置命令，运行一个本地或者远程 npm 包的命令
-使用 npx 可以在不全局安装包的情况下直接运行他们的命令。
+是 npm 的一个内置命令，它允许你不在项目安装的情况下 运行一个本地或者远程 npm 包的命令使用 npx 可以在不全局安装包的情况下直接运行他们的命令。
 
 | 命令                          | 作用                                                          |
 | ----------------------------- | ------------------------------------------------------------- |
 | `npx webpack-dev-server`      | 在当前项目查找并运行 webpack-dev-server，启动项目的开发服务器 |
 | `npx create-react-app my-app` | 使用 create-react-app 创建一个名为 my-app 的 react 项目       |
 
-npm create vite = npx create-vite 只有 create-xx 包，才能使用这个命令
-npx = npm exec
+npm create vite = npx create-vite 只有 create-xx 包，才能使用这个命令 npx = npm exec
+
+`npx --no -- commitlint --edit ${1}`
+
+- --no 是 npx 的一个 option，禁止在本地执行时自动安装缺少的包。
+- -- 将后面的内容视为命令的参数，而不是 npx 的 option
+- commitlint --edit ${1} 执行 commitlint --edit 允许编辑提交消息， ${1} 是占位符，用来替换你实际在 shell 写的消息内容。
