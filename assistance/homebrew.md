@@ -10,16 +10,16 @@
 
 ## 一些命令
 
-| 命令               | 作用                     |
-| ------------------ | ------------------------ |
-| brew help          | 很多命令                 |
-| brew list          | 查看所有已经安装的包信息 |
-| brew install       | 安装包                   |
-| brew uninstall     | 卸载包                   |
-| brew update        | 更新自己                 |
-| brew outdated      | 查看哪些包需要更新       |
-| brew upgrade(包名) | 更新所有的包(指定的包)   |
-| brew info(包名)    | 查看包信息(指定的包)     |
+| 命令                 | 作用                     |
+| -------------------- | ------------------------ |
+| brew help            | 很多命令                 |
+| brew list            | 查看所有已经安装的包信息 |
+| brew install         | 安装包                   |
+| brew uninstall       | 卸载包                   |
+| brew update          | 更新自己                 |
+| brew outdated        | 查看哪些包需要更新       |
+| brew upgrade（包名） | 更新所有的包（指定的包） |
+| brew info（包名）    | 查看包信息（指定的包）   |
 
 ## 安装的包
 
@@ -36,3 +36,19 @@
 Q：使用 `brew outdated` 但是没有拉到需要的包，是为什么？A：因为 brew 本身的版本太低了。需要更新 brew 自身的版本。
 
 Q: 使用 `brew update` 更新 brew 时，没有反应？怎么处理 A: 可以先使用 `brew update-reset`，然后再 `brew update`
+
+## options
+
+### `--repo[tap ...]`
+
+展示 brew 的 git 仓库地址
+
+```bash
+brew --repo homebrew/cask
+```
+
+## 换源
+
+```bash
+git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask
+```
