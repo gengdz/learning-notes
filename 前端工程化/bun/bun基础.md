@@ -2,20 +2,28 @@
 
 ## bun 是什么？
 
-> Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It ships as a single executable called bun
-> bun 是一个开发 JavaScript 和 TypeScript 应用的工具包
+> Bun is an all-in-one toolkit for JavaScript and TypeScript apps. It ships as a single executable called bun bun 是一个开发 JavaScript 和 TypeScript 应用的工具包
 
-它是一个 JavaScript 运行时，用来取代 Node.js
-它不止是一个运行时，长期目标是成为一个内聚的基础设施工具包，用于使用 JavaScript/TypeScript 构建应用程序。包括包管理器、转译器、捆绑器、脚本运行器、测试运行器等。
+用了 Zig 语言，并且由 JavaScriptCore 在底层提供支持。
+
+它是一个 JavaScript 运行时，用来取代 Node.js 它不止是一个运行时，长期目标是成为一个内聚的基础设施工具包，用于使用 JavaScript/TypeScript 构建应用程序。包括包管理器、转译器、捆绑器、脚本运行器、测试运行器等。
 
 ### 什么是运行时
 
 JavaScript 运行时（Runtime）是指 JavaScript 代码在浏览器或服务器上执行时所需的环境，包括 JavaScript 引擎和相关的基础库。
 
-- JavaScript 引擎是指**负责解析和执行 JavaScript 代码的程序**，比如 V8 引擎、 JavaScriptCore 引擎等。
-- 基础库包括 **ECMAScript 标准库、DOM API、XMLHttpRequest API、Web API** 等。
+- **JavaScript 引擎**是指**负责解析和执行 JavaScript 代码的程序**，比如 V8 引擎、 JavaScriptCore 引擎等。
+- **基础库**包括 **ECMAScript 标准库、DOM API、XMLHttpRequest API、Web API** 等。
 
 JavaScript 运行时提供了一种可编程的环境，使得 JavaScript 代码可以与 Web 应用程序交互，实现动态的用户界面和交互式的 Web 应用程序。
+
+## 解决了什么问题？
+
+## 为什么快
+
+1. 用了 Zig 语言，并且由 JavaScriptCore 在底层提供支持。
+
+## 优势
 
 ### 模板
 
