@@ -38,6 +38,12 @@
     "access": "publish",
     "tag": "next", // 默认为 ltest 版本。
   },
+  "engines": {
+		"node": ">=14"
+	},
+  "bin": {
+    "myCli": './bin/enter'
+  }
 }
 ```
 
@@ -49,16 +55,11 @@
 - 当使用 import 引入模块时，会默认加载 module 文件
 - 当在浏览器中使用模块时，会默认加载 browser 文件
 
-什么是在浏览器中使用?
-我有一个项目 A，还有一个项目 B，B 中通过 import 的方式引入了 A，B 项目会经过 webpack 打包最终在浏览器中执行，如果 A，B 都配置了上面 3 个字段，A，B 项目中最终使用的是那个配置?
-B 使用的是 A 的 module 文件
-浏览器使用的是 B 的 browser 文件。
+什么是在浏览器中使用？我有一个项目 A，还有一个项目 B，B 中通过 import 的方式引入了 A，B 项目会经过 webpack 打包最终在浏览器中执行，如果 A，B 都配置了上面 3 个字段，A，B 项目中最终使用的是那个配置？B 使用的是 A 的 module 文件浏览器使用的是 B 的 browser 文件。
 
 ### exports
 
-package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，用于指定模块的导出方式，以替代旧的方式（例如 main 和 module 字段）。
-**它的优先级是高于任何入口字段的（module、main、browser**
-
+package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，用于指定模块的导出方式，以替代旧的方式（例如 main 和 module 字段）。 **它的优先级是高于任何入口字段的（module、main、browser**
 
 用它可以指定需要暴露的子目录。没暴露出来的子目录不会被访问到。
 
@@ -73,9 +74,7 @@ package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，
 
 **在 "exports" 对象中，键序很重要。在条件匹配过程中，排序靠前的入口具有较高的优先级。通常规则是，这些条件应该从最特殊到最不特殊来排序。**
 
-> 如果在 A 项目中我定义了 main & module & browser & exports，我在 B 项目中通过 import 的方式使用 A，那么最终我使用的是那个属性定义的文件?
-> 是 exports 的 import 定义的文件被使用。
-> exports 的优先级高，又通过 import 的方式使用
+> 如果在 A 项目中我定义了 main & module & browser & exports，我在 B 项目中通过 import 的方式使用 A，那么最终我使用的是那个属性定义的文件？是 exports 的 import 定义的文件被使用。exports 的优先级高，又通过 import 的方式使用
 
 ### `main` & `module` & `browser` & `exports.import` & `export.require` & `export.node` & `export.default`
 
@@ -100,18 +99,13 @@ package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，
 - 通过 `import myPkg from 'myPkg'` 的方式使用：browser > module > main > index.js(myPkg 根目录下的 index.js 和 package.json)
 - 通过 `const myPkg from 'myPkg'` 的方式使用：browser > main > module > index.js(myPkg 根目录下的 index.js 和 package.json)
 
-在 **Node** 中使用
-等需要的时候再补充
+在 **Node** 中使用等需要的时候再补充
 
-构建工具可以指定入口顺序，干预上面的过程：
-webpack 使用 [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolvemainfields) 的方式干预。
-**webpack 在 target: web 的情况下 mainFields 字段默认为 ['browser', 'module', 'main']**。webpack 默认的 target 为 web
+构建工具可以指定入口顺序，干预上面的过程：webpack 使用 [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolvemainfields) 的方式干预。 **webpack 在 target: web 的情况下 mainFields 字段默认为 ['browser', 'module', 'main']**。webpack 默认的 target 为 web
 
 Rollup 进行构建你的项目，你也可以通过 `@rollup/plugin-node-resolve` 插件中的 `mainFields` 来实现这个功能。
 
-环境是怎么来的，怎么设置环境
-上述所谓的 browser、development 等运行环境究竟是如何被设置的呢。
-或者换一个问题，如果我们在 exports 中希望额外添加一个环境的引入路径，应该如何做呢？
+环境是怎么来的，怎么设置环境上述所谓的 browser、development 等运行环境究竟是如何被设置的呢。或者换一个问题，如果我们在 exports 中希望额外添加一个环境的引入路径，应该如何做呢？
 
 在运行 NodeJs 脚本时可以通过 `--conditions` 标志添加自定义用户条件。
 
@@ -139,8 +133,7 @@ node --conditions=customMode main.js
 
 ### files
 
-指定哪些文件推送到 npm 服务器。
-默认情况下，包含： README、LICENSE 和 package.json 文件，以及 bin、lib 和 man 目录
+指定哪些文件推送到 npm 服务器。默认情况下，包含： README、LICENSE 和 package.json 文件，以及 bin、lib 和 man 目录
 
 ### scripts
 
@@ -203,8 +196,10 @@ npm install = npm prepare && npm install
 
 用来配置发布到 npm 上的包的参数。
 
-registry：指定发布时要使用的仓库地址。默认为：`https://registry。npmjs.org`。
-access: 设置这个包的访问权限。
-tag: 发布的包被标记的值。有 next。默认为 latest
+registry：指定发布时要使用的仓库地址。默认为：`https://registry。npmjs.org`。access: 设置这个包的访问权限。tag: 发布的包被标记的值。有 next。默认为 latest
 
 如果 registry 指定了一个私有地址作为 npm 仓库，那么别人是无法直接看到和下载你的包。
+
+### bin
+
+bin 内容在安装包之后就注册为命令行指令
