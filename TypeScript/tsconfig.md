@@ -54,7 +54,7 @@ Q：常用的 TypeScript 编译器，以及用法？
     "jsx": "react", //  jsx 用于的开发环境，preserve/react/RN
     "moduleResolution": "node", // 选择模块解析策略。只有 node 的 commonjs 在遇到 import React from 'react' 时才会去 node_modules 中去找。
     "allowSyntheticDefaultImports": true, // 如果文件没有 export default，你又在使用的时候 使用 import xx from 'xx'，这种如果不处理会报错，设置为 true 之后，编译器会默认导出一个 default
-    "lib": ["es6", "dom"], // // TS 需要引用的库，即声明文件，es5 默认引用 dom、es5、scripthost,如需要使用 es 的高级版本特性，通常都需要配置，如 es8 的数组新特性需要引入"ES2019.Array"。
+    "lib": ["es6", "dom"], // 编译过程中需要引入的库文件的列表，即声明文件(.d.ts)。
     "sourceMap": true, // 是否生成 '.map' 文件
     "allowJs": true, // 允许编译 .js .jsx 文件
     "checkJs": false, // 允许在 .js 中报错
@@ -69,7 +69,7 @@ Q：常用的 TypeScript 编译器，以及用法？
     "noImplicitReturns": false, // 不要有隐式的返回。
     "importHelpers": true, // 从帮助函数模块中导出需要的特性函数，减小编译后的包体积。
     "declaration": true, // 是否生成.d.ts 文件。
-    "skipLibCheck": true, // 指定是否跳过 node_modules 的检查
+    "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查。
     "forceConsistentCasingInFileNames": true, // 指定文件名 大小写 是一样的效果。（不区分文件名大小写）Window 文件名大小写不敏感， TS 大小写是敏感的。设置成 false （不设置）比较合理。
     "resolveJsonModule": true, // 允许在 TypeScript 中导入 JSON 模块。默认情况下是不能直接导入 JSON 模块的，配置了这个选项之后，TypeScript 会将 JSON 文件解析为 JavaScript 对象。
     "esModuleInterop": true // 解决 esm 但是通过 require 使用时的兼容问题
