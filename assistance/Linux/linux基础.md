@@ -28,12 +28,12 @@
 
 ## 文件相关命令
 
-### 文件夹快捷键
+### 创建/删除文件夹
 
 - 创建文件 mkdir 创建文件 -p 代表递归创建
 - 删除文件 rmdir 删除文件 -p 代表递归删除
 
-### 文件快捷键
+### 创建/删除文件
 
 - touch 创建文件
 - rm 删除文件 -r 递归删除 -f 关闭删除确认
@@ -43,7 +43,7 @@
 
 - find 路径 -name 文件名 --> find e:/test -name aa
 
-### 移动文件
+### 复制/移动文件
 
 - cp -vRp 文件/文件夹 目标路径
 - mv -v 文件/文件夹 目标路径 还有一个作用 改名字 mv 旧名称 新名称
@@ -72,6 +72,16 @@ grep 【选项】 《字符串》 《源文件》
 | curl baidu.com/ curl -v baidu.com | 发送请求，查看网站/查看请求和响应数据 |
 | lsof -i:4444                      | 查看端口号                            |
 | kill -9 PID                       | 杀死进程                              |
+
+### cat
+
+cat(concatenate and print files) 连接并打印文件
+
+把文件内容输出到终端
+
+```bash
+cat ~/.zshrc
+```
 
 ### ln
 
@@ -118,5 +128,45 @@ cp package.json dist/
 
 # 复制 test/ 目录到新目录 newtest
 cp –r test/ newtest
+
+```
+
+### chmod
+
+chmod (change mode) 更改文件或者目录的权限。
+
+读（read）、写（write）和执行（execute）权限。
+
+- `+r`：添加读权限。
+- `+w`：添加写权限。
+- `+x`：添加可执行权限。
+- `-r`：移除读权限。
+- `-w`：移除写权限。
+- `-x`：移除可执行权限。
+
+```bash
+chmod +x a.js
+```
+
+### less
+
+查看文本内容，它以交互式的方式显示文件内容，并允许用户在文件中进行搜索、浏览和导航。
+
+### pbcopy
+
+作用是将文本和数据复制到剪切版中
+
+pbcopy 本意是 pasteboard copy
+
+> 这是 Mac 中特有的命令
+
+用法如下
+
+```bash
+# 将文件内容复制到简介板
+pbcopy < example.txt
+
+# 将命令的输出结果复制到剪贴板：
+ls | pbcopy
 
 ```
