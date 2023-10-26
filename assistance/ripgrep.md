@@ -14,6 +14,8 @@ rg "正则" javascript
 
 ### rg -g(--glob)
 
+原意是 globbing 通配，专门用来匹配文件的。
+
 用一个模式来匹配文件和文件夹
 
 ```bash
