@@ -19,10 +19,14 @@ rg "正则" javascript
 用一个模式来匹配文件和文件夹
 
 ```bash
-rg -g "*.{js,md}" "vim"
+-g *.jsx "const"
+
+-g "*.{js,md}" "vim"
 ```
 
 `--glob=!{pnpm-lock.\*}`
+
+- 代表任意数量的字符
 
 在 ripgrep 中，--glob=!{pattern} 的语法表示排除匹配 pattern 的文件。
 
