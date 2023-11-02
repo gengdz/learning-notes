@@ -172,3 +172,18 @@ pbcopy < example.txt
 ls | pbcopy
 
 ```
+
+### pbpaste
+
+作用是获取剪切板的内容
+
+> 这是 Mac 中特有的命令
+
+用法如下
+
+```bash
+
+# 将命令的输出结果复制到剪贴板：
+ls | pbcopy && echo "$(pbpaste)"
+
+```
