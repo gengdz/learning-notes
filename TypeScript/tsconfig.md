@@ -72,7 +72,7 @@ Q：常用的 TypeScript 编译器，以及用法？
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查。
     "forceConsistentCasingInFileNames": true, // 指定文件名 大小写 是一样的效果。（不区分文件名大小写）Window 文件名大小写不敏感， TS 大小写是敏感的。设置成 false （不设置）比较合理。
     "resolveJsonModule": true, // 允许在 TypeScript 中导入 JSON 模块。默认情况下是不能直接导入 JSON 模块的，配置了这个选项之后，TypeScript 会将 JSON 文件解析为 JavaScript 对象。
-    "esModuleInterop": true // 解决 esm 但是通过 require 使用时的兼容问题
+    "esModuleInterop": true //
   },
   "files": [], // 指定编译文件的列表。只有编译的文件少的时候会用到
   "include": ["src/**/*", "@types/*"], // 需要编译的文件或目录 ** 表示任意目录；* 表示任意文件
@@ -156,6 +156,12 @@ function parseResponse() {
   }
 }
 ```
+
+### esModuleInterop
+
+兼容只有 umd，cjs 方式且没有暴露 deault 属性的包，添加 default 属性，从而使得 `import a from "a"` 或者 `import * as a from "a"` 引入的包，不会报没有 default 属性。
+
+例如 query-string@7.1.1 这样的包。 保险起见，建议开启这个配置。
 
 ### importHelpers
 

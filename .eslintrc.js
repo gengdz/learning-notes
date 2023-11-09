@@ -7,5 +7,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-empty': 'warn',
+    'no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': ['warn'],
   },
 };

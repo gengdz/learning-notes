@@ -8,6 +8,11 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  optimizeDeps: {
+    include: [], // 进行依赖预构建
+    exclude: [], // 不进行依赖预构建
+  },
+  envPrefix: 'ENV', // 修改环境变量前缀
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.js'),
@@ -63,8 +68,9 @@ export default defineConfig({
 
 globals 作用是：为 external 的包，提供全局变量。
 
-key:value 的形式中
-key 是 package.json 中的 name
-value 是这个包提供的 UMD 包中暴露到全局的变量，不是随便写的。
+key:value 的形式中:
 
-如果通过 UMD 的方式引用，external 之后，需要在 html 模板中加上 external 的包。
+- key 是 package.json 中的 name
+- value 是这个包提供的 UMD 包中暴露到全局的变量，不是随便写的。
+
+如果通过 UMD 的方式引用，external 之后，需要在 HTML 模板中加上 external 的包。
