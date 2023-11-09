@@ -3,7 +3,7 @@
   "lint-staged": {
     "*.{js,ts}": [
       "prettier --write",
-      "eslint --quiet --fix --config .eslintrc.js"
+      "eslint --quiet --fix"
     ],
     "*.{md,json}": [
       "prettier --write"
