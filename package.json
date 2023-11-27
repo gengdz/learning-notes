@@ -1,11 +1,11 @@
 {
   "name": "learning-notes",
   "lint-staged": {
-    "*.{js,ts}": [
+    "src/**/*.{js,ts}": [
       "prettier --write",
       "eslint --quiet --fix"
     ],
-    "*.{md,json}": [
+    "src/**/*.{md,json}": [
       "prettier --write"
     ]
   },
