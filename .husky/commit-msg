@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
-npx --no -- commitlint --edit ${1}
+echo "start" >>commit.md
+# . "$(dirname -- "$0")/_/husky.sh"
+
+echo "test1 --${1}" >commit.md #  feat: process 模块
+echo "test1 --11" >commit.md   #  feat: process 模块
+echo "test2 --$1" >commit.md   #  feat: process 模块
+echo "test2 --22" >commit.md   #  feat: process 模块
+
+echo "end" >commit.md
+
+# npx --no -- commitlint --edit "${1}" | > commit.md
