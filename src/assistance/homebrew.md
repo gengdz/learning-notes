@@ -49,6 +49,25 @@ brew --repo homebrew/cask
 
 ## 换源
 
+2023.2/16 日发布 4.0，抛弃了使用 Git 的方式维护软件信息而采用 JSON 文件的方式。目的是改善更新操作的速度。
+
+不再需要 brew/core 和 brew/cask 仓库，在执行命令的时候会提示清理
+
 ```bash
-git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask
+brew untap homebrew/cask
+brew untap homebrew/core
 ```
+
+现在替换源应该使用下面这种方式
+
+```bash
+# 清华大学源
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+```
+
+相关链接
+
+- [Homebrew 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+- [Homebrew 升级 4.0.0，麦金塔上的啤酒会更香吗？](https://sspai.com/post/78587)
