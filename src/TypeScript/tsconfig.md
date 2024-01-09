@@ -47,14 +47,15 @@ Q：常用的 TypeScript 编译器，以及用法？
   "compileOnSave": false,
   "buildOnSave": false, // 没找到这个
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./", // 指定项目的根目录。告诉编译器从哪里开始查找模块和文件。
     "outDir": "build", // 指定编译后的文件的输出目录
     "module": "esnext", // 控制最终生成哪种模块规范的代码。 'commonjs', 'amd', 'system', 'umd' or 'es2015'
-    "target": "esnext", // 指定 ECMAScript 目标版本：'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "target": "esnext", // 生成哪个版本的代码。指定 ECMAScript 目标版本：'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
     "jsx": "react", //  jsx 用于的开发环境，preserve/react/RN
     "moduleResolution": "node", // 选择模块解析策略。只有 node 的 commonjs 在遇到 import React from 'react' 时才会去 node_modules 中去找。
     "allowSyntheticDefaultImports": true, // 如果文件没有 export default，你又在使用的时候 使用 import xx from 'xx'，这种如果不处理会报错，设置为 true 之后，编译器会默认导出一个 default
-    "lib": ["es6", "dom"], // 编译过程中需要引入的库文件的列表，即声明文件(.d.ts)。
+    "lib": ["es6", "dom"], // 编译过程中需要引入的库文件的列表，即声明文件(.d.ts)。TypeScript 编译器自带的。选项主要是：DOM，ESXXX。
+    "types": ["vite/client"], // 指定第三方库声明文件。TypeScript 社区创建。
     "sourceMap": true, // 是否生成 '.map' 文件
     "allowJs": true, // 允许编译 .js .jsx 文件
     "checkJs": false, // 允许在 .js 中报错
