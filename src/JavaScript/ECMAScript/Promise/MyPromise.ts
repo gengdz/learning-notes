@@ -27,7 +27,7 @@ class MyPromise {
       this.status = MyPromise.FULFILLED;
       this.value = value;
       setTimeout(() => {
-        this.callbacks.forEach(callback => {
+        this.callbacks.forEach((callback) => {
           callback.onFulfilled(value);
         });
       });
@@ -39,7 +39,7 @@ class MyPromise {
       this.status = MyPromise.REJECTED;
       this.value = reason;
       setTimeout(() => {
-        this.callbacks.forEach(callback => {
+        this.callbacks.forEach((callback) => {
           callback.onRejected(reason);
         });
       });
@@ -56,10 +56,10 @@ class MyPromise {
     const promise = new MyPromise((resolve, reject) => {
       if (this.status === MyPromise.PENDING) {
         this.callbacks.push({
-          onFulfilled: value => {
+          onFulfilled: (value) => {
             this.parse(promise, onFulfilled(value), resolve, reject);
           },
-          onRejected: value => {
+          onRejected: (value) => {
             this.parse(promise, onRejected(value), resolve, reject);
           },
         });
@@ -116,8 +116,8 @@ class MyPromise {
   static all(promises) {
     const values = [];
     return new MyPromise((resolve, reject) => {
-      promises.forEach(promise => {
-        promise.then(value => {
+      promises.forEach((promise) => {
+        promise.then((value) => {
           values.push(value);
           if (values.length == promises.length) {
             resolve(values);
@@ -129,7 +129,7 @@ class MyPromise {
 
   static race(promises) {
     return new MyPromise((resolve, reject) => {
-      promises.forEach(promise => {
+      promises.forEach((promise) => {
         promise.then(resolve, reject);
       });
     });

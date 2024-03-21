@@ -55,7 +55,9 @@
 - 当使用 import 引入模块时，会默认加载 module 文件
 - 当在浏览器中使用模块时，会默认加载 browser 文件
 
-什么是在浏览器中使用？我有一个项目 A，还有一个项目 B，B 中通过 import 的方式引入了 A，B 项目会经过 webpack 打包最终在浏览器中执行，如果 A，B 都配置了上面 3 个字段，A，B 项目中最终使用的是那个配置？B 使用的是 A 的 module 文件浏览器使用的是 B 的 browser 文件。
+什么是在浏览器中使用？
+
+我有一个项目 A，还有一个项目 B，B 中通过 import 的方式引入了 A，B 项目会经过 webpack 打包最终在浏览器中执行，如果 A，B 都配置了上面 3 个字段，A，B 项目中最终使用的是那个配置？B 使用的是 A 的 module 文件浏览器使用的是 B 的 browser 文件。
 
 ### exports
 
@@ -97,7 +99,7 @@ package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，
 在 **浏览器** 中使用
 
 - 通过 `import myPkg from 'myPkg'` 的方式使用：browser > module > main > index.js(myPkg 根目录下的 index.js 和 package.json)
-- 通过 `const myPkg from 'myPkg'` 的方式使用：browser > main > module > index.js(myPkg 根目录下的 index.js 和 package.json)
+- 通过 `require myPkg from 'myPkg'` 的方式使用：browser > main > module > index.js(myPkg 根目录下的 index.js 和 package.json)
 
 在 **Node** 中使用等需要的时候再补充
 
