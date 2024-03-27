@@ -1,3 +1,5 @@
+function concurrentRequests(urls, maxConcurrent) {}
+
 // 根据表达式计算字母数量
 
 // 描述：输入一串字符串，根据字符串求出每个字母的数量并返回结果对象。（数字为 1 时可省略）
