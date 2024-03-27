@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      #div1 {
+        border: solid 1px pink;
+        background: pink;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      #div2 {
+        border: solid 1px grey;
+        background: grey;
+        width: 10px;
+        height: 10000px;
+        margin: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      id1;
+      <div id="div2">id2</div>
+    </div>
+  </body>
+  <script>
+    const div1 = document.querySelector('#div1');
+    const div2 = document.querySelector('#div2');
+
+    window.div1 = div1;
+    window.div2 = div2;
+  </script>
+</html>

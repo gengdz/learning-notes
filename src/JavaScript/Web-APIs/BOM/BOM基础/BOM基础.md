@@ -1,7 +1,6 @@
 # BOM 基础
 
-英文：`Browser Object Model`
-中文 浏览器对象模型
+英文：`Browser Object Model` 中文 浏览器对象模型
 
 BOM 即文档对象模型，是用来对浏览器窗口进行交互的对象，核心对象是 window。
 
@@ -57,15 +56,11 @@ window.onload = function () {};
 
 #### DOM 加载完成事件
 
-事件名： `DOMContentLoaded`
-触发时机：当 DOM 加载完成，不包括 CSS 文件，图片，flash 等。
-适用范围：如果页面中的图片很多，采用 load 事件监听触发可能需要比较长的时间，此时用 DOMContentLoaded 事件比较合适
+事件名： `DOMContentLoaded` 触发时机：当 DOM 加载完成，不包括 CSS 文件，图片，flash 等。适用范围：如果页面中的图片很多，采用 load 事件监听触发可能需要比较长的时间，此时用 DOMContentLoaded 事件比较合适
 
 #### 调整窗口大小事件
 
-事件名：`resize`
-触发时机：调整窗口大小时。
-适用范围：1. 需要完成响应式布局时，可以使用， window.innerWidth 当前屏幕的宽度
+事件名：`resize` 触发时机：调整窗口大小时。适用范围：1. 需要完成响应式布局时，可以使用， window.innerWidth 当前屏幕的宽度
 
 ### 定时器
 
@@ -80,10 +75,7 @@ function setTimeout<TArgs extends any[]>(
   ...args: TArgs
 ): NodeJS.Timeout;
 
-function setTimeout(
-  callback: (args: void) => void,
-  ms?: number
-): NodeJS.Timeout;
+function setTimeout(callback: (args: void) => void, ms?: number): NodeJS.Timeout;
 ```
 
 **停止定时器**
@@ -209,7 +201,7 @@ onmessage: ((this: WindowEventHandlers, ev: MessageEvent) => any) | null;
 main.html
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -229,7 +221,7 @@ main.html
 iframePage.html
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -253,15 +245,11 @@ main.html
 <script>
   const iframe2 = document
     .getElementById('child')
-    .contentWindow.postMessage(
-      '主页面给 iframe 发送了一些数据',
-      'http://b.com/iframePage.html'
-    );
+    .contentWindow.postMessage('主页面给 iframe 发送了一些数据', 'http://b.com/iframePage.html');
 </script>
 ```
 
-子页面接收消息：
-iframePage.html
+子页面接收消息：iframePage.html
 
 ```html
 <script>
@@ -334,29 +322,25 @@ iframePage.html
 
 ### 元素偏移量 offset 系列
 
-获取元素盒模型的大小。包含 border
-
-- 获得元素自身的大小（宽度高度）
 - 返回的数值都不带单位
-- 获取元素距离带有定位父元素的位置
 
 | 属性                   | 作用                                                            |
 | ---------------------- | --------------------------------------------------------------- |
-| `element.offsetLeft`   | 返回元素相对带有定位的父级元素左边的偏移                        |
 | `element.offsetWidth`  | 返回自身包括 padding、边框、内容区的宽度                        |
-| `element.offsetHeight` | 返回自身包括 padding、边框、内容区的高度                        |
-| `element.offsetParent` | 返回作为该元素带有定位的父级元素，如有父级都没有定位则返回 body |
 | `element.offsetTop`    | 返回元素相对带有定位的父级元素上方的偏移                        |
+| `element.offsetParent` | 返回作为该元素带有定位的父级元素，如有父级都没有定位则返回 body |
+| `element.offsetHeight` | 返回自身包括 padding、边框、内容区的高度                        |
+| `element.offsetLeft`   | 返回元素相对带有定位的父级元素左边的偏移                        |
 
 offset 与 style 区别
 
 ### client 系列
 
-获取内容的大小。不包含 border
+获取内容的大小。不包含 border, margin
 
-| 属性                  | 作用 |
-| --------------------- | ---- |
-| `element.clientWidth` |      |
+| 属性                  | 作用                                             |
+| --------------------- | ------------------------------------------------ |
+| `element.clientWidth` | 获取元素的内部宽度 clientWidth = width + padding |
 
 ### scroll 系列
 
