@@ -21,6 +21,12 @@
   - [`useLayoutEffect`](https://react.docschina.org/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](https://react.docschina.org/docs/hooks-reference.html#usedebugvalue)
 
+## 为什么不能在条件中使用
+
+由于 React 依赖于这些调用的顺序来关联组件状态。
+
+React 内部是用数组来存储这些 hooks 的，内部会在内存中为每个组件维护一个索引，指示当前正在处理哪个 Hook。更新的时候就更新这个 hooks 数组索引的值。
+
 ## useState
 
 ### 使用场景
