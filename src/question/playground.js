@@ -1,3 +1,88 @@
+/**
+ * 输入 [1,1,2,2,6,7,7] 得到 6，
+ * 输入 [1,1,2,2,6,6,7,7,8] 得到 8。
+ */
+const getAloneNum = (arr) => {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+    const midItem = arr[mid];
+    const pre = arr[mid - 1];
+    const next = arr[mid + 1];
+    if (midItem !== pre && midItem !== next) {
+      return midItem;
+    }
+    if (mid % 2 === 0) {
+      if (midItem < next) {
+        right = mid;
+      }
+      if (midItem === next) {
+        left = mid;
+      }
+    } else {
+      if (midItem < next) {
+        left = mid;
+      }
+      if (midItem === next) {
+        right = mid;
+      }
+    }
+  }
+};
+
+// 定义链表节点类
+class ListNode {
+  constructor(val, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+// 示例用法
+let a = new ListNode(1);
+let b = new ListNode(2);
+let c = new ListNode(3);
+let d = new ListNode(4);
+
+a.next = b;
+b.next = c;
+c.next = d;
+
+// 反转链表函数
+function reverseList(head) {
+  let prev = null;
+  let cur = head;
+
+  // 只要当前节点存在，就执行
+  while (cur) {
+    let nextTemp = cur.next; // 保存当前节点的下一个节点
+    cur.next = prev; // 把当前节点的指针指向上一个节点。完成反转
+    prev = cur; // 移动前一个指针到当前节点
+    cur = nextTemp; // 移动当前指针到下一个节点位置
+  }
+  // 反转后，新的头是 prev
+  return prev;
+}
+
+const reversedHead = reverseList(a);
+
+// 反转双链表
+function reverseDoublyLinkedList(head) {
+  let prev = null;
+  let curr = head;
+  while (curr) {
+    // 记录当前节点的下一个节点
+    const nextTemp = curr.next;
+    curr.before = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = nextTemp;
+  }
+  return prev;
+}
+
 function concurrentRequests(urls, maxConcurrent) {}
 
 // 根据表达式计算字母数量
