@@ -4,6 +4,7 @@
     "target": "ESNext",
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
-    "allowJs": true
+    "allowJs": true,
+    "noEmit": true
   }
 }
