@@ -103,7 +103,9 @@ package.json 中的 exports 字段是 Node.js 12.7.0 及以上版本新增的，
 
 在 **Node** 中使用等需要的时候再补充
 
-构建工具可以指定入口顺序，干预上面的过程：webpack 使用 [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolvemainfields) 的方式干预。 **webpack 在 target: web 的情况下 mainFields 字段默认为 ['browser', 'module', 'main']**。webpack 默认的 target 为 web
+构建工具可以指定入口顺序，干预上面的过程：webpack 使用 [resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolvemainfields) 的方式干预。
+
+- **webpack 在 target: web 的情况下 mainFields 字段默认为 ['browser', 'module', 'main']**。webpack 默认的 target 为 web
 
 Rollup 进行构建你的项目，你也可以通过 `@rollup/plugin-node-resolve` 插件中的 `mainFields` 来实现这个功能。
 
@@ -205,3 +207,11 @@ registry：指定发布时要使用的仓库地址。默认为：`https://regist
 ### bin
 
 bin 内容在安装包之后就注册为命令行指令
+
+### type:module
+
+项目中的 js 文件都被当成 esm 的规范，如果没有设置.js 结尾文件将被视为 commonjs。
+
+Q:为什么我没设置 type 字段，代码也是正常的？
+
+A:这是因为：Babel/TypeScript 编译器在编译阶段把代码转成了 commonjs
