@@ -1,5 +1,101 @@
 # APIs
 
+资料
+
+- [浏览器提供了这些 API](https://mp.weixin.qq.com/s/nJdlLjl6xlB2Z3myOFkJWw)
+
+## URL Pattern API
+
+匹配模块包含：URL Pattern API 的模式语法包括：
+
+- 字面字符串：将精确匹配的文本字符串，例如 "/home" 或 "/contact"。
+- 通配符：如 "/posts/ " 中的星号 ( ) 表示匹配任何字符序列，直至遇到下一个路径分隔符（/）。
+- 命名组：如 "/books/:id" 中的 ":id"，它会提取匹配 URL 中对应部分的值，作为单独的数据项。
+- 非捕获组：如 "/books{/old}?"，这里的花括号 {...}? 表示该部分模式是可选的，可以匹配 0 次或 1 次，且不会作为一个单独的数据项提取出来。
+- 正则表达式组：如 "/books/(\d+)" 中的 (\d+)，这部分遵循 JavaScript 正则表达式的规则，用于进行复杂匹配，尽管在 URL Pattern API 中有一定的限制。例如，此处的正则表达式将匹配一个或多个数字字符，并将其作为一个独立的数据项提取出来。
+
+```typescript
+const pattern = new URLPattern({ pathname: '/books/:id' });
+console.log(pattern.test('https://example.com/books/123')); // true
+console.log(pattern.exec('https://example.com/books/123').pathname.groups); // { id: '123' }
+```
+
+## CSS Custom Highlight API
+
+CSS 自定义高亮 API 提供了一种方法，可以通过使用 JavaScript 创建范围并使用 CSS 定义样式来设置文档中任意文本范围的样式。
+
+## Compression Stream API
+
+内置的压缩
+
+## Cookie Store API
+
+作用是：获取 cookie。 异步的方式获取。
+
+- cookieStore.getAll 获取全部
+- cookieStore.delete: 删除
+- cookieStore.get: 获取单个 cookie 信息
+- cookieStore.set: 设置单个 cookie 信息
+
+```typescript
+cookieStore.getAll().then(console.log);
+
+获取到的值为如下类型：
+
+{
+    "domain": "alibaba-inc.com",
+    "expires": 1716029214741.809,
+    "name": "SSO_LANG_V2",
+    "partitioned": false,
+    "path": "/",
+    "sameSite": "lax",
+    "secure": false,
+    "value": "ZH-CN"
+}
+```
+
+## MutationObserver
+
+Mutation 是突变的意思
+
+MutationObserver 的作用是监听 DOM 变化。可以监听 DOM 节点的新增、删除、属性变化、文本内容变化
+
+```typescript
+// 选择需要观察变动的节点
+const targetNode = document.getElementById('some-id');
+
+// 观察器的配置（需要观察什么变动）
+const config = {
+  childList: true, // 监听目标节点的子节点的增减
+  attributes: true, // 监听属性的变化
+  characterData: true, // 监听文本节点内容的变化
+  subtree: true, // 监听目标节点以及其子孙节点的变动
+  attributeOldValue: true, // 记录变化前的属性值
+  characterDataOldValue: true, // 记录变化前的数据
+  attributeFilter: ['class', 'style'], // 仅监视 class 和 style 变化
+};
+
+// 当观察到变动时执行的回调函数
+const callback = function (mutationsList, observer) {
+  for (let mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      console.log('A child node has been added or removed.');
+    } else if (mutation.type === 'attributes') {
+      console.log('The ' + mutation.attributeName + ' attribute was modified.');
+    }
+  }
+};
+
+// 创建一个观察器实例并传入回调函数
+const observer = new MutationObserver(callback);
+
+// 以上述配置开始观察目标节点
+observer.observe(targetNode, config);
+
+// 之后，可停止观察，一般说来这个放在 callback 中，满足某种条件之后就不观察了。
+observer.disconnect();
+```
+
 ## InterSectionObserver
 
 检测一个元素是否与祖先元素或者 viewport 是否相交。viewport 在浏览器中代表网站可见内容的部分。
