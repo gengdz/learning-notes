@@ -1,3 +1,5 @@
+/** @type {import("eslint").ESLint.Options} */
+
 module.exports = {
   env: {
     node: true,
