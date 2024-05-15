@@ -104,4 +104,7 @@ rg -tjson "rg"
 # 不搜索 .*-lock 文件夹
 --glob=!{*-lock.*}
 
+--type-add
+tsx:*.tsx
+
 ```
