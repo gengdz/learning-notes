@@ -62,13 +62,13 @@
 
 ### 查看包详情
 
-| 命令                          | 作用                          |
-| ----------------------------- | ----------------------------- |
-| `npm docs axios`              | 打开 axios 的文档             |
-| `npm ls [--depth=1]`          | 列出项目中用到的包            |
-| `npm ls [-g]`                 | 查看全局安装的包              |
-| `npm ls axios`                | 查看 axios 的依赖关系         |
-| `npm view axios dependencies` | 查看 axios 的依赖依赖了哪些包 |
+| 命令                     | 作用                      |
+| ------------------------ | ------------------------- |
+| `npm docs axios`         | 打开 axios 的文档         |
+| `npm ls [--depth=1]`     | 列出项目中安装的包        |
+| `npm ls axios --depth=0` | 项目顶层依赖的 axios 版本 |
+| `npm ls [-g]`            | 查看全局安装的包          |
+| `npm outdated`           | 查看过期的包              |
 
 ### npm owner
 
