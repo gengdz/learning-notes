@@ -97,21 +97,24 @@ if (location.pathname.match(path)) {
 
 ## OutLet
 
-用在父组件中去渲染它们的子路由组件。
+OutLet 组件用于渲染匹配的子路由组件。它充当一个占位符，react router 会在这个位置渲染当前匹配的子组件。这意味这不需要在父组件中显式的指定要渲染的子组件，而是让路由配置决定哪个子组件应该被渲染。
+
+Outlet 组件主要解决了路由嵌套和组件组织的问题，让你可以在应用中构建更为复杂的页面层级结构。使得路由配置更加集中和清晰，减少了重复的代码和组件的硬编码，从而简化了嵌套路由的开发流程。
+
+它和 children 的联系和区别？
+
+1. 当路由较为复杂，子路由需要根据多个层级动态决定时，使用 <Outlet> 可以更好地管理这种复杂性。
+2. 不利于页面分享和 URL 地址管理
+
+性能优势：
+
+- 代码分割：如果你的应用结构利于代码分割，使用 <Outlet> 与 React Router 的懒加载(React.lazy)和动态导入(import())结合起来，可以在组件级别进行懒加载。这样可以将代码拆分成小的 chunks，在需要时才加载相应的组件代码。这可以减少初始加载时间，提高性能。
+
+- 渲染优化：<Outlet> 通常用在路由配置中，React Router 会负责确定何时渲染组件。只有当路由匹配时，对应的组件才会被挂载和渲染，未匹配的组件不会被加载，可以优化性能。
+
+使用 children 可能会意外渲染不必要的组件或导致不必要的重渲染，从而影响性能。
 
 ```typescript
-function Dashboard() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-
-      {/* This element will render either <DashboardMessages> when the URL is
-          "/messages", <DashboardTasks> at "/tasks", or null if it is "/"
-      */}
-      <Outlet />
-    </div>
-  );
-}
 
 function App() {
   return (
@@ -123,9 +126,134 @@ function App() {
     </Routes>
   );
 }
+
+function Dashboard() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {/* This element will render either <DashboardMessages> when the URL is
+          "/messages", <DashboardTasks> at "/tasks", or null if it is "/"
+      */}
+      <Outlet contenxt={{ name: 'xingya' }}/>
+    </div>
+  );
+}
+
+function DashboardMessages() {
+ const { name } = useOutletContext();
+
+  return (
+    <div>
+      <h2>DashboardMessages</h1>
+    </div>
+  );
+}
+
 ```
 
+父路由向子路由传递参数
+
+- 可以使用 OutLet 的 context 属性传递参数，然后在 useOutletContext 中获取参数
+- 也可以使用 React 的 context, useContext 来接受参数。
+
 [OutLet](https://reactrouter.com/en/main/components/outlet)
+
+如果没有 OutLet，需要怎么实现上面的功能
+
+在 V5 中，这么实现
+
+```tsx
+function App() {
+  return (
+    <Router>
+      <Switch>
+        {/* 使用 render prop 来嵌入 Dashboard 以及其子路由 */}
+        <Route path="/" render={() => <Dashboard />}></Route>
+      </Switch>
+    </Router>
+  );
+}
+
+function Dashboard() {
+  // useRouteMatch 钩子可以帮助我们得到当前匹配路由的信息
+  let { path, url } = useRouteMatch();
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <ul>
+        <li>
+          <Link to={`${url}/messages`}>Messages</Link>
+        </li>
+        <li>
+          <Link to={`${url}/tasks`}>Tasks</Link>
+        </li>
+      </ul>
+
+      {/* 在 Dashboard 中定义子路由 */}
+      <Switch>
+        <Route path={`${path}/messages`}>
+          <DashboardMessages />
+        </Route>
+        <Route path={`${path}/tasks`}>
+          <DashboardTasks />
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+```
+
+不使用 router 相关的 api
+
+```tsx
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
+
+// 定义 App 组件
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+    </Routes>
+  );
+}
+
+// 定义 Dashboard 组件
+function Dashboard() {
+  const location = useLocation();
+  const name = 'xingya';
+
+  // 使用 useMemo 来避免不必要的重新渲染
+  const currentComponent = useMemo(() => {
+    const pathname = location.pathname;
+    switch (pathname) {
+      case '/messages':
+        return <DashboardMessages name={name} />;
+      case '/tasks':
+        return <DashboardTasks name={name} />;
+      default:
+        return null;
+    }
+  }, [location.pathname, name]);
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {currentComponent}
+    </div>
+  );
+}
+
+// 定义 DashboardMessages 组件
+function DashboardMessages({ name }) {
+  return (
+    <div>
+      <h2>Messages for {name}</h2>
+    </div>
+  );
+}
+```
 
 ## withRouter
 
