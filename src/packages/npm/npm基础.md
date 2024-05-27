@@ -47,11 +47,12 @@
 
 ### 升级包
 
-| 命令                        | 作用                   |
-| --------------------------- | ---------------------- |
-| `npm update`                | 升级所有包             |
-| `npm update lodash`         | 升级 lodash 到最新版本 |
-| `npm update lodash@4.17.20` | 升级到指定版本         |
+| 命令                           | 作用                                |
+| ------------------------------ | ----------------------------------- |
+| `npm update`                   | 升级所有包                          |
+| `npm update lodash`            | 升级 lodash 到最新版本              |
+| `npm update lodash@4.17.20`    | 升级到指定版本                      |
+| `npm update -D lodash@4.17.20` | 升级 devDependencies 的包到指定版本 |
 
 ### 查看包
 
