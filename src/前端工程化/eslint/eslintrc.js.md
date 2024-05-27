@@ -57,6 +57,10 @@ ESLint 查找插件的规则：
 1. 尝试加载 `eslint-plugin-<plugin-name>` 插件。
 2. 如果未找到匹配的插件，尝试加载 `<plugin-name>` 插件。
 
+对于有作用域的包，eslint 也是这个省略规则。
+
+比如 `@xingya/js` 其实 eslint 会寻找 `@xingya/eslint-plugin-js`
+
 ### ignorePatterns
 
 - `ignorePatterns` 属性是 ESLint 7.0.0 版本引入的新属性

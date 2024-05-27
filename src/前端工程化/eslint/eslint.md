@@ -109,6 +109,7 @@ meta 属性包含了关于这条规则的元信息，**描述了规则的一些�
   - "code": 表示规则可以自动修复源码问题。
   - "whitespace": 表示规则可以自动修复代码中的空格问题。
 - schema: 描述了规则的配置选项，如果规则没有配置选项，这个数组可以留空。如果有参数，配置的时候就需要这么写
+  -messages: message 的对象，在调用 context.report 时可以使用 messageId 来映射到 messages 对象中。
 
   ```JavaScript
     rules: {
@@ -136,6 +137,35 @@ create 方法：参数为 context。常用的属性为
 
 这个简单的规则模板可以扩展为更复杂的逻辑，例如更精确地定位导入语句的特定部分并进行修复，或支持更多的配置选项。规则配置的能力和灵活性使 ESLint 成为了非常强大的代码质量和风格的工具。
 
+这里还可以使用 4.0 以后的选择器语法（Selectors），类似于 CSS 选择器。
+
+[eslint selectors](https://eslint.org/docs/latest/extend/selectors)
+
+```JavaScript
+module.exports = {
+  create(context) {
+    // ...
+
+    return {
+
+      // This listener will be called for all IfStatement nodes with blocks.
+      "IfStatement > BlockStatement": function(blockStatementNode) {
+        // ...your logic here
+      },
+
+      // This listener will be called for all function declarations with more than 3 parameters.
+      "FunctionDeclaration[params.length>3]": function(functionDeclarationNode) {
+        // ...your logic here
+      }
+    };
+  }
+};
+```
+
+### 调试
+
+在 `.eslintrc` 的配置文件下需要使用 npm link 的方式来
+
 ## QA
 
 1. eslintrc.js 为啥要用 CMD 的导出方式 eslintrc.js 是 eslint 的配置文件，里面要使用 CMD 的方式导出模块，因为 eslint 是基于 Node.js 的
@@ -143,5 +173,9 @@ create 方法：参数为 context。常用的属性为
 2. ESLint 为什么和 Prettier 冲突 Linters 可能会与 Prettier 冲突。因为：Linters 不仅包含代码质量的规则，还可以包含格式化的规则。可以使用 [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) 这样的方案来避免。
 
 3. 可以只用 ESLint 代替 Prettier 利用插件可以让您像运行 linter 规则一样运行 Prettier：这样不行的原因是：
+
    - 你会看到很多波浪线
    - 会比较慢
+
+4. 在写插件的时候没有提示，怎么解决。
+   可以使用 `/** @type {import("eslint").Rule.RuleModule} */`
