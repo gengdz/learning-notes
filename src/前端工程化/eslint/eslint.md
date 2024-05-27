@@ -58,7 +58,23 @@ module.exports = {
       category: 'Possible Errors',
     },
     fixable: 'code',
-    schema: [],
+    // 传递给规则的参数，写法是下面的方式
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          objName: {
+            type: 'string',
+          },
+          propNames: {
+            type: 'array',
+          },
+          commentName: {
+            type: 'string',
+          },
+        },
+      },
+    ],
   },
   create: function (context) {
     return {
@@ -92,7 +108,22 @@ meta 属性包含了关于这条规则的元信息，**描述了规则的一些�
 - fixable: 指明了此规则是否可以通过 ESLint 的--fix 选项自动修复。如果可以自动修复，需要指明是那一类修复类型，典型值是"code"或"whitespace"。
   - "code": 表示规则可以自动修复源码问题。
   - "whitespace": 表示规则可以自动修复代码中的空格问题。
-- schema: 描述了规则的配置选项，如果规则没有配置选项，这个数组可以留空。
+- schema: 描述了规则的配置选项，如果规则没有配置选项，这个数组可以留空。如果有参数，配置的时候就需要这么写
+
+  ```JavaScript
+    rules: {
+          // 你的具体开启的规则
+          'myCustomPlugin/myRule': [
+              'error',
+              // 你的规则参数
+              {
+                  objName: 'test',
+                  propNames: 'testCall',
+                  commentName: '$test'
+              }
+          ],
+      },
+  ```
 
 ### create
 
