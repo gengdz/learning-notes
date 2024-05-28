@@ -24,6 +24,12 @@ git revert f95f15b;
 --no-commit：只抵消暂存区和工作区的文件变化，不会产生新的提交
 ```
 
+可能有冲突，如果有冲突，需要解决冲突，然后可以
+
+- `git add filePaht` 添加冲突的文件
+- `git revert --continue` 继续走流程
+- `git revert --abort` 取消操作
+
 ## 撤销多个连续的提交
 
 ```bash
