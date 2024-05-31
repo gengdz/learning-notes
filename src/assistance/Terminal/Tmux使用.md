@@ -151,7 +151,7 @@ tmux set -g status-right '#[fg=white,bg=default,bright]%H:%M:%S #[fg='#bdc3c7']%
 
 弹出窗口
 
-`tmux display-popup`
+`tmux popup`
 
 | option | 说明                           |
 | ------ | ------------------------------ |
@@ -161,12 +161,12 @@ tmux set -g status-right '#[fg=white,bg=default,bright]%H:%M:%S #[fg='#bdc3c7']%
 直接在命令行中打开可以使用
 
 ```bash
-tmux display-popup -d "$PWD" -E
+tmux popup -d "$PWD" -E
 ```
 
 可以在配置中定义快捷键
 
 ```bash
 # 打开浮动终端
-bind p display-popup -d "#{pane_current_path}" -w "80%" -h "80%"  -E
+bind p popup -d "#{pane_current_path}" -w "80%" -h "80%"  -E
 ```
