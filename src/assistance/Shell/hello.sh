@@ -26,3 +26,10 @@ if [ -e $name ]; then
 else
 	echo "my name is $name"
 fi
+
+printUserInfo() {
+	echo "user name is $USER"
+	echo "user id is ${UID}"
+}
+
+printUserInfo
