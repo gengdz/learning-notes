@@ -1,6 +1,14 @@
 # fzf
 
-模糊搜索工具，可以搜文件
+fzf is an interactive filter program for any kind of list.
+
+It implements a "fuzzy" matching algorithm, so you can quickly type in patterns with omitted characters and still get the results you want.
+
+### fzf 的工作方式
+
+1. 通过标准输入向 fzf 提供文本行
+2. fzf 启动一个交互式终端界面，您可以在其中使用模糊匹配算法缩小列表范围
+3. 当您最终做出选择时，fzf 会将其打印到标准输出
 
 ## 使用
 
