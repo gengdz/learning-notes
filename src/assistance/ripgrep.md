@@ -72,11 +72,21 @@ rg -uu 'word' .
 
 使用 -e REGEX 来指定正则表达式
 
--C2 打印匹配到的前后 2 行。
-
 ```bash
 rg -e '*sql' -C2
 ```
+
+使用场景：
+
+多个搜索模式
+
+但是当你需要使用多个搜索模式时，-e 选项就变得不可或缺：
+
+```bash
+rg -e "config.*maps.*lus" -e "another.*pattern"
+```
+
+在这种情况下，rg 会匹配 "config.*maps.*lus" 或 "another.\*pattern"，即只要有一个模式匹配即可。
 
 ### rg -w
 
@@ -91,13 +101,21 @@ rg -tjson 'rg'
 
 ```
 
+### rg -l
+
+只显示的路径，不显示具体匹配到的内容
+
+```bash
+rg 'const' -l
+```
+
 ### 其他
 
 | option    | 作用                           | 示例      |
 | --------- | ------------------------------ | --------- |
 | rg -A NUM | (after)展示匹配后的 NUM 行     | `rg -A 2` |
 | rg -B NUM | (before)展示匹配前的 NUM 行    | `rg -B 2` |
-| rg -C NUM | (context)展示匹配前后的 NUM 行 | `rg -B 2` |
+| rg -C NUM | (context)展示匹配前后的 NUM 行 | `rg -C 2` |
 
 ## ripgrep 配置
 
