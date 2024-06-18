@@ -26,7 +26,7 @@
   `prefix`：用于简要描述迭代信息，命名遵循本节定义的 `{type}-{issue id}-the-thing-you-do` 规范
   `semver`：本次发布的迭代版本号，格式需要遵循 [semantic version](https://semver.org/lang/zh-CN/?spm=a2o8t.11089562.0.0.ea766654D5ovLk)
   比如以下格式都满足规范
-  - `feat-TagInput/1.0.0`：新增 TagInput 功能, 迭代版本号为 1.0.0
+  - `feat-TagInput/1.0.0`：新增 TagInput 功能，迭代版本号为 1.0.0
   - `fix-TagInput-style/1.0.0`：修复 TagInput 样式问题，迭代版本号为 1.0.0
 
 ## 分支常用命令
@@ -85,7 +85,7 @@
 强制覆盖本地分支代码：
 
 ```bash
-git pull --force  <远程主机名> <远程分支名>:<本地分支名>
+git pull --force  《远程主机名》 《远程分支名》:《本地分支名》
 
 <!-- 示例 -->
 git pull --force origin master:daily/0.8.88
