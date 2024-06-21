@@ -70,6 +70,7 @@
 
 - /etc
   存放系统配置文件和脚本，如网络配置文件、服务配置文件等。
+  （etc: 等等的意思）
 
 - /home
   用户家目录，按用户账号分别存放，如用户 user1 的目录为/home/user1。
@@ -378,7 +379,105 @@ history
 
 输入内容，去匹配历史命令
 
-### 键盘移动
+#### 键盘移动
 
 - C-Left 左边一个单词
 - C-Right 右边一个单词
+
+### 安装软件
+
+#### yum
+
+```bash
+yum [-y] [install|remove|upgrade|search] package
+```
+
+#### apt
+
+在 ubuntu 系统中
+
+```bash
+apt [-y] [install|remove|upgrade|search] package
+```
+
+### systemctl
+
+服务控制。
+
+控制启动、停止、开启自启动等。
+
+用法如下：
+
+```bash
+systemctl [start|stop|restart|enable|disable] service
+```
+
+### date
+
+#### 作用和语法
+
+SYNOPSIS
+
+     date [-nRu] [-I[FMT]] [-r filename] [-r seconds] [-v[+|-]val[y|m|w|d|H|M|S]] [+output_fmt]
+     date [-jnRu] [-I[FMT]] [-v[+|-]val[y|m|w|d|H|M|S]] [[[mm]dd]HH]MM[[cc]yy][.SS] [+output_fmt]
+     date [-jnRu] [-I[FMT]] [-v[+|-]val[y|m|w|d|H|M|S]] -f input_fmt new_date [+output_fmt]
+
+| 占位符 | 作用 | 说明   |
+| ------ | ---- | ------ |
+| `%y`   | 年   | year   |
+| `%m`   | 月   | month  |
+| `%d`   | 日   | day    |
+| `%H`   | 时   | hour   |
+| `%M`   | 分   | minute |
+| `%S`   | 秒   | second |
+
+```bash
+date '+%Y-%m-%d %H:%M:%S'
+# 2024-06-21 13:33:04
+
+```
+
+-v 时间计算
+
+```bash
+date -v+1d -v-1m
+# 2024 年 5 月 22 日 星期三 13 时 41 分 59 秒 CST
+```
+
+#### 修改时间
+
+```bash
+rm -rf /etc/localtime
+
+sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+### ip 地址和主机名称
+
+#### ifconfig
+
+查看 ip 地址
+
+```bash
+ifconfig
+```
+
+- 127.0.0.1: 本机的 ip
+- 0.0.0.0: 本机的 ip；在一些地址限制中表示所有 ip
+
+#### 主机名
+
+```bash
+hostname
+# U-M2R662KR-2355.local
+```
+
+#### 域名解析
+
+根据域名/主机名找到 IP 地址
+
+所以可以在 `/etc/hosts` 配置，然后就可以使用域名访问了
+
+```bash
+123.3.201.1 xingya.com
+```
