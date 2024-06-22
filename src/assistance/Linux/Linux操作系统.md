@@ -207,7 +207,12 @@ actually been invoked.
 
 ### grep 关键字 文件地址
 
-### tail 查看文件尾部内容 tail -num 文件地址
+### tail 查看文件尾部内容
+
+tail – display the last part of a file
+
+- tail -n 10 文件地址
+- tail -f 文件名 持续追踪文件
 
 ### ip 命令
 
@@ -481,3 +486,38 @@ hostname
 ```bash
 123.3.201.1 xingya.com
 ```
+
+#### 固定 IP
+
+默认情况下，会通过 DHCP 服务获取 IP 地址
+
+DHCP :动态分配 IP 地址，每次设备重启都会获取一次，可能会导致 IP 地址频繁变更
+
+为啥要固定 IP？
+
+- 如果要远程连接到 Linux 系统 IP 经常变化我们就要频繁修改适配，很麻烦
+- 如果我们配置了 虚拟机 IP 地址和域名的映射，经常变化我们就要频繁修改映射，很麻烦
+
+### 网络请求和下载
+
+#### ping
+
+检查服务是否可以联通。
+
+```bash
+ping -c3 baidu.com
+
+# 64 bytes from 110.242.68.66: icmp_seq=0 ttl=49 time=62.780 ms
+# 64 bytes from 110.242.68.66: icmp_seq=1 ttl=49 time=60.686 ms
+# 64 bytes from 110.242.68.66: icmp_seq=2 ttl=49 time=55.876 ms
+
+- -c count : ping 3 次
+
+
+```
+
+#### wget
+
+wget 从远程下载文件
+
+#### curl
