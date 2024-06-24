@@ -1,8 +1,21 @@
 # APIs
 
-资料
+一些资料
 
 - [浏览器提供了这些 API](https://mp.weixin.qq.com/s/nJdlLjl6xlB2Z3myOFkJWw)
+
+## DOMParser
+
+作用是：解析 XML 或 HTML 源代码字符串，并返回一个可操作的 Document 对象。该 Document 对象是一个完整的 DOM 树，可以像处理常规 HTML 元素一样处理。
+
+```ts
+export const parseInnerTextFromStr = (str: string) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(str, 'text/html');
+  const { innerText } = doc.body;
+  return innerText;
+};
+```
 
 ## URL Pattern API
 
