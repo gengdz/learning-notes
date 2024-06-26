@@ -38,12 +38,14 @@
 | `npm install -S react lodash` | 安装 npm 包到 dependencies    |
 | `npm install -D react lodash` | 安装 npm 包到 devDependencies |
 | `npm install -D react@beta`   | 安装 beta 版本的包            |
+| `npm add/i -D react@beta`     | add/i 是 install 的别名       |
 
 ### 删除包
 
-| 命令                   | 作用        |
-| ---------------------- | ----------- |
-| `npm uninstall lodash` | 删除 lodash |
+| 命令                   | 作用                   |
+| ---------------------- | ---------------------- |
+| `npm uninstall lodash` | 删除 lodash            |
+| `npm rm lodash`        | rm 是 uninstall 的别名 |
 
 ### 升级包
 
