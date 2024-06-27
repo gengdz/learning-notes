@@ -74,9 +74,11 @@ ESLint 查找插件的规则：
 
 ### `eslint-plugin-prettier` 的作用
 
-它使 ESLint 和 prettier 工具集成，提供了在 ESLint 中使用 prettier 的功能。使得在代码检查的同时也能自动格式化代码。
+它使 ESLint 和 prettier 工具集成，它将 Prettier 作为 ESLint 规则运行，提供了在 ESLint 中使用 prettier 的功能。使得在代码检查的同时也能自动格式化代码。
 
-1. 可以通过 extends 属性继承 plugin:prettier/recommended 规则集，该规则集已经包含了与 prettier 兼容的规则。 所以安装了`eslint-plugin-prettier` 就不用安装 `eslint-config-prettier` 了
+它会把 Prettier 应用到你的代码里，然后如果格式化后的码风与原始代码不匹配，它就会报出错误。这样，Prettier 就能直接在 ESLint 的过程中应用，并使用--fix 选项来修复格式化问题。
+
+可以通过 extends 属性继承 plugin:prettier/recommended 规则集，该规则集已经包含了与 prettier 兼容的规则。 所以安装了`eslint-plugin-prettier` 就不用安装 `eslint-config-prettier` 了
 
 ## eslint-config-xx 和 eslint-plugin-xx 的使用场景
 
