@@ -106,8 +106,25 @@ rg -tjson 'rg'
 只显示的路径，不显示具体匹配到的内容
 
 ```bash
-rg 'const' -l
+rg -l 'const'
 ```
+
+### rg -v
+
+排除匹配的行
+
+```bash
+rg -v 'const'
+```
+
+-v, --invert-match
+
+    This flag inverts matching. That is, instead of printing lines that match, ripgrep will print lines that don't match.
+
+    Note that this only inverts line-by-line matching. For example, combining this flag with -l/--files-with-matches will emit files that contain any lines that do not match the patterns
+    given. That's not the same as, for example, --files-without-match, which will emit files that do not contain any matching lines.
+
+    This flag can be disabled with --no-invert-match.
 
 ### 其他
 
