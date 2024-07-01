@@ -51,3 +51,24 @@ git log  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 -
 ```
 
 ## git shortlog
+
+git-shortlog - Summarize 'git log' output
+
+### options
+
+- -n, --numbered
+  Sort output according to the number of commits per author instead of author alphabetic order.
+
+- -s, --summary
+  Suppress commit description and provide a commit count summary only.
+
+- -e, --email
+  Show the email address of each author.
+
+### 查看提交作者和提交次数
+
+```bash
+git shortlog -sen
+
+git shortlog -sen | rg -v "不想看到的行"
+```
