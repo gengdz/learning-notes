@@ -62,10 +62,14 @@ chore(utils): 删除没用到的函数
 
 ## commit 的时候不进行 eslint 校验
 
-使用 `-n/--no-verify`
+使用 `-n --no-verify`
+
+-n, --[no-]verify
+
+By default, the pre-commit and commit-msg hooks are run. When any of --no-verify or -n is given, these are bypassed. See also githooks(5).
 
 ```bash
-git commit --no-verify -c 'commit 信息'
+git commit -c 'commit 信息' --n
 ```
 
 ## 修改 commit 的提交信息
