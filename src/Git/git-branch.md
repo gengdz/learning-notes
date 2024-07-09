@@ -90,3 +90,13 @@ git pull --force  《远程主机名》 《远程分支名》:《本地分支名
 <!-- 示例 -->
 git pull --force origin master:daily/0.8.88
 ```
+
+## 场景
+
+切换分支：
+
+```bash
+git branch | fzf | xargs git checkout
+
+git branch --remotes | fzf | sed 's|^ *origin/||' | xargs git checkout
+```
