@@ -170,6 +170,16 @@ function parseResponse() {
 
 importHelpers 会帮助我们减小编译后的代码体积。因为它会将这些帮助函数的实现转换成从一个帮助函数模块中导出的形式，以避免在每个模块中重复生成这些帮助函数
 
+## tsc
+
+### --build/-b
+
+Build one or more projects and their dependencies, if out of date
+
+```bash
+tsc -b
+```
+
 ## 场景化学习
 
 Q: tsconfig 和 Webpack 的 sourceMap 的区别和联系 A: 不同点：
