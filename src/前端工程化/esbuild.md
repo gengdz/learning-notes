@@ -3,6 +3,8 @@
 > An extremely fast bundler for the web
 > 是一个非常快的 web 打包工具
 
+对标的是 webpack
+
 ## 为什么快？
 
 [why-is-esbuild-fast](https://esbuild.github.io/faq/#why-is-esbuild-fast)

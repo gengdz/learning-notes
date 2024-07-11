@@ -2,7 +2,7 @@
 
 ## 是什么？
 
-> webpack 是一个**静态模块打包工具**，它的任务是：分析项目结构，找到 JS 模块，以及其它一些浏览器不能直接运行的拓展语言(如 less，TS)，并将其打包成合适的格式，供浏览器使用。
+> webpack 是一个**静态模块打包工具**，它的任务是：分析项目结构，找到 JS 模块，以及其它一些浏览器不能直接运行的拓展语言（如 less，TS），并将其打包成合适的格式，供浏览器使用。
 >
 > 把代码经过编译、压缩、语法检查，最终加工成浏览器能够识别的、精简的，高效运行的代码
 >
@@ -20,12 +20,12 @@
 
 ## 前置知识
 
-| 命令(文件夹) | 说明                                                                     | 例子           |
-| ------------ | ------------------------------------------------------------------------ | -------------- |
-| src          | 源代码（程序员写的，没有经过处理的）                                     | 生鸡蛋、生米   |
-| build        | 经过一定处理加工的不完善的代码                                           | 熟鸡蛋、熟米   |
-| dist         | 经过完善处理的代码                                                       | 蛋炒饭         |
-| dev          | 开发环境、模拟运行项目<br />(相当于进行 dist 操作，但是不生成实质的文件) | 模拟做饭的机器 |
+| 命令（文件夹） | 说明                                                                       | 例子           |
+| -------------- | -------------------------------------------------------------------------- | -------------- |
+| src            | 源代码（程序员写的，没有经过处理的）                                       | 生鸡蛋、生米   |
+| build          | 经过一定处理加工的不完善的代码                                             | 熟鸡蛋、熟米   |
+| dist           | 经过完善处理的代码                                                         | 蛋炒饭         |
+| dev            | 开发环境、模拟运行项目<br />（相当于进行 dist 操作，但是不生成实质的文件） | 模拟做饭的机器 |
 
 ## webpack 构建过程｜打包原理
 
@@ -144,7 +144,7 @@ CSS 文件是先把 CSS 文件转换为 js 代码，然后通过 style 标签的
 
 图片、字体的加载原理
 使用 file loader
-将资源拷贝到输出目录，然后再将文件的路径作为模块的返回值返回，对应用来说所需要的资源就被发布出来了(拷贝物理文件)
+将资源拷贝到输出目录，然后再将文件的路径作为模块的返回值返回，对应用来说所需要的资源就被发布出来了（拷贝物理文件）
 
 还有一种方式为 DataUrl 的方式，就是把图片，字体等通过 base64 生成，里面就包含了内容，这样就不用物理拷贝文件了
 
@@ -447,11 +447,11 @@ module.exports = {
 };
 ```
 
-## devtool <调试工具>
+## devtool 《调试工具》
 
 ### source-map
 
-souce-map: 源码映射,方便出错调试
+souce-map: 源码映射，方便出错调试
 
 什么是 Source Map？
 Source Map 是一个存储源代码与编译代码对应位置映射的信息文件，便于开发人员定位上述代码错误。实际上，它就是一个 JSON 键值对，利用 VLQ 编码与特定的规则存储位置信息。简而言之，可以理解为 Source Map 在处理前的代码和处理后的代码之间搭建了一座桥梁。
@@ -494,7 +494,7 @@ module.exports = {
 - 版权插件
 
   ```javascript
-  new webpack.BannerPlugin('耿德洲,2019-09-03');
+  new webpack.BannerPlugin('耿德洲，2019-09-03');
   ```
 
 ## 代理 proxy
@@ -525,7 +525,7 @@ module.exports = {
 3. 在服务端启动 webpack,后端前端公用一个接口
 
    ```javascript
-   // 在服务端启动webpack，
+   // 在服务端启动 webpack，
    const middleware = require('webpack-dev-middleware');
 
    const webpack = require('webpack');
@@ -543,7 +543,7 @@ module.exports = {
   // 解析
   resolve: {
     modules: [path.resolve('node_modules')], // 在哪些模块解析
-    extensions: ['.js', 'jsx', '.css', '.json'], // 拓展，.js找不到，就找jsx。等等
+    extensions: ['.js', 'jsx', '.css', '.json'], // 拓展，.js 找不到，就找 jsx。等等
     // mainFields: ['style','main'],
     // mainFiles: [],
     alias: {  // 别名
@@ -559,7 +559,7 @@ module.exports = {
 
 原理是：将第三方库提前打包成文件，然后在 DllReferencePlugin 中引用
 
-用到两个 webpack 自带插件,一个是 webpack.DllPlugin，另一个是 webpack.DllReferencePlugin
+用到两个 webpack 自带插件，一个是 webpack.DllPlugin，另一个是 webpack.DllReferencePlugin
 
 ## webpack 自带优化
 
@@ -595,7 +595,7 @@ module.exports = {
 ## 懒加载
 
 ```javascript
-// 这里的import要使用到 在use.options.plugins中配置@babel/plugin-syntax-dynamic-import
+// 这里的 import 要使用到 在 use.options.plugins 中配置@babel/plugin-syntax-dynamic-import
 handleClick = () => {
   import(aa.js).then((data) => {
     console.log(data);
@@ -612,10 +612,7 @@ devServer: {
   hot: true;
 }
 
-plugins: [
-  new webpack.NamedModulesPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-];
+plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()];
 ```
 
 ### webpack 热更新原理
@@ -678,7 +675,7 @@ externals 是决定的是以哪种模式去加载所引入的额外的包。
 
 使用方法
 
-在`config.js配置中`
+在`config.js 配置中`
 
 ```javascript
 externals: {
