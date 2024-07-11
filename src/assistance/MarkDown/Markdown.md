@@ -4,6 +4,10 @@
 
 - [markdownguide](https://www.markdownguide.org/basic-syntax/)
 
+## 图
+
+[mermaid](http://mermaid.js.org/intro/)
+
 ## `:::xxx`
 
 ```markdown
