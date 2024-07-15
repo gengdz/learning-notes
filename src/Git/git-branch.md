@@ -98,5 +98,5 @@ git pull --force origin master:daily/0.8.88
 ```bash
 git branch | fzf | xargs git checkout
 
-git branch --remotes | fzf | sed 's|^ *origin/||' | xargs git checkout
+git branch --remotes | rg -v 'origin/def_releases|origin/master' | fzf | sed 's|^ *origin/||' | xargs git checkout
 ```
