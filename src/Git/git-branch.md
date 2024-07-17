@@ -98,5 +98,9 @@ git pull --force origin master:daily/0.8.88
 ```bash
 git branch | fzf | xargs git checkout
 
+
 git branch --remotes | rg -v 'origin/def_releases|origin/master' | fzf | sed 's|^ *origin/||' | xargs git checkout
+
+# 默认情况下是以 sed 命令是以 / 作为分割符的
+git branch --remotes | rg -v 'origin/def_releases|origin/master' | fzf | sed 's/^ *origin\///' | xargs git checkout
 ```
