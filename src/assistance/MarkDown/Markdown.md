@@ -28,6 +28,10 @@ emoji
 
 <https://gist.github.com/rxaviers/7360908>
 
+特点是：
+
+- 通过下划线连接单词：a_b
+
 ```markdown
 :smile:
 ```
