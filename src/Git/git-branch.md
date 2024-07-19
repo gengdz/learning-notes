@@ -66,14 +66,14 @@
 >
 > git remote show origin
 
-| 命令                                                                                                                                   | 用法                                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| 1. `git push -u origin home`<br> 2. `git push --set-upstream origin test`<br> 3. `git branch --set-upstream-to=origin/company company` | 创建远程 `home` 分支并和本地 `home` 分支联系起来                                 |
-| `git push origin --delete home`                                                                                                        | 删除远程的 `home` 分支                                                           |
-| `git pull origin home:home`                                                                                                            | 把远程的 `home` 分支的代码拉取到本地，<br />如果本地没有 `home` 分支那么自动创建 |
-| `git checkout -b home origin/home`                                                                                                     | 在本地创建 `home` 分支并和远程的 `home` 分支联系起来                             |
-| `git push -u origin home`                                                                                                              | 1.创建远程 `home` 分支 2.将本地 `home` 代码推送到远程 `home`                     |
-| `git branch --set-upstream-to=origin/home`                                                                                             | 把本地 `home` 分支和远程 `home` 分支相关联                                       |
+| 命令                                       | 用法                                                                             |
+| ------------------------------------------ | -------------------------------------------------------------------------------- |
+| `git push -u origin home`                  | 创建远程 `home` 分支并和本地 `home` 分支联系起来                                 |
+| `git push origin --delete home`            | 删除远程的 `home` 分支                                                           |
+| `git pull origin home:home`                | 把远程的 `home` 分支的代码拉取到本地，<br />如果本地没有 `home` 分支那么自动创建 |
+| `git checkout -b home origin/home`         | 在本地创建 `home` 分支并和远程的 `home` 分支联系起来                             |
+| `git push -u origin home`                  | 1.创建远程 `home` 分支 2.将本地 `home` 代码推送到远程 `home`                     |
+| `git branch --set-upstream-to=origin/home` | 把本地 `home` 分支和远程 `home` 分支相关联                                       |
 
 > 说明：
 >
