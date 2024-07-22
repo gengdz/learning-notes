@@ -6,6 +6,15 @@
 
 `__dirname` 是 Node.js 中的一个全局变量，指的是当前模块文件所在的目录的绝对路径。
 
+## fs.existsSync
+
+function existsSync(path: fs.PathLike): boolean (+2 overloads)
+
+Returns `true` if the path exists, `false` otherwise.
+
+For detailed information, see the documentation of the asynchronous version of
+this API: [exists](file:///Users/xingya/Documents/projects/vn/node_modules/.pnpm/%40types%2Bnode%4020.14.10/node_modules/%40types/node/fs.d.ts#L3476%2C5).
+
 ## fs.writeFile
 
 fs.writeFile 写入文件内容。
