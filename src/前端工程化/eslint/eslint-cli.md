@@ -4,6 +4,12 @@
 eslint [options] file.js [file.js] [dir]
 ```
 
+## 用法
+
+```bash
+eslint --fix --ext .js,.vue src/
+```
+
 ## Basic configuration
 
 - --no-eslintrc Disable use of configuration from .eslintrc.\_
