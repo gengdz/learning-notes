@@ -357,6 +357,67 @@ getent group
 
 ```
 
+## 文件权限
+
+```bash
+total 240
+drwxr-xr-x@ 16 xingya  staff    512  7 10 18:41 .
+drwxr-xr-x   4 xingya  staff    128  7 24 11:01 ..
+-rw-r--r--   1 xingya  staff    154  4 11 20:16 .commitlintrc.cjs
+-rw-r--r--   1 xingya  staff    371  5 16 11:02 .eslintrc.cjs
+drwxr-xr-x  17 xingya  staff    544  7 24 13:33 .git
+-rw-r--r--@  1 xingya  staff    162  7  5 11:36 .gitignore
+drwxr-xr-x   5 xingya  staff    160  4 15 13:38 .husky
+-rw-r--r--@  1 xingya  staff     93  7 10 18:41 .markdownlint.json
+-rw-r--r--   1 xingya  staff    216  4 11 20:16 .prettierrc
+-rw-r--r--@  1 xingya  staff   1166  7 24 14:07 .vim-bookmarks
+-rw-r--r--   1 xingya  staff     69  6 20 14:03 README.md
+drwxr-xr-x  18 xingya  staff    576  6 26 22:39 node_modules
+-rw-r--r--   1 xingya  staff    683  4 15 12:34 package.json
+-rw-r--r--   1 xingya  staff  83076  6 26 21:40 pnpm-lock.yaml
+drwxr-xr-x  24 xingya  staff    768  7 24 10:00 src
+-rw-r--r--   1 xingya  staff    178  4 11 20:16 tsconfig.json
+```
+
+![文件属性](https://www.runoob.com/wp-content/uploads/2014/06/363003_1227493859FdXT.png)
+
+从左至右用 0-9 这些数字来表示。
+
+第 0 位确定文件类型，
+
+文件类型
+
+- 当为 d 则是目录
+- 当为 - 则是文件；
+- 若是 l 则表示为链接文档(link file)；
+- 若是 b 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；
+- 若是 c 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。
+
+第 1-3 位确定属主（该文件的所有者）拥有该文件的权限。
+第 4-6 位确定属组（所有者的同组用户）拥有该文件的权限，
+第 7-9 位确定其他用户拥有该文件的权限。
+其中：
+第 1、4、7 位表示读权限，如果用 r 字符表示，则有读权限，如果用 - 字符表示，则没有读权限；
+第 2、5、8 位表示写权限，如果用 w 字符表示，则有写权限，如果用 - 字符表示没有写权限；
+第 3、6、9 位表示可执行权限，如果用 x 字符表示，则有执行权限，如果用 - 字符表示，则没有执行权限
+
+### chmod
+
+chmod (change mode) 更改文件或者目录的权限。
+
+读（read）、写（write）和执行（execute）权限。
+
+- `+r`：添加读权限。
+- `+w`：添加写权限。
+- `+x`：添加可执行权限。
+- `-r`：移除读权限。
+- `-w`：移除写权限。
+- `-x`：移除可执行权限。
+
+```bash
+chmod +x a.js
+```
+
 ## 实用操作
 
 ### `<C-d>`
@@ -372,7 +433,7 @@ getent group
 history
 ```
 
-#### 使用 `!命令前缀`，自动匹配上次的命令。
+#### 使用 `!命令前缀`，自动匹配上次的命令
 
 使用场景：最近刚执行的几个命令
 
