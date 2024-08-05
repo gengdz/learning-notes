@@ -697,6 +697,22 @@ df：disk free
 
 df -h 切换单位
 
+```bash
+❯ df -h
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s3s1   460Gi   9.5Gi   358Gi     3%    404k  3.8G    0%   /
+devfs            204Ki   204Ki     0Bi   100%     707     0  100%   /dev
+/dev/disk3s6     460Gi    20Ki   358Gi     1%       0  3.8G    0%   /System/Volumes/VM
+/dev/disk3s4     460Gi   5.7Gi   358Gi     2%    1.1k  3.8G    0%   /System/Volumes/Preboot
+/dev/disk3s2     460Gi    49Mi   358Gi     1%      50  3.8G    0%   /System/Volumes/Update
+/dev/disk1s2     500Mi   6.0Mi   480Mi     2%       1  4.9M    0%   /System/Volumes/xarts
+/dev/disk1s1     500Mi   6.1Mi   480Mi     2%      35  4.9M    0%   /System/Volumes/iSCPreboot
+/dev/disk1s3     500Mi   3.0Mi   480Mi     1%      63  4.9M    0%   /System/Volumes/Hardware
+/dev/disk3s1     460Gi    86Gi   358Gi    20%    4.5M  3.8G    0%   /System/Volumes/Data
+map auto_home      0Bi     0Bi     0Bi   100%       0     0     -   /System/Volumes/Data/home
+
+```
+
 #### du
 
 du – display disk usage statistics
