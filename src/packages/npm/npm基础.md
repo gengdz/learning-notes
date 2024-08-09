@@ -66,8 +66,24 @@
 
 ### 查看包
 
+NAME
+npm-view - View registry info
+
+Synopsis
+npm view [<package-spec>] [<field>[.subfield]...]
+
+         aliases: info, show, v
+
+Description
+This command shows data about a package and prints it to stdout.
+
+```bash
+npm view . version # 查看
+```
+
 | 命令                          | 作用                          |
 | ----------------------------- | ----------------------------- |
+| `npm view axios version`      | 查看 axios 最新版本           |
 | `npm view axios versions`     | 查看 axios 所有可用版本       |
 | `npm view axios dependencies` | 查看 axios 的依赖依赖了哪些包 |
 
