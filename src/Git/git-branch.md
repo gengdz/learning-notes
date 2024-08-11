@@ -31,20 +31,20 @@
 
 ## 分支常用命令
 
-| 命令                                      | 说明/场景                           |
-| ----------------------------------------- | ----------------------------------- |
-| `git branch`                              | 查看分支                            |
-| `git brahch -a`                           | 查看本地和远程分支                  |
-| `git branch home`                         | 创建 `home ` 分支                   |
-| `git checkout home`                       | 切换分支                            |
-| `git checkout -b home`                    | 创建并切换到 `home` 分支            |
-| `git merge home`                          | 合并 `home` 分支到主分支            |
-| `git branch - d ask`                      | 删除 `ask` 分支                     |
-| `git push origin --delete home`           | 删除远程的 `home` 分支              |
-| `git branch -D ask`                       | 删除没有合并的 `ask` 分支           |
-| `git branch --merged`                     | 查看已合并的分支                    |
-| `git branch --no-merged`                  | 查看未合并的分支                    |
-| `git rebase master` / `git merge master ` | ( `git replace base` ) 更新分支代码 |
+| 命令                                     | 说明/场景                           |
+| ---------------------------------------- | ----------------------------------- |
+| `git branch`                             | 查看分支                            |
+| `git brahch -a`                          | 查看本地和远程分支                  |
+| `git branch home`                        | 创建 `home` 分支                    |
+| `git checkout home`                      | 切换分支                            |
+| `git checkout -b home`                   | 创建并切换到 `home` 分支            |
+| `git merge home`                         | 合并 `home` 分支到主分支            |
+| `git branch - d ask`                     | 删除 `ask` 分支                     |
+| `git push origin --delete home`          | 删除远程的 `home` 分支              |
+| `git branch -D ask`                      | 删除没有合并的 `ask` 分支           |
+| `git branch --merged`                    | 查看已合并的分支                    |
+| `git branch --no-merged`                 | 查看未合并的分支                    |
+| `git rebase master` / `git merge master` | ( `git replace base` ) 更新分支代码 |
 
 ## 分支冲突
 
