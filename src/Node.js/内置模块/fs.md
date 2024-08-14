@@ -77,6 +77,22 @@ fs.mkdir make directory
 
 fs.rmdir 删除文件夹
 
-## fs.stat
+### fs.stat
 
-查看文件状态。status 状态
+查看文件或者目录的状态信息
+
+常用来分析给定的路径是否是一个文件夹。
+
+```javascript
+const fs = require('fs');
+
+const pathToCheck = '/your/path/here';
+
+fs.stat(pathToCheck, (err, stats) => {
+  if (err) {
+    console.error('Error:', err);
+    return;
+  }
+  console.log('Is directory?', stats.isDirectory());
+});
+```
