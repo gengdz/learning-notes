@@ -47,7 +47,7 @@ git checout commitId^ 这是文件的路径.md
 统计代码总行数
 
 ```bash
-git log  --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
+git log --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
 ```
 
 ## git shortlog
@@ -56,14 +56,14 @@ git-shortlog - Summarize 'git log' output
 
 ### options
 
-- -n, --numbered
-  Sort output according to the number of commits per author instead of author alphabetic order.
-
 - -s, --summary
   Suppress commit description and provide a commit count summary only.
 
 - -e, --email
   Show the email address of each author.
+
+- -n, --numbered
+  Sort output according to the number of commits per author instead of author alphabetic order.
 
 ### 查看提交作者和提交次数
 
