@@ -6,7 +6,7 @@
 
 此外，这些大写字母可以降低排除。例如 `--diff-filter=ad` 排除添加和删除的路径。
 
-### `git --auth`
+### `--auth`
 
 作者
 
@@ -22,7 +22,7 @@ git log --auth="gengdz"
 git log --graph
 ```
 
-### `git --reverse`
+### `--reverse`
 
 倒序显示 commit
 
@@ -48,6 +48,18 @@ git checout commitId^ 这是文件的路径.md
 
 ```bash
 git log --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
+```
+
+### `--pretty`
+
+- `%ad` author date
+- `%an` author name 。%a author 相关的内容
+- `%s` subject
+- `%Cred` switch color to red
+- `%Creset` reset color
+
+```bash
+git log --pretty=format:"%h %Cblue%ad %Creset | %Cgreen %s%Creset | <%an>" --date=format:"%Y-%m-%d %H:%M:%S"
 ```
 
 ## git shortlog
