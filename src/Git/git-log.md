@@ -1,4 +1,6 @@
-# git log
+# git 日志
+
+## git log
 
 ### `--diff-filter`
 
@@ -83,4 +85,13 @@ git-shortlog - Summarize 'git log' output
 git shortlog -sen
 
 git shortlog -sen | rg -v "不想看到的行"
+```
+
+## 场景
+
+### 代码统计
+
+```bash
+git log --author "星涯" --author "xx" --since='yesterday' --pretty=tformat: --numstat | awk '{ add += $1; subs += $2 } END  { printf "added: %s, removed: %s\n", add, subs }'
+
 ```
