@@ -15,3 +15,29 @@ export default function getServiceToken<T>(
 ) {
   return createContext(initialData as T);
 }
+
+
+
+// 监听自定义事件
+export default function useCustomEventListener(eventKey: string, cb: (data: any) => any) {
+  const cbRef = useRef(cb);
+  cbRef.current = cb;
+
+  useEffect(() => {
+    const handler = (e) => {
+      cbRef.current(e.detail);
+    };
+
+    document.addEventListener(eventKey, handler);
+    return () => {
+      document.removeEventListener(eventKey, handler);
+    };
+  }, [eventKey]);
+}
+
+
+// 分发自定义事件
+export function dispatchCustomEvent<Data = any>(eventKey: string, data: Data) {
+  document.dispatchEvent(new CustomEvent(eventKey, { detail: data }));
+}
+
