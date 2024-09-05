@@ -69,13 +69,13 @@ GET /mypage.html
 
 ### 五层网络体系结构模
 
-| 名称 | 关键词 |
-| --- | --- |
-| 应用层 | HTTP/FTP |
-| 传输层 | TCP/UDP<br />数据的分片和组装 |
-| 网络层 | IP，DNS |
+| 名称       | 关键词                                                                                                                       |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 应用层     | HTTP/FTP                                                                                                                     |
+| 传输层     | TCP/UDP<br />数据的分片和组装                                                                                                |
+| 网络层     | IP，DNS                                                                                                                      |
 | 数据链路层 | 在通信的实体间建立数据链路连接<br />物理设备已经通过物理层创建了连接<br />通过软件创建电路的连接用来传输数据(基础的就是 0 1) |
-| 物理层 | 定义物理设备如何传输数据，网卡，网线，端口，光缆<br />硬件设备相关的东西 |
+| 物理层     | 定义物理设备如何传输数据，网卡，网线，端口，光缆<br />硬件设备相关的东西                                                     |
 
 > 说明：一次 TCP 连接可以发送一个或者多个 HTTP 请求
 
@@ -181,44 +181,44 @@ HTTP 协议就是客户端，服务端按照一定的规则进行交流，客服
 
 ## 常用请求头
 
-| <div style='width:180px'>协议头</div> | 说明 | 示例 |
-| --- | --- | --- |
-| `Cache-Control` | 是否使用缓存 | Cache-Control:no-cache |
-| `Origin` | 发起一个针对[跨域资源共享](http://itbilu.com/javascript/js/VkiXuUcC.html)的请求<br />该请求要求服务器在响应中加入一个`Access-Control-Allow-Origin`的消息头，表示访问控制所允许的来源 | Origin: http://optui.perf.pateo.com.cn |
-| `Cookie` | cookie信息 | Accept： \_bl_uid..... |
-| `Connection` | 连接方式 | Connection: keep-alive |
-| `Accept` | 可接受的响应内容类型 | Accept: application/json, text/plain |
-| `Accept-Charset` | 可接受的字符集 | Accept-Charset: utf-8 |
-| `Accept-Encoding ` | 响应内容的编码 | Accept-Encoding：gzip,deflate |
-| `Accept-Language` | 可接受的语言列表 | Accept-Language: zh-CN,zh;q=0.9 |
-| `Authorization` | 权限认证，身份认证信息 | Authorization: beare yJhbGciOiJIU.... |
-| `Content-Type` | 请求体的MIME类型 <br />（用于POST和PUT请求中） | Content-Type:application/json |
-| `Referer` | 表示浏览器所访问的前一个页面，可以认为是之前访问页面的链接将浏览器带到了当前页面。`Referer`其实是`Referrer`这个单词，但RFC制作标准时给拼错了，后来也就将错就错使用`Referer`了。 | Referer: http://optui.perf.pateo.com.cn/ |
-| `User-Agent` | 用户代理软件(常用的就是浏览器)的应用类型、操作系统、软件开发商以及版本号。 | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36 |
+| <div style='width:180px'>协议头</div> | 说明                                                                                                                                                                                 | 示例                                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `Cache-Control`                       | 是否使用缓存                                                                                                                                                                         | Cache-Control:no-cache                                                                                              |
+| `Origin`                              | 发起一个针对[跨域资源共享](http://itbilu.com/javascript/js/VkiXuUcC.html)的请求<br />该请求要求服务器在响应中加入一个`Access-Control-Allow-Origin`的消息头，表示访问控制所允许的来源 | Origin: http://optui.perf.pateo.com.cn                                                                              |
+| `Cookie`                              | cookie信息                                                                                                                                                                           | Accept： \_bl_uid.....                                                                                              |
+| `Connection`                          | 连接方式                                                                                                                                                                             | Connection: keep-alive                                                                                              |
+| `Accept`                              | 可接受的响应内容类型                                                                                                                                                                 | Accept: application/json, text/plain                                                                                |
+| `Accept-Charset`                      | 可接受的字符集                                                                                                                                                                       | Accept-Charset: utf-8                                                                                               |
+| `Accept-Encoding `                    | 响应内容的编码                                                                                                                                                                       | Accept-Encoding：gzip,deflate                                                                                       |
+| `Accept-Language`                     | 可接受的语言列表                                                                                                                                                                     | Accept-Language: zh-CN,zh;q=0.9                                                                                     |
+| `Authorization`                       | 权限认证，身份认证信息                                                                                                                                                               | Authorization: beare yJhbGciOiJIU....                                                                               |
+| `Content-Type`                        | 请求体的MIME类型 <br />（用于POST和PUT请求中）                                                                                                                                       | Content-Type:application/json                                                                                       |
+| `Referer`                             | 表示浏览器所访问的前一个页面，可以认为是之前访问页面的链接将浏览器带到了当前页面。`Referer`其实是`Referrer`这个单词，但RFC制作标准时给拼错了，后来也就将错就错使用`Referer`了。      | Referer: http://optui.perf.pateo.com.cn/                                                                            |
+| `User-Agent`                          | 用户代理软件(常用的就是浏览器)的应用类型、操作系统、软件开发商以及版本号。                                                                                                           | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36 |
 
 ## 常用的响应头
 
-| <div style='width:230px'>响应头</div> | 说明 | 示例 |
-| --- | --- | --- |
-| `access-control-alow-origin` | 指定哪些网站可以进行跨域访问 | access-control-allow-origin: http://optui.perf.pateo.com.cn |
-| `cache-control` | 缓存控制 | cache-control:no-cache, no-store |
-| `ETag` | 数字签名 | ETag: "737060cd8c284d8af7a..." |
-| `Content-type` | 当前内容的`MIME`类型 | content-type: application/json |
-| `Content-Encoding` | 响应内容所使用的编码 | Content-Encoding: gzip |
-| `Content-Language` | 响应内容所使用的语言 | Content-Language: zh-cn |
-| `Set-Cookie` | 设置 Cookie | Set-Cookie: UserID=itbilu; Max-Age=3600; Version=1 |
+| <div style='width:230px'>响应头</div> | 说明                         | 示例                                                        |
+| ------------------------------------- | ---------------------------- | ----------------------------------------------------------- |
+| `access-control-alow-origin`          | 指定哪些网站可以进行跨域访问 | access-control-allow-origin: http://optui.perf.pateo.com.cn |
+| `cache-control`                       | 缓存控制                     | cache-control:no-cache, no-store                            |
+| `ETag`                                | 数字签名                     | ETag: "737060cd8c284d8af7a..."                              |
+| `Content-type`                        | 当前内容的`MIME`类型         | content-type: application/json                              |
+| `Content-Encoding`                    | 响应内容所使用的编码         | Content-Encoding: gzip                                      |
+| `Content-Language`                    | 响应内容所使用的语言         | Content-Language: zh-cn                                     |
+| `Set-Cookie`                          | 设置 Cookie                  | Set-Cookie: UserID=itbilu; Max-Age=3600; Version=1          |
 
 ## Referrer Policy
 
 `Referrer-Policy` 的作用就是为了控制请求头中 `referrer`的内容 ，
 
-| <div style='width:230px'>可取的值</div> | 说明 |
-| --- | --- |
-| `no-referrer-when-downgrade` | 这是默认值。当从 HTTPS 网站跳转到 HTTP 网站或者请求其资源时（安全降级 HTTPS → HTTP ），不显示`referrer`的信息，其他情况（安全同级 HTTPS → HTTP S，或者 HTTP → HTTP ）则在`referrer`中显示完整的源网站的URL信息。 |
-| `no-referrer` | 不显示`referrer`的任何信息在请求头中 |
-| `same-origin` | 表示浏览器只会显示`referrer`信息给同源网站，并且是完整的URL信息。所谓同源网站，是协议、域名、端口都相同的网站。 |
-| `origin` | 表示浏览器在`referrer`字段中只显示源网站的源地址（即协议、域名、端口），而不包括完整的路径。 |
-| `origin-when-cross-origin` | 当发请求给同源网站时，浏览器会在`referrer`中显示完整的URL信息，发个非同源网站时，则只显示源地址（协议、域名、端口） |
+| <div style='width:230px'>可取的值</div> | 说明                                                                                                                                                                                                             |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `no-referrer-when-downgrade`            | 这是默认值。当从 HTTPS 网站跳转到 HTTP 网站或者请求其资源时（安全降级 HTTPS → HTTP ），不显示`referrer`的信息，其他情况（安全同级 HTTPS → HTTP S，或者 HTTP → HTTP ）则在`referrer`中显示完整的源网站的URL信息。 |
+| `no-referrer`                           | 不显示`referrer`的任何信息在请求头中                                                                                                                                                                             |
+| `same-origin`                           | 表示浏览器只会显示`referrer`信息给同源网站，并且是完整的URL信息。所谓同源网站，是协议、域名、端口都相同的网站。                                                                                                  |
+| `origin`                                | 表示浏览器在`referrer`字段中只显示源网站的源地址（即协议、域名、端口），而不包括完整的路径。                                                                                                                     |
+| `origin-when-cross-origin`              | 当发请求给同源网站时，浏览器会在`referrer`中显示完整的URL信息，发个非同源网站时，则只显示源地址（协议、域名、端口）                                                                                              |
 
 ## HTTP 响应状态码
 
@@ -230,7 +230,25 @@ HTTP 协议就是客户端，服务端按照一定的规则进行交流，客服
 | 4xx  | 客户端错误                             |
 | 5xx  | 服务端错误                             |
 
-常见状态码 | 状态码 | 描述 | |---|---| | 204 | 请求处理成功，但是没有任何资源返回到客户端（一般用于只需客户端向服务端发送消息） | | 301 | 永久重定向 | | 302 | 临时重定向，临时的从旧地址 A，跳转到地址 B | | 304 | 资源已经找到，但是不满足条件，所以不把资源返回给客户端。自从上次请求后，请求的网页未修改过。常用于协商缓存 | | 400 | 请求报文内有语法错误 | | 401 | 未授权。Authorization 字段写上就好 | | 403 | 访问被拒绝，一般是无权访问，可能是你密码错误 | | 404 | 服务端找不到请求资源，一般路径错误 | | 405 | 服务端禁止了使用当前 HTTP 方法的请求。你换个他允许的就可以了。比如把 POST 方法 换成 GET 方法 | | 413 | Payload 太大，请求主体超过了服务器允许的范围 | | 414 | URI 太长，超过了服务器允许的范围 | | 500 | 服务端在处理请求时出现错误 | | 501 | 请求的方法不被服务器支持。比如服务端就实现了 GET 和 POST 方法，你却用 DELETE 方法请求了 | | 502 | 错误网关。服务器作为网关或者代理，从上游服务器收到无效响应 | | 503 | 服务器处于超负载或者停机维护，目前无法提供服务 | | 504 | 网关超时 |
+常见状态码
+| 状态码 | 描述 |
+|---|---|
+| 204 | 请求处理成功，但是没有任何资源返回到客户端（一般用于只需客户端向服务端发送消息） |
+| 301 | 永久重定向 |
+| 302 | 临时重定向，临时的从旧地址 A，跳转到地址 B |
+| 304 | 资源已经找到，但是不满足条件，所以不把资源返回给客户端。自从上次请求后，请求的网页未修改过。常用于协商缓存 |
+| 400 | 请求报文内有语法错误 |
+| 401 | 未授权。Authorization 字段写上就好 |
+| 403 | 访问被拒绝，一般是无权访问，可能是你密码错误 |
+| 404 | 服务端找不到请求资源，一般路径错误 |
+| 405 | 服务端禁止了使用当前 HTTP 方法的请求。你换个他允许的就可以了。比如把 POST 方法 换成 GET 方法 |
+| 413 | Payload 太大，请求主体超过了服务器允许的范围 |
+| 414 | URI 太长，超过了服务器允许的范围 |
+| 500 | 服务端在处理请求时出现错误 |
+| 501 | 请求的方法不被服务器支持。比如服务端就实现了 GET 和 POST 方法，你却用 DELETE 方法请求了 |
+| 502 | 错误网关。服务器作为网关或者代理，从上游服务器收到无效响应 |
+| 503 | 服务器处于超负载或者停机维护，目前无法提供服务 |
+| 504 | 网关超时 |
 
 301 和 302 的区别
 
