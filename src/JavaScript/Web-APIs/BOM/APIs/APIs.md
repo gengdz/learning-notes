@@ -4,6 +4,41 @@
 
 - [浏览器提供了这些 API](https://mp.weixin.qq.com/s/nJdlLjl6xlB2Z3myOFkJWw)
 
+## Server-sent events
+
+浏览器向客户端发送消息
+
+```JavaScript
+
+const evtSource = new EventSource("url", {
+  withCredentials: true,
+});
+
+evtSource.onmessage = function (event) {}
+
+evtSource.onerror = function (err) {}
+
+evtSource.close()
+```
+
+发送事件的服务器端脚本需要使用 `text/event-stream` MIME 类型响应内容。每个通知以文本块形式发送，并以一对换行符结尾。
+
+规范中规定了下面这些字段：
+
+event
+一个用于标识事件类型的字符串。如果指定了这个字符串，浏览器会将具有指定事件名称的事件分派给相应的监听器；网站源代码应该使用 addEventListener() 来监听指定的事件。如果一个消息没有指定事件名称，那么 onmessage 处理程序就会被调用。
+
+data
+消息的数据字段。当 EventSource 接收到多个以 data: 开头的连续行时，会将它们连接起来，在它们之间插入一个换行符。末尾的换行符会被删除。
+
+id
+事件 ID，会成为当前 EventSource 对象的内部属性“最后一个事件 ID”的属性值。
+
+retry
+重新连接的时间。如果与服务器的连接丢失，浏览器将等待指定的时间，然后尝试重新连接。这必须是一个整数，以毫秒为单位指定重新连接的时间。如果指定了一个非整数值，该字段将被忽略。
+
+所有其他的字段名都会被忽略。
+
 ## DOMParser
 
 作用是：解析 XML 或 HTML 源代码字符串，并返回一个可操作的 Document 对象。该 Document 对象是一个完整的 DOM 树，可以像处理常规 HTML 元素一样处理。
