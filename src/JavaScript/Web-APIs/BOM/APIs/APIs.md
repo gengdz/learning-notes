@@ -39,11 +39,23 @@ retry
 
 所有其他的字段名都会被忽略。
 
+下面是 WebSocket、轮询和 SSE 的功能对比
+
+SSE 和轮询使用 HTTP 协议，现有的服务器软件都支持。WebSocket 是一个独立协议
+SSE 使用简单；WebSocket 使用相对复杂，轮询使用简单
+SSE 默认支持断线重连，WebSocket 需要自己实现断线重连
+SSE 一般只用来传送文本，二进制数据需要编码后传送，WebSocket 默认支持传送二进制数据
+SSE 支持自定义发送的消息类型
+WebSocket 支持双向推送消息，SSE 是单向的
+轮询性能开销大、轮询时间久导致客户端及时更新数据
+
+一些封装的库：@microsoft/fetch-event-source
+
 ## DOMParser
 
 作用是：解析 XML 或 HTML 源代码字符串，并返回一个可操作的 Document 对象。该 Document 对象是一个完整的 DOM 树，可以像处理常规 HTML 元素一样处理。
 
-```ts
+```typescript
 export const parseInnerTextFromStr = (str: string) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(str, 'text/html');
