@@ -8,6 +8,7 @@ eslint [options] file.js [file.js] [dir]
 
 ```bash
 eslint --fix --ext .js,.vue src/
+eslint --fix 'src/**/*.{ts,js,tsx,jsx}'
 ```
 
 ## Basic configuration
