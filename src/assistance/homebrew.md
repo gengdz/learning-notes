@@ -120,3 +120,14 @@ export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebr
 
 - [Homebrew 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
 - [Homebrew 升级 4.0.0，麦金塔上的啤酒会更香吗？](https://sspai.com/post/78587)
+
+## 转储
+
+```bash
+# 导出
+brew bundle dump --file="./brewfile"
+
+# 安装
+brew bundle install --file=./Brewfile
+
+```
