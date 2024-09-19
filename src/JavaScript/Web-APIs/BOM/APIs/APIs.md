@@ -114,6 +114,19 @@ cookieStore.getAll().then(console.log);
 }
 ```
 
+监听 cookie 变化
+
+```bash
+cookieStore.addEventListener('change', (event) => {
+  const type = event.changed.length ? 'change' : 'delete';
+  const data = (event.changed.length ? event.changed : event.deleted).map((item) => item.name);
+
+  console.log(`【${type}】, cookie：${JSON.stringify(data)}`);
+});
+
+
+```
+
 ## MutationObserver
 
 Mutation 是突变的意思
