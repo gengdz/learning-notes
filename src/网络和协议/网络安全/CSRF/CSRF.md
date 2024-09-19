@@ -11,7 +11,7 @@ CSRF，即 Cross-Site Request Forgery，中文是：跨站请求伪造。
 - 如果盗用了淘宝的身份，那么攻击者就可以给自己下单
 - 如果盗用了掘金的身份，就可以删除你的文章，或者恶意评论
 
-下面是攻击流程图 ![CSRF 图解](./CSRF 图解.jpg)
+下面是攻击流程图 ![CSRF 图解](./CSRF图解.jpg)
 
 1. 受害者登录 A，并保留了登录凭证（Cookie)
 2. 攻击者诱导受害者访问了 B
@@ -122,4 +122,15 @@ Q:Token 前端存储在哪里？在哪里使用这个 Token?
 
 一般加在请求头中。
 
-### 禁用第三方 cookie
+### 禁用第三方 Cookie
+
+SameSite 是一种 Cookie 属性，用于增强 Web 应用程序的安全性，防止 CSRF 攻击。
+
+设置 SameSite=Strict 会禁用第三方 cookie，这样就不会影响 CSRF。
+
+使用 HTTP 头
+
+```bash
+Set-Cookie: sessionId=abc123; SameSite=Strict; Secure; HttpOnly
+
+```
