@@ -24,7 +24,14 @@ fd is a simple, fast and user-friendly alternative to find(1).
 ## 常见用法
 
 ```bash
+
+# 匹配 demo1.js demo-this.js
+fd 'demo.*.js'
+
+fd -g '*demo*.js'
+
 fd -d2 'node|css'
+
 fd -d1 motu -E some -E thing
 
 fd -d1 *.md -x mv {} dest
