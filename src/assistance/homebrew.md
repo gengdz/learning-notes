@@ -74,9 +74,17 @@ brew tap 命令来“接入”（或“轻拍开启”）更多的第三方仓�
 
 ## 使用场景
 
-Q：使用 `brew outdated` 但是没有拉到需要的包，是为什么？A：因为 brew 本身的版本太低了。需要更新 brew 自身的版本。
+Q：使用 `brew outdated` 但是没有拉到需要的包，是为什么？
 
-Q: 使用 `brew update` 更新 brew 时，没有反应？怎么处理 A: 可以先使用 `brew update-reset`，然后再 `brew update`
+A：因为 brew 本身的版本太低了。需要更新 brew 自身的版本。
+
+Q: 使用 `brew update` 更新 brew 时，没有反应？怎么处理
+
+A: 可以先使用 `brew update-reset`，然后再 `brew update`
+
+Q: 我想升级除了某个包之外的包：
+
+❯ brew outdated | awk '{print $1}' | rg -v 'bun' | xargs brew upgrade
 
 ## options
 
