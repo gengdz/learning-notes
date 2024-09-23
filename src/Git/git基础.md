@@ -21,13 +21,13 @@
 
 解决方法：是用 stash 相关的命令
 
-| 命令                        | 说明/场景        | 示例                                                                                                                                                  |
-| --------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `git stash`                 | 暂存起来         | `git stash` <br/> `git stash save "暂存的内容说明"`                                                                                                   |
-| `git stash list`            | 获取暂存列表     |                                                                                                                                                       |
-| `git stash apply stash@{0}` | 恢复暂存区       |                                                                                                                                                       |
-| `git stash drop stash@{0}`  | 删除第一个暂存区 |                                                                                                                                                       |
-| `git stash show`            | 查看 stash 内容  | `git stash show ` -> 显示 stash 差异总结 <br/> `git stash show -p` -> 显示完整的差异 <br/> `git stash show stash@{0} -p` -> 显示具体某个 stash 的差异 |
+| 命令                        | 说明/场景        | 示例                                                                                                                                                 |
+| --------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `git stash`                 | 暂存起来         | `git stash` <br/> `git stash save "暂存的内容说明"`                                                                                                  |
+| `git stash list`            | 获取暂存列表     |                                                                                                                                                      |
+| `git stash apply stash@{0}` | 恢复暂存区       |                                                                                                                                                      |
+| `git stash drop stash@{0}`  | 删除第一个暂存区 |                                                                                                                                                      |
+| `git stash show`            | 查看 stash 内容  | `git stash show` -> 显示 stash 差异总结 <br/> `git stash show -p` -> 显示完整的差异 <br/> `git stash show stash@{0} -p` -> 显示具体某个 stash 的差异 |
 
 ## reset 的用法
 
@@ -40,12 +40,13 @@
 
 注意完成这个操作后，就恢复到了上一次的 commit 状态。
 
-| 命令                       | 说明                  |
-| -------------------------- | --------------------- |
-| git reset --hard commit_id | 回退到 commit_id 版本 |
-| git reset --hard head^     | 回退到上一版本        |
-| git reset --hard head~1    | 回退到上一或者 n 版本 |
-| git reflog                 | 查看所有版本          |
+| 命令                         | 说明                    |
+| ---------------------------- | ----------------------- |
+| git reset --hard commit_id   | 回退到 commit_id 版本   |
+| git reset --hard head^       | 回退到上一版本          |
+| git reset --hard origin/head | 回退到 origin/head 版本 |
+| git reset --hard head~1      | 回退到上一或者 n 版本   |
+| git reflog                   | 查看所有版本            |
 
 ## tag
 
