@@ -29,7 +29,7 @@ process.env 返回当前环境运行所在的环境信息。
 }
 ```
 
-## procee.chdir(directory)
+## process.chdir(directory)
 
 process.chdir() 方法更改 Node.js 进程的当前工作目录
 
@@ -43,4 +43,22 @@ try k
 } catch (err) {
   console.error(`chdir: ${err}`);
 }
+```
+
+## process.argv
+
+process.argv 数组的结构如下：
+
+- `process.argv[0]`: Node.js 可执行文件的绝对路径（通常是类似 /usr/local/bin/node 的路径）。
+- `process.argv[1]`: 执行的 JavaScript 文件的绝对路径（例如 /path/to/your/script.js）。
+- `process.argv[2]` 及以后: 执行脚本时传递的其他参数。这些参数可以是字符串，如文件路径、配置选项等。
+
+```bash
+❯ node scripts/rename-to-kebab.js ./src
+[
+  '/opt/homebrew/Cellar/node/22.9.0_1/bin/node',
+  '/Users/xingya/Documents/projects/personal/learning-notes/scripts/rename-to-kebab.js',
+  './src'
+]
+
 ```
