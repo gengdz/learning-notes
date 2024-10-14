@@ -85,6 +85,16 @@ git-shortlog - Summarize 'git log' output
 git shortlog -sen
 
 git shortlog -sen | rg -v "不想看到的行"
+
+# 只展示提交次数大于 3 的结果
+git shortlog -sen | awk '$1 > 3'
+
+
+# 只展示提交次数大于 3 的结果，并且只展示前 20 个
+git shortlog -sen | awk '$1 > 3 && NR <= 20'
+
+git shortlog -sen | awk '$1 > 3' | head -n 20
+
 ```
 
 ## 场景
