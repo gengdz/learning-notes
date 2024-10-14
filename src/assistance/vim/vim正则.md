@@ -126,6 +126,6 @@ man 被替换成 man,man,what
 
 ```
 
-### very magic
+### very nomagic
 
 `\V` very nomagic 模式，只表示自身，只有反斜杠有特殊的意义
