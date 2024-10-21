@@ -6,5 +6,5 @@
     "lib": ["DOM", "ESNext"],
     "allowJs": true,
     "noEmit": true
-  }
+  },
 }
