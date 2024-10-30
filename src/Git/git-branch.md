@@ -39,6 +39,7 @@
 | `git checkout home`                      | 切换分支                            |
 | `git checkout -b home`                   | 创建并切换到 `home` 分支            |
 | `git merge home`                         | 合并 `home` 分支到主分支            |
+| `git merge origin/master`                | 合并远程主分支的代码到本地          |
 | `git branch - d ask`                     | 删除 `ask` 分支                     |
 | `git push origin --delete home`          | 删除远程的 `home` 分支              |
 | `git branch -D ask`                      | 删除没有合并的 `ask` 分支           |
