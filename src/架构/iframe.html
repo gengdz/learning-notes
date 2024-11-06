@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic iFrame Example</title>
+  </head>
+  <body>
+    <div id="container">
+      <!-- iframe 将被插入到这个容器中 -->
+    </div>
+
+    <button id="createIframeButton">Create and Populate iFrame</button>
+
+    <script>
+      document.getElementById('createIframeButton').addEventListener('click', function () {
+        // 创建一个新的 iframe 元素
+        const iframe = document.createElement('iframe');
+
+        // 设置 iframe 的初始 src 为 about:blank
+        iframe.src = 'about:blank';
+
+        // 定位到要插入 iframe 的容器
+        const container = document.getElementById('container');
+
+        // 将 iframe 加入到页面的指定容器中
+        container.appendChild(iframe);
+
+        // 定义要插入 iframe 的 HTML 模板
+        const iframeCode = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>iFrame Content</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        color: #333;
+                        padding: 10px;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Hello from the iFrame!</h1>
+                <p>This is some content inside the iframe.</p>
+            </body>
+            </html>
+        `;
+
+        // 使用文档流写入内容
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(iframeCode);
+        iframeDoc.close();
+      });
+    </script>
+  </body>
+</html>
