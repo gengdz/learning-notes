@@ -1,8 +1,23 @@
 # APIs
 
-一些资料
+## 一些资料
 
 - [浏览器提供了这些 API](https://mp.weixin.qq.com/s/nJdlLjl6xlB2Z3myOFkJWw)
+
+## new URL、new URLSearchParams
+
+URLSearchParams 是现代浏览器提供的一个内置 API，适用于解析查询字符串。
+
+```typescript
+const url = new URL(window.location.href);
+const queryParams = new URLSearchParams(url.search);
+
+const page = queryParams.get('page');
+const sort = queryParams.get('sort');
+
+console.log(page); // 输出：2
+console.log(sort); // 输出：ascending
+```
 
 ## Server-sent events
 
