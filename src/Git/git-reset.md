@@ -13,12 +13,14 @@
 
 注意完成这个操作后，就恢复到了上一次的 commit 状态。
 
-| 命令                       | 说明                  |
-| -------------------------- | --------------------- |
-| git reset --hard commit_id | 回退到 commit_id 版本 |
-| git reset --hard head^     | 回退到上一版本        |
-| git reset --hard head~1    | 回退到上一或者 n 版本 |
-| git reflog                 | 查看所有版本          |
+| 命令                            | 说明                                     |
+| ------------------------------- | ---------------------------------------- |
+| git reset --hard commit_id      | 回退到 commit_id 版本                    |
+| git reset --hard head^          | 回退到上一版本                           |
+| git reset --hard origin/develop | 回退到远程最新的提交                     |
+| git reset --hard @{u}           | 回退到当前分支绑定的远程分支的最新的提交 |
+| git reset --hard head~1         | 回退到上一或者 n 版本                    |
+| git reflog                      | 查看所有版本                             |
 
 ## 使用
 
