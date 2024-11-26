@@ -102,6 +102,11 @@ git shortlog -sen | awk '$1 > 3' | head -n 20
 ### 代码统计
 
 ```bash
+git log --author "星涯" --since "yesterday" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2 } END  { printf "added: %s, removed: %s\n", add, subs }'
+# 上面的命令，如果值没有空格，那么可以不用加上双引号
+git log --author 星涯 --since yesterday --pretty=tformat: --numstat | awk '{ add += $1; subs += $2 } END  { printf "added: %s, removed: %s\n", add, subs }'
+
+# author 可以有多个
 git log --author "星涯" --author "xx" --since='yesterday' --pretty=tformat: --numstat | awk '{ add += $1; subs += $2 } END  { printf "added: %s, removed: %s\n", add, subs }'
 
 ```

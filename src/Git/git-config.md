@@ -7,6 +7,9 @@
 - `git config --global(local) —-list` 查看全局或者是本地配置
 - `git config --global(local) user(alias).email  1583751445@qq.com`
 
+git config get 获取某个配置
+git config set 设置某个配置
+
 ## 配置方式
 
 ### git 的全局配置
