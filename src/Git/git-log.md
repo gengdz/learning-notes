@@ -60,6 +60,11 @@ git log --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - 
 - `%Cred` switch color to red
 - `%Creset` reset color
 
+--pretty=tformat 和 --pretty=format: 的区别
+
+tformat 在每行提交的后面加上终止符（通常是换行符）
+format 在每行提交的后面加上分隔符。可能是一个空行
+
 ```bash
 git log --pretty=format:"%h %Cblue%ad %Creset | %Cgreen %s%Creset | <%an>" --date=format:"%Y-%m-%d %H:%M:%S"
 ```
