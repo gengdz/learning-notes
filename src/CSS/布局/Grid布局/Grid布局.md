@@ -212,7 +212,7 @@ place-items: center start;
 ```
 
 **注意：属性的顺序，先是垂直方向，然后是水平方向**
-属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around`。
 
 #### justify-items
 
@@ -239,7 +239,7 @@ place-content: <align-content> <justify-content>;
 ```
 
 **注意：属性的顺序，先是垂直方向，然后是水平方向**
-属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around`。
 
 #### justify-content
 
@@ -282,10 +282,11 @@ grid-auto-columns: minmax(10px, auto);
 
 默认是从左到右，从上到下。
 使用 `grid-auto-flow` 属性控制栅格的方向。
-| 属性 | 说明 |
-|-------|--------|
+
+| 属性   | 说明     |
+| ------ | -------- |
 | column | 按列排序 |
-| row | 按行排列 |
+| row    | 按行排列 |
 
 使用 **`dense`** 可以强制填充。比如设置了前面的元素之后有空间剩余，并且剩余空间足够后面的元素使用，那么后面的元素将会跑到前面。
 
@@ -353,7 +354,7 @@ place-self: <align-self> <justify-self>;
 ```
 
 **注意：属性的顺序，先是垂直方向，然后是水平方向**
-属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around `。
+属性值包括 `start | center | end | stretch | space-between | space-evenly | space-around`。
 
 #### align-self
 
@@ -362,3 +363,35 @@ place-self: <align-self> <justify-self>;
 #### justify-self
 
 `justify-self` 元素在栅格中水平对齐方式
+
+## subgrid
+
+作用：
+可以解决多个子元素对齐不一致的问题，尤其是在不同列高度不一致时，使用 subgrid 可以让子元素在各列中对齐。
+
+使用的场景：
+需要外面已经有个Grid布局
+
+注意点：
+grid-template-rows: subgrid;
+grid-row: span 3;
+
+```css
+section {
+  border: 1px solid #ccc;
+  background: #f0f3f9;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 0;
+  h1 {
+    background: pink;
+  }
+  ul {
+    background: bisque;
+  }
+  div {
+    background: aqua;
+  }
+}
+```

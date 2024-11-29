@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+      }
+      article {
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        grid-column-gap: 10px;
+
+        section {
+          border: 1px solid #ccc;
+          background: #f0f3f9;
+          display: grid;
+          grid-template-rows: subgrid;
+          grid-row: span 3;
+          gap: 0;
+          h1 {
+            background: pink;
+            max-height: 30px;
+          }
+          ul {
+            background: bisque;
+          }
+          div {
+            background: aqua;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>CSS 基础</h1>
+        <ul>
+          <li>flex</li>
+          <li>grid</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+          <li>item</li>
+        </ul>
+        <div>CSS（层叠样式表）用于为网页添加样式</div>
+      </section>
+      <section>
+        <h1>HTML基础：这是基本骨架</h1>
+        <ul>
+          <li>div</li>
+          <li>span</li>
+          <li>h1</li>
+        </ul>
+        <div>这个模块为学习 HTML 奠定了基础，让你熟悉重要的概念和语法</div>
+      </section>
+      <section>
+        <h1>JavaScript 基础：一份全面的 JavaScript 指南，面向从初级到高级的学习者</h1>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+        <div>
+          我们首先回答一些基本问题，例如“什么是
+          JavaScript？”、“它看起来是什么样的？”和“它能做什么？”
+        </div>
+      </section>
+    </article>
+  </body>
+</html>
