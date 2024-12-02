@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "module": "ESNext",
     "target": "ESNext",
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
     "allowJs": true,
     "noEmit": true
-  },
+  }
 }
