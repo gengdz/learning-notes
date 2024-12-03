@@ -2,6 +2,13 @@
 
 安装包的位置：`~/.local/share/nvim`
 
+## 其他说明
+
+| 快捷键 | 说明               |
+| ------ | ------------------ |
+| `gK`   | Signature Help     |
+| `gy`   | Go Type Definition |
+
 ## autocmds
 
 使用下面的方式，关闭拼写检查
