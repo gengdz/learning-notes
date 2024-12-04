@@ -18,10 +18,20 @@
 
 /* _____________ 你的代码 _____________ */
 
-type DropChar<S, C> = any
+// ✅
+// type DropChar<S, C, Result extends string = ''> = S extends `${infer L}${infer R}`
+//   ? L extends C
+//     ? DropChar<R, C, Result>
+//     : DropChar<R, C, `${Result}${L}`>
+//   : Result;
+
+// 这个执行不停的使用模式匹配去除 C
+type DropChar<S, C extends string> = S extends `${infer L}${C}${infer R}`
+  ? DropChar<`${L}${R}`, C>
+  : S;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   // @ts-expect-error
@@ -32,7 +42,7 @@ type cases = [
   Expect<Equal<DropChar<' b u t t e r f l y ! ', ' '>, 'butterfly!'>>,
   Expect<Equal<DropChar<' b u t t e r f l y ! ', 'b'>, '  u t t e r f l y ! '>>,
   Expect<Equal<DropChar<' b u t t e r f l y ! ', 't'>, ' b u   e r f l y ! '>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

@@ -23,23 +23,34 @@
 
 /* _____________ 你的代码 _____________ */
 
-type PickByType<T, U> = any
+// readonly [P in keyof T as P extends K ? P : never]: T[P]
+
+// type PickByType<T, U> = {
+//   [P in Exclude<keyof T, T[P] extends U ? P : never>]: T[P];
+// };
+
+// 很巧妙的利用 as 断言为 值 然后对值进行判断
+type PickByType<T, U> = {
+  [P in keyof T as T[P] extends U ? P : never]: T[P];
+};
+
+type a = PickByType<Model, boolean>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 interface Model {
-  name: string
-  count: number
-  isReadonly: boolean
-  isEnable: boolean
+  name: string;
+  count: number;
+  isReadonly: boolean;
+  isEnable: boolean;
 }
 
 type cases = [
-  Expect<Equal<PickByType<Model, boolean>, { isReadonly: boolean, isEnable: boolean }>>,
+  Expect<Equal<PickByType<Model, boolean>, { isReadonly: boolean; isEnable: boolean }>>,
   Expect<Equal<PickByType<Model, string>, { name: string }>>,
   Expect<Equal<PickByType<Model, number>, { count: number }>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

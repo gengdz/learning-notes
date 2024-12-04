@@ -26,27 +26,48 @@
 
 /* _____________ 你的代码 _____________ */
 
-type PartialByKeys<T, K> = any
+// type PartialByKeys<T, K extends keyof T = any> = {
+//   [P in keyof T as P extends K ? never : P]: T[P];
+// } & {
+//   [P in K ]?: T[P];
+// };
 
+type aaa<type> = Omit<type, never>;
+
+// 为啥要使用 Omit<RESULT,never>，原因是 expand the result, you can do this by making a new copy of the type with the same keys and types
+type PartialByKeys<T, U extends keyof T = keyof T> = Omit<Partial<Pick<T, U>> & Omit<T, U>, never>;
+// Partial<Pick<T, U>> & Omit<T, U>
+
+type Other = {
+  aa: string;
+};
+type ba = User & Other;
+type aaaa = Omit<User & Other, never>;
+
+type a = PartialByKeys<User, 'name' | 'age'>;
+// const aa: a = {
+//
+//
+// }
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 interface User {
-  name: string
-  age: number
-  address: string
+  name: string;
+  age: number;
+  address: string;
 }
 
 interface UserPartialName {
-  name?: string
-  age: number
-  address: string
+  name?: string;
+  age: number;
+  address: string;
 }
 
 interface UserPartialNameAndAge {
-  name?: string
-  age?: number
-  address: string
+  name?: string;
+  age?: number;
+  address: string;
 }
 
 type cases = [
@@ -55,7 +76,7 @@ type cases = [
   Expect<Equal<PartialByKeys<User>, Partial<User>>>,
   // @ts-expect-error
   Expect<Equal<PartialByKeys<User, 'name' | 'unknown'>, UserPartialName>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

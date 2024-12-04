@@ -30,23 +30,41 @@
 
 /* _____________ 你的代码 _____________ */
 
-type PercentageParser<A extends string> = any
+// type PercentageParser<A extends string, R extends string[] = []> = A extends `${infer A}${infer B}`
+//   ? A extends '+' | '-' | ''
+//     ? PercentageParser<B, [A]>
+//     : A extends 1 | 0
+//       ? PercentageParser<B, [R[0], `${R[1]}${A}`]>
+//       : A extends '%'
+//         ? [R[0], R[1], `${R[2]}${A}`]
+//         : [R[0], R[1], `${R[2]},""`]
+//   : R;
+
+type PercentageParser<A extends string> = A extends `${infer Num}%`
+  ? [...NumberParser<Num>, '%']
+  : [...NumberParser<A>, ''];
+
+type NumberParser<A extends string> = A extends `${infer Sign extends '+' | '-'}${infer Num}`
+  ? [Sign, Num]
+  : ['', A];
+
+type a = PercentageParser<'+10%'>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
-type Case0 = ['', '', '']
-type Case1 = ['+', '', '']
-type Case2 = ['+', '1', '']
-type Case3 = ['+', '100', '']
-type Case4 = ['+', '100', '%']
-type Case5 = ['', '100', '%']
-type Case6 = ['-', '100', '%']
-type Case7 = ['-', '100', '']
-type Case8 = ['-', '1', '']
-type Case9 = ['', '', '%']
-type Case10 = ['', '1', '']
-type Case11 = ['', '100', '']
+type Case0 = ['', '', ''];
+type Case1 = ['+', '', ''];
+type Case2 = ['+', '1', ''];
+type Case3 = ['+', '100', ''];
+type Case4 = ['+', '100', '%'];
+type Case5 = ['', '100', '%'];
+type Case6 = ['-', '100', '%'];
+type Case7 = ['-', '100', ''];
+type Case8 = ['-', '1', ''];
+type Case9 = ['', '', '%'];
+type Case10 = ['', '1', ''];
+type Case11 = ['', '100', ''];
 
 type cases = [
   Expect<Equal<PercentageParser<''>, Case0>>,
@@ -61,7 +79,7 @@ type cases = [
   Expect<Equal<PercentageParser<'%'>, Case9>>,
   Expect<Equal<PercentageParser<'1'>, Case10>>,
   Expect<Equal<PercentageParser<'100'>, Case11>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
