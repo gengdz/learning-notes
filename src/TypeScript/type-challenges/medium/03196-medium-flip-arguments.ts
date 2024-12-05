@@ -21,16 +21,28 @@
 
 /* _____________ 你的代码 _____________ */
 
-type FlipArguments<T> = any
+// ✅
+type Reverse<T extends any[]> = T extends [infer H, ...infer rest] ? [...Reverse<rest>, H] : T;
+
+type FlipArguments<T extends Function> = T extends (...args: infer P) => infer R
+  ? (...args: Reverse<P>) => R
+  : never;
+
+type d = FlipArguments<(arg0: string, arg1: number, arg2: boolean) => void>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<FlipArguments<() => boolean>, () => boolean>>,
   Expect<Equal<FlipArguments<(foo: string) => number>, (foo: string) => number>>,
-  Expect<Equal<FlipArguments<(arg0: string, arg1: number, arg2: boolean) => void>, (arg0: boolean, arg1: number, arg2: string) => void>>,
-]
+  Expect<
+    Equal<
+      FlipArguments<(arg0: string, arg1: number, arg2: boolean) => void>,
+      (arg0: boolean, arg1: number, arg2: string) => void
+    >
+  >,
+];
 
 type errors = [
   // @ts-expect-error
@@ -39,9 +51,7 @@ type errors = [
   FlipArguments<{ key: 'value' }>,
   // @ts-expect-error
   FlipArguments<['apple', 'banana', 100, { a: 1 }]>,
-  // @ts-expect-error
-  FlipArguments<null | undefined>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

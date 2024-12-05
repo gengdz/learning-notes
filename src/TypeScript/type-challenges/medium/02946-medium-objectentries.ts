@@ -23,18 +23,36 @@
 
 /* _____________ 你的代码 _____________ */
 
-type ObjectEntries<T> = any
+// {
+//   [P in keyof T]: [P, T[P]];
+// }
+// type ObjectEntries<T> = T[keyof { [P in keyof T]: [P, T[P]] }];
+
+// type ObjectEntries<T> = { [P in keyof T]: [P, T[P]] }[keyof T];
+
+type ObjectEntries<T, U = Required<T>> = {
+  [K in keyof U]: [K, U[K]];
+}[keyof U];
+
+// type ObjectEntries<T> = any;
+
+type a = ObjectEntries<Model>;
+type b = ObjectEntries<{ key: string | undefined }>;
+
+// type ObjectEntries<T, R extends T = Required<T>> = {
+//   [P in keyof T]-?: [P, R[P] extends undefined ? undefined : R[P]];
+// }[keyof T];
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 interface Model {
-  name: string
-  age: number
-  locations: string[] | null
+  name: string;
+  age: number;
+  locations: string[] | null;
 }
 
-type ModelEntries = ['name', string] | ['age', number] | ['locations', string[] | null]
+type ModelEntries = ['name', string] | ['age', number] | ['locations', string[] | null];
 
 type cases = [
   Expect<Equal<ObjectEntries<Model>, ModelEntries>>,
@@ -42,7 +60,7 @@ type cases = [
   Expect<Equal<ObjectEntries<{ key?: undefined }>, ['key', undefined]>>,
   Expect<Equal<ObjectEntries<{ key: undefined }>, ['key', undefined]>>,
   Expect<Equal<ObjectEntries<{ key: string | undefined }>, ['key', string | undefined]>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

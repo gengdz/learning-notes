@@ -27,27 +27,33 @@
 
 /* _____________ 你的代码 _____________ */
 
-type RequiredByKeys<T, K> = any
+// ✅
+// type RequiredByKeys<T, K extends keyof T = keyof T> = Omit<
+//   Required<Pick<T, Extract<keyof T, K>>> & Pick<T, Exclude<keyof T, K>>,
+//   never
+// >;
+
+type RequiredByKeys<T, K extends keyof T = keyof T> = Omit<T & Required<Pick<T, K>>, never>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 interface User {
-  name?: string
-  age?: number
-  address?: string
+  name?: string;
+  age?: number;
+  address?: string;
 }
 
 interface UserRequiredName {
-  name: string
-  age?: number
-  address?: string
+  name: string;
+  age?: number;
+  address?: string;
 }
 
 interface UserRequiredNameAndAge {
-  name: string
-  age: number
-  address?: string
+  name: string;
+  age: number;
+  address?: string;
 }
 
 type cases = [
@@ -56,7 +62,7 @@ type cases = [
   Expect<Equal<RequiredByKeys<User>, Required<User>>>,
   // @ts-expect-error
   Expect<Equal<RequiredByKeys<User, 'name' | 'unknown'>, UserRequiredName>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
