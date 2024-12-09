@@ -25,10 +25,16 @@
 
 /* _____________ 你的代码 _____________ */
 
-type GreaterThan<T extends number, U extends number> = any
+type ArrayFrom<T extends number, R extends any[] = []> = R['length'] extends T
+  ? R
+  : ArrayFrom<T, [...R, 1]>;
+
+// ✅ FIXME 这种写法，最后一个不会通过。
+type GreaterThan<T extends number, U extends number> =
+  ArrayFrom<U> extends [...ArrayFrom<T>, ...any] ? false : true;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<GreaterThan<1, 0>, true>>,
@@ -40,7 +46,7 @@ type cases = [
   Expect<Equal<GreaterThan<10, 100>, false>>,
   Expect<Equal<GreaterThan<111, 11>, true>>,
   Expect<Equal<GreaterThan<1234567891011, 1234567891010>, true>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

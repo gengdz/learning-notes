@@ -21,17 +21,35 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Fibonacci<T extends number> = any
+// type Fibonacci<T extends number, R extends any[] = [], L extends any[] = []> = R['length'] extends T
+//   ? R[R['length']]
+//   : T extends 1 | 2
+//     ? Fibonacci<T, [...R, 1]>
+//     : Fibonacci<T, [...R, 2]>;
+
+// TODO 比较复杂，后面再理解
+type Fibonacci<
+  T extends number,
+  CurrentIndex extends any[] = [1], // 当前的索引
+  Prev extends any[] = [], // 之前的值
+  Current extends any[] = [1],
+> = CurrentIndex['length'] extends T
+  ? Current['length']
+  : Fibonacci<T, [...CurrentIndex, 1], Current, [...Prev, ...Current]>;
+
+type b = [1, 1, 2, 3, 5, 8];
+type c = b[4];
+type a = Fibonacci<20>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Fibonacci<1>, 1>>,
   Expect<Equal<Fibonacci<2>, 1>>,
   Expect<Equal<Fibonacci<3>, 2>>,
   Expect<Equal<Fibonacci<8>, 21>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

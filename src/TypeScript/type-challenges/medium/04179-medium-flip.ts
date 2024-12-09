@@ -20,17 +20,26 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Flip<T> = any
+// ✅
+// type Flip<T extends Record<any, any>> = {
+//   [P in keyof T as T[P] extends PropertyKey ? T[P] : `${T[P]}`]: P;
+// };
+
+type Flip<T extends Record<string, string | number | boolean>> = {
+  [P in keyof T as `${T[P]}`]: P;
+};
+
+type a = Flip<{ pi: 3.14; bool: true }>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect, NotEqual } from '@type-challenges/utils'
+import type { Equal, Expect, NotEqual } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<{ a: 'pi' }, Flip<{ pi: 'a' }>>>,
   Expect<NotEqual<{ b: 'pi' }, Flip<{ pi: 'a' }>>>,
-  Expect<Equal<{ 3.14: 'pi', true: 'bool' }, Flip<{ pi: 3.14, bool: true }>>>,
-  Expect<Equal<{ val2: 'prop2', val: 'prop' }, Flip<{ prop: 'val', prop2: 'val2' }>>>,
-]
+  Expect<Equal<{ 3.14: 'pi'; true: 'bool' }, Flip<{ pi: 3.14; bool: true }>>>,
+  Expect<Equal<{ val2: 'prop2'; val: 'prop' }, Flip<{ prop: 'val'; prop2: 'val2' }>>>,
+];
 
 /* _____________ 下一步 _____________ */
 /*
