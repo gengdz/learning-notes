@@ -36,6 +36,9 @@ fd -d1 motu -E some -E thing
 
 fd -d1 *.md -x mv {} dest
 
+
+fd -d1 -H -E .git -x cp -R {}  ../mini-demo
+
 # 输出 src 目录下的所有文件
 # -p --full-path
 fd -tf -p src
