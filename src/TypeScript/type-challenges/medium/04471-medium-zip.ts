@@ -15,10 +15,25 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Zip<T, U> = any
+// type Zip<T extends any[], U extends any[],R extends any[]> = T[number] extends never?
+
+// type Zip<A extends any[], B extends any[], L extends any[] = []> = L['length'] extends
+//   | A['length']
+//   | B['length']
+//   ? L
+//   : Zip<A, B, [...L, [A[L['length']], B[L['length']]]]>;
+
+type Zip<T extends any[], U extends any[]> = [T, U] extends [
+  [infer L, ...infer RestT],
+  [infer R, ...infer RestU],
+]
+  ? [[L, R], ...Zip<RestT, RestU>]
+  : [];
+
+type a = Zip<[1, 2], [true, false]>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Zip<[], []>, []>>,
@@ -26,7 +41,7 @@ type cases = [
   Expect<Equal<Zip<[1, 2, 3], ['1', '2']>, [[1, '1'], [2, '2']]>>,
   Expect<Equal<Zip<[], [1, 2, 3]>, []>>,
   Expect<Equal<Zip<[[1, 2]], [3]>, [[[1, 2], 3]]>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
