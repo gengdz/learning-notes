@@ -162,6 +162,10 @@ npm config set registry="https://my-private-registry.com"
 | `npm pkg get <key>`         | 获取 package.json 字段 |
 | `npm pkg delete key`        | 删除 package.json 字段 |
 
+```bash
+npm pkg get dependencies.react
+```
+
 ### npm exec
 
 在项目的范围内执行 shell 命令。`node_modules/.bin` 里面的命令都可以使用
