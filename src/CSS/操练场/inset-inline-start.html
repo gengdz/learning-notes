@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inset-inline-start</title>
+    <style>
+      div {
+        background-color: yellow;
+        width: 200px;
+        height: 200px;
+
+        .exampleText {
+          /* writing-mode: vertical-lr; */
+          position: relative;
+          inset-inline-start: 20px;
+          /* inset-inline-end: 10px; */
+          background-color: #c8c800;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span class="exampleText">示例文本</span>
+      <span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+        incidunt totam nesciunt nemo eligendi doloremque consequuntur, rem
+        perferendis ut quidem debitis, in voluptatem. Quidem aperiam illum
+        ducimus iure quia dicta!
+      </span>
+    </div>
+  </body>
+</html>
