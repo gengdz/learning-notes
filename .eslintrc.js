@@ -1,6 +1,6 @@
 /** @type {import("eslint").ESLint.Options} */
 
-module.exports = {
+export default {
   env: {
     node: true,
   },
