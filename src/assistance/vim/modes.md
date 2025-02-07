@@ -2,6 +2,11 @@
 
 ## Normal Mode
 
+| 按键    | 缩写     | 功能     |
+| ------- | -------- | -------- |
+| `<C-f>` | forward  | 向前翻页 |
+| `<C-b>` | backward | 向后翻页 |
+
 ## Insert Mode
 
 ## Visual Mode
