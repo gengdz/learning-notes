@@ -20,16 +20,39 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Without<T, U> = any
+// type Without<T, U, Result extends any[] = []> = U extends any[]
+//   ? T extends [infer First, ...infer Rest]
+//     ? First extends U[number]
+//       ? Without<Rest, U, Result>
+//       : Without<Rest, U, [...Result, First]>
+//     : Result
+//   : T extends [infer First, ...infer Rest]
+//     ? First extends U
+//       ? Without<Rest, U, Result>
+//       : Without<Rest, U, [...Result, First]>
+//     : Result;
+
+type Unionize<T extends unknown[] | unknown> = T extends unknown[]
+  ? T[number]
+  : T;
+
+type Without<T extends unknown[], U> = T extends [infer Head, ...infer Rest]
+  ? Head extends Unionize<U>
+    ? Without<Rest, U>
+    : [Head, ...Without<Rest, U>]
+  : [];
+
+type a = Without<[1, 2], 1>;
+type b = Without<[1, 2, 4, 1, 5], [1, 2]>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Without<[1, 2], 1>, [2]>>,
   Expect<Equal<Without<[1, 2, 4, 1, 5], [1, 2]>, [4, 5]>>,
   Expect<Equal<Without<[2, 3, 2, 3, 2, 3, 2, 3], [2, 3]>, []>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
