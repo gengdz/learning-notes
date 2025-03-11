@@ -18,10 +18,14 @@
 
 /* _____________ 你的代码 _____________ */
 
-type TrimRight<S extends string> = any
+type Space = ' ' | '\n' | '\t';
+
+type TrimRight<S extends string> = S extends `${infer Left}${Space}`
+  ? TrimRight<Left>
+  : S;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<TrimRight<'str'>, 'str'>>,
@@ -31,7 +35,7 @@ type cases = [
   Expect<Equal<TrimRight<'   foo bar  \n\t '>, '   foo bar'>>,
   Expect<Equal<TrimRight<''>, ''>>,
   Expect<Equal<TrimRight<'\n\t '>, ''>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

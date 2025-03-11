@@ -18,10 +18,19 @@
 
 /* _____________ 你的代码 _____________ */
 
-type IndexOf<T, U> = any
+type IsEqual<T, U> = T extends U ? (U extends T ? true : false) : false;
+
+type IndexOf<T, U, Index extends any[] = []> = T extends [
+  infer Head,
+  ...infer Rest,
+]
+  ? IsEqual<Head, U> extends true
+    ? Index['length']
+    : IndexOf<Rest, U, [...Index, 0]>
+  : -1;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<IndexOf<[1, 2, 3], 2>, 1>>,
@@ -31,7 +40,7 @@ type cases = [
   Expect<Equal<IndexOf<[string, 1, number, 'a', any], any>, 4>>,
   Expect<Equal<IndexOf<[string, 'a'], 'a'>, 1>>,
   Expect<Equal<IndexOf<[any, 1], 1>, 1>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

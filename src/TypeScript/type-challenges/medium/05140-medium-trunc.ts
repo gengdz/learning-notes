@@ -18,10 +18,17 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Trunc = any
+// space
+type Trunc<T extends number | string> = `${T}` extends `${infer N}.${any}`
+  ? `${N}` extends `` | '+' | '-'
+    ? `${N}0`
+    : N
+  : `${T}`;
+
+type a = Trunc<'-.3'>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Trunc<0.1>, '0'>>,
@@ -34,7 +41,7 @@ type cases = [
   Expect<Equal<Trunc<'-.3'>, '-0'>>,
   Expect<Equal<Trunc<'-10.234'>, '-10'>>,
   Expect<Equal<Trunc<10>, '10'>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

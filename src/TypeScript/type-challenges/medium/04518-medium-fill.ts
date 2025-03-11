@@ -19,15 +19,30 @@
 
 /* _____________ 你的代码 _____________ */
 
+// type Fill<
+//   T extends unknown[],
+//   N,
+//   Start extends number = 0,
+//   End extends number = T['length'],
+// > = any
+
 type Fill<
   T extends unknown[],
   N,
   Start extends number = 0,
   End extends number = T['length'],
-> = any
+  Count extends any[] = [],
+  Flag extends boolean = Count['length'] extends Start ? true : false,
+> = Count['length'] extends End
+  ? T
+  : T extends [infer R, ...infer U]
+    ? Flag extends false
+      ? [R, ...Fill<U, N, Start, End, [...Count, 0]>]
+      : [N, ...Fill<U, N, Start, End, [...Count, 0], Flag>]
+    : T;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Fill<[], 0>, []>>,
@@ -41,7 +56,7 @@ type cases = [
   Expect<Equal<Fill<[1, 2, 3], true, 10, 0>, [1, 2, 3]>>,
   Expect<Equal<Fill<[1, 2, 3], true, 10, 20>, [1, 2, 3]>>,
   Expect<Equal<Fill<[1, 2, 3], true, 0, 10>, [true, true, true]>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
