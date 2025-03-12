@@ -19,10 +19,37 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Join<T, U> = any
+// 这是我的代码。可以实现，但是不如下面的优雅
+type Join1<
+  T extends Array<string>,
+  U extends string | number = ',',
+  Result extends string = '',
+> = T extends [infer Head, ...infer Rest]
+  ? Join<Rest, U, Result extends '' ? `${Head}` : `${Result}${U}${Head}`>
+  : Result;
+
+type Join1<T extends any[], U extends string | number = ','> = T extends [
+  infer F,
+  ...infer R,
+]
+  ? R['length'] extends 0
+    ? `${F & string}`
+    : `${F & string}${U}${Join<R, U>}`
+  : '';
+
+type Join<T extends unknown[], U extends string | number = ','> = T extends [
+  infer F extends string,
+  ...infer R,
+]
+  ? R['length'] extends 0
+    ? `${F}`
+    : `${F}${U}${Join<R, U>}`
+  : '';
+
+type a = Join<['a', 'p', 'p', 'l', 'e'], '-'>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Join<['a', 'p', 'p', 'l', 'e'], '-'>, 'a-p-p-l-e'>>,
@@ -31,7 +58,7 @@ type cases = [
   Expect<Equal<Join<['o'], 'u'>, 'o'>>,
   Expect<Equal<Join<[], 'u'>, ''>>,
   Expect<Equal<Join<['1', '1', '1']>, '1,1,1'>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
