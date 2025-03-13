@@ -16,13 +16,24 @@
 
 /* _____________ 你的代码 _____________ */
 
-type NumberRange<L, H> = any
+type ZeroToNumUnion<
+  Num,
+  Count extends any[] = [],
+  Result = Num,
+> = Count['length'] extends Num
+  ? Result
+  : ZeroToNumUnion<Num, [...Count, 0], Count['length'] | Result>;
+
+type NumberRange<L, H> = L | Exclude<ZeroToNumUnion<H>, ZeroToNumUnion<L>>;
+
+type a = ZeroToNumUnion<100>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
-type Result1 = | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-type Result2 = | 0 | 1 | 2
+type Result1 = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type Result2 = 0 | 1 | 2;
+// prettier-ignore
 type Result3 =
   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
   | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20
@@ -38,11 +49,12 @@ type Result3 =
   | 111 | 112 | 113 | 114 | 115 | 116 | 117 | 118 | 119 | 120
   | 121 | 122 | 123 | 124 | 125 | 126 | 127 | 128 | 129 | 130
   | 131 | 132 | 133 | 134 | 135 | 136 | 137 | 138 | 139 | 140
+
 type cases = [
   Expect<Equal<NumberRange<2, 9>, Result1>>,
   Expect<Equal<NumberRange<0, 2>, Result2>>,
   Expect<Equal<NumberRange<0, 140>, Result3>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
