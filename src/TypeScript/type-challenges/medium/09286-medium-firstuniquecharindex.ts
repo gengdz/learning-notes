@@ -12,10 +12,23 @@
 
 /* _____________ 你的代码 _____________ */
 
-type FirstUniqueCharIndex<T extends string> = any
+type FirstUniqueCharIndex<
+  T extends string,
+  Prev extends string = '',
+  Result extends string[] = [],
+> = T extends `${infer First}${infer Rest}`
+  ? Rest extends `${string}${First}${string}`
+    ? FirstUniqueCharIndex<Rest, `${Prev}${First}`, [...Result, First]>
+    : Prev extends `${string}${First}${string}`
+      ? FirstUniqueCharIndex<Rest, `${Prev}${First}`, [...Result, First]>
+      : Result['length']
+  : -1;
+
+type a = FirstUniqueCharIndex<'aabb'>;
+type b = 'loveleetcode' extends `${string}l${string}` ? true : false;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<FirstUniqueCharIndex<'leetcode'>, 0>>,
@@ -23,7 +36,7 @@ type cases = [
   Expect<Equal<FirstUniqueCharIndex<'aabb'>, -1>>,
   Expect<Equal<FirstUniqueCharIndex<''>, -1>>,
   Expect<Equal<FirstUniqueCharIndex<'aaa'>, -1>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

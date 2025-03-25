@@ -18,22 +18,58 @@
 
 /* _____________ 你的代码 _____________ */
 
-type GetMiddleElement<T> = any
+type LatestItem<T extends any[]> = T extends [...infer Rest, infer Tail]
+  ? Tail
+  : never;
+
+// 我的写法。是可以工作的
+// 思路是判断左边的元素数量是不是等于右边的数量
+// type GetMiddleElement<T, Prev extends any[] = []> = T extends [
+//   infer First,
+//   ...infer Rest,
+// ]
+//   ? Prev['length'] extends T['length']
+//     ? [LatestItem<Prev>, First]
+//     : [...Prev, First]['length'] extends T['length']
+//       ? [First]
+//       : GetMiddleElement<Rest, [...Prev, First]>
+//   : [];
+
+// 提取构造
+// 当 T 长度为 0 | 1 | 2 时，中间元素就是 T 本身
+// 然后构造，不断递归，去掉数组第一个和最后一个，提取中间元素，直至满足上面条件
+
+type GetMiddleElement<T extends any[]> = T['length'] extends 0 | 1 | 2
+  ? T
+  : T extends [any, ...infer M, any]
+    ? GetMiddleElement<M>
+    : never;
+
+type a = GetMiddleElement<[1, 2, 3, 4, 5]>;
+type b = ['a', 'b', 'c'];
+type c = LatestItem<b>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<GetMiddleElement<[]>, []>>,
   Expect<Equal<GetMiddleElement<[1, 2, 3, 4, 5]>, [3]>>,
   Expect<Equal<GetMiddleElement<[1, 2, 3, 4, 5, 6]>, [3, 4]>>,
   Expect<Equal<GetMiddleElement<[() => string]>, [() => string]>>,
-  Expect<Equal<GetMiddleElement<[() => number, '3', [3, 4], 5]>, ['3', [3, 4]]>>,
-  Expect<Equal<GetMiddleElement<[() => string, () => number]>, [() => string, () => number]>>,
+  Expect<
+    Equal<GetMiddleElement<[() => number, '3', [3, 4], 5]>, ['3', [3, 4]]>
+  >,
+  Expect<
+    Equal<
+      GetMiddleElement<[() => string, () => number]>,
+      [() => string, () => number]
+    >
+  >,
   Expect<Equal<GetMiddleElement<[never]>, [never]>>,
-]
+];
 // @ts-expect-error
-type error = GetMiddleElement<1, 2, 3>
+type error = GetMiddleElement<1, 2, 3>;
 
 /* _____________ 下一步 _____________ */
 /*

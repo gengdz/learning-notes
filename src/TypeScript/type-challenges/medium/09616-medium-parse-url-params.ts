@@ -18,10 +18,16 @@
 
 /* _____________ 你的代码 _____________ */
 
-type ParseUrlParams<T> = any
+type ParseUrlParams<T extends string> =
+  `${T}/` extends `${string}:${infer P}/${infer Rest}`
+    ? P | ParseUrlParams<Rest>
+    : never;
+
+type a = ParseUrlParams<':id'>;
+type b = ParseUrlParams<'posts/:id/:user'>;
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<ParseUrlParams<''>, never>>,
@@ -30,7 +36,7 @@ type cases = [
   Expect<Equal<ParseUrlParams<'posts/:id/'>, 'id'>>,
   Expect<Equal<ParseUrlParams<'posts/:id/:user'>, 'id' | 'user'>>,
   Expect<Equal<ParseUrlParams<'posts/:id/:user/like'>, 'id' | 'user'>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*
