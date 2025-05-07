@@ -12,20 +12,35 @@
 
 /* _____________ 你的代码 _____________ */
 
-type FindAll<T extends string, P extends string> = any
+type FindAll<
+  T extends string,
+  P extends string,
+  L extends 0[] = [],
+> = P extends ''
+  ? []
+  : T extends `${string}${infer R}`
+    ? [
+        ...(T extends `${P}${string}` ? [L['length']] : []),
+        ...FindAll<R, P, [0, ...L]>,
+      ]
+    : [];
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
-  Expect<Equal<FindAll<'Collection of TypeScript type challenges', 'Type'>, [14]>>,
-  Expect<Equal<FindAll<'Collection of TypeScript type challenges', 'pe'>, [16, 27]>>,
+  Expect<
+    Equal<FindAll<'Collection of TypeScript type challenges', 'Type'>, [14]>
+  >,
+  Expect<
+    Equal<FindAll<'Collection of TypeScript type challenges', 'pe'>, [16, 27]>
+  >,
   Expect<Equal<FindAll<'Collection of TypeScript type challenges', ''>, []>>,
   Expect<Equal<FindAll<'', 'Type'>, []>>,
   Expect<Equal<FindAll<'', ''>, []>>,
   Expect<Equal<FindAll<'AAAA', 'A'>, [0, 1, 2, 3]>>,
   Expect<Equal<FindAll<'AAAA', 'AA'>, [0, 1, 2]>>,
-]
+];
 
 /* _____________ 下一步 _____________ */
 /*

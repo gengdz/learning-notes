@@ -33,40 +33,70 @@
 
 /* _____________ 你的代码 _____________ */
 
-type ToPrimitive = any
+type ToPrimitive1<T extends object> = {
+  [P in keyof T]: T[P] extends string
+    ? string
+    : T[P] extends number
+      ? number
+      : T[P] extends boolean
+        ? boolean
+        : T[P] extends Function
+          ? Function
+          : T[P] extends object
+            ? ToPrimitive<T[P]>
+            : any;
+};
 
+// type ToPrimitive<T> = T extends Function
+//   ? Function
+//   : T extends object
+//     ? { [K in keyof T]: ToPrimitive<T[K]> }
+//     : T extends { valueOf(): infer R }
+//       ? R
+//       : T;
+
+type ToPrimitive<T> = T extends object
+  ? T extends (...args: never[]) => unknown
+    ? Function
+    : {
+        [Key in keyof T]: ToPrimitive<T[Key]>;
+      }
+  : T extends { valueOf: () => infer P }
+    ? P
+    : T;
+
+type aa = false extends { valueOf: () => infer P } ? P : any;
+type a = ToPrimitive<PersonInfo>;
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type PersonInfo = {
-  name: 'Tom'
-  age: 30
-  married: false
+  name: 'Tom';
+  age: 30;
+  married: false;
   addr: {
-    home: '123456'
-    phone: '13111111111'
-  }
-  hobbies: ['sing', 'dance']
-  readonlyArr: readonly ['test']
-  fn: () => any
-}
+    home: '123456';
+    phone: '13111111111';
+  };
+  hobbies: ['sing', 'dance'];
+  readonlyArr: readonly ['test'];
+  fn: () => any;
+};
 
 type ExpectedResult = {
-  name: string
-  age: number
-  married: boolean
+  name: string;
+  age: number;
+  married: boolean;
   addr: {
-    home: string
-    phone: string
-  }
-  hobbies: [string, string]
-  readonlyArr: readonly [string]
-  fn: Function
-}
+    home: string;
+    phone: string;
+  };
+  hobbies: [string, string];
+  readonlyArr: readonly [string];
+  fn: Function;
+};
 
-type cases = [
-  Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>,
-]
+type cases = [Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>];
 
 /* _____________ 下一步 _____________ */
 /*

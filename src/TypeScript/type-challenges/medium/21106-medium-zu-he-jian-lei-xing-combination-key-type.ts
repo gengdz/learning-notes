@@ -14,17 +14,27 @@
 /* _____________ 你的代码 _____________ */
 
 // 实现 Combs
-type Combs<T extends any[]> = any
-
-/* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
-
-type ModifierKeys = ['cmd', 'ctrl', 'opt', 'fn']
-type CaseTypeOne = 'cmd ctrl' | 'cmd opt' | 'cmd fn' | 'ctrl opt' | 'ctrl fn' | 'opt fn'
-
-type cases = [
-  Expect<Equal<Combs<ModifierKeys>, CaseTypeOne>>,
+type Combs<T extends any[]> = T extends [
+  infer Head extends string,
+  ...infer Rest extends string[],
 ]
+  ? `${Head} ${Rest[number]}` | Combs<Rest>
+  : never;
+
+type a = Combs<ModifierKeys>;
+/* _____________ 测试用例 _____________ */
+import type { Equal, Expect } from '@type-challenges/utils';
+
+type ModifierKeys = ['cmd', 'ctrl', 'opt', 'fn'];
+type CaseTypeOne =
+  | 'cmd ctrl'
+  | 'cmd opt'
+  | 'cmd fn'
+  | 'ctrl opt'
+  | 'ctrl fn'
+  | 'opt fn';
+
+type cases = [Expect<Equal<Combs<ModifierKeys>, CaseTypeOne>>];
 
 /* _____________ 下一步 _____________ */
 /*
