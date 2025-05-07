@@ -2,9 +2,9 @@
 
 ## 为什么有 Hook？
 
-1. **状态逻辑难以复用** 如把组件连接到 store，可以通过 「_render props_」 或者 「_高阶组件_」 的方式解决，但是会改变组件结构并会引入「_嵌套地狱_」
-2. **复杂组件变得难以理解** 你要按照生命周期拆分一些相关的事件到不同的生命周期，比如事件的监听和取消监听
-3. **Class 难以理解** Class 有学习成本。比如 this 绑定
+1. **状态逻辑难以复用** 。如把组件连接到 store，可以通过 「_render props_」 或者 「_高阶组件_」 的方式解决，但是会改变组件结构并会引入「_嵌套地狱_」
+2. **复杂组件变得难以理解** 。你要按照生命周期拆分一些相关的事件到不同的生命周期，比如事件的监听和取消监听
+3. **Class 难以理解** 。Class 有学习成本。比如 this 绑定
 
 ## React 中内置的 Hook 有以下这些
 
@@ -104,7 +104,9 @@ useEffect(() => {
 // 正确的方式
 useEffect(() => {
   const fetchData = async () => {
-    const result = await axios('http://hn.algolia.com/api/v1/search?query=redux');
+    const result = await axios(
+      'http://hn.algolia.com/api/v1/search?query=redux',
+    );
     setData(result.data);
   };
   fetchData();
