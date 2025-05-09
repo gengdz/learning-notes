@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+    <script>
+      const urls = [];
+      for (let i = 1; i <= 20; i++) {
+        urls.push(`https://jsonplaceholder.typicode.com/todos/${i}`);
+      }
+      concurrencyRequest(urls, 3).then((resps) => {
+        console.log(resps);
+      });
+    </script>
+  </body>
+</html>
