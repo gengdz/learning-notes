@@ -33,28 +33,21 @@ export const data = [
   },
 ];
 
-const bfs = (list: typeof data) => {
-  const result = [];
+// 收集所有的 label
+function bfsCollectLabel(list: typeof data) {
+  const labels = [];
   const queue = [...list];
 
   while (queue.length) {
     const item = queue.shift();
-    const newItem = {
-      ...item,
-      label: `${item.value} $ ${item.label}`,
-    };
-    result.push(newItem);
+    labels.push(`${item.label}(${item.value})`);
 
     if (item.children?.length) {
-      item.children.forEach((child) => {
-        queue.push(child);
-      });
+      item.children.forEach((item) => queue.push(item));
     }
   }
 
-  return result;
-};
+  return labels;
+}
 
-const result = bfs(data);
-
-console.log('bfs:-> \n', JSON.stringify(result, null, 4));
+console.log('广广广广度遍历收集所有的标签值--->', bfsCollectLabel(data));

@@ -37,15 +37,18 @@ const dfs = (list: typeof data) => {
   if (!list) {
     return;
   }
-  const result: any[] = [];
+  const result = [];
   list.forEach((item) => {
-    const newItem = { ...item };
-    newItem.label = `${item.value} $ ${item.label}`;
+    const newItem = {
+      ...item,
+      label: `${item.label}(${item.value})`,
+    };
+    result.push(newItem);
+
     if (item.children?.length) {
       const children = dfs(newItem.children);
       newItem.children = children;
     }
-    result.push(newItem);
   });
   return result;
 };
