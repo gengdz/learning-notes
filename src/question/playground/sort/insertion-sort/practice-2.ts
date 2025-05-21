@@ -12,6 +12,18 @@ export {};
 // * 重复上述步骤，直到找到合适的位置；
 // 最终结果：所有元素都被插入到正确位置，整个数组变为有序。
 
-const insertionSort = (arr: number[]) => {};
+const insertionSort = (arr: number[]) => {
+  for (let i = 1; i < arr.length; i++) {
+    const current = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > current) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = current;
+  }
+
+  return arr;
+};
 
 console.log(insertionSort([3, 6, 2, 4, 1]));
