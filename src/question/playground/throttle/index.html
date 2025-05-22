@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <button id="testBtn">点击我</button>
+
+    <script src="./index.js"></script>
+    <script>
+      const obj = {
+        a: 1,
+        log: throttle(function () {
+          console.log(this.a);
+        }, 500),
+      };
+      // obj.log(); // undefined
+
+      const consoleLogClick = (e) => {
+        console.log('click click --->', this, e.target);
+      };
+
+      const throttleConsoleLogClick = throttle(consoleLogClick, 1000);
+
+      const button = document
+        .querySelector('#testBtn')
+        .addEventListener('click', throttleConsoleLogClick);
+      // .addEventListener('click', debounce(consoleLogClick, 300));
+      // .addEventListener('click', consoleLogClick);
+    </script>
+  </body>
+</html>
