@@ -1,5 +1,6 @@
 /**
  * LRU：Least Recently Used
+ * 最新最少使用
  *
  */
 class LRUCache {
