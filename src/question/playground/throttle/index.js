@@ -14,13 +14,12 @@ const throttle1 = (fn, wait = 0) => {
 };
 
 const throttle = (fn, wait = 0) => {
-  let timeoutId = 0;
+  let timeoutId = null;
   return function (...args) {
-    let context = this;
     if (!timeoutId) {
       timeoutId = setTimeout(() => {
-        fn.apply(context, args);
-        timeoutId = 0;
+        fn.apply(this, args);
+        timeoutId = null;
       }, wait);
     }
   };

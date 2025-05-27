@@ -10,25 +10,51 @@
 
     <script src="./index.js"></script>
     <script>
-      const obj = {
-        a: 1,
-        log: throttle(function () {
-          console.log(this.a);
-        }, 500),
-      };
-      // obj.log(); // undefined
+      class MyClass {
+        constructor() {
+          this.value = 'MyClass22';
+          this.throttledFunc = throttle(this.method, 1000); // 这里没有使用 bind
+        }
 
-      const consoleLogClick = (e) => {
-        console.log('click click --->', this, e.target);
-      };
+        method() {
+          console.log(this.value); // 这里的 this 可能不是 MyClass 的实例
+        }
+      }
 
-      const throttleConsoleLogClick = throttle(consoleLogClick, 1000);
+      const obj = new MyClass();
+      obj.throttledFunc();
 
-      const button = document
-        .querySelector('#testBtn')
-        .addEventListener('click', throttleConsoleLogClick);
-      // .addEventListener('click', debounce(consoleLogClick, 300));
-      // .addEventListener('click', consoleLogClick);
+      // class MyClass {
+      //   constructor() {
+      //     this.a = 'MyClass';
+      //     this.log = throttle(function () {
+      //       console.log(this.a);
+      //     }, 500);
+      //   }
+      // }
+      //
+      // const instance = new MyClass();
+      // instance.log();
+
+      // const obj = {
+      //   a: 'obj',
+      //   log: throttle(function () {
+      //     console.log(this.a);
+      //   }, 500),
+      // };
+      // obj.log(); // 1
+      //
+      // const consoleLogClick = (e) => {
+      //   console.log('click click --->', this, e.target);
+      // };
+      //
+      // const throttleConsoleLogClick = throttle(consoleLogClick, 1000);
+      //
+      // const button = document
+      //   .querySelector('#testBtn')
+      //   // .addEventListener('click', throttleConsoleLogClick);
+      //   // .addEventListener('click', debounce(consoleLogClick, 300));
+      //   .addEventListener('click', consoleLogClick);
     </script>
   </body>
 </html>
