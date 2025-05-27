@@ -4,17 +4,17 @@ function User(name, age) {
 }
 
 User.prototype.show = function () {
-  console.log(this.name, this.age)
-}
+  console.log(this.name, this.age);
+};
 
-function Admin() { }
+function Admin() {}
 Admin.prototype = Object.create(User.prototype);
 // 上面的方式会导致 Admin 的 constrcutor 丢失
-Admin.prototype.contructor = Admin
+Admin.prototype.contructor = Admin;
 
-console.dir(Admin)
+console.dir(Admin);
 
 Object.defineProperty(Admin.prototype, 'contructor', {
   value: Admin,
   enumerable: false,
-})
+});
