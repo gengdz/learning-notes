@@ -1,3 +1,148 @@
+function deepClone(obj, map = new WeakMap()) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+  if (map.has(obj)) {
+    return map.get(obj);
+  }
+
+  const type = Object.prototype.toString.call(obj);
+  let clone;
+
+  switch (type) {
+    case '[object Date]':
+      clone = new Date(obj.getTime());
+      map.set(obj, clone);
+      return clone;
+
+    case '[object Symbol]':
+      clone = Symbol(obj.description);
+      map.set(obj, clone);
+      return clone;
+
+    case '[object Set]':
+      clone = new Set();
+      map.set(obj, clone);
+      obj.forEach((value) => {
+        clone.add(deepClone(value, map));
+      });
+      return clone;
+
+    case '[object Map]':
+      clone = new Map();
+      map.set(obj, clone);
+      obj.forEach((value, key) => {
+        clone.set(deepClone(key, map), deepClone(value, map));
+      });
+      return clone;
+
+    case '[object Array]':
+      clone = [];
+      map.set(obj, clone);
+      obj.forEach((item) => {
+        const v = deepClone(item, map);
+        clone.push(v);
+      });
+      return clone;
+
+    case '[object Object]':
+      clone = Object.create(Object.getPrototypeOf(obj));
+      map.set(obj, clone);
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key], map);
+        }
+      }
+      Object.getOwnPropertySymbols(obj)
+        .filter((sym) => obj.propertyIsEnumerable(sym))
+        .forEach((sym) => {
+          clone[sym] = deepClone(obj[sym], map);
+        });
+
+      return clone;
+
+    default:
+      map.set(obj, obj); // 处理循环引用中的自身指向
+      return obj;
+  }
+}
+
+function deepClone1(obj, map = new WeakMap()) {
+  // 处理基本类型和null
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // 处理循环引用
+  if (map.has(obj)) {
+    return map.get(obj);
+  }
+
+  // 判断对象类型
+  const type = Object.prototype.toString.call(obj);
+  let clone;
+
+  switch (type) {
+    case '[object Date]':
+      clone = new Date(obj.getTime());
+      map.set(obj, clone);
+      return clone;
+
+    case '[object RegExp]':
+      clone = new RegExp(obj.source, obj.flags);
+      clone.lastIndex = obj.lastIndex;
+      map.set(obj, clone);
+      return clone;
+
+    case '[object Set]':
+      clone = new Set();
+      map.set(obj, clone);
+      obj.forEach((value) => {
+        clone.add(deepClone(value, map));
+      });
+      return clone;
+
+    case '[object Map]':
+      clone = new Map();
+      map.set(obj, clone);
+      obj.forEach((value, key) => {
+        clone.set(deepClone(key, map), deepClone(value, map));
+      });
+      return clone;
+
+    case '[object Array]':
+      clone = [];
+      map.set(obj, clone);
+      for (let i = 0; i < obj.length; i++) {
+        clone[i] = deepClone(obj[i], map);
+      }
+      return clone;
+
+    case '[object Object]':
+      clone = Object.create(Object.getPrototypeOf(obj));
+      map.set(obj, clone);
+      // 复制可枚举的自有属性（字符串键）
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key], map);
+        }
+      }
+      // 复制Symbol类型的自有可枚举属性
+      const symbolKeys = Object.getOwnPropertySymbols(obj);
+      for (const symKey of symbolKeys) {
+        if (obj.propertyIsEnumerable(symKey)) {
+          clone[symKey] = deepClone(obj[symKey], map);
+        }
+      }
+      return clone;
+
+    // 其他类型直接返回（如Function、Error等）
+    default:
+      map.set(obj, obj); // 处理循环引用中的自身指向
+      return obj;
+  }
+}
+
 const data = {
   title: '深拷贝对象',
   dataIndex: 'first',
@@ -20,16 +165,10 @@ const arrayData = [
 
 // 需要提前知道的知识
 console.log('对象的entries方法', JSON.stringify(Object.entries(data), null, 2));
-console.log('数组对象的entries方法', JSON.stringify(Object.entries(arrayData), null, 2));
-
-function deepClone(obj) {
-  const result = obj instanceof Object ? {} : [];
-
-  for (const [key, value] in Object.entries(obj)) {
-    result[key] = typeof value === 'object' ? deepCopy(value) : value;
-  }
-  return result;
-}
+console.log(
+  '数组对象的entries方法',
+  JSON.stringify(Object.entries(arrayData), null, 2),
+);
 
 // 深拷贝能做的事情就是一层层的进行拷贝
 function deepCopy(obj) {
