@@ -1,6 +1,6 @@
 export {};
 
-function createElement(type, config, ...chidren) {
+export function createElement(type, config, ...chidren) {
   let key = null;
   let ref = null;
   let props = {};
@@ -32,4 +32,14 @@ function createElement(type, config, ...chidren) {
   };
 }
 
+export class Component {
+  props: any;
 
+  constructor(props) {
+    this.props = props;
+  }
+
+  static isReactComponent = true;
+}
+
+export default { createElement, Component };
