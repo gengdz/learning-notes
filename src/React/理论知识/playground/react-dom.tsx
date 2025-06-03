@@ -16,6 +16,7 @@ import {
   createHostRootFiber,
   createWorkInProgress,
 } from './fiber';
+import listenToAllEvents from './listenToAllEvents';
 
 const element = (
   <div title="title">
@@ -37,6 +38,9 @@ const root = {
   container: document.getElementById('root'),
   current: null as unknown as Fiber,
 };
+
+listenToAllEvents(root.container);
+
 const hostRootFiber = createHostRootFiber(ConcurrentRoot, true);
 root.current = hostRootFiber;
 hostRootFiber.stateNode = root;
@@ -135,6 +139,7 @@ function completeWork(workInProgress: Fiber) {
       const instance = createElement(workInProgress);
       appendChildren(instance, workInProgress);
       workInProgress.stateNode = instance;
+      instance.internalFiber = workInProgress;
       setInitialProps(instance, workInProgress.pendingProps);
       break;
     case HostText:
@@ -151,6 +156,7 @@ function completeWork(workInProgress: Fiber) {
 function renderRootSync() {
   while (workInProgress) {
     const next = beginWork(workInProgress);
+    workInProgress.memoizedProps = workInProgress.pendingProps;
 
     if (next) {
       workInProgress = next;
