@@ -146,3 +146,26 @@ export type Fiber = {
   selfBaseDuration?: number;
   treeBaseDuration?: number;
 };
+
+export type ReactElement = {
+  // 用于标识这是一个 React 元素
+  $$typeof: symbol;
+
+  // 元素类型，可以是字符串（如 'div'），也可以是函数或类组件
+  type: 'div' | any;
+
+  // 元素的 key，用于同级元素区分
+  key: null | string;
+
+  // ref 引用
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  ref?: null | Function | object;
+
+  // props 属性对象
+  props?: ReactElement & {
+    children: ReactElement | ReactElement[] | string | number | null; // children 可以是单个元素、数组或文本
+    // ...其它属性
+  };
+
+  // 其他内部字段
+};

@@ -81,8 +81,8 @@ function setInitialProps(dom: HTMLHtmlElement, nextProps) {
 }
 
 function beginWork(workInProgress: Fiber) {
-  // 处理 alternate
-  let nextChildren: Fiber;
+  // 1. 处理 alternate
+  let nextChildren;
 
   switch (workInProgress.tag) {
     case HostRoot:
@@ -119,15 +119,18 @@ function beginWork(workInProgress: Fiber) {
   childFiber.return = workInProgress;
   workInProgress.alternate = childFiber;
 
-  // 找到 子Fiber
+  // 2. 找到 子Fiber
   return workInProgress.child;
 }
 
 function completeWork(workInProgress: Fiber) {
-  // 完善Fiber 属性，比如 DOM 属性，收集副作用属性。
+  // 完善Fiber 属性，比如 DOM 属性、收集副作用属性。
 
   switch (workInProgress.tag) {
     case HostRoot:
+    case FunctionComponent:
+    case ClassComponent:
+      break;
     case HostComponent:
       const instance = createElement(workInProgress);
       appendChildren(instance, workInProgress);
@@ -140,10 +143,6 @@ function completeWork(workInProgress: Fiber) {
       );
       break;
 
-    case FunctionComponent:
-      break;
-    case ClassComponent:
-      break;
     default:
       return;
   }
@@ -178,7 +177,7 @@ function commitRoot() {
       container.appendChild(childFiber.stateNode);
       break;
     }
-    childFiber = childFiber.return;
+    childFiber = childFiber.child;
   }
   root.current = finishedWork;
 }

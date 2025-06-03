@@ -11,6 +11,7 @@ import {
   NoFlags,
   NoLanes,
   NoMode,
+  ReactElement,
 } from './constants';
 
 // https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiber.js#L231-L231
@@ -54,7 +55,7 @@ export function createFiber(tag, pendingProps, key, mode): Fiber {
   return new FiberNode(tag, pendingProps, key, mode);
 }
 
-export function createFiberFromElement(element, mode, lanes) {
+export function createFiberFromElement(element: ReactElement, mode, lanes) {
   let tag = null;
   const type = element.type;
   const key = element.key;
