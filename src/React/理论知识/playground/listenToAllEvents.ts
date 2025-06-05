@@ -1,4 +1,5 @@
 import { Fiber, HostComponent } from './constants';
+import { flush } from './sedule-sync-callback';
 
 const allEvents = ['click'];
 
@@ -52,6 +53,12 @@ function dispatchEvent(event) {
 
 export default function listenToAllEvents(container) {
   allEvents.forEach((event) => {
-    container.addEventListener(event, dispatchEvent, false);
+    container.addEventListener(
+      event,
+      (e) => {
+        flush(() => dispatchEvent(e));
+      },
+      false,
+    );
   });
 }

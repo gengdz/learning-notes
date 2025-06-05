@@ -1,9 +1,7 @@
 /* eslint-disable no-case-declarations */
-import React from './createElement';
 import {
   ClassComponent,
   ConcurrentMode,
-  ConcurrentRoot,
   Fiber,
   FunctionComponent,
   HostComponent,
@@ -11,78 +9,10 @@ import {
   HostText,
   NoLanes,
 } from './constants';
-import {
-  createFiberFromElement,
-  createHostRootFiber,
-  createWorkInProgress,
-} from './fiber';
-import listenToAllEvents from './listenToAllEvents';
+import { createFiberFromElement, createWorkInProgress } from './fiber';
+import { createElement, appendChildren, setInitialProps } from './dom';
 
-const element = (
-  <div title="title">
-    <h1>i am h1</h1>
-  </div>
-);
-
-function App() {
-  return <div style={{ color: 'green' }}>i am function component</div>;
-}
-
-class ClassApp extends React.Component {
-  render() {
-    return <div style={{ color: 'blue' }}>i am class component</div>;
-  }
-}
-
-const root = {
-  container: document.getElementById('root'),
-  current: null as unknown as Fiber,
-};
-
-listenToAllEvents(root.container);
-
-const hostRootFiber = createHostRootFiber(ConcurrentRoot, true);
-root.current = hostRootFiber;
-hostRootFiber.stateNode = root;
-
-let workInProgress = createWorkInProgress(hostRootFiber, {
-  children: element,
-  // children: <App/>,
-  // children: <App/>,
-});
-
-function createElement(workInProgress: Fiber) {
-  return document.createElement(workInProgress.type);
-}
-
-function appendChildren(dom: any, workInProgress: Fiber) {
-  // 将当前所有的子节点的 node 挂载到现在生成的 dom 上
-  let childFiber = workInProgress.child;
-  while (childFiber) {
-    dom.appendChild(childFiber.stateNode);
-    childFiber = childFiber.sibling;
-  }
-}
-
-function setInitialProps(dom: HTMLHtmlElement, nextProps) {
-  for (const [k, v] of Object.entries(nextProps)) {
-    if (k === 'style') {
-      for (const [sk, sv] of Object.entries(v)) {
-        dom.style[sk] = sv;
-      }
-      continue;
-    }
-    if (k === 'children') {
-      if (['string', 'number'].includes(typeof v)) {
-        dom.textContent = v as any;
-      }
-
-      continue;
-    }
-
-    dom[k] = v;
-  }
-}
+let workInProgress = null;
 
 function beginWork(workInProgress: Fiber) {
   // 1. 处理 alternate
@@ -92,19 +22,18 @@ function beginWork(workInProgress: Fiber) {
     case HostRoot:
       nextChildren = workInProgress.pendingProps.children;
       break;
-
     case HostComponent:
       const children = workInProgress.pendingProps.children;
       nextChildren = ['string', 'number'].includes(typeof children)
         ? null
         : children;
       break;
-
     case FunctionComponent:
       nextChildren = workInProgress.type(workInProgress.pendingProps);
       break;
     case ClassComponent:
       const instance = new workInProgress.type(workInProgress.pendingProps);
+      instance._reactFiber = workInProgress;
       nextChildren = instance.render();
       break;
     default:
@@ -173,7 +102,7 @@ function renderRootSync() {
   }
 }
 
-function commitRoot() {
+function commitRoot(root) {
   const container = root.container;
   const finishedWork = root.current.alternate;
   let childFiber = finishedWork.child;
@@ -188,12 +117,18 @@ function commitRoot() {
   root.current = finishedWork;
 }
 
-function render() {
+function prepareFresh(root, children) {
+  workInProgress = createWorkInProgress(root.current, null);
+  // renderLanes = root.pendingLanes;
+}
+
+export default function renderSync(root, children) {
+  // 初始化
+  prepareFresh(root, children);
+
   // render
   renderRootSync();
 
   // commit
-  commitRoot();
+  commitRoot(root);
 }
-
-render();

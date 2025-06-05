@@ -1,4 +1,4 @@
-export {};
+import { classComponentUpdate } from './update';
 
 export function createElement(type, config, ...chidren) {
   let key = null;
@@ -40,6 +40,10 @@ export class Component {
   }
 
   static isReactComponent = true;
+
+  setState(partialState) {
+    classComponentUpdate(this, partialState);
+  }
 }
 
 export default { createElement, Component };

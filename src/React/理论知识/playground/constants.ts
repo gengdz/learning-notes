@@ -37,10 +37,15 @@ export type WorkTag =
   | 31;
 
 export const ConcurrentRoot = 1;
+export const LegacyRoot = 0;
+
 export const NoMode = /*                         */ 0b0000000;
 export const ConcurrentMode = /*                 */ 0b0000001;
+export type Lane = number;
 export type Lanes = number;
+export const NoLane: Lane = /*                          */ 0b0000000000000000000000000000000;
 export const NoLanes: Lanes = /*                        */ 0b0000000000000000000000000000000;
+export const SyncLane: Lane = /*                        */ 0b0000000000000000000000000000010;
 
 export const NoFlags = /*                      */ 0b0000000000000000000000000000000;
 
@@ -169,3 +174,7 @@ export type ReactElement = {
 
   // 其他内部字段
 };
+
+export function mergeLanes(a: Lanes | Lane, b: Lanes | Lane): Lanes {
+  return a | b;
+}

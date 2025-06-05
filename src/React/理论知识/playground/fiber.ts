@@ -34,7 +34,9 @@ export function FiberNode(tag, pendingProps, key, mode) {
 
   this.pendingProps = pendingProps;
   this.memoizedProps = null;
-  this.updateQueue = null;
+  this.updateQueue = {
+    pending: null,
+  };
   this.memoizedState = null;
   this.dependencies = null;
 
