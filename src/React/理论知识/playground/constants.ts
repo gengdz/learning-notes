@@ -178,3 +178,7 @@ export type ReactElement = {
 export function mergeLanes(a: Lanes | Lane, b: Lanes | Lane): Lanes {
   return a | b;
 }
+
+export function includesSomeLane(a, b) {
+  return (a & b) !== NoLane;
+}

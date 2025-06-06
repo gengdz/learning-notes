@@ -7,6 +7,8 @@ import {
   HostComponent,
   HostRoot,
   HostText,
+  includesSomeLane,
+  NoLane,
   NoLanes,
 } from './constants';
 import { createFiberFromElement, createWorkInProgress } from './fiber';
@@ -14,13 +16,55 @@ import { createElement, appendChildren, setInitialProps } from './dom';
 
 let workInProgress = null;
 
-function beginWork(workInProgress: Fiber) {
+let renderLanes = NoLanes;
+
+// 复用子节点
+function bailout(current, workInProgress) {
+  let currentChild = current.child;
+  if (currentChild === null) {
+    return null;
+  }
+
+  let result = null;
+  let prevChild = null;
+
+  while (currentChild) {
+    const newChild = createWorkInProgress(
+      currentChild,
+      currentChild.memoizedProps,
+    );
+    newChild.return = workInProgress;
+    if (result === null) {
+      result = newChild;
+      workInProgress.child = result;
+    } else {
+      prevChild.sibling = newChild;
+    }
+    prevChild = newChild;
+    currentChild = currentChild.sibling;
+  }
+  return result;
+}
+
+function beginWork(current: Fiber, workInProgress: Fiber) {
+  if (current) {
+    if (
+      current.memoizedProps === workInProgress.pendingProps &&
+      !includesSomeLane(workInProgress.lanes, renderLanes)
+    ) {
+      if (!includesSomeLane(workInProgress.childLanes, renderLanes)) {
+        return null;
+      }
+      return bailout(current, workInProgress);
+    }
+  }
   // 1. 处理 alternate
   let nextChildren;
 
   switch (workInProgress.tag) {
     case HostRoot:
-      nextChildren = workInProgress.pendingProps.children;
+      nextChildren = workInProgress.updateQueue.pending.payload;
+      workInProgress.updateQueue.pending = null;
       break;
     case HostComponent:
       const children = workInProgress.pendingProps.children;
@@ -32,9 +76,27 @@ function beginWork(workInProgress: Fiber) {
       nextChildren = workInProgress.type(workInProgress.pendingProps);
       break;
     case ClassComponent:
-      const instance = new workInProgress.type(workInProgress.pendingProps);
-      instance._reactFiber = workInProgress;
-      nextChildren = instance.render();
+      if (!current) {
+        const instance = new workInProgress.type(workInProgress.pendingProps);
+        instance._reactFiber = workInProgress;
+        workInProgress.stateNode = instance;
+        nextChildren = instance.render();
+      } else {
+        const instance = workInProgress.stateNode;
+        let newState = instance.state;
+        const pendingState = current.updateQueue.pending;
+        let next = pendingState.next;
+
+        do {
+          newState = { ...newState, ...next.payload };
+          if (next === pendingState) {
+            break;
+          }
+          next = next.next;
+        } while (next);
+        instance.state = newState;
+        nextChildren = instance.render();
+      }
       break;
     default:
       return;
@@ -44,13 +106,17 @@ function beginWork(workInProgress: Fiber) {
     workInProgress.child = null;
     return workInProgress.child;
   }
+
+  // 重新构建子Fiber，清除自身标记
+  workInProgress.lanes = NoLane;
   const childFiber = createFiberFromElement(
     nextChildren,
     ConcurrentMode,
     NoLanes,
   );
   childFiber.return = workInProgress;
-  workInProgress.alternate = childFiber;
+  childFiber.child = childFiber;
+  // workInProgress.alternate = childFiber;
 
   // 2. 找到 子Fiber
   return workInProgress.child;
@@ -80,11 +146,13 @@ function completeWork(workInProgress: Fiber) {
     default:
       return;
   }
+  workInProgress.childLanes = NoLane;
 }
 
 function renderRootSync() {
   while (workInProgress) {
-    const next = beginWork(workInProgress);
+    const current = workInProgress.alternate;
+    const next = beginWork(current, workInProgress);
     workInProgress.memoizedProps = workInProgress.pendingProps;
 
     if (next) {
@@ -103,12 +171,17 @@ function renderRootSync() {
 }
 
 function commitRoot(root) {
+  root.pendingLanes = NoLanes;
+  root.callbackPriority = NoLanes;
   const container = root.container;
   const finishedWork = root.current.alternate;
   let childFiber = finishedWork.child;
 
   while (childFiber) {
     if (childFiber.tag === HostComponent && childFiber.stateNode) {
+      if (container.childNodes[0]) {
+        container.childNodes[0].remove();
+      }
       container.appendChild(childFiber.stateNode);
       break;
     }
@@ -117,14 +190,14 @@ function commitRoot(root) {
   root.current = finishedWork;
 }
 
-function prepareFresh(root, children) {
+function prepareFresh(root) {
   workInProgress = createWorkInProgress(root.current, null);
-  // renderLanes = root.pendingLanes;
+  renderLanes = root.pendingLanes;
 }
 
 export default function renderSync(root, children) {
   // 初始化
-  prepareFresh(root, children);
+  prepareFresh(root);
 
   // render
   renderRootSync();

@@ -3,6 +3,8 @@ import { createHostRootFiber } from './fiber';
 import listenToAllEvents from './listenToAllEvents';
 import React from './react';
 import renderSync from './render-sync';
+import { flush } from './sedule-sync-callback';
+import { updateContainer } from './update';
 
 const element = (
   <div title="title">
@@ -52,5 +54,8 @@ const hostRootFiber = createHostRootFiber(LegacyRoot, true);
 root.current = hostRootFiber;
 hostRootFiber.stateNode = root;
 
-renderSync(root, <ClassApp />);
+flush(()=>{
+  updateContainer(root,<ClassApp/>)
+})
+// renderSync(root, <ClassApp />);
 // renderSync(root, <App />);

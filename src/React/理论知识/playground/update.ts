@@ -67,3 +67,19 @@ export function classComponentUpdate(instance, partialState) {
   // 3. 调度
   scheduleUpdate(root, update.lane);
 }
+
+// 入口更新
+export function updateContainer(root, element) {
+  // 1. 生成一个变更
+  const update = {
+    payload: element,
+    lane: SyncLane,
+  };
+
+  // 2. 挂载变更
+  const fiber = root.current;
+  const _root = enqueueUpdate(fiber, update);
+
+  // 3. 调度
+  scheduleUpdate(_root, update.lane);
+}
