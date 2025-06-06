@@ -9,6 +9,8 @@
 // 再等待一秒后输出 "total: 6, value: {}",
 // 立即输出 "6"
 
+export {};
+
 Array.prototype.count = function () {
   let total = 0;
   return new Promise((resolve, reject) => {
