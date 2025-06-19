@@ -1,3 +1,5 @@
+export {};
+
 const data = [
   { id: 5, parentId: 2 },
   { id: 2, parentId: 1 }, // id为1的子节点
@@ -11,23 +13,6 @@ const data = [
   { id: 10, parentId: 7 }, // id为7的子节点
 ];
 
-const arr2tree = (arr = data) => {
-  const map = arr.reduce(
-    (acc, cur) => ({ ...acc, [cur.id]: { ...cur, children: [] } }),
-    {},
-  );
-
-  return arr.reduce((acc, cur) => {
-    const current = map[cur.id];
-    if (!cur.parentId) {
-      acc.push(current);
-    } else {
-      map[cur.parentId].children.push(current);
-    }
-    return acc;
-  }, []);
-};
+const arr2tree = (arr = data) => {};
 
 console.log('arr2tree', JSON.stringify(arr2tree(data), null, 2));
-
-export { data };
