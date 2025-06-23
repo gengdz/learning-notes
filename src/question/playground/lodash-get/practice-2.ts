@@ -5,7 +5,16 @@ const myGet = (
   k: string,
   defalut: unknown = '',
 ) => {
-  return;
+  const transformedK = k.replace(
+    /(\[(\d?)\])/g,
+    (match, p1, p2, p3) => `.${p2}`,
+  );
+  const splitedK = transformedK.split('.');
+  let value = obj;
+  for (let i = 0; i < splitedK.length; i++) {
+    value = value?.[splitedK[i]];
+  }
+  return value ?? defalut;
 };
 
 const obj = { a: [{ b: { c: 3 } }] };
