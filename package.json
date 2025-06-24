@@ -3,29 +3,29 @@
   "type": "module",
   "lint-staged": {
     "src/**/*.{js,ts}": [
-      "prettier --write",
+      "prettier --write --experimental-cli",
       "eslint --quiet --fix"
     ],
     "src/**/*.{md,json}": [
-      "prettier --write"
+      "prettier --write --experimental-cli"
     ]
   },
   "scripts": {
     "prepare": "husky"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@type-challenges/utils": "^0.1.1",
-    "@types/node": "^22.13.4",
+    "@types/node": "^24.0.3",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "prettier": "^3.5.1",
-    "typescript": "^5.7.3",
-    "vite": "^6.1.0"
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
   },
   "repository": "git@github.com:gengdz/learning-notes.git"
 }
