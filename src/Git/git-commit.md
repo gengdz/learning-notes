@@ -11,10 +11,7 @@ commit 是有一定的规范的。
 - _Footer_
 
 ```html
-<type
-  >(<scope
-    >):
-    <subject>
+<type >(<scope): <subject>
       // 空一行
       <body>
         // 空一行
@@ -75,10 +72,13 @@ git commit -c 'commit 信息' --n
 ## 修改 commit 的提交信息
 
 1. 如果修改的是最后一次 commit
+
    ```bash
    git commit --amend --author="name <email.com>"
    ```
+
 2. 如果不是最后一次 commit
+
    ```bash
    # 1. 进入到 rebase
    git rebase
