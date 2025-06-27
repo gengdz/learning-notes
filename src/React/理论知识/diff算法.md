@@ -26,6 +26,11 @@
 
 flags, subtreeFlags 就是收集副作用的标记。
 
+- flags 它代表当前 fiber 节点的副作用的标记。
+  - 值是在 diff 的过程中进行的副作用标记。
+  - 新增/移动 就会在当前的 fiber 节点打上 Placement 的标记
+- subtreeFlags 它代表当前节点的所有子 fiber 的 flag 信息。这个值是它在从下往上回溯的时候填充的
+
 ## 比较的过程
 
 - **Tree diff**
