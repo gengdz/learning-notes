@@ -12,18 +12,18 @@ DOM 以树结构表达 HTML 文档（所以也叫 DOM 树），定义了访问�
 
 ```html
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>测试</title>
-	</head>
-	<body>
-		<h1>标题</h1>
-		<ul>
-			<1i>
-				<a href="#">链接</a>
-			</1i>
-		</ul>
-	</body>
+ <head>
+  <meta charset="UTF-8">
+  <title>测试</title>
+ </head>
+ <body>
+  <h1>标题</h1>
+  <ul>
+   <1i>
+    <a href="#">链接</a>
+   </1i>
+  </ul>
+ </body>
 </html>
 ```
 
@@ -34,11 +34,17 @@ DOM 树
 
 ### 名称介绍
 
-- **文档**：**一个页面就是一个文档**，DOM 中使用 _document_ 表示
-- **元素**：页面中的所有**标签都是元素**，DOM 中使用 _element_ 表示
-- **节点**：网页中的**所有内容都是节点**（标签、属性、文本、注释等），DOM 中使用 _node_ 表示
+- **Document**：**一个页面就是一个文档**，DOM 中使用 `Document` 表示
+- **Node**：网页中的**所有内容都是节点**（标签、属性、文本、注释等），DOM 中使用 `Node` 表示
+- **Element**：页面中的所有**标签都是元素**，DOM 中使用 `Element` 表示
 
 在 DOM 中以上内容都看成是对象。
+
+他们的关系是：
+
+- **Document** 是根节点
+- **Node** 是所有节点的基类。
+- **Node** 有很多子类，其中包含了 `Element` 和 `Text` 等
 
 ### 操作时机
 
@@ -435,6 +441,17 @@ const text = document.createTextNode('  createTextNode 方式，节点对象 3')
 article.appendChild(text); // 添加一个文本节点
 ```
 
+### `cloneNode()`
+
+克隆节点
+
+```javascript
+const article = document.querySelector('article');
+const h1 = document.querySelector('h1');
+const cloneH1 = h1.cloneNode(true); // true 表示深度克隆
+article.appendChild(cloneH1); // 添加克隆的 h1
+```
+
 ## 节点管理
 
 ### `append | prepend | before | after | replaceWith`
@@ -468,7 +485,7 @@ h1.after('<h1>字符串</h1>'); // 这里插入的也是字符串
 
 说明：
 
-- 添加的内容只能是 **字符串** 或者 **通过 `createElement` 创建的标签 **
+- 添加的内容只能是 **字符串** 或者 **通过 `createElement` 创建的标签**
 - 字符串会当成 「text 字符串」而不是「HTML 字符串」
 
 ### `insertAdjacentHTML`
