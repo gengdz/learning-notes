@@ -16,6 +16,7 @@
 | brew list            | 查看所有已经安装的包信息           |
 | brew install         | 安装包                             |
 | brew uninstall       | 卸载包                             |
+| brew uninstall -f    | 强制卸载包                         |
 | brew outdated        | 查看哪些包需要更新                 |
 | brew update          | 更新自己                           |
 | brew upgrade（包名） | 升级所有的包（指定的包）           |
@@ -34,6 +35,8 @@
 
 定义：一个 bottle 是一个预编译的二进制包，即已经为特定的操作系统版本编译好的软件包，通常存储在 Homebrew 的 bintray 存储库中或者是 GitHub 的 Release 页面上。
 
+用于管理命令行工具和后台服务（例如：git, node, wget, nginx)。
+
 作用：Bottle 允许用户在不经过编译的情况下安装软件，大幅缩短安装时间。当你执行安装命令时，如果 Homebrew 发现有对应的 bottle，就会直接下载这个预编译版本而不是从源代码开始构建。
 
 ### Cask
@@ -41,6 +44,8 @@
 定义：Cask 是 Homebrew 的一个扩展，它允许 Homebrew 管理 macOS 原生的 GUI 应用程序，这些 GUI 应用程序通常是通过打包好的 .app 文件发布的，而不是通过源代码构建。
 
 作用：通过 Homebrew Cask，你可以使用与安装 CLI 工具相同的方式来安装 GUI 应用程序。用户可以通过类似 brew install --cask <cask> 的命令安装 macOS 的 应用程序，如 Google Chrome、Visual Studio Code 等。
+
+用于管理带有图形用户洁面（GUI）的应用程序（例如：Google Chrome, Visual Studio Code, Slack）。
 
 ### Tap
 
