@@ -109,13 +109,17 @@ function beginWork(current: Fiber, workInProgress: Fiber) {
 
   // 重新构建子Fiber，清除自身标记
   workInProgress.lanes = NoLane;
-  const childFiber = createFiberFromElement(
-    nextChildren,
-    ConcurrentMode,
-    NoLanes,
-  );
-  childFiber.return = workInProgress;
-  childFiber.child = childFiber;
+
+  // React diff
+  workInProgress.child = reconciler(current,workInProgress,nextChildren);
+
+  // const childFiber = createFiberFromElement(
+  //   nextChildren,
+  //   ConcurrentMode,
+  //   NoLanes,
+  // );
+  // childFiber.return = workInProgress;
+  // childFiber.child = childFiber;
   // workInProgress.alternate = childFiber;
 
   // 2. 找到 子Fiber
