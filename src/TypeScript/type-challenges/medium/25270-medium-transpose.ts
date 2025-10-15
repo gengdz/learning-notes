@@ -18,10 +18,19 @@
 
 /* _____________ 你的代码 _____________ */
 
-type Transpose<M extends number[][]> = any
+type Transpose<
+  M extends number[][],
+  Index extends number[] = [],
+  Result extends number[][] = [],
+> = Index['length'] extends M[0]['length']
+  ? Result
+  : Transpose<M, [...Index, 1], [...Result, [M[number][Index['length']]]]>;
+
+type aa = Transpose<[[1, 2, 3], [4, 5, 6]]>;
+type a = [[1, 4], [2, 3]][number][0];
 
 /* _____________ 测试用例 _____________ */
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Transpose<[]>, []>>,
@@ -30,8 +39,13 @@ type cases = [
   Expect<Equal<Transpose<[[1, 2], [3, 4]]>, [[1, 3], [2, 4]]>>,
   Expect<Equal<Transpose<[[1, 2, 3], [4, 5, 6]]>, [[1, 4], [2, 5], [3, 6]]>>,
   Expect<Equal<Transpose<[[1, 4], [2, 5], [3, 6]]>, [[1, 2, 3], [4, 5, 6]]>>,
-  Expect<Equal<Transpose<[[1, 2, 3], [4, 5, 6], [7, 8, 9]]>, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]>>,
-]
+  Expect<
+    Equal<
+      Transpose<[[1, 2, 3], [4, 5, 6], [7, 8, 9]]>,
+      [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+    >
+  >,
+];
 
 /* _____________ 下一步 _____________ */
 /*
