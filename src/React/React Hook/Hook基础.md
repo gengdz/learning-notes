@@ -21,11 +21,11 @@
   - [`useLayoutEffect`](https://react.docschina.org/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](https://react.docschina.org/docs/hooks-reference.html#usedebugvalue)
 
-## 为什么不能在条件中使用
+## 为什么不能在条件语句中使用
 
 由于 React 依赖于这些调用的顺序来关联组件状态。
 
-React 内部是用数组来存储这些 hooks 的，内部会在内存中为每个组件维护一个索引，指示当前正在处理哪个 Hook。更新的时候就更新这个 hooks 数组索引的值。
+React 内部是用链表类似数组来存储这些 hooks 的，内部会在内存中为每个组件维护一个索引，指示当前正在处理哪个 Hook。更新的时候就更新这个 hooks 数组索引的值。
 
 ## useState
 
@@ -426,7 +426,7 @@ React 的工作流程可以更详细地划分为以下几个步骤：
 什么时候使用 useLayoutEffect
 
 - 读取布局信息，决定后续动画等：当你需要读取布局信息，比如元素的位置或尺寸，并且基于这些信息来执行一些操作时。比如获取一个 DOM 元素的宽高来决定接下来的动画效果。
-- 同步更新 DOM:如果你需要在 DOM 更新后立即同步地修改 DOM，以避免可能的渲染闪烁，那么你应该使用 useLayoutEffect。例如，调整滚动位置或者执行一个需要在布局变化之后立即生效的 DOM 操作。
+- 同步更新 DOM：如果你需要在 DOM 更新后立即同步地修改 DOM，以避免可能的渲染闪烁，那么你应该使用 useLayoutEffect。例如，调整滚动位置或者执行一个需要在布局变化之后立即生效的 DOM 操作。
 - 避免视觉闪烁：在执行能引起 DOM 布局变化的操作时，使用 useLayoutEffect 可以避免视觉上的抖动或闪烁，因为任何布局变动都会在页面重绘前完成。
 - 同步重新渲染：当你需要强制浏览器在继续进行任何进一步渲染之前完成一个更新周期时。例如，在某些复杂的动画之前需要重置状态。
 
