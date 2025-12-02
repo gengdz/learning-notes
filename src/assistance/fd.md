@@ -25,6 +25,12 @@ fd is a simple, fast and user-friendly alternative to find(1).
 
 ```bash
 
+# 查找所有 md 文件
+fd -e md
+
+# 查找所有 js 和 ts 文件
+fd -g '*.{js,ts}'
+
 # 匹配 demo1.js demo-this.js
 fd 'demo.*.js'
 
