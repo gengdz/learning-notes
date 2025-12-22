@@ -30,6 +30,10 @@ git revert f95f15b;
 - `git revert --continue` 继续走流程
 - `git revert --abort` 取消操作
 
+```bash
+git revert HEAD # 撤销当前分支最新的提交
+```
+
 ## 撤销多个连续的提交
 
 ```bash
