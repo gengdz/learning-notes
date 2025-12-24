@@ -155,3 +155,10 @@ rg -v 'const'
 tsx:*.tsx
 
 ```
+
+## 在 snacks.nvim 中使用
+
+```bash
+# 不能加 单/双引号
+const -g **/dashboard/**
+```
