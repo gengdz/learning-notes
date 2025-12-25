@@ -1,5 +1,21 @@
 # 概览
 
+## mitt
+
+[developit/mitt: 🥊 Tiny 200 byte functional event emitter / pubsub.](https://github.com/developit/mitt)
+
+```typescript
+import mitt from 'mitt';
+
+const emitter = mitt();
+
+emitter.on('event', (data) => {
+  console.log(data);
+});
+
+emitter.emit('event', 'hello world');
+```
+
 ## zod
 
 [colinhacks/zod: TypeScript-first schema validation with static type inference](https://github.com/colinhacks/zod)
