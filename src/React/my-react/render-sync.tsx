@@ -1,7 +1,6 @@
 /* eslint-disable no-case-declarations */
 import {
   ClassComponent,
-  ConcurrentMode,
   Fiber,
   FunctionComponent,
   HostComponent,
@@ -11,8 +10,9 @@ import {
   NoLane,
   NoLanes,
 } from './constants';
-import { createFiberFromElement, createWorkInProgress } from './fiber';
+import { createWorkInProgress } from './fiber';
 import { createElement, appendChildren, setInitialProps } from './dom';
+import reconciler from './reconciler';
 
 let workInProgress = null;
 
@@ -110,19 +110,10 @@ function beginWork(current: Fiber, workInProgress: Fiber) {
   // 重新构建子Fiber，清除自身标记
   workInProgress.lanes = NoLane;
 
-  // React diff
-  workInProgress.child = reconciler(current,workInProgress,nextChildren);
+  // React diff — 协调子节点，生成子 Fiber 链表
+  workInProgress.child = reconciler(current, workInProgress, nextChildren);
 
-  // const childFiber = createFiberFromElement(
-  //   nextChildren,
-  //   ConcurrentMode,
-  //   NoLanes,
-  // );
-  // childFiber.return = workInProgress;
-  // childFiber.child = childFiber;
-  // workInProgress.alternate = childFiber;
-
-  // 2. 找到 子Fiber
+  // 返回第一个子 Fiber，继续向下遍历
   return workInProgress.child;
 }
 
