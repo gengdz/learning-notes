@@ -1,31 +1,22 @@
 {
   "name": "learning-notes",
   "type": "module",
-  "lint-staged": {
-    "src/**/*.{js,ts}": [
-      "prettier --write --experimental-cli",
-      "eslint --quiet --fix"
-    ],
-    "src/**/*.{md,json}": [
-      "prettier --write --experimental-cli"
-    ]
-  },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "vp config"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@type-challenges/utils": "^0.1.1",
-    "@types/node": "^24.0.3",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "prettier": "^3.6.0",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "@types/node": "^25.6.0",
+    "markdownlint-cli2": "^0.22.0",
+    "typescript": "^6.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
   },
-  "repository": "git@github.com:gengdz/learning-notes.git"
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "repository": "git@github.com:gengdz/learning-notes.git",
+  "packageManager": "pnpm@10.33.0"
 }

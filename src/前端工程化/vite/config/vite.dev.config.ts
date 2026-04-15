@@ -1,1 +1,1 @@
-import {} from 'vite';
+import {} from 'vite-plus';
