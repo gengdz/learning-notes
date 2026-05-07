@@ -82,6 +82,13 @@ function setTimeout(callback: (args: void) => void, ms?: number): NodeJS.Timeout
 
 使用 `clearTimeout(timeoutID)`。
 
+setTimeout 在被调用时，会立即向宿主环境注册一个定时器，并返回一个定时器标识符 id。
+此时传入的回调函数不会立即执行。
+当指定的延迟时间到达后，宿主环境会把这个回调加入任务队列。
+等当前调用栈清空、并且事件循环调度到它时，这个回调才会真正执行。
+如果在执行前调用 clearTimeout(id)，那么这个回调会被取消，不再执行。
+由于闭包的存在，回调函数执行时可以访问外部保存的 id 变量。
+
 #### setInterval()
 
 每隔一段时间就调用一次回调函数。
@@ -99,6 +106,13 @@ function setInterval(callback: (args: void) => void, ms?: number): NodeJS.Timer;
 **停止定时器**
 
 使用 `clearInterval(intervalID)`。
+
+setInterval 在调用时会立即注册一个重复定时器，并返回一个 id。
+此时回调函数不会立刻执行。
+每当间隔时间到达后，宿主环境会把该回调加入任务队列，等当前调用栈为空并被事件循环调度时再执行。
+这个过程会不断重复，直到调用 clearInterval(id) 取消为止。
+回调函数中也可以通过闭包访问这个 id。
+但需要注意，setInterval 并不能保证严格每隔 delay 执行一次，因为如果主线程忙或者回调耗时过长，实际执行时间会延后，甚至造成任务堆积。
 
 #### this 指向问题
 
